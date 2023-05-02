@@ -1,5 +1,6 @@
 package com.cook.mymealkit.vo;
 
+import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -17,6 +18,8 @@ public class ItemVO {
 	private int price;
 	
 	private String description;
+	
+	private Date update_date;
 	
 	private List<AttachFileDTO> attachList;
 
