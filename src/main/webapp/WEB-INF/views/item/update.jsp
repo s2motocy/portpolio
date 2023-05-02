@@ -1,20 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-	.inputArea { margin:10px 0; }
-	select { width:100px; }
-	label { display:inline-block; width:70px; padding:5px; }
-	label[for='gdsDes'] { display:block; }
-	input { width:150px; }
-	textarea#gdsDes { width:400px; height:180px; }
-</style>
-</head>
- <script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
+<title>상품 정보 수정 페이지</title>
+<script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
  <script>
 
         $(document).ready(function(){ ///// 전체 추가
@@ -103,12 +95,11 @@
 </script>
 
  
+</head>
 <body>
-<h1>상품 등록</h1>
-
-    <form action="/item/register" method="post" id='frm' role='form'>
-
-        <div class="inputArea"> 
+<h2>상품 정보 수정</h2>
+ <form action="/item/update" method="post" id="update">
+ 	<div class="inputArea"> 
          <label>카테고리</label>
          <select name="category">
 			 <option value="한식">한식</option>
@@ -122,7 +113,7 @@
         
         <div class="inputArea">
          <label for="name">상품명</label>
-         <input type="text" id="name" name="name" />
+         <input type="text" id="name" name="name" value='<c:out value="${result.name}"></c:out>'/>
         </div>
         
         <div class="inputArea" id='test'>
@@ -135,18 +126,17 @@
         
         <div class="inputArea">
          <label for="price">상품 가격</label>
-         <input type="text" id="price" name="price" />
+         <input type="text" id="price" name="price" value='<c:out value="${result.price}"></c:out>' />
         </div>
 
         <div class="inputArea">
          <label for="description">상품 설명</label>
-         <textarea rows="5" cols="100" id="description" name="description"></textarea>
+         <textarea rows="5" cols="100" id="description" name="description" value='<c:out value="${result.description}"></c:out>'></textarea>
         </div>
         
         <input type="reset" value="취소">
-        <button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
+        <button type="submit" id="register_Btn" class="btn btn-primary">등록</button>       
+    </form>
 
-        
-        </form>
 </body>
 </html>
