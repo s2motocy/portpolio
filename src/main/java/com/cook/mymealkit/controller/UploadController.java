@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.cook.mymealkit.vo.AttachFileDTO;
+import com.cook.mymealkit.domain.AttachFileDTO;
 
 import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -109,17 +109,17 @@ public class UploadController {
 			try {
 				File saveFile = new File(uploadPath, uploadFileName);
 				i.transferTo(saveFile); // 저장은 여기에서 한다				
-				attachDto.setUploadPath(uploadFolderPath); // 추가
-				attachDto.setUuid(uuid.toString()); // 추가
+				attachDto.setUploadPath(uploadFolderPath);
+				attachDto.setUuid(uuid.toString());
 				//image 인지 체크
 				if(checkImageType(saveFile)) {
-					attachDto.setFileType(true); // 추가
+					attachDto.setImage(true);
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_"+ uploadFileName));
 					Thumbnailator.createThumbnail(i.getInputStream(), thumbnail, 100, 100);
 					thumbnail.close();
 				}
 				// 리스트 에 추가
-				list.add(attachDto); // 추가
+				list.add(attachDto);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} // catch

@@ -30,7 +30,7 @@
     				str+= "<input type='hidden' name='attachList["+idx+"].fileName' value='"+jobj.data('filename')+"'>"
     				str+= "<input type='hidden' name='attachList["+idx+"].uuid' value='"+jobj.data('uuid')+"'>"
     				str+= "<input type='hidden' name='attachList["+idx+"].uploadPath' value='"+jobj.data('path')+"'>"
-    				str+= "<input type='hidden' name='attachList["+idx+"].fileType' value='"+jobj.data('type')+"'>"
+    				str+= "<input type='hidden' name='attachList["+idx+"].image' value='"+jobj.data('type')+"'>"
     			})
     			console.log(str)
     			formObj.append(str).submit()
@@ -66,18 +66,18 @@
     				if(!uploadResultArr || uploadResultArr.length ==0) return
     				var str=""
     				$(uploadResultArr).each(function(idx, obj){ 
-    					if(obj.fileType) { 
+    					if(obj.image) { 
     						var fileCallPath = encodeURIComponent(obj.uploadPath+ "/s_"+obj.uuid+"_"+obj.fileName)
     						var originPath = obj.uploadPath+ "/"+obj.uuid+"_"+obj.fileName
     						originPath = originPath.replace(new RegExp(/\\/g), "/")  // "\\" => "/"  로 대체
-    						str+= "<li data-path='"+obj.uploadPath+"'data-uuid='"+obj.uuid+"' data-fileName='"+obj.fileName+"'data-type='"+obj.fileType+"'"
-    						str+= "><div><span>"+obj.fileName+"</span><button type='button' data-file=\'"+fileCallPath+"\' data-type='fileType' "
+    						str+= "<li data-path='"+obj.uploadPath+"'data-uuid='"+obj.uuid+"' data-fileName='"+obj.fileName+"'data-type='"+obj.image+"'"
+    						str+= "><div><span>"+obj.fileName+"</span><button type='button' data-file=\'"+fileCallPath+"\' data-type='image' "
     						str+= "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"
     						str+= "<img src='/display?fileName=" + fileCallPath +"'></div></li>"
     					} else { 
     						var fileCallPath = encodeURIComponent(obj.uploadPath+ "/"+obj.uuid+"_"+obj.fileName)
     						var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/")
-    						str+= "<li data-path='"+obj.uploadPath+"'data-uuid='"+obj.uuid+"' data-fileName='"+obj.fileName+"'data-type='"+obj.fileType+"'"
+    						str+= "<li data-path='"+obj.uploadPath+"'data-uuid='"+obj.uuid+"' data-fileName='"+obj.fileName+"'data-type='"+obj.image+"'"
     						str+= "><div><span>"+obj.fileName+"</span><button type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
     						str+= "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button></br>"
     						str+= "<img src='/resources/img/attach.png'></div></li>"

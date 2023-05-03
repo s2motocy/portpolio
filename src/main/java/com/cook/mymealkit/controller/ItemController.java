@@ -10,30 +10,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cook.mymealkit.domain.AttachFileDTO;
+import com.cook.mymealkit.domain.ItemVO;
 import com.cook.mymealkit.mapper.FileMapper;
 import com.cook.mymealkit.mapper.ItemMapper;
 import com.cook.mymealkit.service.ItemService;
-import com.cook.mymealkit.vo.ItemVO;
 
 import lombok.Setter;
 
 @Controller
 @RequestMapping("/item/*")
 public class ItemController {
+	
+	/* Mapper 설정 */
 	@Setter(onMethod_=@Autowired)
 	ItemMapper imapper;
-	
 	@Setter(onMethod_=@Autowired)
 	FileMapper fmapper;
 	
+	/* Service 설정 */
 	@Setter(onMethod_=@Autowired)
 	ItemService iservice;
 	
 	
+	/* 상품 등록 |--------------------------------------------------- */
 	@GetMapping("/register")
-	public String item() {
-		return "/item/register";
-	}
+	public void register() {}
 	
 	@PostMapping("/register")
 	public String insert(ItemVO vo) {
@@ -46,12 +48,20 @@ public class ItemController {
 		return "redirect:/item/itemList";
 	}
 	
+	/* 상품 목록 |--------------------------------------------------- */
 	@GetMapping("/itemList")
-	public String itemList(Model model) {
-		List<ItemVO>itemList = imapper.itemList();
+	public void itemList(Model model) {
+		List<ItemVO> itemList = imapper.itemList();
+		itemList.forEach(i->{
+			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItemid());
+			i.setAttachList(attachList);
+		});
 		model.addAttribute("list",itemList);
-		return "/item/itemList";
+//		return "/item/itemList";
 	}
+	
+	@GetMapping("/detail")
+	public void detail() {}
 	
 	@GetMapping("/update")
 	public void update(int itemid, Model model) {
