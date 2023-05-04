@@ -41,6 +41,31 @@ select * from item;
 select * from tbl_file_item;
 
 
+-------------------------------------------------------------------------------- 회원 (member)
+
+-- 회원(member) 의 시퀀스 생성
+create SEQUENCE seq_members;
+-- 회원(member) 테이블 생성
+create table members(
+    bno number(10) not null primary key,
+    name varchar2(50),
+    ID	VARCHAR2(50),
+    PWD	VARCHAR2(50),
+    PWD2	VARCHAR2(50),
+    EMAIL	VARCHAR2(50),
+    PNUM	VARCHAR2(50),
+    HNUM	VARCHAR2(50),
+    ADDRESS	VARCHAR2(50),
+    DEADDRESS VARCHAR2(50)
+);
+
+-- 커밋
+commit;
+
+-- 조회
+select * from members;
+
+
 -------------------------------------------------------------------------------- 문의 (inquiry)
 
 -- 문의 의 시퀀스 생성
@@ -61,6 +86,28 @@ commit;
 
 -- 조회
 select * from tbl_inquiry;
+
+-------------------------------------------------------------------------------- 배송 (delivery)
+
+-- 배송(delivery)의 시퀀스 생성
+create sequence seq_delivery;
+-- 배송(delivery) 테이블 생성
+create table delivery(
+dno number(10) not null primary key,  -- 시퀀스
+delivery_no number not null,  --주문번호
+member_id varchar2(30) not null,  -- 주문자아이디
+item varchar(30) not null,  -- 주문상품
+delivery varchar(20),  -- 주문상태
+delivery_date date not null, -- 주문한 날짜
+price number,
+member_no number(10) not null
+);
+
+-- 커밋
+commit;
+
+-- 조회
+select * from delivery;
 
 
 -------------------------------------------------------------------------------- 장바구니 (cart)
