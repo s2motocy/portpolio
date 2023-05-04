@@ -57,11 +57,17 @@ public class ItemController {
 			i.setAttachList(attachList);
 		});
 		model.addAttribute("list",itemList);
-//		return "/item/itemList";
 	}
 	
 	@GetMapping("/detail")
-	public void detail() {}
+	public void detail(Model model) {
+		List<ItemVO> itemList = imapper.itemList();
+		itemList.forEach(i->{
+			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItemid());
+			i.setAttachList(attachList);
+		});
+		model.addAttribute("list",itemList);
+	}
 	
 	@GetMapping("/update")
 	public void update(int itemid, Model model) {
