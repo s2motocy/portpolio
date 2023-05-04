@@ -5,41 +5,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>등록상품 리스트</title>
+<title>상품 목록 페이지</title>
 </head>
- <script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
- <script>
- 
- let form = $("#itemid");
- 
- /* 수정 하기 버튼 */
- $("#btn btn-update").on("click", function(e){
-	 form.attr("action", "/item/update");
-     form.submit();
- });
- 
- /* 취소 버튼 */
- $("#cancel_btn").on("click", function(e){
-     form.attr("action", "/board/get");
-     form.submit();
- });    
+<script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
+<script>
+$(document).ready(function(){
+	$("img").each(function(idx, data){
+		var r = $(this).attr('src')
+		u= r.replaceAll('\\', '/')
+		$(this).attr('src', u )
+	})
+	
+ })
  </script>
 <body>
 <table>
+	<tr>
+		<th>상품 사진</th>
+		<th>상품 이름</th>
+		<th>상품 가격</th>
+		<th>수정</th>
+		<th>삭제</th>
+	</tr>
 	<c:forEach var="list" items="${list}">
-			<form action="" id="itemid">	
-			<tr>
-			<input type="hidden" name="ino" value="${list.itemid}" >
-				<td>${list.itemid}</td>
-				<td>${list.category}</td>
-				<td>${list.name}</td>
-				<td>${list.price}</td>
-				<td>${list.description}</td>
-				
-				<td><input type="button" value="수정" class="btn btn-update" id="update"/></td>
-				<td><input type="button" value="삭제" class="btn btn-danger" id="delete"/></td>
-			</tr>
-			</form>
+		<tr>
+			<td><img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/></td>
+			<td><a href="detail?itemid=${list.itemid}">${list.name}</a></td>
+			<td>${list.price}</td>
+			<td><input type="button" value="수정" class="btn btn-primary" id="update"/></td>
+			<td><input type="button" value="삭제" class="btn btn-warning" id="delete"/></td>
+		</tr>
+		
 	</c:forEach>
 </table>
 </body>
