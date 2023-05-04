@@ -9,6 +9,7 @@ import lombok.ToString;
 @Data
 @ToString
 public class ItemVO {
+	
 	private Long itemid;						// 상품 번호
 	private String name;						// 상품 이름
 	private String category;					// 상품 분류

@@ -7,7 +7,7 @@
 		insert into tbl_file_item values(seq_file_item.nextval,#{fileName},#{image},#{uuid},#{uploadPath})
 	</insert>
 	<select id="fileFindById" resultType="com.cook.mymealkit.domain.AttachFileDTO">
-		select * from tbl_file_item
+		select * from tbl_file_item where fid = #{itemid}
 	</select>
 	
 </mapper>
