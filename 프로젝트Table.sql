@@ -40,6 +40,29 @@ commit;
 select * from item;
 select * from tbl_file_item;
 
+
+-------------------------------------------------------------------------------- 문의 (inquiry)
+
+-- 문의 의 시퀀스 생성
+create sequence seq_inquiry;
+-- 문의 테이블 생성
+CREATE TABLE tbl_inquiry (
+  qno NUMBER(10) NOT NULL PRIMARY KEY,
+  title VARCHAR2(100) NOT NULL,
+  content VARCHAR2(100) NOT NULL,
+  wrtier VARCHAR2(100) NOT NULL,
+  register_date DATE NOT NULL,
+  update_date DATE DEFAULT SYSDATE,
+  reply_cnt NUMBER(10)
+);
+
+-- 커밋
+commit;
+
+-- 조회
+select * from tbl_inquiry;
+
+
 -------------------------------------------------------------------------------- 장바구니 (cart)
 
 -- 장바구니(cart) 의 시퀀스 생성
