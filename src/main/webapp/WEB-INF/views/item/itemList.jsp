@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>상품 목록 페이지</title>
 </head>
+<style>
+table, tr, th {
+	border: 1px solid black
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
 <script>
 $(document).ready(function(){
@@ -22,18 +27,16 @@ $(document).ready(function(){
 <table>
 	<tr>
 		<th>상품 사진</th>
+		<th>상품 분류</th>
 		<th>상품 이름</th>
 		<th>상품 가격</th>
-		<th>수정</th>
-		<th>삭제</th>
 	</tr>
 	<c:forEach var="list" items="${list}">
 		<tr>
 			<td><img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/></td>
+			<td>${list.category}</td>
 			<td><a href="detail?itemid=${list.itemid}">${list.name}</a></td>
 			<td>${list.price}</td>
-			<td><input type="button" value="수정" class="btn btn-primary" id="update"/></td>
-			<td><input type="button" value="삭제" class="btn btn-warning" id="delete"/></td>
 		</tr>
 		
 	</c:forEach>

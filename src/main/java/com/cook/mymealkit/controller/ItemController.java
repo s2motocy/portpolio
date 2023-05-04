@@ -59,6 +59,7 @@ public class ItemController {
 		model.addAttribute("list",itemList);
 	}
 	
+	/* 상품 상세 |--------------------------------------------------- */
 	@GetMapping("/detail")
 	public void detail(Model model) {
 		List<ItemVO> itemList = imapper.itemList();
@@ -69,6 +70,8 @@ public class ItemController {
 		model.addAttribute("list",itemList);
 	}
 	
+	
+	/* 상품 수정 |--------------------------------------------------- */
 	@GetMapping("/update")
 	public void update(int itemid, Model model) {
 		model.addAttribute("up", imapper.itemList());
