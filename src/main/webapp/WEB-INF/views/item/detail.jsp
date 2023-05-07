@@ -33,7 +33,7 @@ $(document).ready(function(){
 			 inputData--
 			 console.log("수량이 감소했어요", inputData)
 			 var price = $("#price").val()
-			 $("#total").val(inputData*parseInte(price))
+			 $("#total").val(inputData*parseInt(price))
 		} else if(inputData==1){ alert("값이 적어 변경되지 않았습니다")}
 		$("#inputData").val(inputData)
 	})
@@ -56,30 +56,28 @@ $(document).ready(function(){
 <body>
 	<h1>상품 상세 페이지(Detail)</h1>
 	
-	<c:forEach var="list" items="${list}">
-		<div class="이미지 출력 전체">
-			<form action="detail" method="post">
-				<div class="이미지 삽입">
-					<img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/>
-				</div>
-				<div class="이미지 정보">
-					<div class="상품 이름"><h3>상품 이름 : ${list.name}</h3></div>
-					<div class="상품 가격"><h3>상품 가격 : <input type="hidden" id="price" value="${list.price}" /></h3></div>
-					<div class="쿠폰 사용"><img src="https://cdn-pro-web-134-253.cdn-nhncommerce.com/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_coupon_apply.png" /></div>
-				</div>
-				<div class="수량 설정">
-					<h3>수량 : </h3>
-					<button class="minusQty">-</button>
-					<input type="text" id="inputData" name="" value="1" />
-					<button class="plusQty">+</button>
-				</div>
-				<div class="금액 총액">
-					<h3>총액 : </h3>
-					<input type="text" id="total" name="" value="0" />
-				</div>
-				<button type="submit" class="addCart">장바구니에 담기</button>
-			</form>
-		</div>
-	</c:forEach>
+	<div class="이미지 출력 전체">
+		<form action="detail" method="post">
+			<div class="이미지 삽입">
+				<img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/>
+			</div>
+			<div class="이미지 정보">
+				<div class="상품 이름"><h3>상품 이름 : ${list.name}</h3></div>
+				<div class="상품 가격"><h3>상품 가격 : <input type="text" id="price" value="${list.price}" readonly /></h3></div>
+				<div class="쿠폰 사용"><img src="https://cdn-pro-web-134-253.cdn-nhncommerce.com/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_coupon_apply.png" /></div>
+			</div>
+			<div class="수량 설정">
+				<h3>수량 : </h3>
+				<button class="minusQty">-</button>
+				<input type="text" id="inputData" name="" value="1" readonly />
+				<button class="plusQty">+</button>
+			</div>
+			<div class="금액 총액">
+				<h3>총액 : </h3>
+				<input type="text" id="total" name="" value="${list.price}" readonly />
+			</div>
+			<button type="submit" class="addCart">장바구니에 담기</button>
+		</form>
+	</div>
 </body>
 </html>
