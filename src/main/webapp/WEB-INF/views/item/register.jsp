@@ -73,7 +73,7 @@
 						str+= "<li data-path='"+obj.uploadPath+"'data-uuid='"+obj.uuid+"' data-fileName='"+obj.fileName+"'data-type='"+obj.image+"'"
 						str+= "><div><span>"+obj.fileName+"</span><button type='button' data-file=\'"+fileCallPath+"\' data-type='image' "
 						str+= "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>"
-						str+= "<img src='/display?fileName=" + fileCallPath +"'></div></li>"
+						str+= "<img src='/display?fileName=" + fileCallPath +"' width='300px'></div></li>"
 					} else { 
 						var fileCallPath = encodeURIComponent(obj.uploadPath+ "/"+obj.uuid+"_"+obj.fileName)
 						var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/")
@@ -127,7 +127,7 @@
         
         <div class="inputArea" id='test'>
          <label for="img_url">상품 사진</label>
-         <input type="file" name="uploadFile" >
+         <input type="file" name="uploadFile">
         </div>
         <div class="uploadResult">
 			<ul></ul>
@@ -146,7 +146,6 @@
         <input type="reset" value="취소">
         <button type="submit" id="register_Btn" class="btn btn-primary">등록</button>
 
-        
         </form>
 </body>
 </html>

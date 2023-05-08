@@ -69,7 +69,6 @@ public class ItemController {
 		model.addAttribute("list", vo);
 	}
 	
-	
 	/* 상품 수정 |--------------------------------------------------- */
 	@GetMapping("/update")
 	public void update(int itemid, Model model) {

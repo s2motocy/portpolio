@@ -2,7 +2,6 @@ package com.cook.mymealkit.mapper;
 
 import java.util.List;
 
-import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.ItemVO;
 
 public interface ItemMapper {

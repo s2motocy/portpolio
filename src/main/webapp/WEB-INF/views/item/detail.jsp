@@ -56,25 +56,35 @@ $(document).ready(function(){
 <body>
 	<h1>상품 상세 페이지(Detail)</h1>
 	
-	<div class="이미지 출력 전체">
-		<form action="detail" method="post">
-			<div class="이미지 삽입">
-				<img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/>
-			</div>
-			<div class="이미지 정보">
-				<div class="상품 이름"><h3>상품 이름 : ${list.name}</h3></div>
-				<div class="상품 가격"><h3>상품 가격 : <input type="text" id="price" value="${list.price}" readonly /></h3></div>
-				<div class="쿠폰 사용"><img src="https://cdn-pro-web-134-253.cdn-nhncommerce.com/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_coupon_apply.png" /></div>
-			</div>
-			<div class="수량 설정">
-				<h3>수량 : </h3>
-				<button class="minusQty">-</button>
-				<input type="text" id="inputData" name="" value="1" readonly />
-				<button class="plusQty">+</button>
-			</div>
-			<div class="금액 총액">
-				<h3>총액 : </h3>
-				<input type="text" id="total" name="" value="${list.price}" readonly />
+	<div class="image print">
+		
+		<div class="image display">
+			<img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/>
+		</div>
+		<div class="image info">
+			<div class="product"><h3>상품 이름 : <input type="text" value="${list.name}" /></h3></div>
+			<div class="price"><h3>상품 가격 : <input type="text" id="price" value="${list.price}" readonly /></h3></div>
+			<div class="coupon"><img src="https://cdn-pro-web-134-253.cdn-nhncommerce.com/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_coupon_apply.png" /></div>
+		</div>
+		
+		<div class="count">
+			<h3>수량 : </h3>
+			<button class="minusQty">-</button>
+			<input type="text" id="inputData" name="amount" value="1" readonly />
+			<button class="plusQty">+</button>
+		</div>
+		<div class="total price">
+			<h3>총액 : </h3>
+			<input type="text" id="total" name="price" value="${list.price}" readonly />
+		</div>
+		
+		<form action="/cart/register" method="post">
+			<div class="hidden">
+				<input type="hidden" name="member_id" value="" />
+				<input type="hidden" name="item_id" value="${list.itemid}" />
+				<input type="hidden" name="item_name" value="${list.name}" />
+				<input type="hidden" id="inputData" name="amount" value="1" readonly />
+				<input type="hidden" id="total" name="price" value="${list.price}" readonly />
 			</div>
 			<button type="submit" class="addCart">장바구니에 담기</button>
 		</form>

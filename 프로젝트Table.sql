@@ -121,8 +121,7 @@ create table cart (
     item_id number(30),
     item_name varchar2(50),
     amount number(10),
-    price number(10),
-    item_img varchar2(100)
+    price number(10)
 );
 
 -- Ä¿¹Ô
