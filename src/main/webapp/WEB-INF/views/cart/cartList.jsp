@@ -30,34 +30,32 @@ $(document).ready(function(){
 	})
 	
 	/* 클릭시 수량 감소 */
-	$("#minusQty").click(function(e){
-		var amount = parseInt($("#amountData").val())
+	$("button[id^=minusQty]").click(function(e){
+		var amount = parseInt($("input[id^=amountData]").val())
 		if(amount >1) {
-			--amount 
-			$("#amountData").val(amount)
-			var price = $("#price_origin").val()
-			price = price*amount
-			$("#priceData").val(price)
+			$("input[id^=amountData]").val(--amount)
+			var price = $("input[id^=price_origin]").val()
+			$("input[id^=priceData]").val(price*amount)
 		}
 	})
 	
 	/* 클릭시 수량 증가 */
-	$("#plusQty").click(function(e){
-		var amount = parseInt($("#amountData").val())
-		++amount
-		$("#amountData").val(amount)
-		var price = $("#price_origin").val()
-		price = price*amount
-		$("#priceData").val(price)
+	$("button[id^=plusQty]").on('click', function(e){
+		var amount = parseInt($("input[id^=amountData]").val())
+		$("input[id^=amountData]").val(++amount)
+		var price = $("input[id^=price_origin]").val()
+		$("input[id^=priceData]").val(price*amount)
 	})
-	
-	$("#checkbox").each(function(idx, data){
-		var price = parseInt($("#priceData").val())
-		if(price != null & price != 0){
-			$(this).attr('checked', 'checked')
-		}
-		
+
+	/* 총액 계산 */
+	var total = 0
+	var amount = 0
+	$("#pricing").each(function(idx, data){
+		total += parseInt($(data).find('#hidden_total').val())
+		amount += parseInt($(data).find('#hidden_amount').val())
 	})
+	$("#view_amount").val(amount)
+	$("#view_price").val(total)
 
 	/* ajax */
 	$("#apply").click(function(e){
@@ -80,31 +78,36 @@ $(document).ready(function(){
 </head>
 <body>
 	<h1>장바구니 페이지</h1>
-	<table>
+	<table class="cart_table">
 		<tr>
-			<th>선택</th>
+			<th>전체<br><input type="checkbox" /></th>
 			<th>상품 사진</th>
 			<th>상품 이름</th>
 			<th>단가</th>
 			<th>수량</th>
-			<th>가격</th>
+			<th>합계</th>
 			<th>적용</th>
+			<th>삭제</th>
 		</tr>
-	<c:forEach var="list" items="${dtoList}">
+	<c:forEach var="list" items="${dtoList}" varStatus="stat">
 		<tr>
-			<td><input type="checkbox" id="checkbox" /></td>
-			<td><img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/></td>
-			<td><input type="text" id="item_name" value="${list.item_name}" /></td>
-			<td><input type="text" value="${list.item_price}" /></td>
-			<td>
-				<button id="minusQty">-</button>
-				<input type="text" id="amountData" value="${list.amount}" />
-				<button id="plusQty">+</button>
+			<td class="선택_히든" id="pricing">
+				<input type="checkbox" id="checkbox" checked="checked" />
+				<input type="hidden" id="hidden_amount" value="${list.amount}" />
+				<input type="hidden" id="hidden_total" value="${list.price}" />
 			</td>
-			<td><input type="text" id="priceData" value="0" readonly /></td>
-			<td><button id="apply">적용</button></td>
+			<td class="사진"><img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/></td>
+			<td class="품명"><input type="text" id="item_name" value="${list.item_name}" /></td>
+			<td class="단가"><input type="text" id="price_origin${list.item_id}" value="${list.item_price}" /></td>
+			<td class="수량">
+				<button id="minusQty${stat.index}">-</button>
+				<input type="text" id="amountData${stat.index}" value="${list.amount}" />
+				<button id="plusQty${stat.index}">+</button>
+			</td>
+			<td class="합계"><input type="text" id="priceData${stat.index}" value="${list.price}" readonly /></td>
+			<td class="적용"><button id="apply">적용</button></td>
+			<td class="삭제"><button id="remove">삭제</button></td>
 		</tr>
-		<input type="hidden" id="price_origin" value="${list.price}" />
 		<input type="hidden" id="memberData" value="${list.member_id}" />
 		<input type="hidden" id="itemData" value="${list.item_id}" />
 	</c:forEach>
@@ -112,8 +115,9 @@ $(document).ready(function(){
 	
 	<hr>
 	<div class="결제 정보">
+		<div class="수량"> 수량 : <input type="text" id="view_amount" value="0" /></div>
 		<div class="총액"> 가격 : <input type="text" id="view_price" value="0" /></div>
-		<div class="할인"> 할인 : <input type="text" id="discount" value="0" /></div>
+		<div class="쿠폰"> 쿠폰 : <input type="text" id="discount" value="0" /></div>
 		<div class="배송비"> 배송비 : <input type="text" id="deliverypay" value="0" /></div>
 		<div class="결제금액"> 결제금액 : <input type="text" id="totalpay" value="0" /></div>
 	</div>
@@ -121,13 +125,6 @@ $(document).ready(function(){
 		<button id="continue" onclick="location.href='/item/itemList'">쇼핑계속하기</button>
 		<button id="payment">결제하러가기</button>
 	</div>
-		
-		<%-- <input type="text" value="${list.cart_id}" />
-		<input type="text" value="${list.member_id}" />
-		<input type="text" value="${list.item_id}" />
-		<input type="text" value="${list.item_name}" />
-		<input type="text" value="${list.amount}" />
-		<input type="text" value="${list.price}" /> --%>
 	
 </body>
 </html>

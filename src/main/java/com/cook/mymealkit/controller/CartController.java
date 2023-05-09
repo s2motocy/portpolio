@@ -73,8 +73,6 @@ public class CartController {
 		});
 		System.out.println(dtoList);
 		model.addAttribute("dtoList", dtoList);
-		
-		
 	}
 	
 	/* 장바구니 수정 |--------------------------------------------------- */
