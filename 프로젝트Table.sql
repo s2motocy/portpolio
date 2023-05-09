@@ -59,6 +59,7 @@ create table members(
     DEADDRESS VARCHAR2(50)
 );
 
+
 -- Ä¿¹Ô
 commit;
 
@@ -104,7 +105,7 @@ member_no number(10) not null
 );
 
 -- Ä¿¹Ô
-commit;
+commit; 
 
 -- Á¶È¸
 select * from delivery;
@@ -129,4 +130,5 @@ commit;
 
 -- Á¶È¸
 select * from cart;
+
 

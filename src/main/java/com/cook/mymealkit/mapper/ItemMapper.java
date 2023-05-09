@@ -12,5 +12,5 @@ public interface ItemMapper {
 	public int itemUpdate(ItemVO vo);			// 수정
 	public int itemDelete(long itemid);			// 삭제
 	public Long getMax();						// itemid 가 0 일때 max 값 찾기
-	
+	public int get_price(long itemid);			// price 값 찾기
 }

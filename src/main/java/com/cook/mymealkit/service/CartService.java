@@ -10,5 +10,5 @@ public interface CartService {
 	public List<CartDTO> cartList();
 	public CartDTO cartFindById(int cart_id);
 	public void cartUpdate(CartDTO dto);
-	public void cartDelete(int cart_id);
+	public void cartDelete(int cart_id); 
 }
