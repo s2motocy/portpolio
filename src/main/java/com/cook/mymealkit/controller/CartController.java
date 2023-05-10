@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.CartDTO;
-import com.cook.mymealkit.domain.ItemVO;
 import com.cook.mymealkit.mapper.ItemMapper;
 import com.cook.mymealkit.service.CartService;
 import com.cook.mymealkit.service.ItemService;
@@ -83,4 +82,11 @@ public class CartController {
 		return "redirect:/cart/cartList";
 	}
 	
+	/* 장바구니 삭제 |--------------------------------------------------- */
+	@PostMapping("/cartDelete")
+	public String cartDelete(int cart_id) {
+		System.out.println("cart 컨트롤러에서 삭제 : cart_id="+ cart_id);
+		cservice.cartDelete(cart_id);
+		return "redirect:/cart/cartList";
+	}
 }

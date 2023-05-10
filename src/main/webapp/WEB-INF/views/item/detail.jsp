@@ -22,6 +22,8 @@ $(document).ready(function(){
 	
 	/* 전송버튼 실행 */
 	$("button[type='submit']").click(function(){
+		$("#amountData").val($("#inputData").val())
+		$("#totalData").val($("#total").val())
 		$("form").submit()
 	})
 	
@@ -70,12 +72,12 @@ $(document).ready(function(){
 		<div class="수량 변경">
 			<h3>수량 : </h3>
 			<button class="minusQty">-</button>
-			<input type="text" id="inputData" name="amount" value="1" readonly />
+			<input type="text" id="inputData" value="1" readonly />
 			<button class="plusQty">+</button>
 		</div>
 		<div class="총액 설정">
 			<h3>총액 : </h3>
-			<input type="text" id="total" name="price" value="${list.price}" readonly />
+			<input type="text" id="total" value="${list.price}" readonly />
 		</div>
 		
 		<form action="/cart/register" method="post">
@@ -83,8 +85,8 @@ $(document).ready(function(){
 				<input type="hidden" name="member_id" value="1" />
 				<input type="hidden" name="item_id" value="${list.itemid}" />
 				<input type="hidden" name="item_name" value="${list.name}" />
-				<input type="hidden" id="inputData" name="amount" value="1" readonly />
-				<input type="hidden" id="total" name="price" value="${list.price}" readonly />
+				<input type="hidden" id="amountData" name="amount" value="1" readonly />
+				<input type="hidden" id="totalData" name="price" value="${list.price}" readonly />
 			</div>
 			<button type="submit" class="addCart">장바구니에 담기</button>
 		</form>

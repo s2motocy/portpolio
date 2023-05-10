@@ -17,6 +17,6 @@
 		update cart set amount=#{amount}, price=#{price} where member_id=#{member_id} and item_id=#{item_id}
 	</update>
 	<delete id="cartDelete" parameterType="int">
-		delete from cart where member_id=#{member_id} and cart_id=#{cart_id}
+		delete from cart where cart_id=#{cart_id}
 	</delete>
 </mapper>
