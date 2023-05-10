@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>마이 밀키트</title>
 <link rel="stylesheet" href="../resources/css/header.css">
+
 </head>
 <body>
 	<!-- Header Section Begin -->
