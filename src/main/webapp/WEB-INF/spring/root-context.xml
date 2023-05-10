@@ -38,7 +38,9 @@
 	<tx:annotation-driven/>
 	
 	<mybatis-spring:scan base-package="com.cook.mymealkit.mapper"/>
+	<mybatis-spring:scan base-package="com.cook.mymealkit.some"/>
 	<context:component-scan base-package="com.cook.mymealkit.service"/>
 	<context:component-scan base-package="com.cook.mymealkit.domain"/>
+	<context:component-scan base-package="com.cook.mymealkit.some"/>
 	
 </beans>

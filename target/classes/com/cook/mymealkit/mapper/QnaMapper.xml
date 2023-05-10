@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.mymealkit.some.QnaDAO">
+
+ 	<insert id="Qna_insert" parameterType="com.cook.mymealkit.domain.QnaVO">
+		insert into Qna(id, readcnt, root, step, indent, title, content, writer)
+		values(seq_Qna.NEXTVAL, #{readcnt}, #{root}, #{step}, #{indent}, #{title}, #{content}, #{writer})
+	</insert>
+
+	<select id="Qna_list" resultType="com.cook.mymealkit.domain.QnaVO">
+		select * from Qna
+	</select>
+	
+	<select id="Qna_read" resultType="com.cook.mymealkit.domain.QnaVO">
+		select * from Qna where id=#{id}
+	</select>
+	
+	<update id="Qna_update">
+		update Qna set(readcnt=#{readcnt}, root=#{root}, step=#{step}, indent={indent}, title=#{title}, content=#{content}, writer=#{writer})
+	</update>
+	
+	<delete id="Qna_delete">
+		delete from Qna where id=#{id}
+	</delete>
+	 
+	
+</mapper>
