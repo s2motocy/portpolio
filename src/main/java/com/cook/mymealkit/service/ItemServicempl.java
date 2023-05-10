@@ -65,4 +65,10 @@ public class ItemServicempl implements ItemService{
 		return attachList;
 	}
 
+	@Override
+	public ItemVO getByItemid(long itemid) {
+		
+		return imapper.getByItemid(itemid);
+	}
+
 }

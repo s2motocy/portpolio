@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/admin/adminPage.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,20 +9,19 @@
 <style>
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: black;
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* Add padding to containers */
+
 .container {
-  padding: 100px;
+  margin: 20px;
   background-color: white;
 }
 
-/* Full-width input fields */
+
 input[type=text],input[type=file] {
     width: 30%;
     padding: 15px;
@@ -44,9 +44,9 @@ select{
 
 .uploadResult ul{
    position: absolute;
-   left: 600px;
-   top: 300px;
-   width:300px;
+   left: 33%;
+   top: 47%;
+   width:30px;
    
 }
 
@@ -181,7 +181,6 @@ hr {
             type: 'POST',
             dataType: 'json',
             success: (result)=>{
-               alert("업로드 성공")
                console.log("업로드 성공", result)
                showUploadedFile(result)
             }
@@ -192,7 +191,7 @@ hr {
 
 
 <body>
-  <form action="/item/register" method="post" id='frm' role='form'>
+  <form action="register" method="post" id='frm' role='form'>
      <div class="container">
        <h1>상품 등록</h1>
       <hr> 

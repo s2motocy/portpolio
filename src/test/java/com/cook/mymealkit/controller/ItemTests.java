@@ -39,4 +39,16 @@ public class ItemTests {
 		System.out.println(vo);
 		System.out.println("===================");
 	}
+	
+	@Test
+	public void updateTest() {
+		ItemVO vo = new ItemVO();
+		vo.setItemid(6L);
+		vo.setCategory("양식");
+		vo.setName("제발 나와라이요");
+		vo.setPrice(300000);
+		vo.setDescription("tlqklskldfbnsdfhiofga");
+		imapper.itemUpdate(vo);
+	}
+
 }

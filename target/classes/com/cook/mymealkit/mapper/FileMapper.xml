@@ -6,8 +6,13 @@
 	<insert id="fileInsert" parameterType="com.cook.mymealkit.domain.AttachFileDTO">
 		insert into tbl_file_item values(seq_file_item.nextval,#{fileName},#{image},#{uuid},#{uploadPath})
 	</insert>
+	
 	<select id="fileFindById" resultType="com.cook.mymealkit.domain.AttachFileDTO">
 		select * from tbl_file_item where fid = #{itemid}
 	</select>
+	
+	<update id="itemFile">
+		update tbl_file_item set (fileName=#{fileName}, image=#{image}, uuid=#{uuid},uploadPath=#{uploadPath}) where fid=#{itemid}
+	</update>
 	
 </mapper>

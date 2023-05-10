@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>buy</title>
 </head>
 <body>
-	로그인 실패
-	겸
-	테스트완료오
+	<h2> 회원 구매 페이지</h2>
 </body>
 </html>
