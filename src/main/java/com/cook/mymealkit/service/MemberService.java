@@ -6,8 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import com.cook.mymealkit.domain.MemberVO;
 
-
-
 public interface MemberService {
 	public void join(MemberVO vo) ;
 	public boolean login(MemberVO vo,HttpSession session) ;
@@ -16,6 +14,5 @@ public interface MemberService {
 	public void deletemember(MemberVO vo);
 	public void mypage(MemberVO vo);
 	public void logout(HttpSession session);
-	
 	public MemberVO getWithIdAndPassword(MemberVO vo);
 }

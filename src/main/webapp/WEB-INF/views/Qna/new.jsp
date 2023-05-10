@@ -1,36 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
-<script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>문의</title>
+<title>qna new jsp</title>
 </head>
 <body>
 <h3>신규 QNA</h3>
-<script>
-	$(document).ready(function(){
-		
-		
-		$(".btn-primary").click(function(e){
-			e.preventDefault();
-			console.log("문자");
-			$(".sad").submit();
-		});
-		
-	});
-</script>
-
-<form action="/Qna/new" method="post" class="sad">
+<form action="insert.qna" method="post" enctype="multipart/form-data">
 	<table>
-		<tr>
-			<th>작성자</th>
-			<td><input type="text" name="writer" value="rlagmltn"></td>
-		</tr>
 		<tr>
 			<th class="w-px160">제목</th>
 			<td><input type="text" name="title" class="need" /></td>
+		</tr>
+		<tr>
+			<th>작성자</th>
+			<td>${login_info.name }</td>
 		</tr>
 		<tr>
 			<th>내용</th>
@@ -39,8 +24,11 @@
 	</table>
 </form>
 <div class="btnSet">
-	<a class="btn btn-primary" href="">등록</a>
-	<a class="btn-empty" href="index">취소</a>
+	<a class="btn-fill" onclick="if(necessary()) $('form').submit()">저장</a>
+	<a class="btn-empty" href="list.qna">취소</a>
 </div>
+
+<script type="text/javascript" src="js/need_check.js?v=<%=new java.util.Date().getTime() %>"></script>
+<script type="text/javascript" src="js/file_attach.js"></script>
 </body>
 </html>

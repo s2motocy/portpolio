@@ -39,7 +39,7 @@ public class QnaController {
 		page.setCurPage(curPage);
 		page.setSearch(search);
 		page.setKeyword(keyword);
-		model.addAttribute("page",service.Qna_list());
+		model.addAttribute("page",service.qna_list());
 		return "Qna/list";
 	}
 	@GetMapping("/new")
@@ -51,14 +51,14 @@ public class QnaController {
 		
 		System.out.println(qnavo);
 		
-		service.Qna_insert(qnavo);
+		service.qna_insert(qnavo);
 		
 	    return "redirect:/Qna/list";
 	}
 	@GetMapping("/detail")
 	public String detail(int id ,Model model) {
 		System.out.println(id);
-		QnaVO data = service.Qna_read(id);
+		QnaVO data = service.qna_read(id);
 		System.out.println(data);
 		model.addAttribute("list",data);
 		return "Qna/detail";

@@ -14,47 +14,48 @@ import lombok.Setter;
 @Service
 public class QnaServiceImpl implements QnaService{
 	@Setter(onMethod_=@Autowired)
-	private QnaMapper dao;
+	private QnaMapper qmapper;
 
 	@Override
-	public void Qna_insert(QnaVO vo) {
-		dao.Qna_insert(vo);
-		
+	public void qna_insert(QnaVO vo) {
+		qmapper.Qna_insert(vo);
 	}
 
 	@Override
-	public List<QnaVO> Qna_list() {
-		return dao.Qna_list();
-	}
-
-
-	@Override
-	public void Qna_delete(int id) {
-		dao.Qna_delete(id);
-		
+	public List<QnaVO> qna_list() {
+		return qmapper.Qna_list();
 	}
 
 	@Override
-	public QnaPage Qna_list(QnaPage page) {
-		return dao.Qna_list(page);
+	public QnaVO qna_detail(int id) {
+		return qmapper.Qna_detial(id);
 	}
 
 	@Override
-	public QnaVO Qna_detial(int id) {
-		return dao.Qna_detial(id);
+	public void qna_update(QnaVO vo) {
+		qmapper.Qna_update(vo);
 	}
 
 	@Override
-	public void Qna_update(QnaVO vo) {
-	dao.Qna_update(vo);
-		
+	public void qna_delete(int id) {
+		qmapper.Qna_delete(id);
 	}
 
 	@Override
-	public QnaVO Qna_read(int id) {
-		return dao.Qna_read(id);
+	public QnaVO qna_read(int id){
+		return qmapper.Qna_read(id);
 	}
 
+	@Override
+	public void qna_reply_insert(QnaVO vo) {
+		qmapper.Qna_insert(vo);
+	}
 
+	@Override
+	public QnaPage qna_list(QnaPage page) {
+		return qmapper.Qna_list(page);
+	}
 
 }
+
+
