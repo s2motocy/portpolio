@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cook</groupId>
 	<artifactId>mymealkit</artifactId>
-	<name>mymealkit</name>
+	<name>Project0501</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>

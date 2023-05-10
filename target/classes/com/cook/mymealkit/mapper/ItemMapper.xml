@@ -28,5 +28,3 @@
 		select * from item where itemid=#{itemid}
 	</select>
 </mapper>
-
-

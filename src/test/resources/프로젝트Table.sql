@@ -1,5 +1,6 @@
 -- 순서 :    상품 / 회원 / 문의 / 공지 / 배송 / 장바구니 / 관리자
 
+
 -------------------------------------------------------------------------------- 상품 (item)
 
 -- 상품(item) 의  시퀀스 생성
@@ -38,7 +39,7 @@ commit;
 -- 조회
 select * from item;
 select * from tbl_file_item;
-commit;
+
 
 -------------------------------------------------------------------------------- 회원 (member)
 
@@ -65,29 +66,26 @@ commit;
 select * from members;
 
 
--------------------------------------------------------------------------------- 문의 (Qna)
+-------------------------------------------------------------------------------- 문의 (inquiry)
 
 -- 문의 의 시퀀스 생성
-create sequence seq_Qna;
+create sequence seq_inquiry;
 -- 문의 테이블 생성
-create table Qna(
-    id NUMBER CONSTRAINT Qna_id PRIMARY KEY,
-    title  VARCHAR2(100) NOT NULL,
-    content VARCHAR2(100) NOT NULL,
-    writer VARCHAR2(100) NOT NULL,
-    writedate DATE DEFAULT SYSDATE,
-    readcnt NUMBER DEFAULT 0,
-    root NUMBER,
-    step NUMBER DEFAULT 0,
-    indent NUMBER DEFAULT 0
+CREATE TABLE tbl_inquiry (
+  qno NUMBER(10) NOT NULL PRIMARY KEY,
+  title VARCHAR2(100) NOT NULL,
+  content VARCHAR2(100) NOT NULL,
+  wrtier VARCHAR2(100) NOT NULL,
+  register_date DATE NOT NULL,
+  update_date DATE DEFAULT SYSDATE,
+  reply_cnt NUMBER(10)
 );
-insert into Qna (id, title, content, writer)
-values (1,'테스트1','잘들어옴?','김희수');
+
 -- 커밋
 commit;
 
 -- 조회
-select * from Qna;
+select * from tbl_inquiry;
 
 -------------------------------------------------------------------------------- 배송 (delivery)
 
