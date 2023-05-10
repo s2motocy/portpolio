@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.mymealkit.mapper.GuestMapper">
+
+	<insert id="insertGuest" parameterType="com.cook.mymealkit.domain.GuestVO">
+		insert into guest values(seq_guest.nextval,#{name},#{pwd},#{pnum},#{address},#{deaddress},#{itemid},#{envoice_no})
+	</insert>
+
+	<select id="getMaxEnvoice" resultType="string">
+		select max(envoice_no) from guest
+	</select>
+	
+	<select id="gListByEnvoice" resultType="com.cook.mymealkit.domain.GuestVO" parameterType="com.cook.mymealkit.domain.GuestVO">
+		select * from guest where envoice_no=#{envoice_no} and name=#{name} and pwd=#{pwd}
+	</select>
+
+
+
+</mapper>

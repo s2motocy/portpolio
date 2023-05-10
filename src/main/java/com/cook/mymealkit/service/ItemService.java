@@ -13,5 +13,6 @@ public interface ItemService {
 	public int itemUpdate(ItemVO vo);						// 수정
 	public int itemDelete(long itemid);						// 삭제
 	public List<AttachFileDTO> getAttachList(long itemid);	// 파일 정보
+	public ItemVO getByItemid(long itemid);
 	
 }
