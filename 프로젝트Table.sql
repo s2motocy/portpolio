@@ -38,7 +38,7 @@ commit;
 -- 조회
 select * from item;
 select * from tbl_file_item;
-
+commit;
 
 -------------------------------------------------------------------------------- 회원 (member)
 

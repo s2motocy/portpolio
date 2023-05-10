@@ -15,8 +15,8 @@
 	<select id="itemFindById" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="long">
 		select * from item where itemid=#{itemid}
 	</select>
-	<update id="itemUpdate">
-		update item set (category=#{category}, name=#{name}, price=#{price},description=#{description})
+	<update id="itemUpdate" parameterType="com.cook.mymealkit.domain.ItemVO">
+		update item set category=#{category}, name=#{name}, price=#{price},description=#{description} where itemid=#{itemid}
 	</update>
 	<delete id="itemDelete">
 		delete from item where itemid=#{itemid}
@@ -24,5 +24,7 @@
 	<select id="getMax" resultType="long">
 		select max(itemid) from item
 	</select>
-	
+	<select id="getByItemid" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="Long">
+		select * from item where itemid=#{itemid}
+	</select>
 </mapper>

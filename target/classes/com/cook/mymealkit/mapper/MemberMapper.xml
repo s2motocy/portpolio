@@ -11,4 +11,8 @@
     <select id="getWithIdAndPassword" parameterType="com.cook.mymealkit.domain.MemberVO" resultType="com.cook.mymealkit.domain.MemberVO">
     	select * from  members where id=#{id} and pwd=#{pwd} 
     </select>
+    
+    <select id="getAllMembers" resultType="com.cook.mymealkit.domain.MemberVO" parameterType="com.cook.mymealkit.domain.MemberVO">
+    	select * from members
+    </select>
 </mapper>

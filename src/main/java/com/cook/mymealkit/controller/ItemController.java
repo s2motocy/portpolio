@@ -73,14 +73,22 @@ public class ItemController {
 	
 	/* 상품 수정 |--------------------------------------------------- */
 	@GetMapping("/update")
-	public void update(int itemid, Model model) {
-		model.addAttribute("up", imapper.itemList());
+	public void update(Model model,Long itemid) {
+		System.out.println(itemid);
+		model.addAttribute("vo", imapper.getByItemid(itemid));		
 	}
 	
 	@PostMapping("/update")
 	public String itemUpdate(ItemVO vo, RedirectAttributes rttr) {
 		imapper.itemUpdate(vo);
-		rttr.addFlashAttribute("result");
+		rttr.addFlashAttribute("list",imapper.itemList());
+		return "redirect:/item/itemList";
+	}
+	
+	/* 상품 삭제 |--------------------------------------------------- */
+	@GetMapping("/delete")
+	public String delete(int itemid) {
+		imapper.itemDelete(itemid);
 		return "redirect:/item/itemList";
 	}
 }
