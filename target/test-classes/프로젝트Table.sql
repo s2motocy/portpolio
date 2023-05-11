@@ -1,5 +1,6 @@
 -- 순서 :    상품 / 회원 / 문의 / 공지 / 배송 / 장바구니 / 관리자
 
+
 -------------------------------------------------------------------------------- 상품 (item)
 
 -- 상품(item) 의  시퀀스 생성
@@ -38,7 +39,7 @@ commit;
 -- 조회
 select * from item;
 select * from tbl_file_item;
-commit;
+
 
 -------------------------------------------------------------------------------- 회원 (member)
 
@@ -46,15 +47,16 @@ commit;
 create SEQUENCE seq_members;
 -- 회원(member) 테이블 생성
 create table members(
-    bno number(3) not null primary key,
-    name varchar2(50) not null,
-    ID	VARCHAR2(50) not null,
-    PWD	VARCHAR2(50) not null,
-    EMAIL	VARCHAR2(50) not null,
-    PNUM	VARCHAR2(50) not null,
-    HNUM	VARCHAR2(50) not null,
-    ADDRESS	VARCHAR2(50) not null,
-    MOREADDRESS VARCHAR2(50) not null
+    bno number(10) not null primary key,
+    name varchar2(50),
+    ID	VARCHAR2(50),
+    PWD	VARCHAR2(50),
+    PWD2	VARCHAR2(50),
+    EMAIL	VARCHAR2(50),
+    PNUM	VARCHAR2(50),
+    HNUM	VARCHAR2(50),
+    ADDRESS	VARCHAR2(50),
+    DEADDRESS VARCHAR2(50)
 );
 
 -- 커밋
@@ -64,29 +66,26 @@ commit;
 select * from members;
 
 
--------------------------------------------------------------------------------- 문의 (Qna)
+-------------------------------------------------------------------------------- 문의 (inquiry)
 
 -- 문의 의 시퀀스 생성
-create sequence seq_Qna;
+create sequence seq_inquiry;
 -- 문의 테이블 생성
-create table Qna(
-    id NUMBER CONSTRAINT Qna_id PRIMARY KEY,
-    title  VARCHAR2(100) NOT NULL,
-    content VARCHAR2(100) NOT NULL,
-    writer VARCHAR2(100) NOT NULL,
-    writedate DATE DEFAULT SYSDATE,
-    readcnt NUMBER DEFAULT 0,
-    root NUMBER,
-    step NUMBER DEFAULT 0,
-    indent NUMBER DEFAULT 0
+CREATE TABLE tbl_inquiry (
+  qno NUMBER(10) NOT NULL PRIMARY KEY,
+  title VARCHAR2(100) NOT NULL,
+  content VARCHAR2(100) NOT NULL,
+  wrtier VARCHAR2(100) NOT NULL,
+  register_date DATE NOT NULL,
+  update_date DATE DEFAULT SYSDATE,
+  reply_cnt NUMBER(10)
 );
-insert into Qna (id, title, content, writer)
-values (1,'테스트1','잘들어옴?','김희수');
+
 -- 커밋
 commit;
 
 -- 조회
-select * from Qna;
+select * from tbl_inquiry;
 
 -------------------------------------------------------------------------------- 배송 (delivery)
 
@@ -132,14 +131,3 @@ commit;
 -- 조회
 select * from cart;
 
-
--- 공지
-create table notice(
-    bno number(10) not null primary key,
-    title varchar2(150) not null,
-    content varchar2(2000) not null,
-    writer varchar2(50) not null,
-    regdate date default sysdate,
-    updatedate date default sysdate
-);
-create sequence seq_notice increment by 1 start with 1;

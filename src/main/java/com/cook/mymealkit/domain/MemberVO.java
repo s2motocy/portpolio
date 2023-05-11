@@ -12,7 +12,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberVO {
-	private int bno;
 	 private String name;
 	 private String id;
 	 private String pwd;
@@ -21,4 +20,5 @@ public class MemberVO {
 	 private String pnum;
 	 private String hnum;
 	 private String address;
+	 private String moreaddress;
 }

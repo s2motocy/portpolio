@@ -14,7 +14,7 @@
             <div class="navi_bar_area">
             		<a href="/item/register" id="admin1">상품 등록</a>
             		<a href="/item/itemList" id="admin2">상품 관리</a>
-            		<a href="/item/memberList" id="admin3">회원 관리</a>
+            		<a href="/members/memberList" id="admin3">회원 관리</a>
             		<a href="/item/buyList" id="admin4">주문 내역 관리</a>
             		<a href="/item/buyList" id="admin4">QnA 관리</a>
             		<a href="/item/buyList" id="admin4">공지사항 관리</a>
