@@ -23,6 +23,13 @@ table{
 	margin:60px;
 }
 
+.navi_bar_area #admin2:visited{
+    color:black;
+    font-weight: bold;
+}
+
+
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
@@ -52,7 +59,6 @@ table{
 
 <body>
 <div id="container">
-<h1>상품 관리</h1>
 	<table  class="table table-striped">
 		<tr>
 		  <th scope="col">상품 번호</th>

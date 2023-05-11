@@ -48,7 +48,7 @@ create SEQUENCE seq_members;
 create table members(
     member_id number(10) not null primary key,
     name varchar2(50),
-    ID	VARCHAR2(50),
+    ID VARCHAR2(50),
     PWD	VARCHAR2(50),
     PWD2	VARCHAR2(50),
     EMAIL	VARCHAR2(50),
@@ -158,3 +158,5 @@ commit;
 
 -- 조회
 select * from cart;
+
+-------------------------------------------------------------------------------- 장바구니 (cart)

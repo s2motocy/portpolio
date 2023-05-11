@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cook.mymealkit.domain.BuyVO;
@@ -42,6 +43,6 @@ public class BuyController {
 		model.addAttribute("buylist", buylist);
 		System.out.println(buylist);
 		return "/buy/buyList";
-	}
+	} 
 	
 }
