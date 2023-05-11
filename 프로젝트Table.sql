@@ -112,9 +112,27 @@ select * from cart;
 
 -------------------------------------------------------------------------------- 구매 (buy)
 
+-- 구매(buy)의 시퀀스 생성
+create sequence seq_buy;
+-- 구매(buy) 테이블 생성
+create table buy(
+    bno number(10) not null primary key,  -- 시퀀스
+    buy_no varchar2(100) not null unique,  --주문번호
+    member_id varchar2(30) not null,  -- 주문자아이디
+    cart_id varchar(30) not null,  -- 주문상품
+    buy varchar(20),  -- 주문상태
+    buy_date date not null, -- 주문한 날짜
+    price number  -- 주문 금액
+);
 
+-- 커밋
+commit;
 
+-- 조회
+select * from buy;
 
+drop table buy;
+drop SEQUENCe seq_buy;
 
 
 -------------------------------------------------------------------------------- 결제 (pay)
@@ -171,15 +189,20 @@ select * from tbl_inquiry;
 
 -------------------------------------------------------------------------------- 공지 (notice)
 
+-- 시퀀스 생성
+create sequence seq_notice;
+-- 테이블 생성
+create table notice(
+    bno number(10) not null primary key,
+    title varchar2(150) not null,
+    content varchar2(2000) not null,
+    writer varchar2(50) not null,
+    regdate date default sysdate,
+    updatedate date default sysdate
+);
 
-
-
-
-
-
-
-
-
+-- 커밋
+commit;
 
 
 
