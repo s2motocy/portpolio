@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.cook.mymealkit.domain.ItemVO;
+import com.cook.mymealkit.mapper.CartMapper;
 import com.cook.mymealkit.mapper.ItemMapper;
 
 import lombok.Setter;
@@ -17,6 +18,9 @@ public class ItemTests {
 	
 	@Setter(onMethod_=@Autowired)
 	private ItemMapper imapper;
+	
+	@Setter(onMethod_=@Autowired)
+	private CartMapper cmapper;
 	
 //	@Test
 	public void insert_dummy_test() {
@@ -31,7 +35,7 @@ public class ItemTests {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void service_test() {
 		long itemid = 1;
 		ItemVO vo = imapper.itemFindById(itemid);

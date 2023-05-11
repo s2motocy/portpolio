@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cook.mymealkit.domain.AttachFileDTO;
@@ -61,15 +62,12 @@ public class ItemController {
 	
 	/* 상품 상세 |--------------------------------------------------- */
 	@GetMapping("/detail")
-	public void detail(Model model) {
-		List<ItemVO> itemList = imapper.itemList();
-		itemList.forEach(i->{
-			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItemid());
-			i.setAttachList(attachList);
-		});
-		model.addAttribute("list",itemList);
+	public void detail(@RequestParam("itemid") Long itemid, Model model) {
+		ItemVO vo = iservice.itemFindById(itemid);
+		List<AttachFileDTO> attachList = iservice.getAttachList(itemid);
+		vo.setAttachList(attachList);
+		model.addAttribute("list", vo);
 	}
-	
 	
 	/* 상품 수정 |--------------------------------------------------- */
 	@GetMapping("/update")

@@ -55,6 +55,12 @@ public class MemberController {
 		}
     }
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate(); // 현재 로그아웃 하면 item 메인페이지로 이동
+		return "redirect:/item/itemList";
+	}
+	
 	@GetMapping("/mypage")
 	public void mypage() {}; 
 	

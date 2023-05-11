@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.mymealkit.mapper.CartMapper">
+	<insert id="cartInsert" parameterType="com.cook.mymealkit.domain.CartDTO">
+		insert into cart(cart_id,member_id,item_id,item_name,amount,price) values (seq_cart.nextval,#{member_id},#{item_id},#{item_name},#{amount},#{price})
+	</insert>
+	<select id="cartList" resultType="com.cook.mymealkit.domain.CartDTO">
+		<![CDATA[
+  		select * from cart where cart_id >0
+  		]]>
+	</select>
+	<select id="cartFindById" resultType="com.cook.mymealkit.domain.CartDTO" parameterType="int">
+		select * from cart where cart_id=#{cart_id}
+	</select>
+	<update id="cartUpdate" parameterType="com.cook.mymealkit.domain.CartDTO">
+		update cart set amount=#{amount}, price=#{price} where member_id=#{member_id} and item_id=#{item_id}
+	</update>
+	<delete id="cartDelete" parameterType="int">
+		delete from cart where cart_id=#{cart_id}
+	</delete>
+</mapper>
