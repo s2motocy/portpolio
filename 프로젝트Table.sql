@@ -1,4 +1,4 @@
--- 순서 :    회원 / 상품 / 장바구니 / 구매 / 결제 / 배송 / 문의 / 공지 
+-- 순서 :    회원 / 비회원 / 상품 / 장바구니 / 구매 / 결제 / 배송 / 문의 / 공지 
 
 
 -------------------------------------------------------------------------------- 회원 (member)
@@ -25,6 +25,31 @@ commit;
 
 -- 조회
 select * from members;
+
+
+-------------------------------------------------------------------------------- 비회원 (guest)
+
+-- 비회원(guest) 의 시퀀스 생성
+create sequence seq_guest;
+-- 비회원(guest) 의 테이블 생성
+create table guest(
+    gid number not null primary key,
+    name varchar2(20),
+    pnum varchar2(30),
+    pwd varchar2(30),
+    address	VARCHAR2(50),
+    deaddress VARCHAR2(50),
+    itemid number,
+    envoice_no varchar2(100) not null unique
+);
+
+-- 커밋
+commit;
+
+-- 조회
+select * from guest;
+drop sequence seq_guest;
+drop table guest;
 
 
 -------------------------------------------------------------------------------- 상품 (item)
@@ -58,13 +83,6 @@ drop table item;
 -- drop file
 drop sequence seq_file_item;
 drop table tbl_file_item;
-
--- 커밋
-commit;
-
--- 조회
-select * from item;
-select * from tbl_file_item;
 
 
 -------------------------------------------------------------------------------- 장바구니 (cart)

@@ -63,4 +63,13 @@ public class MemberController {
 	
 	@GetMapping("/mypage")
 	public void mypage() {}; 
+	
+	
+	@GetMapping("/memberList")
+	public void member() {};
+	
+	@PostMapping("/memberList")
+	public String memberList() {
+		return "";
+	};
 }
