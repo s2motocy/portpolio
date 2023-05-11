@@ -11,11 +11,6 @@
 </head>
 <style>
 
-.header__logo {
-	align:left;
-}
-
-
 tr{
 	text-align: center;
 	border:1px solid ;

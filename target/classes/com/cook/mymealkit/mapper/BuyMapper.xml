@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.mymealkit.mapper.BuyMapper">
+
+	<insert id=""></insert>
+	
+	<select id="bList" resultType="com.cook.mymealkit.domain.BuyVO">
+		select * from buy
+	</select>
+
+	<select id="bListByMemberId" resultType="com.cook.mymealkit.domain.BuyVO">
+		select * from buy where member_id=#{member_id}
+	</select>
+
+</mapper>
+
+
+	
+	

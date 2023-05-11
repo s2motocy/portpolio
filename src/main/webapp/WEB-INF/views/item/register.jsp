@@ -194,7 +194,7 @@ hr {
   <form action="register" method="post" id='frm' role='form'>
      <div class="container">
        <h1>상품 등록</h1>
-      <hr> 
+      	<hr> 
          <label><b>카테고리</b></label>
          <br>
             <select name="category" id="category">
@@ -204,7 +204,8 @@ hr {
              <option value="야식">야식</option>
              <option value="분식">분식</option>
              <option value="기타">기타</option>
-         </select> <br>
+         	</select>
+         	<br>
            
 
          <label for="name"><b>상품명</b></label>
@@ -219,13 +220,13 @@ hr {
         </div>
         <div class="uploadResult" id="uploadResult">
          <ul></ul>
-      </div>
+      	</div>
         
        
          <label for="price"><b>상품 가격</b></label>
          <br>
             <input type="text" id="price" name="price" />
-            <br>
+         <br>
         
 
          <label for="description"><b>상품 설명</b></label>

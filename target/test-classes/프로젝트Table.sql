@@ -1,4 +1,5 @@
--- 순서 :    상품 / 회원 / 비회원 / 문의 / 공지 / 구매 / 장바구니 / 관리자
+-- 순서 :    상품 / 회원 / 문의 / 공지 / 배송 / 장바구니 / 관리자
+
 
 -------------------------------------------------------------------------------- 상품 (item)
 
@@ -38,7 +39,7 @@ commit;
 -- 조회
 select * from item;
 select * from tbl_file_item;
-commit;
+
 
 -------------------------------------------------------------------------------- 회원 (member)
 
@@ -46,7 +47,7 @@ commit;
 create SEQUENCE seq_members;
 -- 회원(member) 테이블 생성
 create table members(
-    member_id number(10) not null primary key,
+    bno number(10) not null primary key,
     name varchar2(50),
     ID	VARCHAR2(50),
     PWD	VARCHAR2(50),
@@ -64,79 +65,50 @@ commit;
 -- 조회
 select * from members;
 
-drop sequence seq_members;
-drop table members;
--------------------------------------------------------------------------------- 비회원 (guest)
 
--- 비회원(guest) 의 시퀀스 생성
-create sequence seq_guest;
--- 비회원(guest) 의 테이블 생성
-create table guest(
-    gid number not null primary key,
-    name varchar2(20),
-    pnum varchar2(30),
-    pwd varchar2(30),
-    address	VARCHAR2(50),
-    deaddress VARCHAR2(50),
-    itemid number,
-    envoice_no varchar2(100) not null unique
-);
-
--- 커밋
-commit;
-
--- 조회
-select * from guest;
-drop sequence seq_guest;
-drop table guest;
-
--------------------------------------------------------------------------------- 문의 (Qna)
+-------------------------------------------------------------------------------- 문의 (inquiry)
 
 -- 문의 의 시퀀스 생성
-create sequence seq_Qna;
+create sequence seq_inquiry;
 -- 문의 테이블 생성
-create table Qna(
-    id NUMBER CONSTRAINT Qna_id PRIMARY KEY,
-    title  VARCHAR2(100) NOT NULL,
-    content VARCHAR2(100) NOT NULL,
-    writer VARCHAR2(100) NOT NULL,
-    writedate DATE DEFAULT SYSDATE,
-    readcnt NUMBER DEFAULT 0,
-    root NUMBER,
-    step NUMBER DEFAULT 0,
-    indent NUMBER DEFAULT 0
-);
-insert into Qna (id, title, content, writer)
-values (1,'테스트1','잘들어옴?','김희수');
--- 커밋
-commit;
-
--- 조회
-select * from Qna;
-
--------------------------------------------------------------------------------- 구매 (buy)
-
--- 구매(buy)의 시퀀스 생성
-create sequence seq_buy;
--- 구매(buy) 테이블 생성
-create table buy(
-    bno number(10) not null primary key,  -- 시퀀스
-    buy_no varchar2(100) not null unique,  --주문번호
-    member_id varchar2(30) not null,  -- 주문자아이디
-    cart_id varchar(30) not null,  -- 주문상품
-    buy varchar(20),  -- 주문상태
-    buy_date date not null, -- 주문한 날짜
-    price number  -- 주문 금액
+CREATE TABLE tbl_inquiry (
+  qno NUMBER(10) NOT NULL PRIMARY KEY,
+  title VARCHAR2(100) NOT NULL,
+  content VARCHAR2(100) NOT NULL,
+  wrtier VARCHAR2(100) NOT NULL,
+  register_date DATE NOT NULL,
+  update_date DATE DEFAULT SYSDATE,
+  reply_cnt NUMBER(10)
 );
 
 -- 커밋
 commit;
 
 -- 조회
-select * from buy;
+select * from tbl_inquiry;
 
-drop table buy;
-drop SEQUENCe seq_buy;
+-------------------------------------------------------------------------------- 배송 (delivery)
+
+-- 배송(delivery)의 시퀀스 생성
+create sequence seq_delivery;
+-- 배송(delivery) 테이블 생성
+create table delivery(
+dno number(10) not null primary key,  -- 시퀀스
+delivery_no number not null,  --주문번호
+member_id varchar2(30) not null,  -- 주문자아이디
+item varchar(30) not null,  -- 주문상품
+delivery varchar(20),  -- 주문상태
+delivery_date date not null, -- 주문한 날짜
+price number,
+member_no number(10) not null
+);
+
+-- 커밋
+commit;
+
+-- 조회
+select * from delivery;
+
 
 -------------------------------------------------------------------------------- 장바구니 (cart)
 
@@ -158,3 +130,4 @@ commit;
 
 -- 조회
 select * from cart;
+

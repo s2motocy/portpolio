@@ -12,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberVO {
-	private int bno;
+	private Long member_id;
 	 private String name;
 	 private String id;
 	 private String pwd;

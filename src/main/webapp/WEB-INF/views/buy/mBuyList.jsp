@@ -21,13 +21,13 @@
 		<td>주문 상태</td>
 	</tr>
 	
-	<c:forEach items="${list}" var="list">
+	<c:forEach items="${mblist}" var="mblist">
 	<tr>
-		<td><a href="배송조희">${list.delivery_no}</a></td>
-		<td><input type="text" value='<fmt:formatDate value="${list.delivery_date}" pattern="yyyy-MM-dd" />'></td>
-		<td><input type="text" value="${list.item}"></td>
-		<td><input type="text" value="${list.price}"></td>
-		<td><input type="text" value="${list.delivery}"></td>
+		<td><a href="배송조희">${mblist.buy_no}</a></td>
+		<td><input type="text" value='<fmt:formatDate value="${mblist.buy_date}" pattern="yyyy-MM-dd" />'></td>
+		<td><input type="text" value="${mblist.cart_id}"></td>
+		<td><input type="text" value="${mblist.price}"></td>
+		<td><input type="text" value="${mblist.buy}"></td>
 	</tr>
 	</c:forEach>
 </table>

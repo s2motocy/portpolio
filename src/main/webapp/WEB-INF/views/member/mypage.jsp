@@ -9,6 +9,6 @@
 </head>
 <body>
     <h1>My Page</h1>
-		<a href="/delivery/delist?member_id=${member_id}">주문내역</a>
+		<a href="/buy/mBuyList?member_id=${member_id}">주문내역</a>
 </body>
 </html>
