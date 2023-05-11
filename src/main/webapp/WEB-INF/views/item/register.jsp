@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <style>
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -17,7 +19,7 @@ body {
 
 
 .container {
-  margin: 20px;
+  margin: 60px;
   background-color: white;
 }
 
@@ -98,6 +100,11 @@ hr {
 
 .registerbtn:hover {
    opacity: 1;
+}
+
+.navi_bar_area #admin1:visited{
+    color:black;
+    font-weight: bold;
 }
 
 </style>
@@ -191,46 +198,49 @@ hr {
 
 
 <body>
-	<form action="register" method="post" id='frm' role='form'>
-		<div class="container">
-			<h1>상품 등록</h1>
-			<hr> 
-			<label><b>카테고리</b></label>
-			<br>
+  <form action="register" method="post" id='frm' role='form'>
+     <div class="container">
+         <label><b>카테고리</b></label>
+         <br>
             <select name="category" id="category">
-				<option value="한식">한식</option>
-				<option value="양식">양식</option>
-				<option value="중식">중식</option>
-				<option value="야식">야식</option>
-				<option value="분식">분식</option>
-				<option value="기타">기타</option>
-			</select> <br>
+             <option value="한식">한식</option>
+             <option value="양식">양식</option>
+             <option value="중식">중식</option>
+             <option value="야식">야식</option>
+             <option value="분식">분식</option>
+             <option value="기타">기타</option>
+         	</select>
+         	<br>
+           
 
-	        <label for="name"><b>상품명</b></label>
-	        <br>
-	            <input type="text" id="name" name="name" />
+         <label for="name"><b>상품명</b></label>
+         <br>
+            <input type="text" id="name" name="name" />
         
-	        <div class="inputArea" id="img">
-	        <label for="img_url"><b>상품 사진</b></label>
-	        <br>
-	            <input type="file" name="uploadFile" >
-	        </div>
-
-	        <div class="uploadResult" id="uploadResult"><ul></ul></div>
         
-	        <label for="price"><b>상품 가격</b></label>
-	        <br>
-	            <input type="text" id="price" name="price" />
-	            <br>
+        <div class="inputArea" id="img">
+         <label for="img_url"><b>상품 사진</b></label>
+         <br>
+            <input type="file" name="uploadFile" >
+        </div>
+        <div class="uploadResult" id="uploadResult">
+         <ul></ul>
+      	</div>
+        
+       
+         <label for="price"><b>상품 가격</b></label>
+         <br>
+            <input type="text" id="price" name="price" />
+         <br>
+         
+        <label for="description"><b>상품 설명</b></label>
+        <br>
+            <textarea rows="5" cols="100" id="description" name="description"></textarea>
+        <br>
 
-	        <label for="description"><b>상품 설명</b></label>
-	        <br>
-	            <textarea rows="5" cols="100" id="description" name="description"></textarea>
-	        <br>
-
-	        <button type="reset" id = "resetbtn" class="resetbtn">취소</button>
-	        <button type="submit" id="registerbtn" class="registerbtn">등록</button>
-		</div>
-	</form>
+        <button type="reset" id = "resetbtn" class="resetbtn">취소</button>
+        <button type="submit" id="registerbtn" class="registerbtn">등록</button>
+	</div>
+</form>
 </body>
 </html>

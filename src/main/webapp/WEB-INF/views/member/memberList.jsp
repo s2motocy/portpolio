@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.navi_bar_area #admin3:visited{
+    color:black;
+    font-weight: bold;
+}
+</style>
 </head>
 <body>
 	회원 목록 페이지입니다.

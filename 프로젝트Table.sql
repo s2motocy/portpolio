@@ -1,3 +1,4 @@
+
 -- 순서 :    회원 / 비회원 / 상품 / 장바구니 / 구매 / 결제 / 배송 / 문의 / 공지 
 
 
@@ -7,9 +8,9 @@
 create SEQUENCE seq_members;
 -- 회원(member) 테이블 생성
 create table members(
-    bno number(10) not null primary key,
+    member_id number(10) not null primary key,
     name varchar2(50),
-    ID	VARCHAR2(50),
+    ID VARCHAR2(50),
     PWD	VARCHAR2(50),
     PWD2	VARCHAR2(50),
     EMAIL	VARCHAR2(50),
@@ -26,7 +27,8 @@ commit;
 -- 조회
 select * from members;
 
-
+drop sequence seq_members;
+drop table members;
 -------------------------------------------------------------------------------- 비회원 (guest)
 
 -- 비회원(guest) 의 시퀀스 생성
@@ -142,28 +144,6 @@ drop SEQUENCe seq_buy;
 
 
 
--------------------------------------------------------------------------------- 배송 (delivery)
-
--- 배송(delivery)의 시퀀스 생성
-create sequence seq_delivery;
--- 배송(delivery) 테이블 생성
-create table delivery(
-    dno number(10) not null primary key,        -- 구분 번호
-    delivery_no number not null,                -- 주문 번호 (조회 번호로 사용됨)
-    member_id varchar2(30) not null,            -- 회원 번호
-    item varchar(30) not null,                  -- 상품 이름
-    delivery varchar(20),                       -- 주문 상태
-    delivery_date date not null,                -- 주문 일자
-    price number                                -- 결제 가격
-);
-
--- 커밋
-commit; 
-
--- 조회
-select * from delivery;
-
-
 -------------------------------------------------------------------------------- 문의 (inquiry)
 
 -- 문의 의 시퀀스 생성
@@ -203,6 +183,3 @@ create table notice(
 
 -- 커밋
 commit;
-
-
-

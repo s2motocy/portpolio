@@ -94,11 +94,15 @@ textarea:focus {
 	outline: none;
 }
 
-a:hover,
+
 a:focus {
 	text-decoration: none;
 	outline: none;
 	color: #ffffff;
+}
+
+a:hover {
+	background-color: black;
 }
 
 ul,
@@ -246,11 +250,11 @@ ol {
 	}
 }
 
-/* /*---------------------
+/*---------------------
   Header
 -----------------------*/
 
-.header__top {
+/* .header__top {
 	background: #f5f5f5;
 }
 
@@ -554,7 +558,7 @@ ol {
 
 .humberger__open {
 	display: none;
-} */
+} */ 
 
 /*---------------------
   Hero
