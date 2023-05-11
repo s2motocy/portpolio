@@ -3,11 +3,12 @@ package com.cook.mymealkit.controller;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cook.mymealkit.domain.BuyVO;
@@ -22,9 +23,12 @@ public class BuyController {
 	@Setter(onMethod_=@Autowired)
 	BuyMapper bmapper;
 	
+	// 등록 (회원 -> 로그인 session 으로 구매내역을 확인하고 결제 완료시 get 페이지 이동)
+	//     (비회원 -> 구매정보 입력 후 결제 완료시 get 페이지 이동)
+	
 	// 회원 구매내역 조회
-	@GetMapping("/mBuyList")
-	public void memberbuy(Model model, String member_id) throws ParseException {
+	@GetMapping("/mBuyGet")
+	public void memberbuy(Model model, HttpSession session, String member_id) throws ParseException {
 		System.out.println("멤버아이디 잘못됬음?" + member_id);		
 		List<BuyVO> mbList = bmapper.bListByMemberId(member_id);
 		System.out.println(mbList);

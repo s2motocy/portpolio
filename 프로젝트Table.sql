@@ -17,7 +17,8 @@ create table members(
     PNUM	VARCHAR2(50),
     HNUM	VARCHAR2(50),
     ADDRESS	VARCHAR2(50),
-    DEADDRESS VARCHAR2(50)
+    DEADDRESS VARCHAR2(50),
+    auth char(1) default 'm'
 );
 
 

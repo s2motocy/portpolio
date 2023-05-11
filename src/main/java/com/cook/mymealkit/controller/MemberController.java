@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cook.mymealkit.domain.MemberVO;
 import com.cook.mymealkit.service.MemberService;
@@ -25,13 +24,11 @@ public class MemberController {
 	MemberService memberservice;
 	 //로그인 페이지 처리
 	@GetMapping("login")
-    public void login() {
-    }
+    public void login() {}
 	
 	@GetMapping("home")
-    public String gohome() {
-        return "members/home";
-    }
+    public void gohome() {}
+	
     @PostMapping("login")
     public String login(MemberVO vo,Model model,HttpSession session) throws Exception {
     	boolean success = memberservice.login(vo);
@@ -45,9 +42,8 @@ public class MemberController {
     }
     //회원가입 처리
     @GetMapping("join")
-    public void join() {
-    	
-    }
+    public void join() {}
+    
     @PostMapping("/join")
     public String signUP(MemberVO vo,Model model) throws Exception {
     	System.out.println(vo);
@@ -71,6 +67,7 @@ public class MemberController {
 		}
     	return "redirect:/members/home";
     }
+    
     //회원탈퇴 처리
     @GetMapping("/remove")
     public void remove() {
@@ -86,6 +83,7 @@ public class MemberController {
     		return "/members/remove";
     	}
     }
+    
     //회원조회 처리
     @GetMapping("/memberlist")
     public String memberlist(Model model) {
@@ -93,6 +91,7 @@ public class MemberController {
     	model.addAttribute("list1",members);
     	return "/members/memberlist";
     }
+    
     //마이페이지
     @GetMapping("/mypage")
     public String mypage(Model model,HttpSession session) {
@@ -100,10 +99,11 @@ public class MemberController {
 		model.addAttribute("vo",member);
     	return "/members/mypage";
     }
+    
     //로그아웃처리
     @PostMapping("/logout")
     public String logout(HttpSession session) {
         memberservice.logout(session);
-        return "/members/home";
+        return "/item/itemList";
     }
 }

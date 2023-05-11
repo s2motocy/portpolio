@@ -5,9 +5,10 @@
 <mapper namespace="com.cook.mymealkit.mapper.MemberMapper">
 	
 	<!--회원가입 -->
-  	<select id="getWithIdAndPassword" parameterType="com.cook.mymealkit.domain.MemberVO" resultType="com.cook.mymealkit.domain.MemberVO">
-    	select * from  members where id=#{id} and pwd=#{pwd} 
-     </select>
+  	<insert id="insertMember" parameterType="com.cook.mymealkit.domain.MemberVO">
+        INSERT INTO members ( bno ,name , id , pwd , email, pnum , hnum , address ,moreaddress)
+        VALUES (seq_members.nextval,#{name},#{id},#{pwd},#{email},#{pnum},#{hnum},#{address},#{moreaddress})
+    </insert>
      
      <!--회원정보 수정 -->
 	<update id="updateMember" parameterType="com.cook.mymealkit.domain.MemberVO">
