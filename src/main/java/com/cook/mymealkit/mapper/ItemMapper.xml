@@ -24,7 +24,11 @@
 	<select id="getMax" resultType="long">
 		select max(itemid) from item
 	</select>
+	<select id="get_price" resultType="int">
+		select price from item where itemid=#{itemid}
+	</select>
 	<select id="getByItemid" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="Long">
 		select * from item where itemid=#{itemid}
 	</select>
+
 </mapper>

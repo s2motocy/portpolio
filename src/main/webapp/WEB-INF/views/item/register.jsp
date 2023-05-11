@@ -232,16 +232,15 @@ hr {
          <br>
             <input type="text" id="price" name="price" />
          <br>
-        
-
-         <label for="description"><b>상품 설명</b></label>
-         <br>
+         
+        <label for="description"><b>상품 설명</b></label>
+        <br>
             <textarea rows="5" cols="100" id="description" name="description"></textarea>
-         <br>
-        
+        <br>
+
         <button type="reset" id = "resetbtn" class="resetbtn">취소</button>
         <button type="submit" id="registerbtn" class="registerbtn">등록</button>
-   </div>
-  </form>
+	</div>
+</form>
 </body>
 </html>

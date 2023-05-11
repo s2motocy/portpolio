@@ -20,7 +20,6 @@
            		<a href="/item/buyList" id="admin4">공지사항 관리</a>
             </div>
         </div>
-        	<div class="content_area"></div>
-        </div>
+    </div>
 </body>
 </html>
