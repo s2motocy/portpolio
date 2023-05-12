@@ -104,6 +104,6 @@ public class MemberController {
     @PostMapping("/logout")
     public String logout(HttpSession session) {
         memberservice.logout(session);
-        return "/item/itemList";
+        return "redirect:/item/itemList";
     }
 }

@@ -7,7 +7,7 @@ import lombok.ToString;
 @ToString
 public class MemberVO {
 
-	 private Long member_id;
+	 private int mno;
 	 private String name;
 	 private String id;
 	 private String pwd;

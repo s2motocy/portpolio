@@ -3,18 +3,23 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cook.mymealkit.mapper.BuyMapper">
 
-	<insert id=""></insert>
+	<insert id="insertMBuy" parameterType="com.cook.mymealkit.domain.BuyDTO">
+		insert into buy values(seq_buy.nextval,#{buy_no},#{member_id},#{buyer_name},#{post_code},#{addr},#{addr2},#{buy})
+	</insert>
 	
-	<select id="bList" resultType="com.cook.mymealkit.domain.BuyVO">
+	<insert id="insertGuestBuy" parameterType="com.cook.mymealkit.domain.BuyDTO">
+		insert into buy(bno, buy_no, buyer_name, post_code, addr, addr2, buy) 
+			values(seq_buy.nextval,#{buy_no},#{buyer_name},#{post_code},#{addr},#{addr2},#{buy})
+	</insert> 
+	
+	<select id="bList" resultType="com.cook.mymealkit.domain.BuyDTO">
 		select * from buy
 	</select>
 
-	<select id="bListByMemberId" resultType="com.cook.mymealkit.domain.BuyVO">
+	<select id="bListByMemberId" resultType="com.cook.mymealkit.domain.BuyDTO">
 		select * from buy where member_id=#{member_id}
 	</select>
 
 </mapper>
 
 
-	
-	
