@@ -30,6 +30,9 @@ $(document).ready(function(){
 		$(this).attr('src', u )
 	})
 	
+	/* 버튼 중첩실행 방지 */
+	$("button").click(function(e){ e.preventDefault() })
+	
 	/* 클릭시 수량 감소 */
 	$("button[id^=minusQty]").each(function(idx, data){
 		$(this).click(function(e){
@@ -89,9 +92,9 @@ $(document).ready(function(){
 		$(this).click(function(e){
 			var amountData = $("#amountData"+idx).val()
 			var priceData = $("#priceData"+idx).val()
-			var memberid = $("#memberData"+idx).val()
+			var userid = $("#userData"+idx).val()
 			var itemid = $("#itemData"+idx).val()
-			var formData = {amount:amountData, price:priceData, member_id:memberid, item_id:itemid}
+			var formData = {amount:amountData, cart_price:priceData, user_id:userid, item_id:itemid}
 			$.ajax({
 				url: '/cart/cartUpdate',
 				type: 'POST',
@@ -137,7 +140,7 @@ $(document).ready(function(){
 <body>
 	<h1>장바구니 페이지</h1>
 	
-	<form action="/Buy/buyPage" id="frm">
+	<form action="/buy/buyPage" id="frm">
 		<table class="cart_table">
 			<tr>
 				<th>전체<br><input type="checkbox" id="all_checked" checked="checked" /></th>
@@ -154,31 +157,31 @@ $(document).ready(function(){
 					<td class="선택_히든" id="pricing${stat.index}">
 						<input type="checkbox" id="checkbox${stat.index}" checked="checked" />
 						<input type="hidden" id="hidden_amount${stat.index}" value="${list.amount}" />
-						<input type="hidden" id="hidden_total${stat.index}" value="${list.price}" />
+						<input type="hidden" id="hidden_total${stat.index}" value="${list.item_price}" />
 					</td>
 					<td class="사진"><img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/></td>
-					<td class="품명"><input type="text" name="item_name" id="item_name" value="${list.item_name}" /></td>
+					<td class="품명"><input type="text" name="buy_list[${stat.index}].item_name" id="item_name" value="${list.item_name}" /></td>
 					<td class="단가"><input type="text" id="price_origin${stat.index}" value="${list.item_price}" /></td>
 					<td class="수량">
 						<button id="minusQty${stat.index}">-</button>
-						<input type="text" name="amount" id="amountData${stat.index}" value="${list.amount}" />
+						<input type="text" name="buy_list[${stat.index}].amount" id="amountData${stat.index}" value="${list.amount}" />
 						<button id="plusQty${stat.index}">+</button>
 					</td>
-					<td class="합계"><input type="text" id="priceData${stat.index}" value="${list.price}" readonly /></td>
+					<td class="합계"><input type="text" id="priceData${stat.index}" value="${list.item_price}" readonly /></td>
 					<td class="적용"><button id="apply${stat.index}">적용</button></td>
 					<td class="삭제"><button id="remove${stat.index}" data-cart_id="${list.cart_id}" >삭제</button></td>
 				</tr>
-				<input type="hidden" id="memberData${stat.index}" name="member_id" value="${list.member_id}" />
-				<input type="hidden" id="itemData${stat.index}" value="${list.item_id}" />
+				<input type="hidden" id="userData${stat.index}" value="${list.user_id}" />
+				<input type="hidden" id="itemData${stat.index}" name="buy_list[${stat.index}].item_id" value="${list.item_id}" />
 			</c:forEach>
 		</table>
 		
 		<hr>
 		<div class="결제 정보">
-			<div class="수량"> 수량 : <input type="text" name="total_price" id="view_amount" value="0" /></div>
+			<div class="수량"> 수량 : <input type="text" id="view_amount" value="0" /></div>
 			<div class="총액"> 가격 : <input type="text" id="view_price" value="0" /></div>
 			<div class="할인"> 할인 : <input type="text" id="discount" value="0" />% <img src="https://cdn-pro-web-134-253.cdn-nhncommerce.com/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_coupon_apply.png" /></div>
-			<div class="배송비"> 배송비 : <input type="text" name="delivery_cost" id="deliverypay" value="0" />원</div>
+			<div class="배송비"> 배송비 : <input type="text" id="deliverypay" value="0" />원</div>
 			<div class="결제금액"> 결제금액 : <input type="text" id="totalpay" value="0" />원</div>
 		</div>
 		<div class="버튼">

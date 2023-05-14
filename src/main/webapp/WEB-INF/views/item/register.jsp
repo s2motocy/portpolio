@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <style>
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -17,12 +17,10 @@ body {
   box-sizing: border-box;
 }
 
-
 .container {
   margin: 60px;
   background-color: white;
 }
-
 
 input[type=text],input[type=file] {
     width: 30%;
@@ -109,58 +107,61 @@ hr {
 
 </style>
 </head>
- <script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
- <script>
-
-    $(document).ready(function(){ ///// 전체 추가
-      var formObj=$("form[role='form']")
-      $("button[type='submit']").click(function(e){
-         e.preventDefault()
-         console.log("전송버튼이 눌렸어요")
-         var str=""
-         $(".uploadResult ul li").each(function(idx, obj){
-            console.log("obj: ", obj)
+<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script>
+$(document).ready(function(){
+	
+	/* form 태그의 버튼이 눌리면 각 이미지의 정보를 input(hidden)의 value에 담아 전송 */
+	var formObj=$("form[role='form']")
+	$("button[type='submit']").click(function(e){
+		e.preventDefault()
+		console.log("전송버튼이 눌렸어요")
+		var str=""
+		$(".uploadResult ul li").each(function(idx, obj){
+			console.log("obj: ", obj)
             var jobj =$(obj)
             console.dir(jobj)
             str+= "<input type='hidden' name='attachList["+idx+"].fileName' value='"+jobj.data('filename')+"'>"
             str+= "<input type='hidden' name='attachList["+idx+"].uuid' value='"+jobj.data('uuid')+"'>"
             str+= "<input type='hidden' name='attachList["+idx+"].uploadPath' value='"+jobj.data('path')+"'>"
             str+= "<input type='hidden' name='attachList["+idx+"].image' value='"+jobj.data('type')+"'>"
-         })
-         console.log(str)
-         formObj.append(str).submit()
-      })
-      
-      //p506
-      var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$")
-      var maxSize = 5242880  //5MB
-      const checkExtension=(fileName, fileSize)=>{
-         if(fileSize >= maxSize) {
-            alert("파일 용량 초과 (제한용량: 5MB)")
+		})
+        console.log(str)
+        formObj.append(str).submit()
+	})
+    
+	/* 정규표현식 으로 확장자 와 용량 제한 */
+	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$")
+	var maxSize = 5242880  //5MB
+	const checkExtension=(fileName, fileSize)=>{
+		if(fileSize >= maxSize) {
+			alert("파일 용량 초과 (제한용량: 5MB)")
             return false;
-         }
-         if(regex.test(fileName)){
-            alert("해당 종류의 파일은 업로드할 수 없습니다.")
+		}
+		if(regex.test(fileName)){
+			alert("해당 종류의 파일은 업로드할 수 없습니다.")
             return false;
-         }
-         return true;
-      }
+		}
+		return true;
+	}
 
-      $("input[type='file']").change(function(e){ 
-         var formData = new FormData()
-         var inputFile = $("input[name='uploadFile']")
-         var files = inputFile[0].files
-         console.log(files)
-         for(var i of files) {
-            if(!checkExtension(i.name, i.size)) return false;
+	/* input 태그에 파일이 담기면 체크(확장자, 용량) 후 ajax 를 통해 uploadcontroller의 uploadAjaxAction 에 전달되고
+	이미지를 c:\upload 폴더에 날짜를 생성하고 uuid를 붙여 저장하고, 이미지면 thumbnail 이미지를 추가 생성하고, AttachFileDTO 에 값을 저장하여 list 로 반환하면
+	반환된 list 정보를 태그화 하여 이미지면 thumbnail 이미지를 보여주고, 이미지가 아니면 attach.png 를 보여준다 */
+	$("input[type='file']").change(function(e){ 
+		var formData = new FormData()
+		var inputFile = $("input[name='uploadFile']")
+		var files = inputFile[0].files
+		console.log(files)
+		for(var i of files) {
+			if(!checkExtension(i.name, i.size)) return false;
             formData.append("uploadFile", i)
-         }
-         
-         var uploadResult =$(".uploadResult ul")
-         const showUploadedFile=(uploadResultArr)=>{
-            if(!uploadResultArr || uploadResultArr.length ==0) return
+		}
+		var uploadResult =$(".uploadResult ul")
+		const showUploadedFile=(uploadResultArr)=>{
+			if(!uploadResultArr || uploadResultArr.length ==0) return
             var str=""
-            $(uploadResultArr).each(function(idx, obj){ 
+            $(uploadResultArr).each(function(idx, obj){
                if(obj.image) { 
                   var fileCallPath = encodeURIComponent(obj.uploadPath+ "/s_"+obj.uuid+"_"+obj.fileName)
                   var originPath = obj.uploadPath+ "/"+obj.uuid+"_"+obj.fileName
@@ -177,65 +178,60 @@ hr {
                   str+= "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button></br>"
                   str+= "<img src='/resources/img/attach.png'></div></li>"
                }
-            })
+			})
             uploadResult.append(str)
-         }
-         $.ajax({
-            url: '/uploadAjaxAction',
+		}
+		$.ajax({
+			url: '/uploadAjaxAction',
             processData: false,
             contentType: false,
             data: formData,
             type: 'POST',
             dataType: 'json',
             success: (result)=>{
-               console.log("업로드 성공", result)
-               showUploadedFile(result)
+				console.log("업로드 성공", result)
+				showUploadedFile(result)
             }
-         }) // ajax
-      }) // button[type='file'] click
-    })
+		}) // ajax
+	}) // button[type='file'] change
+}) // ready
 </script>
-
-
 <body>
-  <form action="register" method="post" id='frm' role='form'>
-     <div class="container">
-         <label><b>카테고리</b></label>
-         <br>
-            <select name="category" id="category">
-             <option value="한식">한식</option>
-             <option value="양식">양식</option>
-             <option value="중식">중식</option>
-             <option value="야식">야식</option>
-             <option value="분식">분식</option>
-             <option value="기타">기타</option>
-         	</select>
-         	<br>
-           
+<form action="register" method="post" id='frm' role='form'>
+	<div class="container">
+		<label><b>카테고리</b></label>
+		<br>
+		<select name="category" id="category">
+			<option value="한식">한식</option>
+			<option value="양식">양식</option>
+			<option value="중식">중식</option>
+			<option value="야식">야식</option>
+			<option value="분식">분식</option>
+			<option value="기타">기타</option>
+		</select>
+		<br>
 
-         <label for="name"><b>상품명</b></label>
-         <br>
-            <input type="text" id="name" name="name" />
-        
-        
+		<label for="item_name"><b>상품명</b></label>
+		<br>
+		<input type="text" id="item_name" name="item_name" />
+
         <div class="inputArea" id="img">
-         <label for="img_url"><b>상품 사진</b></label>
-         <br>
-            <input type="file" name="uploadFile" >
+			<label for="img_url"><b>상품 사진</b></label>
+			<br>
+			<input type="file" name="uploadFile" >
         </div>
         <div class="uploadResult" id="uploadResult">
-         <ul></ul>
+			<ul></ul>
       	</div>
-        
        
-         <label for="price"><b>상품 가격</b></label>
-         <br>
-            <input type="text" id="price" name="price" />
-         <br>
+		<label for="item_price"><b>상품 가격</b></label>
+		<br>
+		<input type="text" id="item_price" name="item_price" />
+		<br>
          
         <label for="description"><b>상품 설명</b></label>
         <br>
-            <textarea rows="5" cols="100" id="description" name="description"></textarea>
+		<textarea rows="5" cols="100" id="description" name="description"></textarea>
         <br>
 
         <button type="reset" id = "resetbtn" class="resetbtn">취소</button>

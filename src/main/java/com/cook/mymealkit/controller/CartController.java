@@ -35,7 +35,7 @@ public class CartController {
 	/* 장바구니 등록 |--------------------------------------------------- */
 	@PostMapping("/register")
 	public String cartInsert(CartDTO dto) {
-		System.out.println("cart 컨트롤러에서 등록 : dto="+ dto);
+		System.out.println("Cart 컨트롤러에서 등록 : dto="+ dto);
 		List<CartDTO> cartList = cservice.cartList();
 		
 		/* DB에 값이 있을때 */
@@ -44,7 +44,7 @@ public class CartController {
 				int amount = cartList.get(i).getAmount() + dto.getAmount();
 				int price = amount * imapper.get_price(cartList.get(i).getItem_id());
 				dto.setAmount(amount);
-				dto.setPrice(price);
+				dto.setCart_price(price);
 				System.out.println("변경된 dto="+ dto);
 				cservice.cartUpdate(dto);
 				return "redirect:/cart/cartList";
@@ -60,13 +60,13 @@ public class CartController {
 	/* 장바구니 목록 |--------------------------------------------------- */
 	@GetMapping("/cartList")
 	public void cartList(Model model) {
-		System.out.println("cart 컨트롤러에서 목록 : ");
+		System.out.println("Cart 컨트롤러에서 목록 : ");
 		List<CartDTO> dtoList = cservice.cartList();
 		System.out.println(dtoList);
 		
 		dtoList.forEach(i->{
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
-			System.out.println("cart 컨트롤러의 목록에서 attachList="+attachList);
+			System.out.println("Cart 컨트롤러의 목록에서 attachList="+attachList);
 			i.setAttachList(attachList);
 			i.setItem_price(imapper.get_price(i.getItem_id()));
 		});
@@ -77,7 +77,7 @@ public class CartController {
 	/* 장바구니 수정 |--------------------------------------------------- */
 	@PostMapping("/cartUpdate")
 	public String cartUpdate(CartDTO dto) {
-		System.out.println("cart 컨트롤러에서 수정 : dto="+dto);
+		System.out.println("Cart 컨트롤러에서 수정 : dto="+dto);
 		cservice.cartUpdate(dto);
 		return "redirect:/cart/cartList";
 	}
@@ -85,7 +85,7 @@ public class CartController {
 	/* 장바구니 삭제 |--------------------------------------------------- */
 	@PostMapping("/cartDelete")
 	public String cartDelete(int cart_id) {
-		System.out.println("cart 컨트롤러에서 삭제 : cart_id="+ cart_id);
+		System.out.println("Cart 컨트롤러에서 삭제 : cart_id="+ cart_id);
 		cservice.cartDelete(cart_id);
 		return "redirect:/cart/cartList";
 	}

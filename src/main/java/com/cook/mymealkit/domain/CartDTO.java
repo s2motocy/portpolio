@@ -10,12 +10,12 @@ import lombok.ToString;
 public class CartDTO {
 	
 	/* 장바구니 정보 */
-	private int cart_id;
+	private Long cart_id;
 	private int amount;
-	private int price;
+	private int cart_price;
 	
 	/* 회원 정보 */
-	private int member_id;
+	private String user_id;
 	
 	/* 상품 정보 */
 	private Long item_id;

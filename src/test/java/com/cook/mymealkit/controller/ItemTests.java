@@ -1,6 +1,5 @@
 package com.cook.mymealkit.controller;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,39 +17,41 @@ public class ItemTests {
 	
 	@Setter(onMethod_=@Autowired)
 	private ItemMapper imapper;
-	
 	@Setter(onMethod_=@Autowired)
 	private CartMapper cmapper;
 	
+	
+	/* 더미데이터 10개 입력 */
 //	@Test
 	public void insert_dummy_test() {
 		for(int i=0;i<10;i++) {
 			ItemVO vo = new ItemVO();
-			vo.setCategory(null);
-			vo.setName(null);
-			vo.setPrice(0);
-			vo.setDescription(null);
-			vo.setUpdate_date(null);
+			vo.setCategory("korean food");
+			vo.setItem_name("item"+((int)Math.random()*10));
+			vo.setItem_price((i+1)*1000);
+			vo.setDescription("description"+i);
 			imapper.itemInsert(vo);
 		}
 	}
 	
+	/* item_id 로 조회 */
 //	@Test
 	public void service_test() {
-		long itemid = 1;
-		ItemVO vo = imapper.itemFindById(itemid);
+		long item_id = 1;
+		ItemVO vo = imapper.itemFindById(item_id);
 		System.out.println("===================");
 		System.out.println(vo);
 		System.out.println("===================");
 	}
 	
-	@Test
+	/* 상품정보 수정 */
+//	@Test
 	public void updateTest() {
 		ItemVO vo = new ItemVO();
-		vo.setItemid(6L);
-		vo.setCategory("양식");
-		vo.setName("제발 나와라이요");
-		vo.setPrice(300000);
+		vo.setItem_id(6L);
+		vo.setCategory("japanese food");
+		vo.setItem_name("modified name");
+		vo.setItem_price(300000);
 		vo.setDescription("tlqklskldfbnsdfhiofga");
 		imapper.itemUpdate(vo);
 	}

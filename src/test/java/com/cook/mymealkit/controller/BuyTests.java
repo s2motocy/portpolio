@@ -1,12 +1,11 @@
 package com.cook.mymealkit.controller;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.cook.mymealkit.domain.BuyDTO;
+import com.cook.mymealkit.domain.BuyUserVO;
 import com.cook.mymealkit.mapper.BuyMapper;
 
 import lombok.Setter;
@@ -17,17 +16,18 @@ public class BuyTests {
 	@Setter(onMethod_=@Autowired)
 	private BuyMapper bmapper;
 	
-	@Test
-	public void insertTest() {
-		BuyDTO dto = new BuyDTO();
-		dto.setBuy_no("t000001");
-		dto.setBuyer_name("Buyer_name");
-		dto.setPost_code("999-999");
-		dto.setAddr("수원");
-		dto.setAddr2("팔달");
-		dto.setBuy("구매완료");
-		
-//		bmapper.insertMBuy(dto);
-		bmapper.insertGuestBuy(dto);
+	//@Test
+	public void insertUserTest() {
+		BuyUserVO vo = new BuyUserVO();
+		vo.setBuy_no("u000001");
+		vo.setUser_id("user01");
+		vo.setBuyer_name("Buyer_name");
+		vo.setPhone("010-0000-0000");
+		vo.setPost_code("999-999");
+		vo.setAddr("수원");
+		vo.setAddr2("팔달");
+		bmapper.insertUserBuy(vo);
 	}
+	
+	
 }
