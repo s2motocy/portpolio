@@ -13,7 +13,7 @@
 	<select id="bListByUserId" resultType="com.cook.mymealkit.domain.BuyUserVO" parameterType="String">
 		select * from tbl_user_buy where user_id=#{user_id}
 	</select>
-	<select id="getMaxBno" resultType="Long">
+	<select id="getMaxBno" resultType="int">
 		select Max(bno) from tbl_user_buy
 	</select>
 	
@@ -28,7 +28,7 @@
 	<select id="bListByBuyNo" resultType="com.cook.mymealkit.domain.BuyGuestVO" parameterType="String">
 		select * from tbl_guest_buy where buy_no=#{buy_no}
 	</select>
-	<select id="getMaxGno" resultType="Long">
+	<select id="getMaxGno" resultType="int">
 		select Max(gno) from tbl_guest_buy
 	</select>
 	

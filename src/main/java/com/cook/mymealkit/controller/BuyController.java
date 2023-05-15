@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cook.mymealkit.domain.BuyGuestVO;
@@ -27,8 +28,7 @@ public class BuyController {
 	@Setter(onMethod_=@Autowired)
 	BuyService bservice;
 	@Setter(onMethod_=@Autowired)
-	UserService mservice;
-	
+	UserService uservice;
 	
 	
 	/* 회원 구매 로그인 */
@@ -36,7 +36,31 @@ public class BuyController {
 	public void registerUser(BuyUserVO vo, HttpSession session,Model model) {
 		System.out.println("vo : "+vo);
 		model.addAttribute("test", vo);
-		// 여기 페이지에서  login 관련만 화면에 보이게 하고 나머지는 hidden으로 감춘후 처리함 
+		// 여기 페이지에서  login 관련만 화면에 보이게 하고 나머지는 hidden으로 감춘후 처리함
+	}
+	
+	@PostMapping("buyPageLogin")
+	public String registerUserPost(UserVO uvo, BuyUserVO bvo, HttpSession session) {
+		System.out.println("POST , uvo : "+uvo + " , bvo"+bvo);
+		UserVO vo = uservice.getUserById(uvo.getUser_id());
+		System.out.println("vo: "+vo);
+		String str="u";
+		int bno = bservice.getMaxBno()+1;
+		for(int i=0;i<6-Integer.toString(bno).length();i++) { str += "0"; }
+		str += bno;
+		bvo.setBuy_no(str);
+		System.out.println("여기: "+bservice.getMaxBno());
+		bvo.setPhone(vo.getPhone());
+		bvo.setPost_code(vo.getPost_code());
+		bvo.setAddr(vo.getAddr());
+		bvo.setAddr2(vo.getAddr2());
+		
+		boolean success = uservice.login(uvo);
+		if(!success) {
+			session.setAttribute("id", uvo.getUser_id());
+        	session.setAttribute("pwd", uvo.getPwd());
+		}
+		return "redirect:/buy/buyPage";
 	}
 	
 	/* 게스트 구매 로그인 */
@@ -56,16 +80,14 @@ public class BuyController {
 		System.out.println("vo : "+vo);
 		UserVO uvo = (UserVO)session.getAttribute("id");
 		// user_id, item_id, item_name, amount
-//		mservice.mypage(uvo);
 		model.addAttribute("test", uvo);
 		
-
 	}
 	
 	
 	// 회원 구매내역 조회
 	@GetMapping("/mBuyGet")
-	public void memberbuy(Model model, HttpSession session, String user_id) {
+	public void userBuy(Model model, HttpSession session, String user_id) {
 		System.out.println("멤버아이디 잘못됬음?" + user_id);		
 		List<BuyUserVO> mbList = bservice.bListByUserId(user_id);
 		System.out.println(mbList);
@@ -77,7 +99,7 @@ public class BuyController {
 
 	// 관리자권한 전체 구매내역 조회
 	@GetMapping("/buyList")
-	public String buy(Model model) throws ParseException {
+	public String Buy(Model model) throws ParseException {
 		List<BuyUserVO> buylist = bservice.userBuyList();
 		System.out.println(buylist);
 		model.addAttribute("buylist", buylist);

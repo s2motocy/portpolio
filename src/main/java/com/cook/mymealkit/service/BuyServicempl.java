@@ -34,6 +34,12 @@ public class BuyServicempl implements BuyService{
 		System.out.println("Buy 서비스에서 User 조회 : user_id="+ user_id);
 		return bmapper.bListByUserId(user_id);
 	}
+	
+	@Override
+	public int getMaxBno() {
+		System.out.println("Buy 서비스에서 bno의 Max 값 조회 : ");
+		return bmapper.getMaxBno();
+	}
 
 	@Override
 	public void insertGuestBuy(BuyGuestVO vo) {
@@ -51,6 +57,12 @@ public class BuyServicempl implements BuyService{
 	public List<BuyGuestVO> bListByGuestId(String buy_no) {
 		System.out.println("Buy 서비스에서 Guest 조회 : buy_no="+ buy_no);
 		return bmapper.bListByGuestId(buy_no);
+	}
+
+	@Override
+	public int getMaxGno() {
+		System.out.println("Buy 서비스에서 gno의 max 값 조회 : ");
+		return bmapper.getMaxGno();
 	}
 
 	

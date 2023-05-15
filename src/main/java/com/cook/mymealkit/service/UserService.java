@@ -15,6 +15,6 @@ public interface UserService {
 	public void deleteUser(UserVO vo);//회원탈퇴
 	public UserVO mypage(UserVO vo);//마이페이지
 	public void logout(HttpSession session);//로그아웃
-	public UserVO getUserById(String userId);
+	public UserVO getUserById(String user_id);
 	
 }
