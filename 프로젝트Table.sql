@@ -8,6 +8,7 @@
 create sequence seq_user;
 -- 회원(user) 테이블 생성
 create table tbl_user (
+    uno         number(10) not null primary key,        -- 번호
     user_id     varchar2(50) not null primary key,      -- 아이디
     user_name   varchar2(50) not null,                  -- 이름
     pwd	        varchar2(50) not null,                  -- 비밀번호
@@ -18,6 +19,8 @@ create table tbl_user (
     addr2       varchar2(50),                           -- 상세주소 (선택)
     auth        char(1) default 'm'                     -- 권한
 );
+
+insert into tbl_user(user_id, user_name, pwd, email, phone) values ('test1','test','1234','a@a.com','010-000-0000');
 
 -- 커밋
 commit;

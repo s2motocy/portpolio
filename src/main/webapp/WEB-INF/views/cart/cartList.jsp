@@ -19,7 +19,10 @@ table, th, tr, td {
 	border: 1px solid;
 }
 </style>
-<script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <script>
 $(document).ready(function(){
 	
@@ -52,6 +55,15 @@ $(document).ready(function(){
 			$("#amountData"+idx).val(++amount)
 			var price = $("#price_origin"+idx).val()
 			$("#priceData"+idx).val(price*amount)
+		})
+	})
+	
+	/* 아이템별 합계 계산 */
+	$("input[id^=amountData]").each(function(idx, data){
+		$(this).change(function(e){
+			var amount = parseInt($(this).val())
+			var price = parseInt($("#price_origin"+idx).val())
+			$("#priceData"+idx).val(amount*price)
 		})
 	})
 	
@@ -128,16 +140,45 @@ $(document).ready(function(){
 			$("#delete_hidden").submit()
 		})
 	})
-	
+	var frm= $("#frm")
 	/* 구매페이지로 정보전송 */
 	$("#payment").click(function(e){
-		$("#frm").submit()
+		$('#myModal').modal('show')
+	})
+	$(".btn-primary").click(function(e){
+		console.log("회원구매")
+		var str=""
+		str += "<input type='text' name='user_id' value='test1' />"
+		$(".loginSession").append(str)
+		frm.attr("action", "/buy/buyPageLogin").submit()
+	})
+	$(".btn-secondary").click(function(e){
+		console.log("비회원구매")
+		frm.attr("action", "/buy/buyPageGuest").submit()
 	})
 	
  })
  </script>
 </head>
 <body>
+<div class="container">
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">회원구매</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">비회원구매</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
 	<h1>장바구니 페이지</h1>
 	
 	<form action="/buy/buyPage" id="frm">
@@ -173,9 +214,10 @@ $(document).ready(function(){
 				</tr>
 				<input type="hidden" id="userData${stat.index}" value="${list.user_id}" />
 				<input type="hidden" id="itemData${stat.index}" name="buy_list[${stat.index}].item_id" value="${list.item_id}" />
+				
 			</c:forEach>
 		</table>
-		
+		<div class="loginSession"></div>
 		<hr>
 		<div class="결제 정보">
 			<div class="수량"> 수량 : <input type="text" id="view_amount" value="0" /></div>
@@ -185,7 +227,7 @@ $(document).ready(function(){
 			<div class="결제금액"> 결제금액 : <input type="text" id="totalpay" value="0" />원</div>
 		</div>
 		<div class="버튼">
-			<button id="continue" onclick="location.href='/item/itemList'">쇼핑계속하기</button>
+			<button id="continue" onclick="location.href='/item/itemList?cart_id=${list.cart_id}">쇼핑계속하기</button>
 			<button id="payment">구매페이지로 이동</button>
 		</div>
 	</form>

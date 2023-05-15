@@ -9,7 +9,7 @@
   <title>Document</title>
 </head>
 <body>
-    <form action="/member/login" method="post">
+    <form action="/user/login" method="post">
       아이디<input type="text" name="id"><br/>
       암호<input type="password" name="pwd"><br/>
       <input type="submit" value="로그인"><br/>

@@ -82,7 +82,7 @@ $(document).ready(function(){
 		
 		<form action="/cart/register" method="post">
 			<div class="hidden">
-				<input type="hidden" name="user_id" value="1" />
+				<input type="hidden" name="user_id" value="test1" />
 				<input type="hidden" name="item_id" value="${list.item_id}" />
 				<input type="hidden" name="item_name" value="${list.item_name}" />
 				<input type="hidden" id="amountData" name="amount" value="1" readonly />

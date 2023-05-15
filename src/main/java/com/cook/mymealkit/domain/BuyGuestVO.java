@@ -21,6 +21,6 @@ public class BuyGuestVO {
 	private String buy_status; 			// 시퀀스 주문 상태
 	private Date buy_date; 				// 주문한 날짜
 	
-	private List<BuyListDTO> buy_list; 	// 주문 목록	
+	private List<BuyListDTO> buy_list; 	// 주문 목록		
 	
 }
