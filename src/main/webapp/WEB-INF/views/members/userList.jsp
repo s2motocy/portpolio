@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>모든 회원보기</h2>
-<form action="memberlist" method="get">
+<form action="userList">
 	<table border="1">
 		<tr height="50">
 			<td width="150" align="center">이름</td>

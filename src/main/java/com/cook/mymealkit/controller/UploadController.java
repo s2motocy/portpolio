@@ -81,22 +81,22 @@ public class UploadController {
 	@PostMapping("/uploadAjaxAction")
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 		log.info("ajax file Controller: ");
-		List<AttachFileDTO> list = new ArrayList<>(); // 추가
+		List<AttachFileDTO> list = new ArrayList<>();
 		String uploadFolder = "C:\\upload";
 		// 폴더 생성
-		String uploadFolderPath= getFolder(); // 추가
-		File uploadPath = new File(uploadFolder, uploadFolderPath); // 변경
+		String uploadFolderPath= getFolder();
+		File uploadPath = new File(uploadFolder, uploadFolderPath);
 		log.info("upload path: "+uploadPath);
 		if(!uploadPath.exists()) uploadPath.mkdirs(); // 폴더가 존재하지 않으면 생성함 (mkdir / make directory)
 		
 		// 연도 폴더 생성
 		for(MultipartFile i : uploadFile) {
-			AttachFileDTO attachDto = new AttachFileDTO(); // 추가
+			AttachFileDTO attachDto = new AttachFileDTO();
 			log.info("-------------------");
 			log.info("Upload File Name: "+ i.getOriginalFilename());
 			log.info("Upload File Size: "+ i.getSize());
 			String uploadFileName = i.getOriginalFilename();
-			attachDto.setFileName(uploadFileName); // 추가
+			attachDto.setFileName(uploadFileName);
 			// IE 에 대한 처리 (전체 경로가 오므로 마지막 파일만 추출하기 위해
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") +1); // \ 가 마지막 글자부터 몇번째 있는가, 0부터 1을 더한다
 			// C:\\upload\a.jpg

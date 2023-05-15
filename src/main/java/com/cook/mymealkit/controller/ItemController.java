@@ -40,7 +40,7 @@ public class ItemController {
 	
 	@PostMapping("/register")
 	public String insert(ItemVO vo) {
-		System.out.println(vo);
+		System.out.println("Item 컨트롤러에서 등록 : vo="+ vo);
 		if(vo.getAttachList() != null) {
 			System.out.println(vo);
 			vo.getAttachList().forEach(i->fmapper.fileInsert(i));
@@ -52,9 +52,10 @@ public class ItemController {
 	/* 상품 목록 |--------------------------------------------------- */
 	@GetMapping("/itemList")
 	public void itemList(Model model) {
+		System.out.println("Item 컨트롤러에서 목록 : ");
 		List<ItemVO> itemList = imapper.itemList();
 		itemList.forEach(i->{
-			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItemid());
+			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			i.setAttachList(attachList);
 		});
 		model.addAttribute("list",itemList);
@@ -62,22 +63,24 @@ public class ItemController {
 	
 	/* 상품 상세 |--------------------------------------------------- */
 	@GetMapping("/detail")
-	public void detail(@RequestParam("itemid") Long itemid, Model model) {
-		ItemVO vo = iservice.itemFindById(itemid);
-		List<AttachFileDTO> attachList = iservice.getAttachList(itemid);
+	public void detail(@RequestParam("item_id") Long item_id, Model model) {
+		System.out.println("Item 컨트롤러에서 조회 : item_id="+ item_id);
+		ItemVO vo = iservice.itemFindById(item_id);
+		List<AttachFileDTO> attachList = iservice.getAttachList(item_id);
 		vo.setAttachList(attachList);
 		model.addAttribute("list", vo);
 	}
 	
 	/* 상품 수정 |--------------------------------------------------- */
 	@GetMapping("/update")
-	public void update(Model model,Long itemid) {
-		System.out.println(itemid);
-		model.addAttribute("vo", imapper.getByItemid(itemid));		
+	public void update(Model model,Long item_id) {
+		System.out.println("Item 컨트롤러에서 수정(get) : item_id="+ item_id);
+		model.addAttribute("vo", imapper.itemFindById(item_id));		
 	}
 	
 	@PostMapping("/update")
 	public String itemUpdate(ItemVO vo, RedirectAttributes rttr) {
+		System.out.println("Item 컨트롤러에서 수정(post) : vo="+ vo);
 		imapper.itemUpdate(vo);
 		rttr.addFlashAttribute("list",imapper.itemList());
 		return "redirect:/item/itemList";
@@ -85,8 +88,9 @@ public class ItemController {
 	
 	/* 상품 삭제 |--------------------------------------------------- */
 	@GetMapping("/delete")
-	public String delete(int itemid) {
-		imapper.itemDelete(itemid);
+	public String delete(int item_id) {
+		System.out.println("Item 컨트롤러에서 삭제 : item_id="+ item_id);
+		imapper.itemDelete(item_id);
 		return "redirect:/item/itemList";
 	}
 }

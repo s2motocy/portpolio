@@ -104,12 +104,10 @@ body {
   box-sizing: border-box;
 }
 
-
 .container {
   padding: 100px;
   background-color: white;
 }
-
 
 input[type=text],input[type=file] {
     width: 30%;
@@ -193,10 +191,7 @@ hr {
  
 </head>
 <body>
-
-
- <form action="update" method="post" id="update" role="form">
-
+<form action="update" method="post" id="update" role="form">
  	<div class="container"> 
          <label><b>카테고리</b></label>
          <br>
@@ -210,12 +205,10 @@ hr {
 			</select> 
 			<br>
         
-
          <label for="name"><b>상품명</b></label>
          <br>
-         <input type="hidden" name='itemid' value='<c:out value="${vo.itemid}"></c:out>'/>
-         <input type="text" id="name" name="name" value='<c:out value="${vo.name}"></c:out>' />
-
+         <input type="hidden" name='item_id' value='<c:out value="${vo.item_id}"></c:out>'/>
+         <input type="text" id="item_name" name="item_name" value='<c:out value="${vo.item_name}"></c:out>' />
 
 	        <div class="inputArea" id="img">
 	         <label for="img_url"><b>상품 사진</b></label>
@@ -225,11 +218,10 @@ hr {
 	        <div class="uploadResult" id="uploadResult">
 	         <ul></ul>
 	      </div>
-	        
-
-         <label for="price"><b>상품 가격</b></label>
+	      
+         <label for="item_price"><b>상품 가격</b></label>
          <br>
-         <input type="text" id="price" name="price" value='<c:out value="${vo.price}"></c:out>' />
+         <input type="text" id="item_price" name="item_price" value='<c:out value="${vo.item_price}"></c:out>' />
 		<br> 
  
          <label for="description"><b>상품 설명</b></label>

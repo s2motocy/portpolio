@@ -9,10 +9,9 @@ public interface ItemService {
 	
 	public void itemInsert(ItemVO vo);						// 등록
 	public List<ItemVO> itemList();							// 목록
-	public ItemVO itemFindById(long itemid);				// 조회
+	public ItemVO itemFindById(long item_id);				// 조회
 	public int itemUpdate(ItemVO vo);						// 수정
-	public int itemDelete(long itemid);						// 삭제
-	public List<AttachFileDTO> getAttachList(long itemid);	// 파일 정보
-	public ItemVO getByItemid(long itemid);
+	public int itemDelete(long item_id);					// 삭제
+	public List<AttachFileDTO> getAttachList(long item_id);	// 파일 정보
 	
 }

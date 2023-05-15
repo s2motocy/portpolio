@@ -2,19 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cook.mymealkit.mapper.BuyMapper">
-
-	<insert id=""></insert>
+	<!-- 회원 -->
+	<insert id="insertUserBuy" parameterType="com.cook.mymealkit.domain.BuyUserVO">
+		insert into tbl_user_buy(bno, buy_no, user_id, buyer_name, phone, post_code, addr, addr2) 
+			values(seq_user_buy.nextval,#{buy_no},#{user_id},#{buyer_name},#{phone},#{post_code},#{addr},#{addr2})
+	</insert>
+	<select id="userBuyList" resultType="com.cook.mymealkit.domain.BuyUserVO">
+		select * from tbl_user_buy
+	</select>
+	<select id="bListByUserId" resultType="com.cook.mymealkit.domain.BuyUserVO" parameterType="String">
+		select * from tbl_user_buy where user_id=#{user_id}
+	</select>
+	<select id="getMaxBno" resultType="Long">
+		select Max(bno) from tbl_user_buy
+	</select>
 	
-	<select id="bList" resultType="com.cook.mymealkit.domain.BuyVO">
-		select * from buy
+	<!-- 비회원 -->
+	<insert id="insertGuestBuy" parameterType="com.cook.mymealkit.domain.BuyGuestVO">
+		insert into tbl_guest_buy(gno, buy_no, pwd, buyer_name, phone, post_code, addr, addr2) 
+			values(seq_guest_buy.nextval,#{buy_no},#{pwd},#{buyer_name},#{phone},#{post_code},#{addr},#{addr2})
+	</insert>
+	<select id="guestBuyList" resultType="com.cook.mymealkit.domain.BuyGuestVO">
+		select * from tbl_guest_buy
 	</select>
-
-	<select id="bListByMemberId" resultType="com.cook.mymealkit.domain.BuyVO">
-		select * from buy where member_id=#{member_id}
+	<select id="bListByBuyNo" resultType="com.cook.mymealkit.domain.BuyGuestVO" parameterType="String">
+		select * from tbl_guest_buy where buy_no=#{buy_no}
 	</select>
-
+	<select id="getMaxGno" resultType="Long">
+		select Max(gno) from tbl_guest_buy
+	</select>
+	
 </mapper>
 
 
-	
-	
