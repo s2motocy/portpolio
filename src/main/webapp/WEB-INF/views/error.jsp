@@ -10,5 +10,6 @@
 	로그인 실패
 	겸
 	테스트완료오
+	<a href="/buy/mBuyList?member_id=${member_id}">주문내역</a>
 </body>
 </html>

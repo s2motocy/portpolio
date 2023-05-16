@@ -1,6 +1,7 @@
 package com.cook.mymealkit.controller;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cook.mymealkit.domain.UserVO;
 import com.cook.mymealkit.service.UserService;
@@ -52,6 +55,41 @@ public class UserController {
     	uservice.join(vo);
     	return "redirect:/user/login";
     }
+    // 아이디 중복 확인 
+    @RequestMapping(value = "/userIdCheck", method = RequestMethod.POST)
+    @ResponseBody
+	public String IdChkPOST(String user_id) throws Exception{
+		System.out.println("잘 넘어오는지 확인");
+			int result = uservice.idCheck(user_id);
+			System.out.println("결과값 = " + result);	
+			if(result != 0) {	
+				return "fail";
+			} else {
+				return "success";	
+			}	
+		
+	}
+    /* 이메일 인증 */
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheckGET(String email){
+		
+		/* 뷰(View)로부터 넘어온 데이터 확인 */
+		System.out.println("이메일 데이터 전송 확인");
+		System.out.println("이메일 : " + email);
+				
+		/* 인증번호(난수) 생성 */
+		Random random = new Random();
+		int checkNum = random.nextInt(888888) + 111111;
+		System.out.println("인증번호 " + checkNum);
+		
+		String num = Integer.toString(checkNum);
+		
+		return num;
+		
+	}
+   
+    
     //회원 수정 처리
     @GetMapping("/update")
     public String update(UserVO vo,Model model,HttpSession session) {

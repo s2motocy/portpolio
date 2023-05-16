@@ -10,6 +10,7 @@ import com.cook.mymealkit.domain.UserVO;
 public interface UserMapper {
 	
 	public void insertUser(UserVO vo); //회원가입
+	public int idCheck(String user_id); // ID중복체크
 	public UserVO readUser(UserVO vo); //로그인
 	public List<UserVO> getAllUsers();//관리자 회원정보 전체 조회
 	public void updateUser(UserVO vo);//회원 정보 업데이트

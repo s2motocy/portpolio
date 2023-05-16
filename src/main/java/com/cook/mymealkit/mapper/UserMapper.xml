@@ -9,6 +9,11 @@
         insert into tbl_user (uno, user_id, user_name, pwd , email, phone , post_code , addr , addr2)
         	values (seq_user.nextval,#{user_id},#{user_name},#{pwd},#{email},#{phone},#{post_code},#{addr},#{addr2})
     </insert>
+    
+    <!-- ID중복체크 -->
+    <select id="idCheck" resultType="int">
+  		select count(*) from tbl_user where user_id = #{user_id}
+  	</select>
      
      <!--회원정보 수정 -->
 	<update id="updateUser" parameterType="com.cook.mymealkit.domain.UserVO">

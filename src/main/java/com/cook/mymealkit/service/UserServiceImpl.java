@@ -69,4 +69,8 @@ public class UserServiceImpl implements UserService{
 		System.out.println("User 서비스에서 userid로 조회 : user_id="+ user_id);
 		return umapper.getUserById(user_id);
 	}
+	@Override
+	public int idCheck(String user_id) {
+		return umapper.idCheck(user_id);
+	}
 }
