@@ -8,11 +8,15 @@
 <title>회원구매 로그인</title>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script>
-$(document).ready(function(){})
+$(document).ready(function(){
+	$("input[type=submit]").click(function(e){
+		// login 실행 이후 성공하면 submit 실패하면 return
+	})
+})
 </script>
 </head>
 <body>
-    <form action="/buy/buyPageLogin" method="post">
+    <form action="/buy/buyPage">
     	<div class="로그인 정보">
 		     아이디<input type="text" name="user_id" value="test1" ><br/>
 		     암호<input type="password" name="pwd"><br/>

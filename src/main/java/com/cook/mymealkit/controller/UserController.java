@@ -41,6 +41,7 @@ public class UserController {
         session.setAttribute("vo", uservice.mypage(vo));
         return "redirect:/users/mypage";
     }
+    
     //회원가입 처리
     @GetMapping("join")
     public void join() {}

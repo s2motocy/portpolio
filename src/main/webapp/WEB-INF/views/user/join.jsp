@@ -2,24 +2,21 @@
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <title>JQuery-validation demo | Bootstrap</title>
+  <head>
+    <meta charset="UTF-8" />
+    <title>JQuery-validation demo | Bootstrap</title>
 
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-  />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+    />
 
-  <script
-    type="text/javascript"
-    src="https://code.jquery.com/jquery-1.11.3.min.js"
-  ></script>
-  <script
-    type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"
-  ></script>
-</head>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.11.3.min.js"
+    ></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+  </head>
   <body>
     <div class="container">
       <div class="row">
@@ -62,6 +59,7 @@ pageEncoding="UTF-8"%>
                       placeholder="이름 입력"
                     />
                   </div>
+                  <span>필수</span>
                 </div>
 
                 <div class="form-group">
@@ -75,6 +73,8 @@ pageEncoding="UTF-8"%>
                       placeholder="아이디 입력"
                     />
                   </div>
+                    <span>필수</span>
+                    <input type="button" value="중복 체크"  id="check"/>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="pwd"
@@ -89,8 +89,8 @@ pageEncoding="UTF-8"%>
                       placeholder="임호 입력"
                     />
                   </div>
+                  <span>필수</span>
                 </div>
-
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="pwd2"
                     >비밀번호 확인</label
@@ -104,6 +104,7 @@ pageEncoding="UTF-8"%>
                       placeholder="확인 비밀번호 입력"
                     />
                   </div>
+                  <span>필수</span>
                 </div>
 
                 <div class="form-group">
@@ -119,34 +120,22 @@ pageEncoding="UTF-8"%>
                       placeholder="이메일 입력"
                     />
                   </div>
+                  <span>필수</span>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="phone"
-                    > 연락처
+                    >전화번호
                   </label>
                   <div class="col-sm-5">
                     <input
                       type="tel"
                       class="form-control"
-                      id="pnum"
-                      name="pnum"
+                      id="phone"
+                      name="phone"
                       placeholder="핸드폰 번호 입력"
                     />
                   </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-4 control-label" for="post_code"
-                    >우편번호</label
-                  >
-                  <div class="col-sm-5">
-                    <input
-                      type="tel"
-                      class="form-control"
-                      id="hnum"
-                      name="hnum"
-                      placeholder="우편번호 입력"
-                    />
-                  </div>
+                  <span>필수</span>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="addr"
@@ -161,6 +150,7 @@ pageEncoding="UTF-8"%>
                       placeholder="집 주소 입력"
                     />
                   </div>
+                  <span>선택</span>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="addr2"
@@ -175,6 +165,7 @@ pageEncoding="UTF-8"%>
                       placeholder="상세  주소 입력"
                     />
                   </div>
+                  <span>선택</span>
                 </div>
                 <div class="form-group">
                   <div class="col-sm-9 col-sm-offset-4">
@@ -202,10 +193,18 @@ pageEncoding="UTF-8"%>
       });
 
       $(document).ready(function () {
+    	  $("#check").click(function(){
+    		   checkId()
+			  var result = $('#user_id').val()
+			  console.log('result:',result)
+    		  if(result==" "){
+    			  console.log("사랑")
+    		  }
+  	    })
         $("#signupForm").validate({
           rules: {
             name: "required",
-            id: "required",
+            user_id: "required",
             address:"required",
             moreaddress:"required",
             hnum:"required",
@@ -226,7 +225,7 @@ pageEncoding="UTF-8"%>
           },
           messages: {
             name: "이름을 입력해주세요",
-            id: "아이디를 입력해주세요 ",
+            user_id: "아이디를 입력해주세요 ",
             pwd: {
               required: "비밀 번호를 입력하세요 ",
               minlength: "적어도 4글자 입력하세요 ",
@@ -257,6 +256,28 @@ pageEncoding="UTF-8"%>
           },
         });
       });
+    </script>
+    <script>
+      function checkId(){
+        var id = $('#user_id').val(); //id값이 "id"인 입력란의 값을 저장
+        $.ajax({
+            url:'/user/idCheck?user_id='+id, //Controller에서 요청 받을 주소
+            type:'get', //POST 방식으로 전달
+            success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
+            	console.log(cnt)
+                if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+                    alert("사용가능한 아이디 입니다");
+                } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                    alert("아이디를 다시 입력해주세요");
+                    $('#user_id').val('');
+                    //$('#id').val(id)
+                }
+            },
+            error:function(){
+                alert("에러입니다");
+            }
+        });
+        };
     </script>
   </body>
 </html>
