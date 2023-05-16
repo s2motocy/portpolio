@@ -18,7 +18,7 @@ public class BuyUserVO {
 	private String post_code; 			// 우편번호
 	private String addr; 				// 주소
 	private String addr2; 				// 주소(상세)
-	private String buy_status; 				// 시퀀스 주문 상태
+	private String buy_status; 			// 시퀀스 주문 상태
 	private Date buy_date; 				// 주문한 날짜
 	
 	private List<BuyListDTO> buy_list; 	// 주문 목록	

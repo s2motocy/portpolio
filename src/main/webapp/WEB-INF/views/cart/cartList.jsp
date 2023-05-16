@@ -147,9 +147,6 @@ $(document).ready(function(){
 	})
 	$(".btn-primary").click(function(e){
 		console.log("회원구매")
-		var str=""
-		str += "<input type='text' name='user_id' value='test1' />"
-		$(".loginSession").append(str)
 		frm.attr("action", "/buy/buyPageLogin").submit()
 	})
 	$(".btn-secondary").click(function(e){
@@ -217,7 +214,7 @@ $(document).ready(function(){
 				
 			</c:forEach>
 		</table>
-		<div class="loginSession"></div>
+
 		<hr>
 		<div class="결제 정보">
 			<div class="수량"> 수량 : <input type="text" id="view_amount" value="0" /></div>

@@ -15,7 +15,7 @@ public class UserVO {
 	 private String post_code;
 	 private String addr;
 	 private String addr2;
-	 private int auth;
+	 private String auth;
 	 
 }
 
