@@ -20,7 +20,6 @@ public class BoardServicempl implements BoardService {
 	@Override
 	public void enroll(BoardVO board) {
 		bmapper.enroll(board);
-		
 	}
 
 	@Override

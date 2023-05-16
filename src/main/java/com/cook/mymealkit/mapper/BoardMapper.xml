@@ -26,7 +26,11 @@
     
     <!-- 문의 등록 -->
     <insert id="enroll">
+<<<<<<< HEAD
         insert into tbl_board(bno, title, content, writer) values (seq_board.NEXTVAL, #{title}, #{content}, #{writer})        
+=======
+        insert into tbl_board(bno, title, content, writer, password) values (seq_board.NEXTVAL, #{title}, #{content}, #{writer}, #{password})        
+>>>>>>> 6a928200d92d8dbca4020cb8302eebbbc610cbf7
     </insert>
     
     <!-- 문의 목록 -->
@@ -56,10 +60,10 @@
     <!-- 문의 목록(페이징) -->
     <select id="getListPaging" resultType="com.cook.mymealkit.domain.BoardVO">
     <![CDATA[
-        select bno, title, content, writer, writedate, updatedate from(
-                select /*+INDEX_DESC(tbl_board pk_board) */ rownum  as rn, bno, title, content, writer, writedate, updatedate         
-                from tbl_board where rownum <= #{pageNum} * #{amount})         
-        where rn > (#{pageNum} -1) * #{amount}
+        select bno, title, content, writer, writedate, updatedate, password from(
+                select /*+INDEX_DESC(tbl_board pk_board) */ rownum  as rn, bno, title, content, writer, writedate, updatedate, password     
+                	from tbl_board where rownum <= #{pageNum} * #{amount})         
+        				where rn > (#{pageNum} -1) * #{amount}
     ]]>
     </select>
     

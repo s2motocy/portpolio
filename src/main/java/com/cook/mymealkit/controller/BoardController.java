@@ -6,12 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cook.mymealkit.domain.BoardVO;
 import com.cook.mymealkit.domain.Criteria;
 import com.cook.mymealkit.domain.PageMakerDTO;
 import com.cook.mymealkit.service.BoardService;
+
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -74,4 +77,14 @@ public class BoardController {
     	rttr.addFlashAttribute("result", "delete success");
     	return "redirect:/board/list";
     }
+    
+    @RequestMapping(value = "/checkPw", method = RequestMethod.POST)
+    @ResponseBody
+	public String IdChkPOST(int bno , String password){
+		System.out.println("잘 넘어오는지 확인" + bno + ",pw:"+ password);
+		BoardVO board = bservice.getPage(bno);
+		System.out.println(board);
+		if (board.getPassword().equals(password)) return "1" ;
+		else return "0";
+	} 
 }

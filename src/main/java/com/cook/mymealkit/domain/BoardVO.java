@@ -29,5 +29,8 @@ public class BoardVO {
     
     /* 조회수 */
     private int readcnt;
+    
+    /* 비밀번호 */
+    private String password;
 
 }
