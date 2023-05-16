@@ -9,7 +9,7 @@ create sequence seq_user;
 -- 회원(user) 테이블 생성
 create table tbl_user (
     uno         number(10) not null primary key,        -- 번호
-    user_id     varchar2(50) not null primary key,      -- 아이디
+    user_id     varchar2(50) not null unique,      -- 아이디
     user_name   varchar2(50) not null,                  -- 이름
     pwd	        varchar2(50) not null,                  -- 비밀번호
     email	    varchar2(50) not null,                  -- 이메일
@@ -166,27 +166,23 @@ drop table tbl_buy_list;
 
 -------------------------------------------------------------------------------- 문의 (inquiry)
 
--- 문의 의 시퀀스 생성
-create sequence seq_inquiry;
--- 문의 테이블 생성
-CREATE TABLE tbl_inquiry (
-  qno NUMBER(10) NOT NULL PRIMARY KEY,          -- 번호 (시퀀스 사용)
-  title VARCHAR2(100) NOT NULL,                 -- 제목
-  content VARCHAR2(100) NOT NULL,               -- 내용
-  wrtier VARCHAR2(100) NOT NULL,                -- 작성자
-  register_date DATE NOT NULL,                  -- 등록일
-  update_date DATE DEFAULT SYSDATE,             -- 수정일
-  reply_cnt NUMBER(10)                          -- 댓글 수
+--시퀀스 생성
+create sequence seq_board;
+--문의 테이블 생성
+CREATE TABLE tbl_board(
+	bno			NUMBER PRIMARY KEY,                 -- 게시글 번호
+	title		VARCHAR2(300)	NOT NULL,           -- 게시글 제목
+	content		VARCHAR2(4000)	NOT NULL,           -- 게시글 내용
+	writer		VARCHAR2(100)	NOT NULL,           -- 게시글 작성자
+	writedate	DATE DEFAULT SYSDATE,               -- 글 작성날짜
+	readcnt		NUMBER DEFAULT 0,                   -- 조회수
+    updatedate  date default sysdate               -- 글 수정날짜
 );
 
--- 커밋
+--조회
+select * from tbl_board;
+--커밋
 commit;
-
--- 조회
-select * from tbl_inquiry;
-
-
-
 -------------------------------------------------------------------------------- 공지 (notice)
 
 -- 시퀀스 생성
@@ -203,3 +199,4 @@ create table notice(
 
 -- 커밋
 commit;
+desc tbl_user;
