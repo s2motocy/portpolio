@@ -14,7 +14,7 @@
 		select * from tbl_user_buy where user_id=#{user_id}
 	</select>
 	<select id="getMaxBno" resultType="int">
-		select Max(bno) from tbl_user_buy
+		select coalesce(Max(bno),0) from tbl_user_buy
 	</select>
 	
 	<!-- 비회원 -->

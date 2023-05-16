@@ -61,7 +61,7 @@ $(document).ready(function(){
 	<div class="이미지 전체 출력">
 		
 		<div class="이미지 삽입">
-			<img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/>
+			<img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/>
 		</div>
 		<div class="이미지 정보">
 			<div class="상품 이름"><h3>상품 이름 : <input type="text" value="${list.item_name}" /></h3></div>

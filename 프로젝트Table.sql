@@ -20,7 +20,7 @@ create table tbl_user (
     auth        char(1) default 'm'                     -- ±ÇÇÑ
 );
 
-insert into tbl_user(user_id, user_name, pwd, email, phone) values ('test1','test','1234','a@a.com','010-000-0000');
+insert into tbl_user(uno,user_id, user_name, pwd, email, phone) values (seq_user.nextval,'test1','test','1234','a@a.com','010-000-0000');
 
 -- Ä¿¹Ô
 commit;

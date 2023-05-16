@@ -146,16 +146,27 @@ $(document).ready(function(){
 		$('#myModal').modal('show')
 	})
 	
-	$("#yourZ").click(function(e){
+	$("#buyLogin").click(function(e){
 		var userid= $("#yourModal [name='user_id']").val()
 		var password= $("#yourModal [name='pwd']").val()
+		console.log("buyLogin에서 암호" ,userid, password)
 		$.ajax({
 			url: '/buy/buyPageLogin',
 			type: 'POST',
 			data: JSON.stringify({user_id:userid, pwd:password}),
 			contentType:"application/json",
-			success: function(result){ 
-				alert('success')
+			success: function(result){
+				console.log("result: ",result)
+				if(result == "0"){
+					alert("로그인되었습니다")
+					var userid= $("#yourModal [name='user_id']").val()
+					var password= $("#yourModal [name='pwd']").val()
+					console.log("암호" ,userid, password)
+					var str="<input type='text' name='user_id' value='" + userid +"'/><input type='text' name='pwd'  value='" + password +"'/>"
+					console.log(str)
+					frm.append(str)
+					frm.submit()
+				}
 			},
 			error: function(xhr,status,error){ alert('false') }
 		})
@@ -164,26 +175,11 @@ $(document).ready(function(){
 	$(".btn-primary").click(function(e){
 		console.log("회원구매")
 		$("#yourModal").modal('show')
-		//frm.attr("action", "/buy/buyPageLogin").submit()
 	})
 	$(".btn-secondary").click(function(e){
-		var str=""
-		console.log("비회원구매")
-		//frm.attr("action", "/buy/buyPageLogin").submit()
-	})
-/* 	$(".btn-secondary").click(function(e){
 		console.log("비회원구매")
 		frm.attr("action", "/buy/buyPageGuest").submit()
-	}) */
-	$(".modal-body [type='submit']").click(function(e){
-		
-		var userid= $("#yourModal [name='user_id']").val()
-		var password= $("#yourModal [name='pwd']").val()
-		console.log("암호" ,userid, password)
-		var str="<input type='text' name='user_id' value='" + userid +"'/><input type='text' name='user_id'  value='" + password +"'/>"
-		console.log(str)
 	})
-	
 	
  })
  </script>
@@ -222,7 +218,7 @@ $(document).ready(function(){
         <div>
         	암호<input type="password" name="pwd"/>
         </div>
-        <input type='submit' id="yourZ" value="전송"/>
+        <input type='submit' id="buyLogin" value="전송"/>
          </div>
       </div>
     </div>
@@ -231,7 +227,7 @@ $(document).ready(function(){
 </div>
 	<h1>장바구니 페이지</h1>
 	
-	<form action="/buy/buyPage" id="frm">
+	<form action="/buy/buyPageUser" id="frm">
 		<table class="cart_table">
 			<tr>
 				<th>전체<br><input type="checkbox" id="all_checked" checked="checked" /></th>
@@ -250,7 +246,7 @@ $(document).ready(function(){
 						<input type="hidden" id="hidden_amount${stat.index}" value="${list.amount}" />
 						<input type="hidden" id="hidden_total${stat.index}" value="${list.item_price}" />
 					</td>
-					<td class="사진"><img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/></td>
+					<td class="사진"><img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/></td>
 					<td class="품명"><input type="text" name="buy_list[${stat.index}].item_name" id="item_name" value="${list.item_name}" /></td>
 					<td class="단가"><input type="text" id="price_origin${stat.index}" value="${list.item_price}" /></td>
 					<td class="수량">
