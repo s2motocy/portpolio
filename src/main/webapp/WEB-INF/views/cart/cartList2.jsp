@@ -145,45 +145,24 @@ $(document).ready(function(){
 	$("#payment").click(function(e){
 		$('#myModal').modal('show')
 	})
-	
-	$("#yourZ").click(function(e){
-		var userid= $("#yourModal [name='user_id']").val()
-		var password= $("#yourModal [name='pwd']").val()
+	$(".btn-primary").click(function(e){
+		console.log("회원구매")
 		$.ajax({
 			url: '/buy/buyPageLogin',
 			type: 'POST',
-			data: JSON.stringify({user_id:userid, pwd:password}),
-			contentType:"application/json",
+			data: formData,
 			success: function(result){ 
 				alert('success')
+				window.location.href="cartList"
 			},
 			error: function(xhr,status,error){ alert('false') }
 		})
-	})
-	
-	$(".btn-primary").click(function(e){
-		console.log("회원구매")
-		$("#yourModal").modal('show')
-		//frm.attr("action", "/buy/buyPageLogin").submit()
+		frm.attr("action", "/buy/buyPageLogin").submit()
 	})
 	$(".btn-secondary").click(function(e){
-		var str=""
-		console.log("비회원구매")
-		//frm.attr("action", "/buy/buyPageLogin").submit()
-	})
-/* 	$(".btn-secondary").click(function(e){
 		console.log("비회원구매")
 		frm.attr("action", "/buy/buyPageGuest").submit()
-	}) */
-	$(".modal-body [type='submit']").click(function(e){
-		
-		var userid= $("#yourModal [name='user_id']").val()
-		var password= $("#yourModal [name='pwd']").val()
-		console.log("암호" ,userid, password)
-		var str="<input type='text' name='user_id' value='" + userid +"'/><input type='text' name='user_id'  value='" + password +"'/>"
-		console.log(str)
 	})
-	
 	
  })
  </script>
@@ -198,33 +177,12 @@ $(document).ready(function(){
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-body">
+        	<input type="text" data-user_id="user_id">
             <button type="button" class="btn btn-primary" data-dismiss="modal">회원구매</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">비회원구매</button>
         </div>
       </div>
       
-    </div>
-  </div>
-  
-</div>
-<div class="container">
-
-  <!-- Modal -->
-  <div class="modal fade" id="yourModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-body">
-        <div>
-        	아이디<input type="text" name="user_id"/>
-        </div>
-        <div>
-        	암호<input type="password" name="pwd"/>
-        </div>
-        <input type='submit' id="yourZ" value="전송"/>
-         </div>
-      </div>
     </div>
   </div>
   

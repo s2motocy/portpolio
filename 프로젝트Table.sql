@@ -176,7 +176,8 @@ CREATE TABLE tbl_board(
 	writer		VARCHAR2(100)	NOT NULL,           -- 게시글 작성자
 	writedate	DATE DEFAULT SYSDATE,               -- 글 작성날짜
 	readcnt		NUMBER DEFAULT 0,                   -- 조회수
-    updatedate  date default sysdate               -- 글 수정날짜
+    updatedate  date default sysdate,               -- 글 수정날짜
+    password    varchar2(100)
 );
 
 --조회

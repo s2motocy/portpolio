@@ -7,12 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cook.mymealkit.domain.BuyGuestVO;
 import com.cook.mymealkit.domain.BuyUserVO;
@@ -34,19 +35,28 @@ public class BuyController {
 	
 	/* 회원 구매 로그인 */
 	@GetMapping("/buyPageLogin")
-	public void registerUser(BuyUserVO vo, HttpSession session, Model model) {
-		System.out.println("vo : "+vo);
-		model.addAttribute("test", vo);
+	public void registerUser(BuyUserVO bvo,BuyGuestVO gvo, HttpSession session, Model model) {
+		System.out.println("vo : "+bvo);
+		model.addAttribute("test", gvo);
 		// 여기 페이지에서  login 관련만 화면에 보이게 하고 나머지는 hidden으로 감춘후 처리함
 	}
 	
-	/* 게스트 구매 로그인 */
-	@GetMapping("/buyPageGuest")
-	public void registerGuest(BuyGuestVO vo, HttpSession session, Model model) {
-		System.out.println("vo : "+vo);
-		model.addAttribute("test", vo);
-	}
+//	@GetMapping(value = "/pages/{bno}/{page}" ,			
+//			produces = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
+//	public ResponseEntity<ReplyPageDTO> 
+//		getList(@PathVariable("page") int page,	@PathVariable("bno") Long bno){
+//			log.info("댓글 컨트롤러에서 전체 데이터 조회  bno  :"  +  bno  +"page: " +page);
+//			Criteria cri = new Criteria(page,10);
+//			log.info("cri"+cri);
+//			return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
+//		}
 	
+	@PostMapping("buyPageLogin")
+	public ResponseEntity<String> UserLoginPost(BuyUserVO bvo,BuyGuestVO gvo) {
+		System.out.println("bvo:"+bvo+ " ,gvo: "+gvo);
+		
+		return new ResponseEntity<>("1", HttpStatus.OK);
+	}
 	// 등록 (회원 -> 로그인 session 으로 구매내역을 확인하고 결제 완료시 get 페이지 이동)
 	//     (비회원 -> 구매정보 입력 후 결제 완료시 get 페이지 이동)
 	

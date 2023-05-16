@@ -26,11 +26,7 @@
     
     <!-- 문의 등록 -->
     <insert id="enroll">
-<<<<<<< HEAD
-        insert into tbl_board(bno, title, content, writer) values (seq_board.NEXTVAL, #{title}, #{content}, #{writer})        
-=======
         insert into tbl_board(bno, title, content, writer, password) values (seq_board.NEXTVAL, #{title}, #{content}, #{writer}, #{password})        
->>>>>>> 6a928200d92d8dbca4020cb8302eebbbc610cbf7
     </insert>
     
     <!-- 문의 목록 -->
