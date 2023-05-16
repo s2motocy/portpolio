@@ -14,7 +14,7 @@ import com.cook.mymealkit.domain.BoardVO;
 import com.cook.mymealkit.domain.Criteria;
 import com.cook.mymealkit.domain.PageMakerDTO;
 import com.cook.mymealkit.service.BoardService;
-import com.cook.mymealkit.service.UserService;
+
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -26,11 +26,9 @@ public class BoardController {
 	
 	@Setter(onMethod_=@Autowired)
 	private BoardService bservice;
-
 	
 	@GetMapping("/list")
 	public void boardListGET(Model model, Criteria cri) {
-		System.out.println(bservice.getListPaging(cri));
 		model.addAttribute("list", bservice.getListPaging(cri));
 		int total = bservice.getTotal(cri);
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
