@@ -11,8 +11,9 @@
     </insert>
     
     <!-- ID중복체크 -->
-    <select id="idCheck" resultType="int">
-  		select count(*) from tbl_user where user_id = #{user_id}
+    <select id="idCheck" resultType="com.cook.mymealkit.domain.UserVO" parameterType="String">
+  		<!-- select count(*) from tbl_user where user_id = #{user_id} -->
+  		select * from tbl_user where user_id=#{user_id}
   	</select>
      
      <!--회원정보 수정 -->

@@ -71,6 +71,7 @@ public class UserServiceImpl implements UserService{
 	}
 	@Override
 	public int idCheck(String user_id) {
+		System.out.println("User 서비스에서 user_id 로 중복체크: user_id="+ user_id);
 		return umapper.idCheck(user_id);
 	}
 }

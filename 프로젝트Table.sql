@@ -137,7 +137,7 @@ create sequence seq_buy_list;
 -- 구매 상품(buy_list) 테이블 생성
 create table tbl_buy_list (
     blist_no        number(10) not null primary key,    -- 주문목록 번호
-    buy_no          varchar2(100) unique,               -- 조회 번호
+    buy_no          varchar2(100),                      -- 조회 번호
     item_id         number(10),                         -- 상품 번호
     item_name       varchar2(50),                       -- 상품 이름
     amount          number(10),                         -- 수량

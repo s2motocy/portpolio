@@ -248,7 +248,7 @@ $(document).ready(function(){
 					</td>
 					<td class="사진"><img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/></td>
 					<td class="품명"><input type="text" name="buy_list[${stat.index}].item_name" id="item_name" value="${list.item_name}" /></td>
-					<td class="단가"><input type="text" id="price_origin${stat.index}" value="${list.item_price}" /></td>
+					<td class="단가"><input type="text" id="price_origin${stat.index}" name="buy_list[${stat.index}].buy_price" value="${list.item_price}" /></td>
 					<td class="수량">
 						<button id="minusQty${stat.index}">-</button>
 						<input type="text" name="buy_list[${stat.index}].amount" id="amountData${stat.index}" value="${list.amount}" />

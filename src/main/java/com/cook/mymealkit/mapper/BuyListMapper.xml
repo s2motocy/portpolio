@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cook.mymealkit.mapper.BuyListMapper">
+	<insert id="register" parameterType="com.cook.mymealkit.domain.BuyListDTO">
+		 insert into tbl_buy_list values (seq_buy_list.nextval,#{buy_no},#{item_id},#{item_name},#{amount},#{buy_price},#{delivery_cost})
+	</insert>
+	<select id="buy_lists" resultType="com.cook.mymealkit.domain.BuyListDTO">
+		select * from tbl_buy_list
+	</select>
+</mapper>

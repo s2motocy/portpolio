@@ -1,6 +1,7 @@
 package com.cook.mymealkit.controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.BuyGuestVO;
 import com.cook.mymealkit.domain.BuyListDTO;
 import com.cook.mymealkit.domain.BuyUserVO;
 import com.cook.mymealkit.domain.ItemVO;
 import com.cook.mymealkit.domain.UserVO;
 import com.cook.mymealkit.mapper.FileMapper;
+import com.cook.mymealkit.service.BuyListService;
 import com.cook.mymealkit.service.BuyService;
 import com.cook.mymealkit.service.ItemService;
 import com.cook.mymealkit.service.UserService;
@@ -39,6 +42,8 @@ public class BuyController {
 	@Setter(onMethod_=@Autowired)
 	ItemService iservice;
 	@Setter(onMethod_=@Autowired)
+	BuyListService blistservice;
+	@Setter(onMethod_=@Autowired)
 	FileMapper fmapper;
 	
 	
@@ -51,8 +56,8 @@ public class BuyController {
 	}
 	
 	@PostMapping("buyPageLogin")
-	public ResponseEntity<String> UserLoginPost(@RequestBody UserVO uvo, BuyUserVO bvo, BuyGuestVO gvo, HttpSession session) {
-		System.out.println("uvo:"+uvo+" ,bvo:"+bvo+" ,gvo: "+gvo);
+	public ResponseEntity<String> UserLoginPost(@RequestBody UserVO uvo, BuyUserVO bvo, HttpSession session) {
+		System.out.println("uvo:"+uvo+" ,bvo:"+bvo);
 		if(uvo.getUser_id() ==null || uvo.getUser_id().isEmpty() || uvo.getPwd() == null || uvo.getPwd().isEmpty()) {
 			// user_id 와 pwd 의 값이 없을때 1 을 반환
 			return new ResponseEntity<>("1", HttpStatus.BAD_REQUEST);
@@ -68,9 +73,12 @@ public class BuyController {
 			// 정상 데이터 일때 로그인
 			boolean success = uservice.login(vo);
 			if(!success) {
-				// 로그인에 실패하면 4 를 반환
+				// 중복으로 확인
 				return new ResponseEntity<>("4", HttpStatus.BAD_REQUEST);
 			}
+			// 로그인
+			session.setAttribute("user", vo);
+			
 			// 정상 로그인이 가능할때 0 을 반환
 			return new ResponseEntity<>("0", HttpStatus.OK);
 		}
@@ -78,37 +86,97 @@ public class BuyController {
 	// 등록 (회원 -> 로그인 session 으로 구매내역을 확인하고 결제 완료시 get 페이지 이동)
 	//     (비회원 -> 구매정보 입력 후 결제 완료시 get 페이지 이동)
 	
-	/* 회원 구매 */
+	/* 회원 구매 페이지 */
 	@GetMapping("/buyPageUser")
 	public void register(UserVO uvo, BuyUserVO bvo, HttpServletRequest request, HttpSession session, Model model) {
 		System.out.println("BuyPageUser 에서 uvo : "+uvo + " , bvo"+bvo);
 		
-		UserVO vo = uservice.getUserById(uvo.getUser_id());
-		System.out.println("vo: "+vo);
-		
-		/* 회원정보 */
-		String str="u"; // 문자열(u: user의 앞글자) 생성
-		int bno = bservice.getMaxBno()+1; // bno 의 최대값+1
-		for(int i=0;i<6-Integer.toString(bno).length();i++) { str += "0"; } // 6자리 숫자 생성위해 길이만큼을 뺀 나머지를 0으로 채움
-		str += bno; // bno 를 넣음
-		bvo.setBuy_no(str); // u + 00000 + 1   =  u000001
-		bvo.setBuyer_name(vo.getUser_name());
-		bvo.setPhone(vo.getPhone());
-		bvo.setPost_code(vo.getPost_code());
-		bvo.setAddr(vo.getAddr());
-		bvo.setAddr2(vo.getAddr2());
-		System.out.println("입력된 bvo : "+bvo);
-		model.addAttribute("data", bvo);
-		
-		/* 상품정보 */
-		
+		if(session.getAttribute("user") != null) {
+			
+			UserVO vo = uservice.getUserById(uvo.getUser_id());
+			System.out.println("vo: "+vo);
+			model.addAttribute("vo", vo);
+			
+			/* 구매정보 */
+			String str="u"; // 문자열(u: user의 앞글자) 생성
+			int bno = bservice.getMaxBno()+1; // bno 의 최대값+1
+			for(int i=0;i<6-Integer.toString(bno).length();i++) { str += "0"; } // 6자리 숫자 생성위해 길이만큼을 뺀 나머지를 0으로 채움
+			str += bno; // bno 를 넣음
+			bvo.setBuy_no(str); // u + 00000 + 1   =  u000001
+			bvo.setBuyer_name(vo.getUser_name());
+			bvo.setPhone(vo.getPhone());
+			bvo.setPost_code(vo.getPost_code());
+			bvo.setAddr(vo.getAddr());
+			bvo.setAddr2(vo.getAddr2());
+			System.out.println("입력된 bvo : "+bvo);
+			model.addAttribute("data", bvo);
+			
+			/* 상품정보 */
+			model.addAttribute("dlist", bvo.getBuy_list());
+			
+			/* 상품이미지 정보 */
+			List<BuyListDTO> dtos = bvo.getBuy_list();
+			List<ItemVO> volist = new ArrayList<ItemVO>();
+			dtos.forEach(i->{
+				i.setBuy_no(bvo.getBuy_no());
+				ItemVO ivo = iservice.itemFindById(Integer.parseInt(i.getItem_id()));
+				List<AttachFileDTO> afdto = iservice.getAttachList(Integer.parseInt(i.getItem_id()));
+				ivo.setAttachList(afdto);
+				volist.add(ivo);
+			});
+			System.out.println("volist: "+volist);
+			model.addAttribute("vlist", volist);
+			
+		}
 	}
 	
-	/* 비회원 구매 */
+	/* 비회원 구매 페이지 */
 	@GetMapping("/buyPageGuest")
-	public void guestRegister(BuyGuestVO gvo) {
+	public void guestRegister(BuyGuestVO gvo, Model model) {
 		System.out.println("BuyPageGuest 에서 gvo : "+gvo);
+		
+		/* 상품정보 */
+		model.addAttribute("dlist", gvo.getBuy_list());
+		
+		/* 상품이미지 정보 */
+		List<BuyListDTO> dtos = gvo.getBuy_list();
+		List<ItemVO> volist = new ArrayList<ItemVO>();
+		dtos.forEach(i->{
+			ItemVO ivo = iservice.itemFindById(Integer.parseInt(i.getItem_id()));
+			List<AttachFileDTO> afdto = iservice.getAttachList(Integer.parseInt(i.getItem_id()));
+			ivo.setAttachList(afdto);
+			volist.add(ivo);
+		});
+		System.out.println("volist: "+volist);
+		model.addAttribute("vlist", volist);
 	}
+	
+	@PostMapping("register")
+	public String registerPost(BuyUserVO bvo, BuyGuestVO gvo, HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			
+			/* 회원정보가 담겨올때(session 에 user_id 값이 있을때) */
+			System.out.println("bvo: "+bvo);
+			
+			bservice.insertUserBuy(bvo);
+			bvo.getBuy_list().forEach(i->{ blistservice.register(i); });
+			
+		} else {
+			
+			/* 비회원정보가 담겨올때 (session 에 user_id 값이 없을때) */
+			System.out.println("gvo: "+gvo);
+			
+			bservice.insertGuestBuy(gvo);
+			gvo.getBuy_list().forEach(i->{ blistservice.register(i); });
+			
+		}
+		
+		return "redirect:/buy/buySuccess";
+	}
+	
+	@GetMapping("buySuccess")
+	public void success() {}
+	
 	
 	// 회원 구매내역 조회
 	@GetMapping("/mBuyGet")
