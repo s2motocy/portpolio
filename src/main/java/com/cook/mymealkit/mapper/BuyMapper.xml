@@ -29,7 +29,7 @@
 		select * from tbl_guest_buy where buy_no=#{buy_no}
 	</select>
 	<select id="getMaxGno" resultType="int">
-		select Max(gno) from tbl_guest_buy
+		select coalesce(Max(gno),0) from tbl_guest_buy
 	</select>
 	
 </mapper>
