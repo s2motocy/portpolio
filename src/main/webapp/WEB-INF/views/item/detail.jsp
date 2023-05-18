@@ -10,12 +10,6 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
 <script>
 $(document).ready(function(){
-	/* 이미지 경로 변경 */
-	$("img").each(function(idx, data){
-		var r = $(this).attr('src')
-		u= r.replaceAll('\\', '/')
-		$(this).attr('src', u )
-	})
 	
 	/* 버튼 중첩실행 방지 */
 	$("button").click(function(e){ e.preventDefault() })

@@ -11,5 +11,6 @@ public interface CartService {
 	public CartDTO cartFindById(long cart_id);		// 조회
 	public void cartUpdate(CartDTO dto);			// 수정
 	public void cartDelete(long cart_id); 			// 삭제
+	public void cartAllRemove();					// 전체삭제
 	
 }

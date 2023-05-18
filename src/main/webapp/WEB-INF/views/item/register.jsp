@@ -228,6 +228,11 @@ $(document).ready(function(){
 		<br>
 		<input type="text" id="item_price" name="item_price" />
 		<br>
+		
+		<label for="item_stock"><b>상품 재고</b></label>
+		<br>
+		<input type="text" id="item_stock" name="item_stock" />
+		<br>
          
         <label for="description"><b>상품 설명</b></label>
         <br>

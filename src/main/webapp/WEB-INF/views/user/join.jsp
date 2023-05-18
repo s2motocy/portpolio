@@ -108,7 +108,7 @@ pageEncoding="UTF-8"%>
                 <div class="form-group">
                   <div class="col-sm-9 col-sm-offset-4">
                     <button type="submit" class="btn btn-primary" >회원가입</button>
-                    <button type="reset" class="btn btn-primary">취소</button>
+                    <button type="reset" class="btn btn-light">취소</button>
                   </div>
                 </div>
               </form>
@@ -142,6 +142,15 @@ $(document).ready(function(){
 	           email: {
 	             required: true,
 	             email: true,
+	           },
+	           post_code: {
+	        	   required: true,
+	           },
+	           addr: {
+	        	   required: true,
+	           },
+	           addr2: {
+	        	   required: true,
 	           },
 	         },
 	         messages: {

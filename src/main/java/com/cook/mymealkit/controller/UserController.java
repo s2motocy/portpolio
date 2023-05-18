@@ -137,10 +137,9 @@ public class UserController {
     
     //회원조회 처리
     @GetMapping("/userList")
-    public String userList(Model model) {
+    public void userList(Model model) {
     	List<UserVO> users = uservice.getAllUsers();
     	model.addAttribute("list1", users);
-    	return "/members/memberlist";
     }
     
     //마이페이지

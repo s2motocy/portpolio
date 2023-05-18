@@ -15,6 +15,8 @@ public class ItemVO {
 	private String item_name;					// 상품 이름
 	private int item_price;						// 상품 가격
 	private String description;					// 상품 설명
+	private int item_stock;						// 상품 재고
+	private int item_sold;						// 상품 판매량
 	private Date update_date;					// 수정일
 	
 	/* 참조 데이터 */

@@ -8,4 +8,7 @@
 	<select id="buy_lists" resultType="com.cook.mymealkit.domain.BuyListDTO">
 		select * from tbl_buy_list
 	</select>
+	<select id="listOfNo" resultType="com.cook.mymealkit.domain.BuyListDTO" parameterType="String">
+		select * from tbl_buy_list where buy_no=#{buy_no}
+	</select>
 </mapper>

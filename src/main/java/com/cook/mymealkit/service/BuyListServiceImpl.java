@@ -28,4 +28,10 @@ public class BuyListServiceImpl implements BuyListService {
 		return blistmapper.buy_lists();
 	}
 
+	@Override
+	public List<BuyListDTO> listOfNo(String buy_no) {
+		System.out.println("BuyList 서비스에서 조회 : buy_no="+ buy_no);
+		return blistmapper.listOfNo(buy_no);
+	}
+
 }

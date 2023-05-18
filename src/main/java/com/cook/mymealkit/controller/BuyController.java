@@ -1,6 +1,5 @@
 package com.cook.mymealkit.controller;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +54,7 @@ public class BuyController {
 		// 여기 페이지에서  login 관련만 화면에 보이게 하고 나머지는 hidden으로 감춘후 처리함
 	}
 	
+	/* 로그인 세션처리 */
 	@PostMapping("buyPageLogin")
 	public ResponseEntity<String> UserLoginPost(@RequestBody UserVO uvo, BuyUserVO bvo, HttpSession session) {
 		System.out.println("uvo:"+uvo+" ,bvo:"+bvo);
@@ -83,8 +83,6 @@ public class BuyController {
 			return new ResponseEntity<>("0", HttpStatus.OK);
 		}
 	}
-	// 등록 (회원 -> 로그인 session 으로 구매내역을 확인하고 결제 완료시 get 페이지 이동)
-	//     (비회원 -> 구매정보 입력 후 결제 완료시 get 페이지 이동)
 	
 	/* 회원 구매 페이지 */
 	@GetMapping("/buyPageUser")
@@ -136,6 +134,15 @@ public class BuyController {
 	public void guestRegister(BuyGuestVO gvo, Model model) {
 		System.out.println("BuyPageGuest 에서 gvo : "+gvo);
 		
+		/* 구매정보 */
+		String str="g"; // 문자열(u: user의 앞글자) 생성
+		int gno = bservice.getMaxGno()+1; // gno 의 최대값+1
+		for(int i=0;i<6-Integer.toString(gno).length();i++) { str += "0"; } // 6자리 숫자 생성위해 길이만큼을 뺀 나머지를 0으로 채움
+		str += gno; // gno 를 넣음
+		gvo.setBuy_no(str); // u + 00000 + 1   =  u000001
+		System.out.println("입력된 gvo : "+gvo);
+		model.addAttribute("data", gvo);
+		
 		/* 상품정보 */
 		model.addAttribute("dlist", gvo.getBuy_list());
 		
@@ -143,6 +150,7 @@ public class BuyController {
 		List<BuyListDTO> dtos = gvo.getBuy_list();
 		List<ItemVO> volist = new ArrayList<ItemVO>();
 		dtos.forEach(i->{
+			i.setBuy_no(gvo.getBuy_no());
 			ItemVO ivo = iservice.itemFindById(Integer.parseInt(i.getItem_id()));
 			List<AttachFileDTO> afdto = iservice.getAttachList(Integer.parseInt(i.getItem_id()));
 			ivo.setAttachList(afdto);
@@ -152,6 +160,7 @@ public class BuyController {
 		model.addAttribute("vlist", volist);
 	}
 	
+	/* 구매 등록 */
 	@PostMapping("register")
 	public String registerPost(BuyUserVO bvo, BuyGuestVO gvo, HttpSession session) {
 		if(session.getAttribute("user") != null) {
@@ -175,9 +184,9 @@ public class BuyController {
 		return "redirect:/buy/buySuccess";
 	}
 	
+	/* 구매완료 페이지 */
 	@GetMapping("buySuccess")
 	public void success() {}
-	
 	
 	// 회원 구매내역 조회
 	@GetMapping("/mBuyGet")
@@ -193,12 +202,17 @@ public class BuyController {
 
 	// 관리자권한 전체 구매내역 조회
 	@GetMapping("/buyList")
-	public String Buy(Model model) throws ParseException {
-		List<BuyUserVO> buylist = bservice.userBuyList();
-		System.out.println(buylist);
-		model.addAttribute("buylist", buylist);
-		System.out.println(buylist);
-		return "/buy/buyList";
-	} 
-	
+	public void Buy(Model model) {
+		List<BuyUserVO> buyList = bservice.userBuyList(); // 전체 회원구매 목록
+		List<BuyListDTO> bblist = new ArrayList<BuyListDTO>(); // 아이템 목록만 저장할 공간
+		buyList.forEach(i->{
+			List<BuyListDTO> blist = blistservice.listOfNo(i.getBuy_no()); // 주문번호와 일치하는 아이템목록
+			blist.forEach(v-> bblist.add(v)); // 아이템 목록만 따로 저장
+			i.setBuy_list(blist); // 회원구매목록에 아이템 목록 삽입
+		});
+		System.out.println(buyList);
+		model.addAttribute("buyList", buyList);
+		model.addAttribute("bblist", bblist);
+		
+	}
 }

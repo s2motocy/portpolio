@@ -21,5 +21,8 @@
 	<delete id="cartDelete" parameterType="long">
 		delete from tbl_cart where cart_id=#{cart_id}
 	</delete>
+	<delete id="cartAllRemove">
+		delete from tbl_cart
+	</delete>
 	
 </mapper>

@@ -46,4 +46,10 @@ public class CartServiceImpl implements CartService {
 		cmapper.cartDelete(cart_id);
 	}
 
+	@Override
+	public void cartAllRemove() {
+		System.out.println("Cart 서비스에서 전체삭제 : ");
+		cmapper.cartAllRemove();
+	}
+
 }

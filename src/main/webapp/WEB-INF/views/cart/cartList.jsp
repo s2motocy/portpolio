@@ -9,7 +9,7 @@
 <style>
 input {
 	text-align: center;
-	width: 40px;
+	width: 50px;
 	
 }
 #item_name {
