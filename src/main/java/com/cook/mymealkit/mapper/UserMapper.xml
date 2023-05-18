@@ -7,7 +7,7 @@
 	<!--회원가입 -->
   	<insert id="insertUser" parameterType="com.cook.mymealkit.domain.UserVO">
         insert into tbl_user (uno, user_id, user_name, pwd , email, phone , post_code , addr , addr2)
-        	values (seq_user.nextval,#{user_id},#{user_name},#{pwd},#{email},#{phone},#{post_code},#{addr},#{addr2})
+        	values (seq_user.NEXTVAL,#{user_id},#{user_name},#{pwd},#{email},#{phone},#{post_code},#{addr},#{addr2})
     </insert>
     
     <!-- ID중복체크 -->

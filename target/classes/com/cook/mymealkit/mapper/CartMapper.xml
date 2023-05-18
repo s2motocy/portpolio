@@ -7,17 +7,21 @@
 		insert into tbl_cart(cart_id,user_id,item_id,item_name,amount,cart_price) 
 			values (seq_cart.nextval,#{user_id},#{item_id},#{item_name},#{amount},#{cart_price})
 	</insert>
+	
 	<select id="cartList" resultType="com.cook.mymealkit.domain.CartDTO">
 		<![CDATA[
   		select * from tbl_cart where cart_id >0
   		]]>
 	</select>
+	
 	<select id="cartFindById" resultType="com.cook.mymealkit.domain.CartDTO" parameterType="long">
 		select * from tbl_cart where cart_id=#{cart_id}
 	</select>
+	
 	<update id="cartUpdate" parameterType="com.cook.mymealkit.domain.CartDTO">
 		update tbl_cart set amount=#{amount}, cart_price=#{cart_price} where user_id=#{user_id} and item_id=#{item_id}
 	</update>
+	
 	<delete id="cartDelete" parameterType="long">
 		delete from tbl_cart where cart_id=#{cart_id}
 	</delete>

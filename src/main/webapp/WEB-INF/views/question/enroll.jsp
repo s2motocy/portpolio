@@ -9,7 +9,7 @@
 <body>
 
 <h1>문의 등록</h1>
-<form action="/board/enroll" method="post">
+<form action="/question/enroll" method="post">
 	<div class="input_wrap">
 		<label>제목</label>
 		<input name="title">
@@ -19,8 +19,12 @@
 		<textarea rows="3" name="content"></textarea>
 	</div>
 	<div class="input_wrap">
-		<label>글쓴이</label>
+		<label>작성자</label>
 		<input name="writer">
+	</div>
+	<div class="input_wrap">
+		<label>비밀번호</label>
+		<input type="password" id="password" name="password" placeholder="미입력시 열람불가">
 	</div>
 	<button class="btn">등록</button>
 </form>

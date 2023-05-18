@@ -110,7 +110,6 @@ hr {
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script>
 $(document).ready(function(){
-	
 	/* form 태그의 버튼이 눌리면 각 이미지의 정보를 input(hidden)의 value에 담아 전송 */
 	var formObj=$("form[role='form']")
 	$("button[type='submit']").click(function(e){
@@ -129,7 +128,6 @@ $(document).ready(function(){
         console.log(str)
         formObj.append(str).submit()
 	})
-    
 	/* 정규표현식 으로 확장자 와 용량 제한 */
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$")
 	var maxSize = 5242880  //5MB
@@ -144,7 +142,6 @@ $(document).ready(function(){
 		}
 		return true;
 	}
-
 	/* input 태그에 파일이 담기면 체크(확장자, 용량) 후 ajax 를 통해 uploadcontroller의 uploadAjaxAction 에 전달되고
 	이미지를 c:\upload 폴더에 날짜를 생성하고 uuid를 붙여 저장하고, 이미지면 thumbnail 이미지를 추가 생성하고, AttachFileDTO 에 값을 저장하여 list 로 반환하면
 	반환된 list 정보를 태그화 하여 이미지면 thumbnail 이미지를 보여주고, 이미지가 아니면 attach.png 를 보여준다 */
@@ -210,11 +207,9 @@ $(document).ready(function(){
 			<option value="기타">기타</option>
 		</select>
 		<br>
-
 		<label for="item_name"><b>상품명</b></label>
 		<br>
 		<input type="text" id="item_name" name="item_name" />
-
         <div class="inputArea" id="img">
 			<label for="img_url"><b>상품 사진</b></label>
 			<br>
@@ -223,7 +218,6 @@ $(document).ready(function(){
         <div class="uploadResult" id="uploadResult">
 			<ul></ul>
       	</div>
-       
 		<label for="item_price"><b>상품 가격</b></label>
 		<br>
 		<input type="text" id="item_price" name="item_price" />
@@ -233,12 +227,11 @@ $(document).ready(function(){
 		<br>
 		<input type="text" id="item_stock" name="item_stock" />
 		<br>
-         
+
         <label for="description"><b>상품 설명</b></label>
         <br>
 		<textarea rows="5" cols="100" id="description" name="description"></textarea>
         <br>
-
         <button type="reset" id = "resetbtn" class="resetbtn">취소</button>
         <button type="submit" id="registerbtn" class="registerbtn">등록</button>
 	</div>

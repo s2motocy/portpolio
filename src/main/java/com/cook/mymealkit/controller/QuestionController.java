@@ -10,81 +10,88 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.cook.mymealkit.domain.BoardVO;
+import com.cook.mymealkit.domain.QuestionVO;
 import com.cook.mymealkit.domain.Criteria;
 import com.cook.mymealkit.domain.PageMakerDTO;
-import com.cook.mymealkit.service.BoardService;
-
+import com.cook.mymealkit.domain.UserVO;
+import com.cook.mymealkit.service.QuestionService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/question/*")
 @Log4j
-public class BoardController {
+public class QuestionController {
 	
 	@Setter(onMethod_=@Autowired)
-	private BoardService bservice;
+	private QuestionService qservice;
 	
 	@GetMapping("/list")
-	public void boardListGET(Model model, Criteria cri) {
-		model.addAttribute("list", bservice.getListPaging(cri));
-		int total = bservice.getTotal(cri);
+	public void questionListGET(Model model, Criteria cri) {
+		model.addAttribute("list", qservice.getListPaging(cri));
+		int total = qservice.getTotal(cri);
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 		model.addAttribute("pageMaker",pageMake);
 	}		
 	    
     @GetMapping("/enroll")
-    public void boardEnrollGET() { 
+    public void questionEnrollGET() { 
     }
     
     /* 문의 등록 */
     @PostMapping("/enroll")
-    public String boardEnrollPOST(BoardVO board, RedirectAttributes rttr) {
-    	bservice.enroll(board);
+    public String questEnrollPOST(QuestionVO quest, RedirectAttributes rttr) {
+    	qservice.enroll(quest);
     	rttr.addFlashAttribute("result", "enroll success");
-    	return "redirect:/board/list";
+    	return "redirect:/question/list";
     }
     
     /* 문의 조회 */
     @GetMapping("/get")
-    public void boardGetPageGET(int bno, Model model, Criteria cri) {
-	    model.addAttribute("pageInfo", bservice.getPage(bno));
+    public void questGetPageGET(int qno, Model model, Criteria cri) {
+	    model.addAttribute("pageInfo", qservice.getPage(qno));
 	    model.addAttribute("cri", cri);
     }
     
     /* 수정 페이지 이동 */
     @GetMapping("/modify")
-    public void boardModifyGET(int bno, Model model, Criteria cri) {
-    	model.addAttribute("pageInfo", bservice.getPage(bno));  
+    public void questModifyGET(int qno, Model model, Criteria cri) {
+    	model.addAttribute("pageInfo", qservice.getPage(qno));  
     	model.addAttribute("cri", cri);
     }
     
-    /* 문의 수정 */
+    /* 문의 수정 */	
     @PostMapping("/modify")
-    public String boardModifyPOST(BoardVO board, RedirectAttributes rttr) {
-    	System.out.println("dkanrjsl");
-    	bservice.modify(board);
+    public String questModifyPOST(QuestionVO quest, RedirectAttributes rttr) {
+    	qservice.modify(quest);
     	rttr.addFlashAttribute("result", "modify success");
-    	return "redirect:/board/list";
+    	return "redirect:/question/list";
     }
     
     /* 문의 삭제 */
     @PostMapping("/delete")
-    public String boardDeletePOST(int bno, RedirectAttributes rttr) {
-    	bservice.delete(bno);
+    public String questDeletePOST(int qno, RedirectAttributes rttr) {
+    	qservice.delete(qno);
     	rttr.addFlashAttribute("result", "delete success");
-    	return "redirect:/board/list";
+    	return "redirect:/question/list";
     }
     
     @RequestMapping(value = "/checkPw", method = RequestMethod.POST)
     @ResponseBody
-	public String IdChkPOST(int bno , String password){
-		System.out.println("잘 넘어오는지 확인" + bno + ",pw:"+ password);
-		BoardVO board = bservice.getPage(bno);
-		System.out.println(board);
-		if (board.getPassword().equals(password)) return "1" ;
+	public String IdChkPOST(QuestionVO vo){
+		System.out.println("잘 넘어오는지 확인" + vo);
+		QuestionVO quest = qservice.getPage(vo.getQno());
+		System.out.println(quest);
+		if (quest.getPassword().equals(vo.getPassword())) return "1";
 		else return "0";
 	} 
+    @GetMapping("/reply")
+    public void questReplyGET() {
+    	
+    }
+    @PostMapping("/reply")
+    public String questReplyPOST() {
+    	return "redirect:/question/reply";
+    }
 }

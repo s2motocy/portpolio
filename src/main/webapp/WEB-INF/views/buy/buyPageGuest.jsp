@@ -113,8 +113,8 @@ $(document).ready(function(){
          	</div>
 		</div>
 	</div>
-        <button type="reset" id ="resetbtn" class="resetbtn">취소</button>
-        <button type="submit" id="buybtn" class="buybtn">결제하기</button>
+    <button type="reset" id ="resetbtn" class="resetbtn">취소</button>
+    <button type="submit" id="buybtn" class="buybtn">결제하기</button>
 </form>
 </body>
 </html>

@@ -111,7 +111,6 @@
         			암호 입력 <input type="password"  id="password"/>
         			<button id="a">확인</button>
         		</div>
-            	
             </form>
         </div>
       </div>
@@ -119,11 +118,11 @@
   </div>
 </div>
 <div class="table_wrap">
-	<a href="/board/enroll" class="top_btn">문의 등록</a>
+	<a href="/question/enroll" class="top_btn">문의 등록</a>
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th class="bno_width">번호</th>
+				<th class="qno_width">번호</th>
 				<th class="title_width">제목</th>
 				<th class="writer_width">작성자</th>
 				<th class="regdate_width">작성일</th>
@@ -131,9 +130,9 @@
 			</tr>
 		</thead>
 		<c:forEach items="${list}" var="list">
-			<tr>
-                <td><c:out value="${list.bno}"/></td>
-                <td><a class="move" href="${list.bno}">	${list.title}</a></td>
+			<tr> 
+                <td><c:out value="${list.qno}"/></td>
+                <td><a class="a_move" href="${list.qno}">${list.title}</a></td>
                 <td><c:out value="${list.writer}"/></td>
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.writedate}"/></td>
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.updateDate}"/></td>
@@ -195,88 +194,78 @@ $(document).ready(function(){
 	        alert("삭제가 완료되었습니다.");
 	    }
 	}
-	$a_move= $("a.move")
-	$a_move.each(function(idx ,data){
+	let a_move= $(".a_move");
+	let moveForm = $("#moveForm");
+	a_move.each(function(idx ,data){
 		$(this).click(function(e){
-			console.log("눌렸어요 ")
-			//e.preventDefault()
-			//$('#myModal').modal('show')
-			//$(this).attr("href","#")
-			$("button#a").click(function(e){
-				var inp = $("#password").val()
-				var bno = $($a_move).eq(idx).attr("href")
-				console.log(inp , bno )
-				e.preventDefault()
-				var formData = {bno, password:inp}
+			e.preventDefault();
+			if(${user.auth=='a'}){
+				moveForm.append("<input type='hidden' name='qno' value='"+ $(this).attr("href") + "'>"); 
+				moveForm.attr("action", "/question/get");
+				moveForm.submit();
+				} else {
+						$('#myModal').modal('show');
+						$("#a").click(function(){
+							var inp = $("#password").val();
+							var qno = $(a_move).eq(idx).attr("href");
+							var formData = {qno,password:inp};
+							$.ajax({
+								url: '/question/checkPw',
+								type: 'POST',
+								data: formData,
+								success: function(result){ 
+									console.log(result)
+									if(result=="1"){
+										moveForm.append("<input type='hidden' name='qno' value='"+ $(a_move).eq(idx).attr("href") + "'>");  
+					    				moveForm.attr("action", "/question/get");
+					    				moveForm.submit();
+									}
+									else{
+										 alert('비밀번호가 올바르지 않습니다');
+									}	
+								}
+							});		
+						});
+					} 
+				});
+			});
+			$(".pageInfo_btn a").on("click", function(e){
+       			e.preventDefault();
+		        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+		        moveForm.attr("action", "/question/list");
+		        moveForm.submit();      
+    		});
+			function search({type ,keyword ,pageNum }){
+				console.log("호출 ",  type, keyword, pageNum)
 				$.ajax({
-					url: '/board/checkPw',
-					type: 'POST',
-					data: formData,
-					success: function(result){ 
-						console.log(result)
-						if(result=="1"){
-							moveForm.empty().append("<input type='hidden' name='bno' value='"+ $a_move.eq(idx).attr("href") + "'>"); 
-		    				moveForm.attr("action", "/board/get");
-		    				moveForm.submit(); 
-						}
-						else{
-							 alert('비밀번호가 올바르지 않습니다')
-						}
-							
-					},
-					
-					error: function(xhr,status,error){ alert('비밀번호가 올바르지 않습니다') }
-				}) 		
-			})
+				    url: "/search/1", 
+				    method: "GET",   
+				    success:function(result){
+				    	console.log(result)
+				    },
+	    			error:function(e){
+	    				console.log("error")
+	    			}
+    			}) 
+			}
+			$(".search_area button").on("click", function(e){
+			    e.preventDefault();  
+			    let type = $(".search_area select").val();
+			    let keyword = $(".search_area input[name='keyword']").val();
+			    if(!type){
+			        alert("검색 종류를 선택하세요.");
+			        return false;
+			    }
+			    if(!keyword){
+			        alert("키워드를 입력하세요.");
+			        return false;
+			    }        
+			    moveForm.find("input[name='type']").val(type);
+			    moveForm.find("input[name='keyword']").val(keyword);
+			    moveForm.find("input[name='pageNum']").val(1);
+			    moveForm.submit();
+			});
 		});
-	})
-
-let moveForm = $("#moveForm");
-	$(".move").on("click", function(e){
-    e.preventDefault();
-   $('#myModal').modal('show')
-});
-
-	$(".pageInfo_btn a").on("click", function(e){
-        e.preventDefault();
-        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-        moveForm.attr("action", "/board/list");
-        moveForm.submit();      
-    });
-
-function search({type ,keyword ,pageNum }){
-	console.log("호출 ",  type, keyword, pageNum)
-	$.ajax({
-	    url: "/search/1", 
-	    method: "GET",   
-	    success:function(result){
-	    	console.log(result)
-	    },
-	    error:function(e){
-	    	console.log("error")
-	    }
-    }) 
-}
-$(".search_area button").on("click", function(e){
-    e.preventDefault();  
-    let type = $(".search_area select").val();
-    let keyword = $(".search_area input[name='keyword']").val();
-    if(!type){
-        alert("검색 종류를 선택하세요.");
-        return false;
-    }
-    
-    if(!keyword){
-        alert("키워드를 입력하세요.");
-        return false;
-    }        
-    
-    moveForm.find("input[name='type']").val(type);
-    moveForm.find("input[name='keyword']").val(keyword);
-    moveForm.find("input[name='pageNum']").val(1);
-    moveForm.submit();
-});
-})
-</script>
-</body>
+		</script>
+	</body>
 </html>

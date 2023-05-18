@@ -215,4 +215,5 @@ public class BuyController {
 		model.addAttribute("bblist", bblist);
 		
 	}
+
 }

@@ -7,12 +7,15 @@
 		insert into tbl_file_item(fid, fileName, image, uuid, uploadPath) 
 			values(seq_file_item.nextval,#{fileName},#{image},#{uuid},#{uploadPath})
 	</insert>
+	
 	<select id="fileFindById" resultType="com.cook.mymealkit.domain.AttachFileDTO">
 		select * from tbl_file_item where fid=#{item_id}
 	</select>
+	
 	<delete id="delete">
 		delete from tbl_file_item where uuid=#{uuid}
 	</delete>
+	
 	<delete id="deleteAll">
 		delete from tbl_file_item where fid=#{item_id}
 	</delete>

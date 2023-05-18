@@ -10,7 +10,6 @@
 input {
 	text-align: center;
 	width: 50px;
-	
 }
 #item_name {
 	width: 100px;
@@ -22,20 +21,18 @@ table, th, tr, td {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <script>
-$(document).ready(function(){
-	
+$(document).ready(function(){	
 	/* 이미지 경로 설정 */
 	$("img").each(function(idx, data){
 		var r = $(this).attr('src')
 		u= r.replaceAll('\\', '/')
 		$(this).attr('src', u )
-	})
-	
+	})	
 	/* 버튼 중첩실행 방지 */
-	$("button").click(function(e){ e.preventDefault() })
-	
+	$("button").click(function(e){ 
+		e.preventDefault() 
+	})	
 	/* 클릭시 수량 감소 */
 	$("button[id^=minusQty]").each(function(idx, data){
 		$(this).click(function(e){
@@ -47,7 +44,6 @@ $(document).ready(function(){
 			}
 		})
 	})
-	
 	/* 클릭시 수량 증가 */
 	$("button[id^=plusQty]").each(function(idx, data){
 		$(this).click(function(e){
@@ -57,7 +53,6 @@ $(document).ready(function(){
 			$("#priceData"+idx).val(price*amount)
 		})
 	})
-	
 	/* 아이템별 합계 계산 */
 	$("input[id^=amountData]").each(function(idx, data){
 		$(this).change(function(e){
@@ -66,7 +61,6 @@ $(document).ready(function(){
 			$("#priceData"+idx).val(amount*price)
 		})
 	})
-	
 	/* 총액 계산 함수 설정 */
 	const pricingTotal=()=>{
 		var total = 0
@@ -79,18 +73,17 @@ $(document).ready(function(){
 		})
 		$("#view_amount").val(amount)
 		$("#view_price").val(total)
-		
 		/* 배송비 계산 */
 		if($("#view_price").val() > 10000 || $("#view_price").val() == 0 ){ $("#deliverypay").val(0) }
-		else { $("#deliverypay").val(3000) }
-		
-		/* 최종 결제금액 계산 */
+		else { 
+			$("#deliverypay").val(3000) 
+		}
+						/* 최종 결제금액 계산 */
 		var mid_price = parseInt($("#view_price").val())
 		var discount = parseInt($("#discount").val())
 		var delivery_pay = parseInt($("#deliverypay").val())
 		$("#totalpay").val(mid_price*(1-discount/100)+delivery_pay)
 	}
-	
 	/* 총액 계산 함수 호출 */
 	pricingTotal()
 	$("td[id^=pricing]").each(function(idx, data){
@@ -98,7 +91,6 @@ $(document).ready(function(){
 			pricingTotal()
 		})
 	})
-	
 	/* ajax 사용하여 update */
 	$("button[id^=apply]").each(function(idx, data){
 		$(this).click(function(e){
@@ -115,31 +107,33 @@ $(document).ready(function(){
 					alert('success')
 					window.location.href="cartList"
 				},
-				error: function(xhr,status,error){ alert('false') }
+				error: function(xhr,status,error){ 
+					alert('false') 
+				}
 			})
 		})
 	})
-	
 	/* 체크박스 전체선택 */
 	$("#all_checked").click(function(e){
 		if($("#all_checked").is(":checked")){
 			$("input[type=checkbox]").prop("checked", true)
 			pricingTotal()
-		} else {
-			$("input[id^=checkbox]").prop("checked", false)
-			pricingTotal()
-		}
-	})
-	
+			} else {
+				$("input[id^=checkbox]").prop("checked", false)
+				pricingTotal()
+			}
+		})
 	/* 장바구니 삭제 */
-	$("button[id^=remove]").each(function(idx, data){
-		$(this).click(function(e){
-			console.log("삭제버튼이 눌림"+idx)
-			$("#delete_hidden").attr('action','/cart/cartDelete').attr('method','POST')
-			$("#cart_id").val($(this).data("cart_id"))
-			$("#delete_hidden").submit()
+		$("button[id^=remove]").each(function(idx, data){
+			$(this).click(function(e){
+				console.log("삭제버튼이 눌림"+idx)
+				$("#delete_hidden").attr('action','/cart/cartDelete').attr('method','POST')
+				$("#cart_id").val($(this).data("cart_id"))
+				$("#delete_hidden").submit()
+			})
 		})
 	})
+
 	var frm= $("#frm")
 	/* 구매페이지로 정보전송 */
 	$("#payment").click(function(e){
@@ -182,26 +176,22 @@ $(document).ready(function(){
 	})
 	
  })
- </script>
+</script>
 </head>
 <body>
 <div class="container">
-
   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
       <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-body">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">회원구매</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">비회원구매</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
+			<div class="modal-content">
+				<div class="modal-body">
+		            <button type="button" class="btn btn-primary" data-dismiss="modal">회원구매</button>
+		            <button type="button" class="btn btn-secondary" data-dismiss="modal">비회원구매</button>
+        		</div>
+      		</div>
+    	</div>
+	</div>
 </div>
 <div class="container">
 
@@ -260,10 +250,8 @@ $(document).ready(function(){
 				</tr>
 				<input type="hidden" id="userData${stat.index}" value="${list.user_id}" />
 				<input type="hidden" id="itemData${stat.index}" name="buy_list[${stat.index}].item_id" value="${list.item_id}" />
-				
 			</c:forEach>
 		</table>
-
 		<hr>
 		<div class="결제 정보">
 			<div class="수량"> 수량 : <input type="text" id="view_amount" value="0" /></div>
@@ -280,6 +268,5 @@ $(document).ready(function(){
 	<form action="#" method="get" class="삭제_히든" id="delete_hidden">
 		<input type="hidden" name="cart_id" id="cart_id" />
 	</form>
-	
 </body>
 </html>
