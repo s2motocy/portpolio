@@ -1,93 +1,112 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
- <link rel="stylesheet" href="../resources/css/header.css">
- <style>
- 
- .col-lg-6 col-md-6{
- 
- 	  text-align: right;
- }
- 
- 
- </style>
+    <meta charset="UTF-8">
+    <style>
+        .box {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            height: 200px;
+            background-color: #ffffff;
+            border: 1px solid #000000;
+            padding: 3px;
+        }
+
+        .button {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-	<!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
-                            <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Korea</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
-                            </div>
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="/index"><img src="/resources/img/logo.png" alt=""></a>
         </div>
+        <div class="humberger__menu__cart">
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li class="active"><a href="/index">메인</a></li>
+                <li><a href="/item/itemList">상품</a></li>
+                <li><a href="/board/list">문의</a></li>
+                <li><a href="/notice/list">공지사항</a></li>
+                <li><a href="#">정보</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a href="/user/login">로그인</a></li>
+                        <li><a href="/user/join">회원가입</a></li>
+                        <li><a href="/user/mypage">마이페이지</a></li>
+                        <li><a href="/cart/cartList">장바구니</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="humberger__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                <li>Free Shipping for all Order of $99</li>
+            </ul>
+        </div>
+    </div>
+    <header class="header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="/resources/img/logo.png" alt=""></a>
+                        <a href="/index"><img src="/resources/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-3">
-                    <div class="header__cart">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                        </ul>
-                        <div class="header__cart__price">item: <span>$150.00</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="humberger__open">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>  
-    </header>
-    <!-- Header Section End -->
-    
+                            <li class="active"><a href="/index">메인</a></li>
+                            <li><a href="/item/itemList">상품</a></li>
+							<li><a href="/board/list">문의</a></li>
+                            <li><a href="/notice/list">공지사항</a></li>
+                            <li><a href="#">정보</a>
+                            <ul class="header__menu__dropdown">
+		                        <li><a href="/user/login">로그인</a></li>
+		                        <li><a href="/user/join">회원가입</a></li>
+		                        <li><a href="/user/mypage">마이페이지</a></li>
+	                            <li><a href="/cart/cartList">장바구니</a></li>
+		               		</ul>
+                        	</li> 
+                    	</ul>
+                	</nav>
+            	</div>               
+				 <div class="col-lg-3">
+	                <div class="header__cart">
+	                    <div class="box">
+	                        <a href="/user/login" class="button">로그인</a>
+	                        <a href="/user/join" class="button">회원가입</a>
+	                        <a href="/user/mypage" class="button">마이페이지</a>
+	                        <a href="/cart/cartList" class="button">장바구니</a>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="humberger__open">
+	            <i class="fa fa-bars"></i>
+	        </div>
+	    </div>
+	</header>
+	<div class="col-lg-9">
+	    <div class="hero__search">
+	        <div class="hero__search__form">
+	            <form action="#">
+	                <input type="text" placeholder="검색어를 입력하세요">
+	                <button type="submit" class="site-btn">검색</button>
+	            </form>
+	        </div>
+	    </div>
+	</div>
 </body>
-</html>
+</html>	                        

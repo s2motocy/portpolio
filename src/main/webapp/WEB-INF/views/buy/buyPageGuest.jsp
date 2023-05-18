@@ -49,22 +49,18 @@ function kakaopost() {
          		<input type="text" id="addr2" name="addr2" placeholder="상세주소"><br>
          	</div>
 		</div>
-		
 		<div class="상품 정보">
 			<h2>주문 상품</h2><hr>
-
-			<!-- forEach 시작 -->
-			
+			<!-- forEach 시작 -->	
 			<div>
 				<label for="buy_no"><b>상품</b></label>
 				<input type="text" id="buy_no" name="buy_no" /><br>
 			</div>
-			
 			<!-- forEach 종료 -->
 		</div>
 	</div>
-        <button type="reset" id ="resetbtn" class="resetbtn">취소</button>
-        <button type="submit" id="buybtn" class="buybtn">결제하기</button>
+    <button type="reset" id ="resetbtn" class="resetbtn">취소</button>
+    <button type="submit" id="buybtn" class="buybtn">결제하기</button>
 </form>
 </body>
 </html>

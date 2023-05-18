@@ -29,7 +29,6 @@
  			console.log(str)
  			formObj.append(str).submit()
  		})
- 		
  		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$")
  		var maxSize = 5242880  //5MB
  		const checkExtension=(fileName, fileSize)=>{
@@ -43,7 +42,6 @@
  			}
  			return true;
  		}
-
  		$("input[type='file']").change(function(e){ 
  			var formData = new FormData()
  			var inputFile = $("input[name='uploadFile']")
@@ -53,7 +51,6 @@
  				if(!checkExtension(i.name, i.size)) return false;
  				formData.append("uploadFile", i)
  			}
- 			
  			var uploadResult =$(".uploadResult ul")
  			const showUploadedFile=(uploadResultArr)=>{
  				if(!uploadResultArr || uploadResultArr.length ==0) return
@@ -204,12 +201,10 @@ hr {
 			 <option value="기타">기타</option>
 			</select> 
 			<br>
-        
          <label for="name"><b>상품명</b></label>
          <br>
          <input type="hidden" name='item_id' value='<c:out value="${vo.item_id}"></c:out>'/>
          <input type="text" id="item_name" name="item_name" value='<c:out value="${vo.item_name}"></c:out>' />
-
 	        <div class="inputArea" id="img">
 	         <label for="img_url"><b>상품 사진</b></label>
 	         <br>
@@ -218,22 +213,17 @@ hr {
 	        <div class="uploadResult" id="uploadResult">
 	         <ul></ul>
 	      </div>
-	      
          <label for="item_price"><b>상품 가격</b></label>
          <br>
          <input type="text" id="item_price" name="item_price" value='<c:out value="${vo.item_price}"></c:out>' />
 		<br> 
- 
          <label for="description"><b>상품 설명</b></label>
          <br>
          <textarea rows="5" cols="100" id="description" name="description" value='<c:out value="${vo.description}"></c:out>'></textarea>
-		<br>
-        
+		<br>      
         <button type="reset" id = "resetbtn">취소</button>
         <button type="submit" id="updatebtn">등록</button>   
-
         </div>   
     </form>
-
 </body>
 </html>

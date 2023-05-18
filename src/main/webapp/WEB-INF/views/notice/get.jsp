@@ -47,13 +47,11 @@
 	</form>
 <script>
 	let form = $("#infoForm");
-	
 	$("#list_btn").on("click", function(e){
 		form.find("#bno").remove();
 		form.attr("action", "/notice/list");
 		form.submit();
 	});
-	
 	$("#modify_btn").on("click", function(e){
 		form.attr("action", "/notice/modify");
 		form.submit();

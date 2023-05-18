@@ -7,10 +7,10 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class BoardVO {
+public class QuestionVO {
 	
 	/* 문의 번호 */
-    private int bno;
+    private int qno;
     
     /* 문의 제목 */
     private String title;

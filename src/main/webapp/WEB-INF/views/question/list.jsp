@@ -6,11 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>I마이 밀키트</title>
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
   a{
   	text-decoration : none;
@@ -87,17 +89,40 @@
   .search_area select{
   	height: 35px;
   }
+  .access_warn{
+    margin-top: 30px;
+    text-align: center;
+    color : red;
+}
    
   </style>
 </head>
 <body>
 <h1>문의페이지입니다.</h1>
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+        	<form id="frm">
+        		<div>
+        			암호 입력 <input type="password"  id="password"/>
+        			<button id="a">확인</button>
+        		</div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="table_wrap">
-	<a href="/board/enroll" class="top_btn">문의 등록</a>
+	<a href="/question/enroll" class="top_btn">문의 등록</a>
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th class="bno_width">번호</th>
+				<th class="qno_width">번호</th>
 				<th class="title_width">제목</th>
 				<th class="writer_width">작성자</th>
 				<th class="regdate_width">작성일</th>
@@ -105,11 +130,9 @@
 			</tr>
 		</thead>
 		<c:forEach items="${list}" var="list">
-			<tr>
-                <td><c:out value="${list.bno}"/></td>
-                <td><a class="move" href="${list.bno}">
-                	<c:out value="${list.title}"/>
-                </a></td>
+			<tr> 
+                <td><c:out value="${list.qno}"/></td>
+                <td><a class="a_move" href="${list.qno}">${list.title}</a></td>
                 <td><c:out value="${list.writer}"/></td>
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.writedate}"/></td>
                 <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.updateDate}"/></td>
@@ -170,57 +193,79 @@ $(document).ready(function(){
 		 if(result === "delete success"){
 	        alert("삭제가 완료되었습니다.");
 	    }
-	}	
-});
-
-let moveForm = $("#moveForm");
-	$(".move").on("click", function(e){
-    e.preventDefault();
-    moveForm.empty().append("<input type='hidden' name='bno' value='"+ $(this).attr("href") + "'>"); 
-    moveForm.attr("action", "/board/get");
-    moveForm.submit();
-});
-
-	$(".pageInfo_btn a").on("click", function(e){
-        e.preventDefault();
-        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-        moveForm.attr("action", "/board/list");
-        moveForm.submit();      
-    });
-
-function search({type ,keyword ,pageNum }){
-	console.log("호출 ",  type, keyword, pageNum)
-	$.ajax({
-	    url: "/search/1", 
-	    method: "GET",   
-	    success:function(result){
-	    	console.log(result)
-	    },
-	    error:function(e){
-	    	console.log("error")
-	    }
-    }) 
-}
-$(".search_area button").on("click", function(e){
-    e.preventDefault();  
-    let type = $(".search_area select").val();
-    let keyword = $(".search_area input[name='keyword']").val();
-    if(!type){
-        alert("검색 종류를 선택하세요.");
-        return false;
-    }
-    
-    if(!keyword){
-        alert("키워드를 입력하세요.");
-        return false;
-    }        
-    
-    moveForm.find("input[name='type']").val(type);
-    moveForm.find("input[name='keyword']").val(keyword);
-    moveForm.find("input[name='pageNum']").val(1);
-    moveForm.submit();
-});
-
-</script>
-</body>
+	}
+	let a_move= $(".a_move");
+	let moveForm = $("#moveForm");
+	a_move.each(function(idx ,data){
+		$(this).click(function(e){
+			e.preventDefault();
+			if(${user.auth=='a'}){
+				moveForm.append("<input type='hidden' name='qno' value='"+ $(this).attr("href") + "'>"); 
+				moveForm.attr("action", "/question/get");
+				moveForm.submit();
+				} else {
+						$('#myModal').modal('show');
+						$("#a").click(function(){
+							var inp = $("#password").val();
+							var qno = $(a_move).eq(idx).attr("href");
+							var formData = {qno,password:inp};
+							$.ajax({
+								url: '/question/checkPw',
+								type: 'POST',
+								data: formData,
+								success: function(result){ 
+									console.log(result)
+									if(result=="1"){
+										moveForm.append("<input type='hidden' name='qno' value='"+ $(a_move).eq(idx).attr("href") + "'>");  
+					    				moveForm.attr("action", "/question/get");
+					    				moveForm.submit();
+									}
+									else{
+										 alert('비밀번호가 올바르지 않습니다');
+									}	
+								}
+							});		
+						});
+					} 
+				});
+			});
+			$(".pageInfo_btn a").on("click", function(e){
+       			e.preventDefault();
+		        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+		        moveForm.attr("action", "/question/list");
+		        moveForm.submit();      
+    		});
+			function search({type ,keyword ,pageNum }){
+				console.log("호출 ",  type, keyword, pageNum)
+				$.ajax({
+				    url: "/search/1", 
+				    method: "GET",   
+				    success:function(result){
+				    	console.log(result)
+				    },
+	    			error:function(e){
+	    				console.log("error")
+	    			}
+    			}) 
+			}
+			$(".search_area button").on("click", function(e){
+			    e.preventDefault();  
+			    let type = $(".search_area select").val();
+			    let keyword = $(".search_area input[name='keyword']").val();
+			    if(!type){
+			        alert("검색 종류를 선택하세요.");
+			        return false;
+			    }
+			    if(!keyword){
+			        alert("키워드를 입력하세요.");
+			        return false;
+			    }        
+			    moveForm.find("input[name='type']").val(type);
+			    moveForm.find("input[name='keyword']").val(keyword);
+			    moveForm.find("input[name='pageNum']").val(1);
+			    moveForm.submit();
+			});
+		});
+		</script>
+	</body>
 </html>

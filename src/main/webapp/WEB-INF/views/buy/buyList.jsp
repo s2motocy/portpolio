@@ -30,26 +30,25 @@ table{
 </head>
 <body>
 <div class="container">
-	<table  class="table table-striped" id="buytable">
-	<tr>
-		<td>주문번호</td>
-		<td>주문 아이디</td>
-		<td>주문날짜</td>
-		<td>주문 상품</td>
-		<td>구매 가격</td>
-		<td>주문 상태</td>
-	</tr>
-	
-	<c:forEach items="${buylist}" var="buylist">
+	<table class="table table-striped" id="buytable">
 		<tr>
-			<td>${buylist.buy_no}</td>
-			<td>${buylist.member_id}"</td>
-			<td><fmt:formatDate value="${buylist.buy_date}" pattern="yyyy-MM-dd" /></td>
-			<td>"${buylist.cart_id}</td>
-			<td>${buylist.price}</td>
-			<td>${buylist.buy}</td>
+			<td>주문번호</td>
+			<td>주문 아이디</td>
+			<td>주문날짜</td>
+			<td>주문 상품</td>
+			<td>구매 가격</td>
+			<td>주문 상태</td>
 		</tr>
-	</c:forEach>
+		<c:forEach items="${buylist}" var="buylist">
+			<tr>
+				<td>${buylist.buy_no}</td>
+				<td>${buylist.member_id}"</td>
+				<td><fmt:formatDate value="${buylist.buy_date}" pattern="yyyy-MM-dd" /></td>
+				<td>"${buylist.cart_id}</td>
+				<td>${buylist.price}</td>
+				<td>${buylist.buy}</td>
+			</tr>
+		</c:forEach>
 	</table>
 </div>
 </body>

@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>구매 페이지</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+	<script  src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 <script>
 function kakaopost() {
     new daum.Postcode({
@@ -15,6 +18,29 @@ function kakaopost() {
         }
     }).open();
 }
+$(document).ready(function(){
+	$("#buybtn").click(function(e){
+		requestPay();	
+	})
+	  const IMP = window.IMP; // 생략 가능
+	  IMP.init("imp86273375");
+	  function requestPay() {
+	    IMP.request_pay({
+	      pg: "INIBillTst",
+	      pay_method: "card",
+	      merchant_uid: "ORD20180131-0000011",   // 주문번호
+	      name: "아메리카노 벤티",
+	      amount: 6500,                         // 숫자 타입
+	      buyer_email: "gildong@gmail.com",
+	      buyer_name: "홍길동",
+	      buyer_tel: "010-4242-4242",
+	      buyer_addr: "서울특별시 강남구 신사동",
+	      buyer_postcode: "01181"
+	    	}, function (rsp) { // callback
+	      //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
+		});
+	}
+})
 </script>
 </head>
 <body>
@@ -49,22 +75,18 @@ function kakaopost() {
          		<input type="text" id="addr2" name="addr2" placeholder="상세주소"><br>
          	</div>
 		</div>
-		
 		<div class="상품 정보">
 			<h2>주문 상품</h2><hr>
-
-			<!-- forEach 시작 -->
-			
+			<!-- forEach 시작 -->	
 			<div>
 				<label for="buy_no"><b>상품</b></label>
 				<input type="text" id="buy_no" name="buy_no" /><br>
 			</div>
-			
 			<!-- forEach 종료 -->
 		</div>
 	</div>
-        <button type="reset" id ="resetbtn" class="resetbtn">취소</button>
-        <button type="submit" id="buybtn" class="buybtn">결제하기</button>
+	<button type="reset" id ="resetbtn" class="resetbtn">취소</button>
+	<button type="button" id="buybtn" class="buybtn">결제하기</button>
 </form>
 </body>
 </html>

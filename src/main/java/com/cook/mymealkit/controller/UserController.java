@@ -42,7 +42,7 @@ public class UserController {
             return "/user/login";
         }
         session.setAttribute("vo", uservice.mypage(vo));
-        return "redirect:/users/mypage";
+        return "redirect:/index";
     }
     
     //회원가입 처리
@@ -53,7 +53,7 @@ public class UserController {
     public String signUP(UserVO vo,Model model) throws Exception {
     	System.out.println(vo);
     	uservice.join(vo);
-    	return "redirect:/user/login";
+    	return "redirect:/index";
     }
     // 아이디 중복 확인 
     @RequestMapping(value = "/userIdCheck", method = RequestMethod.POST)
@@ -67,7 +67,6 @@ public class UserController {
 			} else {
 				return "success";	
 			}	
-		
 	}
     /* 이메일 인증 */
 	@GetMapping("/mailCheck")

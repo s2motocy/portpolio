@@ -26,6 +26,7 @@ public class ItemController {
 	/* Mapper 설정 */
 	@Setter(onMethod_=@Autowired)
 	ItemMapper imapper;
+	
 	@Setter(onMethod_=@Autowired)
 	FileMapper fmapper;
 	

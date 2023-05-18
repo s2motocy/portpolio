@@ -28,6 +28,7 @@ public class BuyController {
 
 	@Setter(onMethod_=@Autowired)
 	BuyService bservice;
+	
 	@Setter(onMethod_=@Autowired)
 	UserService uservice;
 	
@@ -55,8 +56,6 @@ public class BuyController {
 	public void register(UserVO uvo, BuyUserVO bvo, HttpServletRequest request, HttpSession session, Model model) {
 		System.out.println("bvo : "+bvo);
 		
-		// 
-		
 		System.out.println("POST , uvo : "+uvo + " , bvo"+bvo);
 		UserVO vo = uservice.getUserById(uvo.getUser_id());
 		System.out.println("vo: "+vo);
@@ -74,10 +73,8 @@ public class BuyController {
 		bvo.setAddr(vo.getAddr());
 		bvo.setAddr2(vo.getAddr2());
 		System.out.println("bvo : "+bvo);
-		
 		boolean success = uservice.login(uvo); // true
 		if(success) {
-			
 		} else {
 			session.setAttribute("id", uvo.getUser_id());
         	session.setAttribute("pwd", uvo.getPwd());
@@ -105,5 +102,4 @@ public class BuyController {
 		System.out.println(buylist);
 		return "/buy/buyList";
 	} 
-	
 }

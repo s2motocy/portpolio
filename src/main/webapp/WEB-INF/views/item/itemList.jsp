@@ -31,15 +31,13 @@ table{
 </style>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script>
-$(document).ready(function () {
-	
+$(document).ready(function () {	
 	/* 이미지 경로 변경 */
 	$("img").each(function (idx, data) {
 		var r = $(this).attr('src')
 		u = r.replaceAll('\\', '/')
 		$(this).attr('src', u)
 	})
-	
 	/* 삭제버튼 */
 	$("button#deletebtn").each(function (idx, data) {
 		$(this).click(function (e) {
@@ -54,7 +52,6 @@ $(document).ready(function () {
 			}
 		}) // click
 	}) // each
-
 }) // ready
 </script>
 <body>
