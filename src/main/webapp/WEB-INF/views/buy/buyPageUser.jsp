@@ -5,10 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비회원 구매 페이지</title>
+<title>구매 페이지</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
+/* 우편번호 */
 function kakaopost() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -54,11 +56,12 @@ $(document).ready(function(){
 	    });
 	  }
 })
+
 </script>
 </head>
 <body>
 <form action="register" method="post">
-	<h1>비회원: 주문/결제하기</h1>
+	<h1>회원: 주문/결제하기</h1>
 	<div class="container">
 		<div class="상품 정보">
 			<h2>주문 상품</h2><hr>
@@ -72,9 +75,9 @@ $(document).ready(function(){
 				<c:forEach var="dto" items="${dlist}" varStatus="stat">
 					<tr>
 						<td><img src="/display?fileName=/${vlist[stat.index].attachList[0].uploadPath.replace('\\', '/')}/s_${vlist[stat.index].attachList[0].uuid}_${vlist[stat.index].attachList[0].fileName}"/></td>
-						<td><input type="text" name="buy_list[${stat.index}].item_name" value="${dto.item_name}" /></td>
+						<td><input type="text" id="item_name${stat.index}" name="buy_list[${stat.index}].item_name" value="${dto.item_name}" /></td>
 						<td><input type="text" name="buy_list[${stat.index}].amount" value="${dto.amount }" /></td>
-						<td><input type="text" name="buy_list[${stat.index}].buy_price" value="${dto.buy_price}" /></td>
+						<td><input type="text" id="buy_price${stat.index}" name="buy_list[${stat.index}].buy_price" value="${dto.buy_price}" /></td>
 					</tr>
 					<input type="hidden" name="buy_list[${stat.index}].buy_no" value="${dto.buy_no}" />
 					<input type="hidden" name="buy_list[${stat.index}].item_id" value="${dto.item_id}" />
@@ -84,37 +87,34 @@ $(document).ready(function(){
 		<div class="구매자 정보">
 			<h2>배송 정보</h2><hr>
 			<div>
-				<label for="buyer_name"><b>이름</b></label><br>
-				<input type="text" id="buyer_name" name="buyer_name" required /><br>	
+				<label for="name"><b>이름</b></label><br>
+				<input type="text" id="buyer_name" name="buyer_name" value="${data.buyer_name}" required /><br>	
 			</div>
 			<div>
-				<label for="pwd"><b>비밀번호</b></label><br>
-				<input type="tel" id="pwd" name="pwd" required /><br>
-			</div>
-			<div>
-				<label for="phone"><b>연락처</b></label><br>
-				<input type="tel" id="phone" name="phone" required /><br>
+				<label for="pnum"><b>연락처</b></label><br>
+				<input type="tel" id="phone" name="phone" value="${data.phone}" required /><br>
 			</div>
 			<div>
 				<label for="post_code"><b>우편번호</b></label><br>
-            	<input type="text" id="post_code" name="post_code" placeholder="우편번호" required />
+            	<input type="text" id="post_code" name="post_code" placeholder="우편번호" value="${data.post_code}" required />
             	<input type="button" value="우편번호찾기" onclick="kakaopost()"><br> 
          	</div>
 			<div>
 				<label for="addr"><b>주소</b></label><br>
-            	<input type="text" id="addr" name="addr" required /><br>
+            	<input type="text" id="addr" name="addr" value="${data.addr}" required /><br>
          	</div>
 			<div>
 				<label for="addr2"><b>상세주소</b></label><br>
-         		<input type="text" id="addr2" name="addr2" placeholder="상세주소" required ><br>
+         		<input type="text" id="addr2" name="addr2" placeholder="상세주소" value="${data.addr2}" required ><br>
          	</div>
          	<div class="히든">
          		<input type="hidden" id="buy_no" name="buy_no" value="${data.buy_no}" />
+         		<input type="hidden" name="user_id" value="${data.user_id}" />
          	</div>
 		</div>
 	</div>
-    <button type="reset" id ="resetbtn" class="resetbtn">취소</button>
-    <button type="submit" id="buybtn" class="buybtn">결제하기</button>
+        <button type="reset" id ="resetbtn" class="resetbtn">취소</button>
+        <button type="submit" id="buybtn" class="buybtn">결제하기</button>
 </form>
 </body>
 </html>

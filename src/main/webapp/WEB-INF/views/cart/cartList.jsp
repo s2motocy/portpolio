@@ -9,7 +9,7 @@
 <style>
 input {
 	text-align: center;
-	width: 40px;
+	width: 50px;
 }
 #item_name {
 	width: 100px;
@@ -132,21 +132,51 @@ $(document).ready(function(){
 				$("#delete_hidden").submit()
 			})
 		})
-		var frm= $("#frm")
-		/* 구매페이지로 정보전송 */
-		$("#payment").click(function(e){
-			$('#myModal').modal('show')
-		})
-		$(".btn-primary").click(function(e){
-			console.log("회원구매")
-			frm.attr("action", "/buy/buyPageLogin").submit()
-		})
-		$(".btn-secondary").click(function(e){
-			console.log("비회원구매")
-			frm.attr("action", "/buy/buyPageGuest").submit()
+	})
+
+	var frm= $("#frm")
+	/* 구매페이지로 정보전송 */
+	$("#payment").click(function(e){
+		$('#myModal').modal('show')
+	})
+	
+	$("#buyLogin").click(function(e){
+		var userid= $("#yourModal [name='user_id']").val()
+		var password= $("#yourModal [name='pwd']").val()
+		console.log("buyLogin에서 암호" ,userid, password)
+		$.ajax({
+			url: '/buy/buyPageLogin',
+			type: 'POST',
+			data: JSON.stringify({user_id:userid, pwd:password}),
+			contentType:"application/json",
+			success: function(result){
+				console.log("result: ",result)
+				if(result == "0"){
+					alert("로그인되었습니다")
+					var userid= $("#yourModal [name='user_id']").val()
+					var password= $("#yourModal [name='pwd']").val()
+					console.log("암호" ,userid, password)
+					var str="<input type='text' name='user_id' value='" + userid +"'/><input type='text' name='pwd'  value='" + password +"'/>"
+					console.log(str)
+					frm.append(str)
+					frm.submit()
+				}
+			},
+			error: function(xhr,status,error){ alert('false') }
 		})
 	})
-	</script>
+	
+	$(".btn-primary").click(function(e){
+		console.log("회원구매")
+		$("#yourModal").modal('show')
+	})
+	$(".btn-secondary").click(function(e){
+		console.log("비회원구매")
+		frm.attr("action", "/buy/buyPageGuest").submit()
+	})
+	
+ })
+</script>
 </head>
 <body>
 <div class="container">
@@ -163,8 +193,31 @@ $(document).ready(function(){
     	</div>
 	</div>
 </div>
-<h1>장바구니 페이지</h1>
-	<form action="/buy/buyPage" id="frm">
+<div class="container">
+
+  <!-- Modal -->
+  <div class="modal fade" id="yourModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+        <div>
+        	아이디<input type="text" name="user_id"/>
+        </div>
+        <div>
+        	암호<input type="password" name="pwd"/>
+        </div>
+        <input type='submit' id="buyLogin" value="전송"/>
+         </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+	<h1>장바구니 페이지</h1>
+	
+	<form action="/buy/buyPageUser" id="frm">
 		<table class="cart_table">
 			<tr>
 				<th>전체<br><input type="checkbox" id="all_checked" checked="checked" /></th>
@@ -183,9 +236,9 @@ $(document).ready(function(){
 						<input type="hidden" id="hidden_amount${stat.index}" value="${list.amount}" />
 						<input type="hidden" id="hidden_total${stat.index}" value="${list.item_price}" />
 					</td>
-					<td class="사진"><img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/></td>
+					<td class="사진"><img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/></td>
 					<td class="품명"><input type="text" name="buy_list[${stat.index}].item_name" id="item_name" value="${list.item_name}" /></td>
-					<td class="단가"><input type="text" id="price_origin${stat.index}" value="${list.item_price}" /></td>
+					<td class="단가"><input type="text" id="price_origin${stat.index}" name="buy_list[${stat.index}].buy_price" value="${list.item_price}" /></td>
 					<td class="수량">
 						<button id="minusQty${stat.index}">-</button>
 						<input type="text" name="buy_list[${stat.index}].amount" id="amountData${stat.index}" value="${list.amount}" />
@@ -200,20 +253,20 @@ $(document).ready(function(){
 			</c:forEach>
 		</table>
 		<hr>
-			<div class="결제 정보">
-				<div class="수량"> 수량 : <input type="text" id="view_amount" value="0" /></div>
-				<div class="총액"> 가격 : <input type="text" id="view_price" value="0" /></div>
-				<div class="할인"> 할인 : <input type="text" id="discount" value="0" />% <img src="https://cdn-pro-web-134-253.cdn-nhncommerce.com/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_coupon_apply.png" /></div>
-				<div class="배송비"> 배송비 : <input type="text" id="deliverypay" value="0" />원</div>
-				<div class="결제금액"> 결제금액 : <input type="text" id="totalpay" value="0" />원</div>
-			</div>
-			<div class="버튼">
-				<button id="continue" onclick="location.href='/item/itemList?cart_id=${list.cart_id}">쇼핑계속하기</button>
-				<button id="payment">구매페이지로 이동</button>
-			</div>
-		</form>
-		<form action="#" method="get" class="삭제_히든" id="delete_hidden">
-			<input type="hidden" name="cart_id" id="cart_id" />
-		</form>
-	</body>
+		<div class="결제 정보">
+			<div class="수량"> 수량 : <input type="text" id="view_amount" value="0" /></div>
+			<div class="총액"> 가격 : <input type="text" id="view_price" value="0" /></div>
+			<div class="할인"> 할인 : <input type="text" id="discount" value="0" />% <img src="https://cdn-pro-web-134-253.cdn-nhncommerce.com/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_coupon_apply.png" /></div>
+			<div class="배송비"> 배송비 : <input type="text" id="deliverypay" value="0" />원</div>
+			<div class="결제금액"> 결제금액 : <input type="text" id="totalpay" value="0" />원</div>
+		</div>
+		<div class="버튼">
+			<button id="continue" onclick="location.href='/item/itemList?cart_id=${list.cart_id}">쇼핑계속하기</button>
+			<button id="payment">구매페이지로 이동</button>
+		</div>
+	</form>
+	<form action="#" method="get" class="삭제_히든" id="delete_hidden">
+		<input type="hidden" name="cart_id" id="cart_id" />
+	</form>
+</body>
 </html>

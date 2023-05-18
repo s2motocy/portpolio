@@ -10,12 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
 <script>
 $(document).ready(function(){
-	/* 이미지 경로 변경 */
-	$("img").each(function(idx, data){
-		var r = $(this).attr('src')
-		u= r.replaceAll('\\', '/')
-		$(this).attr('src', u )
-	})
+
 	/* 버튼 중첩실행 방지 */
 	$("button").click(function(e){ 
 		e.preventDefault() 
@@ -58,7 +53,7 @@ $(document).ready(function(){
 	<h1>상품 상세 페이지(Detail)</h1>
 	<div class="이미지 전체 출력">
 		<div class="이미지 삽입">
-			<img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/>
+			<img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}"/>
 		</div>
 		<div class="이미지 정보">
 			<div class="상품 이름"><h3>상품 이름 : <input type="text" value="${list.item_name}" /></h3></div>

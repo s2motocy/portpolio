@@ -69,7 +69,7 @@ $(document).ready(function () {
 		<c:forEach var="list" items="${list}">
 			<tr class="table-light">
 				<td>${list.item_id}</td>	
-				<td data-label=""><img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}" /></td>
+				<td data-label=""><img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}" /></td>
 				<td>${list.category}</td>
 				<td><a href="detail?item_id=${list.item_id}">${list.item_name}</a></td>
 				<td>${list.item_price}</td>

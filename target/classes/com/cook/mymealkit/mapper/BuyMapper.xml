@@ -17,7 +17,7 @@
 	</select>
 	
 	<select id="getMaxBno" resultType="int">
-		select Max(bno) from tbl_user_buy
+		select coalesce(Max(bno),0) from tbl_user_buy
 	</select>
 	
 	<!-- 비회원 -->
@@ -35,7 +35,7 @@
 	</select>
 	
 	<select id="getMaxGno" resultType="int">
-		select Max(gno) from tbl_guest_buy
+		select coalesce(Max(gno),0) from tbl_guest_buy
 	</select>
 	
 </mapper>

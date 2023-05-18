@@ -9,7 +9,7 @@ create sequence seq_user;
 -- 회원(user) 테이블 생성
 create table tbl_user (
     uno         number(10) not null primary key,        -- 번호
-    user_id     varchar2(50) not null unique,      -- 아이디
+    user_id     varchar2(50) not null unique,           -- 아이디
     user_name   varchar2(50) not null,                  -- 이름
     pwd	        varchar2(50) not null,                  -- 비밀번호
     email	    varchar2(50) not null,                  -- 이메일
@@ -17,10 +17,13 @@ create table tbl_user (
     post_code   varchar2(30),                           -- 우편번호 (선택)
     addr        varchar2(50),                           -- 주소 (선택)
     addr2       varchar2(50),                           -- 상세주소 (선택)
+    reg_date    date default sysdate,                   -- 가입일
     auth        char(1) default 'm'                     -- 권한
 );
 
-insert into tbl_user(user_id, user_name, pwd, email, phone) values ('test1','test','1234','a@a.com','010-000-0000');
+-- dummy
+insert into tbl_user(uno,user_id, user_name, pwd, email, phone, post_code, addr, addr2, auth) values (seq_user.nextval,'admin','관리자','1234','admin@test.com','010-000-0000','12345','서울시','관악산쪽','a');
+insert into tbl_user(uno,user_id, user_name, pwd, email, phone, post_code, addr, addr2) values (seq_user.nextval,'user','회원','1234','user@test.com','010-000-0000','12345','수원시','수원역인근');
 
 -- 커밋
 commit;
@@ -44,6 +47,8 @@ create table tbl_item (
     item_name   varchar2(30) not null,                  -- 상품 이름
     item_price  number(10) not null,                    -- 상품 가격
     description varchar2(1000) not null,                -- 상품 설명
+    item_stock  number(10) not null,                    -- 상품 재고
+    item_sold   number(10),                             -- 상품 판매량
     update_date date default sysdate                    -- 수정일
 );
 
@@ -137,7 +142,7 @@ create sequence seq_buy_list;
 -- 구매 상품(buy_list) 테이블 생성
 create table tbl_buy_list (
     blist_no        number(10) not null primary key,    -- 주문목록 번호
-    buy_no          varchar2(100) unique,               -- 조회 번호
+    buy_no          varchar2(100),                      -- 조회 번호
     item_id         number(10),                         -- 상품 번호
     item_name       varchar2(50),                       -- 상품 이름
     amount          number(10),                         -- 수량
@@ -176,7 +181,8 @@ CREATE TABLE tbl_board(
 	writer		VARCHAR2(100)	NOT NULL,           -- 게시글 작성자
 	writedate	DATE DEFAULT SYSDATE,               -- 글 작성날짜
 	readcnt		NUMBER DEFAULT 0,                   -- 조회수
-    updatedate  date default sysdate               -- 글 수정날짜
+    updatedate  date default sysdate,               -- 글 수정날짜
+    password    varchar2(100)
 );
 
 --조회
