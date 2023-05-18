@@ -120,6 +120,7 @@ public class BuyController {
 			dtos.forEach(i->{
 				i.setBuy_no(bvo.getBuy_no());
 				ItemVO ivo = iservice.itemFindById(Integer.parseInt(i.getItem_id()));
+				
 				List<AttachFileDTO> afdto = iservice.getAttachList(Integer.parseInt(i.getItem_id()));
 				ivo.setAttachList(afdto);
 				volist.add(ivo);

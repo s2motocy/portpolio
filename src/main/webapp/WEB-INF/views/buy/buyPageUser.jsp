@@ -80,6 +80,7 @@ $(document).ready(function(){
 						<td><input type="text" id="buy_price${stat.index}" name="buy_list[${stat.index}].buy_price" value="${dto.buy_price}" /></td>
 					</tr>
 					<input type="hidden" name="buy_list[${stat.index}].buy_no" value="${dto.buy_no}" />
+					<input type="hidden" name="buy_list[${stat.index}].item_id" value="${dto.item_id}" />
 				</c:forEach>
 			</table>
 		</div>
@@ -109,7 +110,6 @@ $(document).ready(function(){
          	<div class="히든">
          		<input type="hidden" id="buy_no" name="buy_no" value="${data.buy_no}" />
          		<input type="hidden" name="user_id" value="${data.user_id}" />
-         		
          	</div>
 		</div>
 	</div>

@@ -8,6 +8,7 @@ pageEncoding="UTF-8"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 <style>
 .id_input_re_1{
 	color : green;
@@ -121,9 +122,7 @@ pageEncoding="UTF-8"%>
 $(document).ready(function(){
 	$("button[type=submit]").click(function(e){
 		e.preventDefault()
-		console.log("막았다")
 		$("#signupForm").validate({
-			 console.log("들어왔다")
 	         rules: {
 	           user_name: {required: true},
 	           user_id: "required",
@@ -176,9 +175,9 @@ $(document).ready(function(){
 	             .addClass("has-success")
 	             .removeClass("has-error");
 	         },
-	      /*    submitHandler: function () {
-	             $("button").submit();
-	         } */
+	     	 submitHandler: function (form) {
+	             $(form).submit();
+	         }
 		 });
 	})
 	 
