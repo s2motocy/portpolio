@@ -49,56 +49,89 @@ textarea{
 	padding-left : 80px;
 	margin-top : 50px;
 }
+#delete_btn{
+	background-color: #f3e3e7;
+}
 </style>
 </head>
 <body>
 <h1>조회 페이지</h1>
+	<form id="modifyForm" action="/question/modify" method="post">
 	<div class="input_wrap">
 		<label>문의 번호</label>
-		<input name="bno" readonly="readonly" value='<c:out value="${pageInfo.bno}"/>' >
+		<input name="qno" readonly="readonly" value='<c:out value="${pageInfo.qno}"/>' >
 	</div>
+	
 	<div class="input_wrap">
 		<label>문의 제목</label>
-		<input name="title" readonly="readonly" value='<c:out value="${pageInfo.title}"/>' >
+		<input name="title" value='<c:out value="${pageInfo.title}"/>' >
 	</div>
+	
 	<div class="input_wrap">
 		<label>문의 내용</label>
-		<textarea rows="3" name="content" readonly="readonly"><c:out value="${pageInfo.content}"/></textarea>
+		<textarea rows="3" name="content"><c:out value="${pageInfo.content}"/></textarea>
 	</div>
+	
 	<div class="input_wrap">
 		<label>문의 작성자</label>
 		<input name="writer" readonly="readonly" value='<c:out value="${pageInfo.writer}"/>' >
 	</div>
+	
 	<div class="input_wrap">
 		<label>문의 등록일</label>
-		<input name="regdater" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.writedate}"/>' >
+		<input readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.writedate}"/>' >
 	</div>
+	
 	<div class="input_wrap">
 		<label>문의 수정일</label>
-		<input name="updateDate" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.updateDate}"/>' >
-	</div>		
+		<input readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.updateDate}"/>' >
+	</div>	
+		
 	<div class="btn_wrap">
-		<a class="btn" id="list_btn">문의 페이지</a> 
-		<a class="btn" id="modify_btn">수정 하기</a>
+		<a class="btn" id="list_btn">목록 페이지</a> 
+		<a class="btn" id="modify_btn">수정 완료</a>
+		<a class="btn" id="delete_btn">삭제</a>
+		<a class="btn" id="cancel_btn">수정 취소</a>
 	</div>
-	<form id="infoForm" action="/board/modify" method="get">
-		<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
+	</form>
+	<form id="infoForm" action="/question/modify" method="get">
+		<input type="hidden" id="qno" name="qno" value='<c:out value="${pageInfo.qno}"/>'>
 		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
 		<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
-		<input type="hidden" name="keyword" value="${cri.keyword }">   
-		    <input type="hidden" name="type" value="${pageMaker.cri.type }">
+		<input type="hidden" name="type" value="${cri.type }">	
+		<input type="hidden" name="keyword" value="${cri.keyword }">	
 	</form>
 <script>
-	let form = $("#infoForm");
+
+	let form = $("#infoForm");	
+	let mForm = $("#modifyForm");	
+	
+	/* 목록 페이지 이동 버튼 */
 	$("#list_btn").on("click", function(e){
-		form.find("#bno").remove();
-		form.attr("action", "/board/list");
+		form.find("#qno").remove();
+		form.attr("action", "/question/list");
 		form.submit();
 	});
+	
+	/* 수정 하기 버튼 */
 	$("#modify_btn").on("click", function(e){
-		form.attr("action", "/board/modify");
+		e.preventDefault();
+		mForm.submit();
+	});
+	
+	/* 취소 버튼 */
+	$("#cancel_btn").on("click", function(e){
+		form.attr("action", "/question/get");
 		form.submit();
 	});	
+	
+	/* 삭제 버튼 */
+	$("#delete_btn").on("click", function(e){
+		form.attr("action", "/question/delete");
+		form.attr("method", "post");
+		form.submit();
+	});
+	
 </script>	
 </body>
 </html>

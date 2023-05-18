@@ -54,6 +54,5 @@ public class GuestController {
 		model.addAttribute("vo" ,guestVO);
 		return "guest/guestDetail";
 	};
-	
 }
 

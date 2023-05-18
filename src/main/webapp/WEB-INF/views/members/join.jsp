@@ -5,12 +5,10 @@ pageEncoding="UTF-8"%>
   <head>
     <meta charset="UTF-8" />
     <title>JQuery-validation demo | Bootstrap</title>
-
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
     />
-
     <script
       type="text/javascript"
       src="https://code.jquery.com/jquery-1.11.3.min.js"
@@ -39,7 +37,6 @@ pageEncoding="UTF-8"%>
               </ul>
             </div>
           </div>
-
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Simple Form</h3>
@@ -90,7 +87,6 @@ pageEncoding="UTF-8"%>
                     />
                   </div>
                 </div>
-
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="pwd2"
                     >비밀번호 확인</label
@@ -105,7 +101,6 @@ pageEncoding="UTF-8"%>
                     />
                   </div>
                 </div>
-
                 <div class="form-group">
                   <label class="col-sm-4 control-label" for="email"
                     >이메일</label
@@ -200,7 +195,6 @@ pageEncoding="UTF-8"%>
           $("button").submit();
         },
       });
-
       $(document).ready(function () {
         $("#signupForm").validate({
           rules: {

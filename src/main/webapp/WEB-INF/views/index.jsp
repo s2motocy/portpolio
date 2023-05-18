@@ -9,6 +9,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>마이 밀키트</title>
+    <style>
+        .box {
+        	border-radius:5px;
+            position: absolute;
+            top: 1px;
+            right: 15px;
+            margin-top:100px;
+            margin-right:20px;
+            width: 190px;
+            height: 150px;
+            background-color: tomato;
+			opacity:0.9;
+            padding: 3px;
+        }
+
+        .button {
+            display: block;
+			margin-top: 5px;
+            background-color: tomato;
+            opacity:0.8;
+            color: #000000;
+            text-decoration: none;
+            font-style:italic;
+            font-weight:bold;
+            text-align: center;
+        }
+        
+        .button a {
+            display: block;
+            margin-top: 10px;
+            background-color: tomato;
+            opacity:0.8;
+            color: #000000;
+            text-align: center;
+            font-style:italic;
+        }
+        
+    </style>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -23,130 +61,97 @@
     <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
 </head>
- <img src="https://cdn.icon-icons.com/icons2/2248/PNG/96/arrow_down_circle_icon_135934.png" width="30px" height="30px" onclick="goToBottom()"/>
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
     <!-- Humberger Begin -->
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#a"><img src="/resources/img/logo.png" alt=""></a>
+            <a href="/index"><img src="/resources/img/logo.png" alt=""></a>
         </div>
-        <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="https://www.printableworldflags.com/icon-flags/24/South%20Korea.png" alt="">
-                <!-- 미국 성조기 국가이미지:  https://www.printableworldflags.com/icon-flags/24/United%20States%20of%20America.png  -->
-                <div>Korean</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Korean</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
-            </div>
+        <div class="humberger__menu__cart">
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.jsp">신상품</a></li>
-                <li><a href="./shop-grid.jsp">특가</a></li>
-                <li><a href="#">베스트셀러</a>
+                <li class="active"><a href="/index">메인</a></li>
+                <li><a href="/item/itemList">상품</a></li>
+                <li><a href="/question/list">문의</a></li>
+                <li><a href="/notice/list">공지사항</a></li>
+                <li><a href="#">정보</a>
                     <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.jsp">Shop Details</a></li>
-                        <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                        <li><a href="./checkout.jsp">Check Out</a></li>
+                        <li><a href="/user/login">로그인</a></li>
+                        <li><a href="/user/join">회원가입</a></li>
+                        <li><a href="/user/mypage">마이페이지</a></li>
+                        <li><a href="/cart/cartList">장바구니</a></li>
                     </ul>
                 </li>
-                <li><a href="./contact.jsp">이벤트</a></li>
-                <li><a href="#">고객센터</a>
             </ul>
         </nav>
-        <div id="mobile-menu-wrap"></div>
         <div class="humberger__menu__contact">
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-        </div>
+            <ul>
+                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+                <li>Free Shipping for all Order of $99</li>
+            </ul>
         </div>
     </div>
     <!-- Humberger End -->
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__left">
-                            <ul>
-                            <div class="header__top__right__social">
-            					<a href="#"><i class="fa fa-facebook"></i></a>
-           						<a href="#"><i class="fa fa-twitter"></i></a>
-            					<a href="#"><i class="fa fa-instagram"></i></a>
-        					</div>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__right">
-                            <div class="header__top__right__language">
-                                <img src="https://www.printableworldflags.com/icon-flags/24/South%20Korea.png" alt="">
-                                <div>Korean</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Korean</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
-                            </div>
-                           <div class="header__top__right__auth">
-							  <a href=""><i class="fa fa-sign-in"> 로그인</i></a>　
-							  <a href="#"><i class="fa fa-user"> 회원가입</i></a>
-							  <a href="#"><i class="fa fa-user-circle-o"> 마이페이지</i></a>　
-							   <a href="#"><i class="fa fa-cart-arrow-down"> 장바구니</i></a>
-						  </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3" id="a">
+                <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.jsp"><img src="/resources/img/logo.png" alt=""></a>
+                        <a href="/index"><img src="/resources/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.jsp">신상품</a></li>
-                            <li><a href="./shop-grid.jsp">특가</a></li>
-                            <li><a href="#">베스트셀러</a>
+                            <li class="active"><a href="/index">메인</a></li>
+                            <li><a href="/item/itemList">상품</a></li>
+							<li><a href="/question/list">문의</a></li>
+                            <li><a href="/notice/list">공지사항</a></li>
+                            <li><a href="#">정보</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.jsp">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.jsp">Shoping Cart</a></li>
-                                    <li><a href="./checkout.jsp">Check Out</a></li>
+			                        <li><a href="/user/login">로그인</a></li>
+			                        <li><a href="/user/join">회원가입</a></li>
+			                        <li><a href="/user/mypage">마이페이지</a></li>
+                                    <li><a href="/cart/cartList">장바구니</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./contact.jsp">이벤트</a></li>
-                            <li><a href="#">고객센터</a>
+                            
                         </ul>
                     </nav>
+                </div>               
+ 				 <div class="col-lg-3">
+					    <div class="box">
+					        <a href="/user/login" class="button">로그인</a>
+					        <a href="/user/join" class="button">회원가입</a>
+					        <a href="/user/mypage" class="button">마이페이지</a>
+					        <a href="/cart/carList" class="button">장바구니</a>
+					    </div>
                 </div>
+                <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="#">
+                                <input type="text" placeholder="검색어를 입력하세요">
+                                <button type="submit" class="site-btn">검색</button>
+                            </form>
+                        </div>
+                    </div>
+                
             </div>
             <div class="humberger__open">
                 <i class="fa fa-bars"></i>
             </div>
-        </div>
-    </header>
+        </div>   
     <!-- Header Section End -->
-
+	</header>
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
@@ -158,36 +163,26 @@
                             <span>카테고리</span>
                         </div>
                         <ul>
-                            <li><a href="#">전체</a></li>
                             <li><a href="#">한식</a></li>
-                            <li><a href="#">양식</a></li>
                             <li><a href="#">중식</a></li>
                             <li><a href="#">일식</a></li>
-                            <li><a href="#">분식</a></li>
+                            <li><a href="#">양식</a></li>
                             <li><a href="#">야식</a></li>
+                            <li><a href="#">분식</a></li>
+                            <li><a href="#">급식</a></li>
+                            <li><a href="#">기타</a></li>
+                            <li><a href="#">문의</a></li>
+                            <li><a href="#">공지사항</a></li>
+                            <li><a href="#">후원</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                <div class="hero__search__categories">
-                                    종류
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" placeholder="원하는 검색어를 입력하세요">
-                                <button type="submit" class="site-btn">검색 </button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>112</h5>
-                                <span>24시간 대기</span>
-                            </div>
+                    <div class="hero__item set-bg" data-setbg="/resources/img/hero/banner.jpeg">
+                        <div class="hero__text">
+                            <span>집에서 즐기는 전국맛집</span>
+                            <h2>와! 밀키트 <br/>국밥보다 싼곳!</h2>
+                            <a href="item/itemList" class="primary-btn">둘러보기</a>
                         </div>
                     </div>
                 </div>
@@ -376,7 +371,8 @@
         </div>
     </section>
     <!-- Featured Section End -->
-        <!-- Banner Begin -->
+
+    <!-- Banner Begin -->
     <div class="banner">
         <div class="container">
             <div class="row">
@@ -401,7 +397,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
-                        <h4>신상 밀키트</h4>
+                        <h4>Latest Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
@@ -466,7 +462,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
-                        <h4>베스트셀러</h4>
+                        <h4>Top Rated Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
@@ -531,7 +527,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="latest-product__text">
-                        <h4>이달의 상품</h4>
+                        <h4>Review Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 <a href="#" class="latest-product__item">
@@ -598,7 +594,7 @@
         </div>
     </section>
     <!-- Latest Product Section End -->
-    
+
     <!-- Blog Section Begin -->
     <section class="from-blog spad">
         <div class="container">
@@ -643,7 +639,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="/resources/img/blog/blog-3.jpg" alt="">
+                            <img src="img/blog/blog-3.jpg" alt="">
                         </div>
                         <div class="blog__item__text">
                             <ul>
@@ -659,6 +655,7 @@
         </div>
     </section>
     <!-- Blog Section End -->
+
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
@@ -666,57 +663,51 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.jsp"><img src="/resources/img/logo-2.png" alt=""></a>
+                            <a href="/index"><img src="/resources/img/logo.png" alt=""></a>
                         </div>
                         <ul>
-                        	<li>대표자: 홍혁기<br>
-                            주소: 경기도 수원시 팔달구 덕영대로895번길 9-1 SB빌딩<br>
-                            전화번호: 031-253-5225</li>
+                            <li>주소: 경복궁</li>
+                            <li>전화번호: 02-3700-3900</li>
+                            <li>이메일: gbk1395@josun.kr</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
                     <div class="footer__widget">
-                        <h6>Information</h6>
+                        <h6>Useful Links</h6>
                         <ul>
-                            <p><a href="#">회사소개</a>
-                            <a href="#">이용약관</a>
-                            <a href="#">개인정보처리방침</a>
-                            <a href="#">이용안내</a>
-                            <a href="#">공지사항</a></p>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">About Our Shop</a></li>
+                            <li><a href="#">Secure Shopping</a></li>
+                            <li><a href="#">Delivery infomation</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Our Sitemap</a></li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
-                        </form>
-                        <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                        </div>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="#">Our Services</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Innovation</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> MyMealKit.kr All rights reserved
+                        <div clax`ss="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> (주)마이 밀키트
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
                         <div class="footer__copyright__payment"><img src="/resources/img/payment-item.png" alt=""></div>
                     </div>
                 </div>
             </div>
         </div>
-         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc1SKisa7G1sjnbmtXy81YZZ7dhK94Tc8O1w&usqp=CAU" width="30px" height="30px" onclick="goToTop()"/>
     </footer>
     <!-- Footer Section End -->
+
     <!-- Js Plugins -->
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
     <script src="/resources/js/bootstrap.min.js"></script>
@@ -726,15 +717,5 @@
     <script src="/resources/js/mixitup.min.js"></script>
     <script src="/resources/js/owl.carousel.min.js"></script>
     <script src="/resources/js/main.js"></script>
-    <script>
-      function goToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      
-      function goToBottom() {
-        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-      }
-    </script>
 </body>
-
 </html>

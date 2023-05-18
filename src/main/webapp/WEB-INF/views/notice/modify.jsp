@@ -49,12 +49,10 @@
         form.attr("action", "/notice/list");
         form.submit();
     });
-    
     /* 수정 하기 버튼 */
     $("#modify_btn").on("click", function(e){
         mForm.submit();
     });
-    
     /* 취소 버튼 */
     $("#cancel_btn").on("click", function(e){
         form.attr("action", "/notice/get");
