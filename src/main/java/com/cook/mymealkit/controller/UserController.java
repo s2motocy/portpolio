@@ -149,7 +149,7 @@ public class UserController {
     public String mypage(Model model,HttpSession session) {
     	UserVO user= (UserVO) session.getAttribute("vo");
 		model.addAttribute("vo", user);
-    	return "/members/mypage";
+    	return "/user/mypage";
     }
     
     //로그아웃처리

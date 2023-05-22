@@ -94,4 +94,7 @@ public class ItemController {
 		imapper.itemDelete(item_id);
 		return "redirect:/item/itemList";
 	}
+	
+	@GetMapping("/sample")
+	public void sample() {}
 }
