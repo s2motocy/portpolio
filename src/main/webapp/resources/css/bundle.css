@@ -150,7 +150,7 @@ body {
   position: relative;
   z-index: 1;
   color: #ffffff;
-  padding: 68px 0; }
+  padding: 10px 0; }
   [class*="page-style-"]:after {
     content: '';
     position: absolute;
@@ -570,7 +570,7 @@ body {
     position: relative;
     height: 52px;
     line-height: 52px;
-    background: #d90429;
+    background: #ff6b00;
     border-radius: 8px 8px 0 0;
     color: #ffffff;
     cursor: pointer;
@@ -875,7 +875,7 @@ body {
     outline: 0; }
 
 .button-primary {
-  background: #d90429;
+  background: #ff6b00;
   font-weight: 700;
   color: #ffffff; }
   .button-primary:hover {
@@ -1735,6 +1735,29 @@ body {
     outline: 0;
     border-color: #292929; }
 
+/* 항목추가 시작 ; text-field 의 width 를 300px 로 조정 */
+.text-field1 {
+  background-color: #ffffff;
+  border: 1px solid #eceff8;
+  color: #333333;
+  font-size: 14px;
+  height: 45px;
+  padding: 0 15px;
+  width: 300px;
+  transition: all .3s; }
+ .text-area1 {
+  display: block;
+  width: 300px;
+  border: 1px solid #eceff8;
+  color: #333333;
+  font-size: 14px;
+  padding: 15px;
+  transition: all .3s; }
+  .text-area:focus {
+    outline: 0;
+    border-color: #292929; }
+/* 항목추가 종료 */
+
 /*--------------------------------------------------------------
 7.0 Header
 --------------------------------------------------------------*/
@@ -2027,7 +2050,7 @@ body {
     position: relative;
     font-weight: bold; }
   .bottom-nav > li + li {
-    margin-left: 150px; } 
+    margin-left: 100px; } 
 
 /* Superscript-labels */
 .superscript-label-new, .superscript-label-hot, .superscript-label-discount {
@@ -3010,7 +3033,8 @@ body {
     .coupon-continue-checkout .button-area .checkout {
       margin-left: 6px;
       transition: all .4s;
-      background: #d90429;
+      background: #ff6b00;
+      border-radius: 4px;
       color: #ffffff; }
       .coupon-continue-checkout .button-area .checkout:hover {
         background: #cf0427; }
@@ -3609,4 +3633,7 @@ body {
   .item-counter {
     left: 90px;
     top: 8px; } }
+
+
+
 

@@ -47,7 +47,7 @@ public class BuyController {
 	
 	
 	/* 회원 구매 로그인 */
-	@GetMapping("/buyPageLogin")
+	@GetMapping("/buyLogin")
 	public void registerUser(BuyUserVO bvo,BuyGuestVO gvo, HttpSession session, Model model) {
 		System.out.println("vo : "+bvo);
 		model.addAttribute("test", gvo);
@@ -55,7 +55,7 @@ public class BuyController {
 	}
 	
 	/* 로그인 세션처리 */
-	@PostMapping("buyPageLogin")
+	@PostMapping("/buyLogin")
 	public ResponseEntity<String> UserLoginPost(@RequestBody UserVO uvo, BuyUserVO bvo, HttpSession session) {
 		System.out.println("uvo:"+uvo+" ,bvo:"+bvo);
 		if(uvo.getUser_id() ==null || uvo.getUser_id().isEmpty() || uvo.getPwd() == null || uvo.getPwd().isEmpty()) {
@@ -85,9 +85,9 @@ public class BuyController {
 	}
 	
 	/* 회원 구매 페이지 */
-	@GetMapping("/buyPageUser")
+	@GetMapping("/buyUser")
 	public void register(UserVO uvo, BuyUserVO bvo, HttpServletRequest request, HttpSession session, Model model) {
-		System.out.println("BuyPageUser 에서 uvo : "+uvo + " , bvo"+bvo);
+		System.out.println("BuyUser 에서 uvo : "+uvo + " , bvo"+bvo);
 		
 		if(session.getAttribute("user") != null) {
 			
@@ -130,9 +130,9 @@ public class BuyController {
 	}
 	
 	/* 비회원 구매 페이지 */
-	@GetMapping("/buyPageGuest")
+	@GetMapping("/buyGuest")
 	public void guestRegister(BuyGuestVO gvo, Model model) {
-		System.out.println("BuyPageGuest 에서 gvo : "+gvo);
+		System.out.println("BuyGuest 에서 gvo : "+gvo);
 		
 		/* 구매정보 */
 		String str="g"; // 문자열(u: user의 앞글자) 생성
@@ -161,7 +161,7 @@ public class BuyController {
 	}
 	
 	/* 구매 등록 */
-	@PostMapping("register")
+	@PostMapping("/register")
 	public String registerPost(BuyUserVO bvo, BuyGuestVO gvo, HttpSession session) {
 		if(session.getAttribute("user") != null) {
 			
@@ -181,11 +181,11 @@ public class BuyController {
 			
 		}
 		
-		return "redirect:/buy/buySuccess";
+		return "redirect:/buy/buyDone";
 	}
 	
 	/* 구매완료 페이지 */
-	@GetMapping("buySuccess")
+	@GetMapping("/buyDone")
 	public void success() {}
 	
 	// 회원 구매내역 조회

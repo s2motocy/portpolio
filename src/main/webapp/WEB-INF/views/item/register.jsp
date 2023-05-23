@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/admin/adminPage.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<%@ include file="../include/header.jsp" %>
+
 <style>
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -15,11 +9,6 @@ body {
 
 * {
   box-sizing: border-box;
-}
-
-.container {
-  margin: 60px;
-  background-color: white;
 }
 
 input[type=text],input[type=file] {
@@ -106,7 +95,7 @@ hr {
 }
 
 </style>
-</head>
+
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script>
 $(document).ready(function(){
@@ -237,4 +226,34 @@ $(document).ready(function(){
 	</div>
 </form>
 </body>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+<!-- Modernizr-JS -->
+<script type="text/javascript" src="/resources/js/vendor/modernizr-custom.min.js"></script>
+<!-- NProgress -->
+<script type="text/javascript" src="/resources/js/nprogress.min.js"></script>
+<!-- jQuery -->
+<script type="text/javascript" src="/resources/js/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+<!-- Popper -->
+<script type="text/javascript" src="/resources/js/popper.min.js"></script>
+<!-- ScrollUp -->
+<script type="text/javascript" src="/resources/js/jquery.scrollUp.min.js"></script>
+<!-- Elevate Zoom -->
+<script type="text/javascript" src="/resources/js/jquery.elevatezoom.min.js"></script>
+<!-- jquery-ui-range-slider -->
+<script type="text/javascript" src="/resources/js/jquery-ui.range-slider.min.js"></script>
+<!-- jQuery Slim-Scroll -->
+<script type="text/javascript" src="/resources/js/jquery.slimscroll.min.js"></script>
+<!-- jQuery Resize-Select -->
+<script type="text/javascript" src="/resources/js/jquery.resize-select.min.js"></script>
+<!-- jQuery Custom Mega Menu -->
+<script type="text/javascript" src="/resources/js/jquery.custom-megamenu.min.js"></script>
+<!-- jQuery Countdown -->
+<script type="text/javascript" src="/resources/js/jquery.custom-countdown.min.js"></script>
+<!-- Owl Carousel -->
+<script type="text/javascript" src="/resources/js/owl.carousel.min.js"></script>
+<!-- Main -->
+<script type="text/javascript" src="/resources/js/app.js"></script>
 </html>
+<%@ include file="../include/footer.jsp" %>
