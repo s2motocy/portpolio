@@ -6,5 +6,5 @@ public interface GuestService {
 	
 	public void insertGuest(GuestVO vo);
 	
-	public GuestVO gListByEnvoice(GuestVO guestvo); 
+	public GuestVO gListByBuy_no(GuestVO guestvo); 
 }

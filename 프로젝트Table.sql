@@ -9,7 +9,7 @@ create sequence seq_user;
 -- 회원(user) 테이블 생성
 create table tbl_user (
     uno         number(10) not null primary key,        -- 번호
-    user_id     varchar2(50) not null unique,      -- 아이디
+    user_id     varchar2(50) not null unique,           -- 아이디
     user_name   varchar2(50) not null,                  -- 이름
     pwd	        varchar2(50) not null,                  -- 비밀번호
     email	    varchar2(50) not null,                  -- 이메일
@@ -17,10 +17,11 @@ create table tbl_user (
     post_code   varchar2(30),                           -- 우편번호 (선택)
     addr        varchar2(50),                           -- 주소 (선택)
     addr2       varchar2(50),                           -- 상세주소 (선택)
+    reg_date    date default sysdate,                   -- 가입일
     auth        char(1) default 'm'                     -- 권한
 );
 
-insert into tbl_user(user_id, user_name, pwd, email, phone) values ('test1','test','1234','a@a.com','010-000-0000');
+insert into tbl_user values (seq_user.nextval,'test54','testname','1234','a@a.com','010-000-0000','131212','어디게','여기지','2023/05/12','m');
 
 -- 커밋
 commit;
@@ -44,6 +45,8 @@ create table tbl_item (
     item_name   varchar2(30) not null,                  -- 상품 이름
     item_price  number(10) not null,                    -- 상품 가격
     description varchar2(1000) not null,                -- 상품 설명
+    item_stock  number(10) not null,                    -- 상품 재고
+    item_sold   number(10),                             -- 상품 판매량
     update_date date default sysdate                    -- 수정일
 );
 
@@ -115,7 +118,7 @@ create table tbl_user_buy (
     buy_status  varchar2(20) default '구매완료',         -- 주문상태
     buy_date    date default sysdate                    -- 주문한 날짜
 );
-
+insert into tbl_user_buy values(seq_user_buy.nextval, 'u12337', 't2', '민선', '010111111','123123','12313132','12313','구매완료','2023/05/17');
 -- 비회원구매(guest_buy) 시퀀스 생성
 create sequence seq_guest_buy;
 -- 비회원구매(guest_buy) 테이블 생성
@@ -137,7 +140,7 @@ create sequence seq_buy_list;
 -- 구매 상품(buy_list) 테이블 생성
 create table tbl_buy_list (
     blist_no        number(10) not null primary key,    -- 주문목록 번호
-    buy_no          varchar2(100) unique,               -- 조회 번호
+    buy_no          varchar2(100),                      -- 조회 번호
     item_id         number(10),                         -- 상품 번호
     item_name       varchar2(50),                       -- 상품 이름
     amount          number(10),                         -- 수량
@@ -165,24 +168,28 @@ drop table tbl_buy_list;
 
 
 -------------------------------------------------------------------------------- 문의 (inquiry)
-
 --시퀀스 생성
-create sequence seq_board;
+create sequence seq_question;
 --문의 테이블 생성
-CREATE TABLE tbl_board(
-	bno			NUMBER PRIMARY KEY,                 -- 게시글 번호
-	title		VARCHAR2(300)	NOT NULL,           -- 게시글 제목
-	content		VARCHAR2(4000)	NOT NULL,           -- 게시글 내용
-	writer		VARCHAR2(100)	NOT NULL,           -- 게시글 작성자
-	writedate	DATE DEFAULT SYSDATE,               -- 글 작성날짜
-	readcnt		NUMBER DEFAULT 0,                   -- 조회수
-    updatedate  date default sysdate               -- 글 수정날짜
+create TABLE tbl_question(
+	qno			NUMBER PRIMARY KEY,                                             -- 게시글 번호
+	title		VARCHAR2(300)	NOT NULL,                                       -- 게시글 제목
+	content		VARCHAR2(4000)	NOT NULL,                                       -- 게시글 내용
+	writer		VARCHAR2(100)	NOT NULL,                                       -- 게시글 작성자
+	writedate	DATE DEFAULT SYSDATE,                                           -- 글 작성날짜
+	readcnt		NUMBER DEFAULT 0,                                               -- 조회수
+    updatedate  date default sysdate,                                           -- 글 수정날짜
+    password    VARCHAR2(100),                                                  -- 글 비밀번호
+    reply       VARCHAR2(4000),                                                 -- 답변
+    category    VARCHAR2(500)                                                   -- 문의 종류
 );
 
 --조회
-select * from tbl_board;
+select * from tbl_question;
 --커밋
 commit;
+-- 삭제
+drop table tbl_question;
 -------------------------------------------------------------------------------- 공지 (notice)
 
 -- 시퀀스 생성
@@ -196,7 +203,8 @@ create table notice(
     regdate date default sysdate,
     updatedate date default sysdate
 );
-
+insert into notice values(seq_notice.nextval, '제목', '내요오오옹', '아무개', '2023/05/16', '2023/05/16');
+select * from notice;
 -- 커밋
 commit;
 desc tbl_user;

@@ -65,5 +65,10 @@ public class BuyServicempl implements BuyService{
 		return bmapper.getMaxGno();
 	}
 
+	@Override
+	public int statusUpdate(BuyUserVO vo) {
+		return bmapper.statusUpdate(vo);	
+	}
+
 	
 }

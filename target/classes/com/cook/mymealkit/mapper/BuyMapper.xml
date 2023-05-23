@@ -32,6 +32,10 @@
 		select Max(gno) from tbl_guest_buy
 	</select>
 	
+	<update id="statusUpdate" parameterType="com.cook.mymealkit.domain.BuyUserVO">
+		update tbl_user_buy set buy_status=#{buy_status} where buy_no=#{buy_no}
+	</update>
+	
 </mapper>
 
 

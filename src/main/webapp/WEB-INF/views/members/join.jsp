@@ -194,12 +194,6 @@ pageEncoding="UTF-8"%>
       </div>
     </div>
     <script type="text/javascript">
-      $.validator.setDefaults({
-        submitHandler: function () {
-          // alert("submitted!");
-          $("button").submit();
-        },
-      });
 
       $(document).ready(function () {
         $("#signupForm").validate({
@@ -255,7 +249,12 @@ pageEncoding="UTF-8"%>
               .addClass("has-success")
               .removeClass("has-error");
           },
+          submitHandler: function () {
+              // alert("submitted!");
+              $("button").submit();
+            },
         });
+        
       });
     </script>
   </body>

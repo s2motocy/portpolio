@@ -42,7 +42,7 @@ public class UserController {
             return "/user/login";
         }
         session.setAttribute("vo", uservice.mypage(vo));
-        return "redirect:/users/mypage";
+        return "redirect:/user/mypage";
     }
     
     //회원가입 처리
@@ -104,7 +104,7 @@ public class UserController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-    	return "redirect:/user/home";
+    	return "redirect:/user/maypage";
     }
     
     //회원탈퇴 처리
@@ -128,7 +128,7 @@ public class UserController {
     public String userList(Model model) {
     	List<UserVO> users = uservice.getAllUsers();
     	model.addAttribute("list1", users);
-    	return "/members/memberlist";
+    	return "/user/userList";
     }
     
     //마이페이지
@@ -136,7 +136,7 @@ public class UserController {
     public String mypage(Model model,HttpSession session) {
     	UserVO user= (UserVO) session.getAttribute("vo");
 		model.addAttribute("vo", user);
-    	return "/members/mypage";
+    	return "/user/mypage";
     }
     
     //로그아웃처리

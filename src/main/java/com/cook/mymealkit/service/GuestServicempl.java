@@ -20,9 +20,9 @@ public class GuestServicempl implements GuestService{
 	}
 
 	@Override
-	public GuestVO gListByEnvoice(GuestVO guestvo)  {
+	public GuestVO gListByBuy_no(GuestVO guestvo)  {
 		// TODO Auto-generated method stub
-		return gmapper.gListByEnvoice(guestvo);
+		return gmapper.gListByBuy_no(guestvo);
 	}
 
 

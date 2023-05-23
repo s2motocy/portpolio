@@ -12,7 +12,7 @@
 		select max(envoice_no) from guest
 	</select>
 	
-	<select id="gListByEnvoice" resultType="com.cook.mymealkit.domain.GuestVO" parameterType="com.cook.mymealkit.domain.GuestVO">
+	<select id="gListByBuy_no" resultType="com.cook.mymealkit.domain.GuestVO" parameterType="com.cook.mymealkit.domain.GuestVO">
 		select * from guest where envoice_no=#{envoice_no} and name=#{name} and pwd=#{pwd}
 	</select>
 

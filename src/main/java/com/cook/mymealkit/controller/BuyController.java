@@ -7,12 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cook.mymealkit.domain.BuyGuestVO;
 import com.cook.mymealkit.domain.BuyUserVO;
@@ -105,5 +108,14 @@ public class BuyController {
 		System.out.println(buylist);
 		return "/buy/buyList";
 	} 
+	
+	@PostMapping("/order")
+	@ResponseBody
+	public int OrderModify(BuyUserVO vo){
+		
+		System.out.println("이야이애애애애호" + vo);
+		
+		return bservice.statusUpdate(vo);
+	}
 	
 }

@@ -11,5 +11,5 @@ public interface GuestMapper {
 	
 	public String getMaxEnvoice();
 	
-	public GuestVO gListByEnvoice(GuestVO guestvo); 
+	public GuestVO gListByBuy_no(GuestVO guestvo); 
 }

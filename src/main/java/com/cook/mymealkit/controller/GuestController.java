@@ -49,7 +49,7 @@ public class GuestController {
 	
 	@PostMapping("/orderInquiry")
 	public String orderInquiry(GuestVO vo , Model model) {
-		GuestVO guestVO = gservice.gListByEnvoice(vo);
+		GuestVO guestVO = gservice.gListByBuy_no(vo);
 		System.out.println(guestVO);
 		model.addAttribute("vo" ,guestVO);
 		return "guest/guestDetail";

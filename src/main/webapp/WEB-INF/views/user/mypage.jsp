@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 <style>
 body{
-  padding: 0;
-  margin: 0;
+  padding: 20px;
+  margin: 40px;
 }
 div{
   box-sizing: border-box;
@@ -192,18 +192,15 @@ div{
     <div>
       <div class="name">Jaden</div>
     </div>    
-    <div class="modify">수정하기</div>    
+    <div class="modify">
+    	<a href="update">수정하러가기</a>
+    </div>
+    <div class="delete">탈퇴하기</div>    
   </div>
   <div class="summaryContainer">
 	<div class="number">354</div>
         <div>쿠폰</div>
 	</div>
-      <div class="item">
-        <div class="number">354</div>
-        <div>상품후기</div>
-      </div>
-      <div class="item">
-        
   </div>  
   <div class="shippingStatusContainer">
     <div class="buy">
@@ -238,8 +235,8 @@ div{
     
   </div>  
   <div class="listContainer">
-    <a href="#" class="item">
-        <div class="text">주문목록<span class="circle"></span></div>
+    <a href="/buy/mBuyList?user_id=${user_id}" class="item">
+        <div class="text">주문내역</div>
     </a>
     <a href="#" class="item">
         <div class="text">상품후기</div>

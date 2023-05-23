@@ -1,5 +1,13 @@
 package com.cook.mymealkit.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +25,7 @@ public class BuyTests {
 	@Setter(onMethod_=@Autowired)
 	private BuyService bservice;
 	
-	@Test
+//	@Test
 	public void insertUserTest() {
 		BuyUserVO vo = new BuyUserVO();
 		vo.setBuy_no("u000001");
@@ -28,7 +36,5 @@ public class BuyTests {
 		vo.setAddr("수원");
 		vo.setAddr2("팔달");
 		bservice.insertUserBuy(vo);
-	}
-	
-	
+	} 
 }

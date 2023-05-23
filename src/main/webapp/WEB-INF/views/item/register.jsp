@@ -1,28 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/admin/adminPage.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 <style>
 body {
     font-family: Arial, Helvetica, sans-serif;
+
 }
 
-* {
-  box-sizing: border-box;
-}
-
-.container {
-  margin: 60px;
-  background-color: white;
-}
-
-input[type=text],input[type=file] {
+#register-input,input[type=file] {
     width: 30%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -32,20 +23,15 @@ input[type=text],input[type=file] {
     border-radius:5px
 }
 
-input[type=text],input[type=file]:focus {
+#register-input,input[type=file]:focus {
    background-color: #ddd;
    outline: none;
 }
 
-select{
-   padding: 5px;
-   margin: 5px 0 22px 0;
-}
-
 .uploadResult ul{
    position: absolute;
-   left: 33%;
-   top: 47%;
+   left: 41%;
+   top: 28%;
    width:30px;
    
 }
@@ -63,41 +49,28 @@ textarea {
    border-radius:5px
 }
 
-hr {
-   border: 1px solid #f1f1f1;
-   margin-bottom: 25px;
-}
-
 .resetbtn {
-   background-color: #28a745;
+   background-color: #ff6b00;
    color: white;
    padding: 16px 20px;
    margin: 8px 0;
    border: none;
    cursor: pointer;
    width: 15%;
-   opacity: 0.9;
+   opacity: 0.8;
    border-radius:10px
-}
-
-.resetbtn:hover {
-   opacity: 1;
 }
 
 .registerbtn {
-   background-color: #28a745;
+   background-color: #ff6b00;
    color: white;
    padding: 16px 20px;
    margin: 8px 0;
    border: none;
    cursor: pointer;
    width: 15%;
-   opacity: 0.9;
+   opacity: 0.8;
    border-radius:10px
-}
-
-.registerbtn:hover {
-   opacity: 1;
 }
 
 .navi_bar_area #admin1:visited{
@@ -197,8 +170,27 @@ $(document).ready(function(){
 }) // ready
 </script>
 <body>
+<!-- Page Introduction Wrapper -->
+	    <div class="page-style-a">
+	        <div class="container">
+	            <div class="page-intro">
+	                <h2>상품 등록</h2>
+	                <ul class="bread-crumb">
+	                    <li class="has-separator">
+	                        <i class="ion ion-md-home"></i>
+	                        <a href="home.html">Home</a>
+	                    </li>
+	                    <li class="is-marked">
+	                        <a href="single-product.html">등록</a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- Page Introduction Wrapper /- -->
 <form action="register" method="post" id='frm' role='form'>
 	<div class="container">
+	    
 		<label><b>카테고리</b></label>
 		<br>
 		<select name="category" id="category">
@@ -213,7 +205,7 @@ $(document).ready(function(){
 
 		<label for="item_name"><b>상품명</b></label>
 		<br>
-		<input type="text" id="item_name" name="item_name" />
+		<input type="text" id="register-input" name="item_name" />
 
         <div class="inputArea" id="img">
 			<label for="img_url"><b>상품 사진</b></label>
@@ -226,7 +218,12 @@ $(document).ready(function(){
        
 		<label for="item_price"><b>상품 가격</b></label>
 		<br>
-		<input type="text" id="item_price" name="item_price" />
+		<input type="text" id="register-input" name="item_price" />
+		<br>
+		
+		<label for="item_price"><b>상품 재고</b></label>
+		<br>
+		<input type="text" id="register-input" name="item_stock" />
 		<br>
          
         <label for="description"><b>상품 설명</b></label>
@@ -240,3 +237,4 @@ $(document).ready(function(){
 </form>
 </body>
 </html>
+<%@ include file="../include/footer.jsp" %>
