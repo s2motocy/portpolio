@@ -51,5 +51,15 @@ public class QuestionServicempl implements QuestionService {
 	public int getTotal(Criteria cri) {
 		return qmapper.getTotal(cri);
 	}
- 
+
+	@Override
+	public void increaseReadCount(int qno) {
+        qmapper.increaseReadCount(qno);
+	}
+	
+	@Override
+	public void insertReply(QuestionVO quest) {
+        qmapper.insertReply(quest);
+    }
+
 }

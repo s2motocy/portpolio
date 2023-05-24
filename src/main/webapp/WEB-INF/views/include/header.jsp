@@ -72,8 +72,6 @@
 <div id="app">
     <!-- Header -->
     <header>
-        <!-- Top-Header -->
-        <!-- Top-Header /- -->
         <!-- Mid-Header -->
         <div class="full-layer-mid-header">
             <div class="container">
@@ -214,7 +212,7 @@
                                 <div class="v-wrapper">
                                     <ul class="v-list animated fadeIn">
                                         <li>
-                                            <a href="#">대시보드</a>
+                                            <a href="/admin/dashboard">대시보드</a>
                                         </li>
                                         <li>
                                             <a href="#">상품관리
@@ -252,12 +250,6 @@
 			                                    </ul>
 			                                </div>
                                         </li>
-                                        <li>
-                                            <a href="#">통계</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">설정</a>
-                                        </li>
                                     </ul>
                                 </div>
                             </nav>
@@ -272,12 +264,13 @@
                                 </a>
                     			<div class="mega-menu mega-3-colm"> 
                                 	<ul>
-                                        <li class="menu-title"><a href="#">한식</a></li>
-                                        <li class="menu-title"><a href="#">양식</a></li>
-                                        <li class="menu-title"><a href="#">중식</a></li>
-                                        <li class="menu-title"><a href="#">분식</a></li>
-                                        <li class="menu-title"><a href="#">야식</a></li>
-                                        <li class="menu-title"><a href="#">기타</a></li>
+                                		<li class="menu-title"><a href="/item/categoryAll">전체</a></li>
+                                        <li class="menu-title"><a href="/item/category?category=한식">한식</a></li>
+                                        <li class="menu-title"><a href="/item/category?category=양식">양식</a></li>
+                                        <li class="menu-title"><a href="/item/category?category=중식">중식</a></li>
+                                        <li class="menu-title"><a href="/item/category?category=분식">분식</a></li>
+                                        <li class="menu-title"><a href="/item/category?category=야식">야식</a></li>
+                                        <li class="menu-title"><a href="/item/category?category=기타">기타</a></li>
                                    </ul>   
    								</div>
                             </li>

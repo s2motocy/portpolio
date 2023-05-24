@@ -1,15 +1,21 @@
 package com.cook.mymealkit.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.cook.mymealkit.domain.QuestionVO;
 import com.cook.mymealkit.domain.Criteria;
 import com.cook.mymealkit.domain.PageMakerDTO;
@@ -28,12 +34,15 @@ public class QuestionController {
 	private QuestionService qservice;
 	
 	@GetMapping("/list")
-	public void questionListGET(Model model, Criteria cri) {
-		model.addAttribute("list", qservice.getListPaging(cri));
+	public void questionListGET(HttpSession session, Model model, Criteria cri) {
+		System.out.println(cri);
+		List<QuestionVO> list = qservice.getListPaging(cri);
+		System.out.println(list);
+		model.addAttribute("list", list);
 		int total = qservice.getTotal(cri);
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 		model.addAttribute("pageMaker",pageMake);
-	}		
+	}	
 	    
     @GetMapping("/enroll")
     public void questionEnrollGET() { 
@@ -49,14 +58,15 @@ public class QuestionController {
     
     /* 문의 조회 */
     @GetMapping("/get")
-    public void questGetPageGET(int qno, Model model, Criteria cri) {
+    public void questGetPageGET(HttpSession session, int qno, Model model, Criteria cri) {
+    	qservice.increaseReadCount(qno);
 	    model.addAttribute("pageInfo", qservice.getPage(qno));
 	    model.addAttribute("cri", cri);
     }
     
     /* 수정 페이지 이동 */
     @GetMapping("/modify")
-    public void questModifyGET(int qno, Model model, Criteria cri) {
+    public void questModifyGET(HttpSession session, int qno, Model model, Criteria cri) {
     	model.addAttribute("pageInfo", qservice.getPage(qno));  
     	model.addAttribute("cri", cri);
     }
@@ -64,6 +74,7 @@ public class QuestionController {
     /* 문의 수정 */	
     @PostMapping("/modify")
     public String questModifyPOST(QuestionVO quest, RedirectAttributes rttr) {
+    	System.out.println("수정:" + quest);
     	qservice.modify(quest);
     	rttr.addFlashAttribute("result", "modify success");
     	return "redirect:/question/list";
@@ -91,7 +102,9 @@ public class QuestionController {
     	
     }
     @PostMapping("/reply")
-    public String questReplyPOST() {
-    	return "redirect:/question/reply";
+    public ResponseEntity<String> questReplyPOST(@RequestBody QuestionVO quest) {
+    	System.out.println("vo:" +quest);
+    	qservice.insertReply(quest);
+    	return new ResponseEntity<String>("success",HttpStatus.OK);
     }
 }

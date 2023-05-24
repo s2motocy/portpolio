@@ -161,7 +161,7 @@ public class UploadController {
 		}
 		return new ResponseEntity<Resource>(resource, header, HttpStatus.OK);
 	}
-	//p548
+	
 	@PostMapping("/deleteFile")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type) {

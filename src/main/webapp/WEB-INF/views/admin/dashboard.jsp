@@ -8,12 +8,17 @@
 
 <!-- Style -->
 <style type="text/css">
+.container{
+	margin-top:10px;}
 .input-group input[type=text] {
 	display:block;
 	width: 120px;
 	height: 30px; }
 .input-group button[type=button] {
 	height: 30px; }
+.col-lg-6{
+	float:right;
+	padding-bottom:50px;}
 </style>
 
 <!-- Script -->
@@ -171,46 +176,65 @@ $(document).ready(function() {
 </script>
 
 <body>
-<div class="container">
-	<hr>
-	<form action="dashboard" class="dashboard-form">
+<div id="app">
+	<div class="page-style-a">
+	    <div class="container">
+	        <div class="page-intro">
+	            <h2>대시보드</h2>
+	            <ul class="bread-crumb">
+	                <li class="has-separator">
+	                    <i class="ion ion-md-home"></i>
+	                    <a href="home.html">Home</a>
+	                </li>
+	                <li class="is-marked">
+	                    <a href="single-product.html">대시보드</a>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+	<div class="container">
 		<!-- 일일 회원가입자 수 -->
-		<div class="flex-row d-flex justify-content-center">
+		<form action="dashboard" class="dashboard-form">
+			<div class="col-lg-6">
 			<label id="chart_label">일일 회원가입자</label>
-			<div class="input-group input-daterange">
-			    <input type="text" class="date-input input1 datepicker" name="startDate" value="${list[0].startDate}" readonly>
-			    <input type="text" class="date-input input2 datepicker" name="endDate" value="${list[0].endDate}" readonly>
-			    <button type="button" id="click-btn">Check</button>
-			</div>
-			<c:forEach items="${list}" var="i">
-				<div id="a">
-					<input type="hidden" name="reg_date" value="${i.reg_date}">
-					<input type="hidden" name="cnt" value="${i.cnt}">
+				<div class="input-group input-daterange">
+				    <input type="text" class="date-input input1 datepicker" name="startDate" value="${list[0].startDate}"
+				            readonly>
+				    <input type="text" class="date-input input2 datepicker" name="endDate" value="${list[0].endDate}"
+				            readonly>
+				    <button type="button" id="click-btn">Check</button>
 				</div>
-			</c:forEach>
-			<div class="chart_canvas" style="position: relative; height:150px; width:30vw">
-				<canvas id="myChart"></canvas>
-			</div>
-		</div>
-		<!-- 일일 주문 수 -->
-		<div class="flex-row d-flex justify-content-center">
-			<label id="chart_label">일일 주문량</label>
-			<div class="input-group input-daterange">
-			    <input type="text" class="date-input input3 datepicker" name="startDateB" value="${ublist[0].startDateB}" readonly>
-			    <input type="text" class="date-input input4 datepicker" name="endDateB" value="${ublist[0].endDateB}" readonly>
-			    <button type="button" id="click-btn2">Check</button>
-			</div>
-			<c:forEach items="${ublist}" var="u">
-				<div id="a">
-					<input type="hidden" name="buy_date" value="${u.buy_date}">
-					<input type="hidden" name="buyCnt" value="${u.buyCnt}">
+				<c:forEach items="${list}" var="i">
+					<div id="a">
+						<input type="hidden" name="reg_date" value="${i.reg_date}">
+						<input type="hidden" name="cnt" value="${i.cnt}">
+					</div>
+				</c:forEach>
+				<div class="chart_canvas" style="position: relative; height:150px; width:30vw">
+					<canvas id="myChart"></canvas>
 				</div>
-			</c:forEach>
-			<div class="chart_canvas_userbuy" style="position: relative; height:150px; width:30vw">
-				<canvas id="mySecondChart"></canvas>
 			</div>
-		</div>
-	</form>
+			<!-- 일일 주문 수 -->
+			<div class="flex-row d-flex justify-content-center">
+				<label id="chart_label">일일 주문량</label>
+				<div class="input-group input-daterange">
+				    <input type="text" class="date-input input3 datepicker" name="startDateB" value="${ublist[0].startDateB}" readonly>
+				    <input type="text" class="date-input input4 datepicker" name="endDateB" value="${ublist[0].endDateB}" readonly>
+				    <button type="button" id="click-btn2">Check</button>
+				</div>
+				<c:forEach items="${ublist}" var="u">
+					<div id="a">
+						<input type="hidden" name="buy_date" value="${u.buy_date}">
+						<input type="hidden" name="buyCnt" value="${u.buyCnt}">
+					</div>
+				</c:forEach>
+				<div class="chart_canvas_userbuy" style="position: relative; height:150px; width:30vw">
+					<canvas id="mySecondChart"></canvas>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 </body>
 

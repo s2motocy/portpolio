@@ -20,6 +20,7 @@ import com.cook.mymealkit.service.UserService;
 
 import lombok.Setter;
 
+
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
@@ -27,8 +28,6 @@ public class UserController {
 	@Setter(onMethod_=@Autowired)
 	UserService uservice;
 	
-	@GetMapping("/home")
-	public void home() {}
 	
 	 //로그인 페이지 처리
 	@GetMapping("/login")
@@ -43,7 +42,7 @@ public class UserController {
             return "/user/login";
         }
         session.setAttribute("vo", uservice.mypage(vo));
-        return "redirect:/index";
+        return "redirect:/";
     }
     
     //회원가입 처리
@@ -57,22 +56,6 @@ public class UserController {
     	return "redirect:/index";
     }
 
-//    // 아이디 중복 확인 
-//    @RequestMapping(value = "/userIdCheck", method = RequestMethod.POST)
-//    @ResponseBody
-//	public String IdChkPOST(String user_id) throws Exception{
-//		System.out.println("잘 넘어오는지 확인");
-//			int result = uservice.idCheck(user_id);
-//			System.out.println("결과값 = " + result);	
-//			if(result != 0) {	
-//				return "fail";
-//			} else {
-//				return "success";	
-//			}	
-//		
-//	}
-    
-    
   //아이디 중복조회
     @GetMapping("/idCheck")
 	public ResponseEntity<Integer> idCheck(String user_id) {
@@ -80,7 +63,6 @@ public class UserController {
 		int res = uservice.idCheck(user_id);
 		System.out.println(res);
 		return new ResponseEntity<Integer>(res, HttpStatus.OK);
-
 	}
     
     /* 이메일 인증 */
@@ -118,7 +100,7 @@ public class UserController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-    	return "redirect:/user/home";
+    	return "redirect:/user/maypage";
     }
     
     //회원탈퇴 처리
@@ -143,7 +125,6 @@ public class UserController {
     	List<UserVO> users = uservice.getAllUsers();
     	model.addAttribute("list1", users);
     }
-    
     //마이페이지
     @GetMapping("/mypage")
     public String mypage(Model model,HttpSession session) {

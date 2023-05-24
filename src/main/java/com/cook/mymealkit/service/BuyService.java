@@ -14,6 +14,7 @@ public interface BuyService {
 	public List<BuyUserVO> bListByUserId(String user_id); 	// 회원구매 조회
 	public int getMaxBno();									// bno 최대값 조회
 	
+	public int statusUpdate(BuyUserVO vo);					// 배송상태 수정
 	
 	/* 비회원 */
 	public void insertGuestBuy(BuyGuestVO vo); 				// 게스트구매 등록

@@ -6,11 +6,8 @@
 tr{
 	text-align: center ;
 	border:1px solid ;}
-table{
-	width:100%;
-	border:1px solid ; }
-#container {
-	margin:60px; }
+.container{
+	padding-top:10px; }
 .navi_bar_area #admin2:visited{
     color:black;
     font-weight: bold; }
@@ -40,6 +37,7 @@ $(document).ready(function () {
 }) // ready
 </script>
 <body>
+
 <div id="app">
 	<!-- Page Introduction Wrapper -->
     <div class="page-style-a">
@@ -60,24 +58,26 @@ $(document).ready(function () {
     </div>
     <!-- Page Introduction Wrapper /- -->
     
-	<div class="container" style="margin-top:20px">
-		<table class="table table-striped">
+	<div class="container">
+		<table class="table table-hover">
 			<tr>
 				<th scope="col">상품 번호</th>
 				<th scope="col">상품 사진</th>
 				<th scope="col">상품 분류</th>
 				<th scope="col">상품 이름</th>
 				<th scope="col">상품 가격</th>
+				<th scope="col">상품 재고</th>
 				<th scope="col">수정 여부</th>
 				<th scope="col">삭제 여부</th>
 			</tr>	
 			<c:forEach var="list" items="${list}">
 				<tr class="table-light">
 					<td>${list.item_id}</td>	
-					<td data-label=""><img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" width="100px" height="100px" /></td>
+					<td data-label=""><img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" /></td>
 					<td>${list.category}</td>
 					<td><a href="detail?item_id=${list.item_id}">${list.item_name}</a></td>
 					<td><fmt:formatNumber value="${list.item_price}" pattern="###,### 원" /></td>
+					<td>${list.item_stock}</td>
 					<td><a href="update?item_id=${list.item_id}"><button id="updatebtn" type="button" class="btn btn-primary">수정</button></a></td>
 					<td><a href="delete?item_id=${list.item_id}" id="delete"><button id="deletebtn" type="button" class="btn btn-danger">삭제</button></a></td>
 				</tr>
@@ -87,3 +87,4 @@ $(document).ready(function () {
 </div>
 </body>
 <%@ include file="../include/footer.jsp" %>
+
