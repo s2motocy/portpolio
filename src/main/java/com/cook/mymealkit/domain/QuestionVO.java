@@ -32,5 +32,11 @@ public class QuestionVO {
     
     /* 비밀번호 */
     private String password;
+    
+    /* 답변 */
+    private String reply;
+    
+    /* 문의 종류 */
+    private String category;
 
 }

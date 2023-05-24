@@ -26,7 +26,7 @@
 
     <!-- 문의 등록 -->
     <insert id="enroll">    
-        insert into tbl_question(qno, title, content, writer, password) values (seq_question.NEXTVAL, #{title}, #{content}, #{writer}, #{password})        
+        insert into tbl_question(qno, title, content, writer, password, category) values (seq_question.NEXTVAL, #{title}, #{content}, #{writer}, #{password}, #{category})   
     </insert>
     
     <!-- 문의 목록 -->
@@ -50,16 +50,41 @@
     </delete>
     
     <select id="getTotal" resultType="int">
-        select count(*) from tbl_question
-    </select>
+		select count(*) from tbl_question
+		<if test="keyword != null">
+			where qno > 0 <include refid="criteria"></include>
+		</if>
+	</select>
 
     <!-- 문의 목록(페이징) -->
-    <select id="getListPaging" resultType="com.cook.mymealkit.domain.QuestionVO">
-    <![CDATA[
-        select qno, title, content, writer, writedate, updatedate, password from(
-                select /*+INDEX_DESC(tbl_question pk_board) */ rownum  as rn, qno, title, content, writer, writedate, updatedate, password     
-                	from tbl_question where rownum <= #{pageNum} * #{amount})         
-        				where rn > (#{pageNum} -1) * #{amount}
-    ]]>
-    </select>
+<select id="getListPaging" resultType="com.cook.mymealkit.domain.QuestionVO">
+  <![CDATA[
+    select qno, title, content, writer, writedate, updatedate, password
+    from (
+      select /*+INDEX_DESC(tbl_question pk_question) */ rownum as rn, qno, title, content, writer, writedate, updatedate, password
+      from tbl_question
+      where rownum <= #{pageNum} * #{amount}
+      ]]>
+      <if test="keyword != null">
+        <include refid="criteria"></include>
+      </if>
+  <![CDATA[
+    )
+    where rn > (#{pageNum} - 1) * #{amount}
+  ]]>
+</select>
+
+    
+    <!-- 문의 조회수 -->
+    <update id="increaseReadCount" parameterType="int">
+    	update tbl_question
+    	set readcnt = readcnt + 1
+    	where qno = #{qno}
+	</update>
+    
+    <!-- 문의 답변 -->
+	<update id="insertReply" parameterType="com.cook.mymealkit.domain.QuestionVO">
+        update  tbl_question set reply=  #{reply} where qno= #{qno}
+    </update>
+    
 </mapper>

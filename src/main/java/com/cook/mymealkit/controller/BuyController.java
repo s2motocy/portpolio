@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
 import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.BuyGuestVO;
 import com.cook.mymealkit.domain.BuyListDTO;
@@ -202,6 +205,24 @@ public class BuyController {
 
 	// 관리자권한 전체 구매내역 조회
 	@GetMapping("/buyList")
+	public String Buy(Model model) throws ParseException {
+		List<BuyUserVO> buylist = bservice.userBuyList();
+		System.out.println(buylist);
+		model.addAttribute("buylist", buylist);
+		System.out.println(buylist);
+		return "/buy/buyList";
+	} 
+	
+	@PostMapping("/order")
+	@ResponseBody
+	public int OrderModify(BuyUserVO vo){
+		
+		System.out.println("이야이애애애애호" + vo);
+		
+		return bservice.statusUpdate(vo);
+	}
+	
+
 	public void Buy(Model model) {
 		List<BuyUserVO> buyList = bservice.userBuyList(); // 전체 회원구매 목록
 		List<BuyListDTO> bblist = new ArrayList<BuyListDTO>(); // 아이템 목록만 저장할 공간

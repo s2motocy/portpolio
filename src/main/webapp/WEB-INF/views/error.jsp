@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	로그인 실패
-	겸
-	테스트완료오
-	<a href="/buy/mBuyList?member_id=${member_id}">주문내역</a>
+	<h1>결제가 완료되었습니다!:D</h1>
+	<button>홈으로 가기</button>
+	<button>구매내역 보기</button>
 </body>
 </html>
