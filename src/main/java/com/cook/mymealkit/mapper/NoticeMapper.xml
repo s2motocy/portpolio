@@ -8,26 +8,22 @@
         SELECT *
         FROM notice
     </select>
-    
     <!-- 게시글 조회 -->
     <select id="selectById" resultType="com.cook.mymealkit.domain.NoticeVO">
         SELECT *
         FROM notice
         WHERE bno = #{bno}
     </select>
-    
         <!-- 게시글 입력 -->
     <insert id="insert">
         INSERT INTO notice (bno, title, content,writer)
         VALUES (seq_notice.nextval, #{title}, #{content}, #{writer})
     </insert>
-    
         <!-- 게시글 업데이트 -->
     <update id="update">
         update notice set title = #{title}, 
         content = #{content}, updatedate = sysdate where bno = #{bno}
     </update>
-    
         <!-- 게시글 삭제 -->
     <delete id="deleteById">
         DELETE FROM notice
