@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <%@ include file="../include/header.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>All product</title>
+
 <style>
 .container{
 	margin-top:10px;}
 
 </style>
+
 <script>
 const attachClickGridAndList = function () {
     $('#list-anchor').on('click',function () {
@@ -27,7 +24,7 @@ const attachClickGridAndList = function () {
     });
 };
 </script>
-</head>
+
 <body>
 <!-- Page Introduction Wrapper -->
 <div class="page-style-a">
@@ -60,7 +57,7 @@ const attachClickGridAndList = function () {
 	        <div class="item" class="col">
 		        <div class="image-container">
 		            <a class="item-img-wrapper-link" href="single-product.html">
-		                <img class="img-fluid" src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\','/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" alt="Product" />
+		                <img class="img-fluid" src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\','/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" alt="Product" width="225px" height="225px" />
 		            </a>
 		        </div>
 		            <div class="item-content">

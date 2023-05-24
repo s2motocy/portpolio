@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../include/header.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <style>
 .container{
 	margin-top:10px;}
 </style>
+
 <script>
 const attachClickGridAndList = function () {
     $('#list-anchor').on('click',function () {
@@ -27,7 +25,7 @@ const attachClickGridAndList = function () {
     });
 };
 </script>
-</head>
+
 <body>
 <!-- Page Introduction Wrapper -->
 <div class="page-style-a">
@@ -60,7 +58,7 @@ const attachClickGridAndList = function () {
 	        <div class="item" class="col">
 		        <div class="image-container">
 		            <a class="item-img-wrapper-link" href="single-product.html">
-		                <img class="img-fluid" src="/display?fileName=/${category.attachList[0].uploadPath.replace('\\','/')}/${category.attachList[0].uuid}_${category.attachList[0].fileName}" alt="Product" />
+		                <img class="img-fluid" src="/display?fileName=/${category.attachList[0].uploadPath.replace('\\','/')}/${category.attachList[0].uuid}_${category.attachList[0].fileName}" alt="Product" width="225px" height="225px" />
 		            </a>
 		        </div>
 		            <div class="item-content">
@@ -77,7 +75,7 @@ const attachClickGridAndList = function () {
 		                </div>
 		                <div class="price-template">
 	                    <div class="item-new-price">
-	                       ${category.item_price}원
+	                       <fmt:formatNumber value="${category.item_price}" pattern="###,### 원" />
 	                    </div>
 	                </div>
 	            </div>

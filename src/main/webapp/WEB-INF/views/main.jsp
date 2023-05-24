@@ -6,12 +6,7 @@
 <style>
 .container {
 	margin-top:10px;}
-img {
-  margin: 0 auto;
-  display: block;
-  margin-top: 20%;}
 </style>
-<html lang="en">
 <body>
 <div id="app">
 	<div class="default-height ph-item">
@@ -42,39 +37,36 @@ img {
 	    </div>
 	</div>
 	<div class="container">
-		<div class="row">
+		<div class="row product-container grid-style">
 		    <c:forEach var="list" items="${list}">
 		        <div class="item" class="col">
-		            <div>
-		                <a class="item-img-wrapper-link" href="item/detail?item_id=${list.item_id}">
-		                   <img class="img-fluid" src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\','/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" alt="Product" />
-		                </a>
-		            </div>
-		            <div class="item-content">
-		                <div class="what-product-is">
-		                    <h6 class="item-title">
-		                       <a href="item/detail?item_id=${list.item_id}">${list.item_name}</a>
-		                    </h6>
-		                    <div class="item-stars">
-		                        <div class='star' title="0 out of 5 - based on 0 Reviews">
-		                            <span style='width:0'></span>
-		                        </div>
-		                        <span>(10)</span>
-		                    </div>
-		                </div>
-		                <div class="price-template">
+			        <div class="image-container">
+			            <a class="item-img-wrapper-link" href="single-product.html">
+			                <img class="img-fluid" src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\','/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" alt="Product" width="225px" height="225px" />
+			            </a>
+			        </div>
+			            <div class="item-content">
+			                <div class="what-product-is">
+			                    <h6 class="item-title">
+			                       <a href="single-product.html">${list.item_name}</a>
+			                    </h6>
+			                    <div class="item-stars">
+			                        <div class='star' title="0 out of 5 - based on 0 Reviews">
+			                            <span style='width:0'></span>
+			                        </div>
+			                        <span>(10)</span>
+			                    </div>
+			                </div>
+			                <div class="price-template">
 		                    <div class="item-new-price">
 		                       <fmt:formatNumber value="${list.item_price}" pattern="###,### 원" />
 		                    </div>
 		                </div>
 		            </div>
-		        </div>
-		    </c:forEach>
-		</div>
+	          </div>
+	       </c:forEach>
+	    </div>
 	</div>
 </div>
-
 </body>
-
 <%@ include file="include/footer.jsp" %> 
-
