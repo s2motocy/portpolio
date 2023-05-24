@@ -18,8 +18,7 @@
             }
             if(result === "create success"){
                 alert("등록이 완료되었습니다.");
-            }
-            
+            }      
             if(result === "modify success"){
                 alert("수정이 완료되었습니다.");
             }
@@ -30,8 +29,7 @@
         let moveForm = $("#moveForm");
  
         $(".move").on("click", function(e){
-            e.preventDefault();
-            
+            e.preventDefault();      
             moveForm.append("<input type='hidden' name='bno' value='"+ $(this).attr("href")+ "'>");
             moveForm.attr("action", "/notice/get");
             moveForm.submit();

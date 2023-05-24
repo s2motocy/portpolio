@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	메인페이지
+	<h1>쇼핑몰 채팅방</h1>
+	<form action="question">
+	<input type="text" name="ChatMessage" />
+	<button>전송</button>
+	</form>
 </body>
 </html>

@@ -32,4 +32,5 @@ public interface QuestionMapper {
     
     /* 문의 답변 */
     void insertReply(QuestionVO quest);
+
 }

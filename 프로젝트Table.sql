@@ -21,7 +21,9 @@ create table tbl_user (
     auth        char(1) default 'm'                     -- 권한
 );
 
-insert into tbl_user values (seq_user.nextval,'test54','testname','1234','a@a.com','010-000-0000','131212','어디게','여기지','2023/05/12','m');
+-- dummy
+insert into tbl_user(uno,user_id, user_name, pwd, email, phone, post_code, addr, addr2, auth) values (seq_user.nextval,'admin','관리자','1234','admin@test.com','010-000-0000','12345','서울시','관악산쪽','a');
+insert into tbl_user(uno,user_id, user_name, pwd, email, phone, post_code, addr, addr2) values (seq_user.nextval,'user','회원','1234','user@test.com','010-000-0000','12345','수원시','수원역인근');
 
 -- 커밋
 commit;

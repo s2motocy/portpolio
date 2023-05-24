@@ -2,17 +2,17 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
- <style>
-  .input_wrap, .u-s-m-b-30 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+<style>
+.input_wrap, .u-s-m-b-30 {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
 }
 .text-field1{
 	border-radius:5px;}	
 	.table_wrap {
-  width: 100%;
+  		width: 100%;
 }
 
 .table_wrap table {
@@ -169,10 +169,12 @@ textarea{
       </td>
     </tr>
     </table>
+</div>
 <div style="text-align: center; margin-bottom: 100px;">
     <button type="reset" class="button button-outline-secondary" style="display: inline-block; width: 200px; height: 50px; background-color: gray; color: white; border: gray;">취소</button>
     <button type="submit" class="button button-outline-secondary" style="display: inline-block; width: 200px; height: 50px; background-color: orange; color: white; border: orange;">문의등록</button>
 </div>
-    </form>
- <%@ include file="/WEB-INF/views/include/footer.jsp" %>   
+</div>
+</form>
 </html>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>

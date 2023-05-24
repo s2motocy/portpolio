@@ -25,7 +25,8 @@ public class BuyTests {
 	@Setter(onMethod_=@Autowired)
 	private BuyService bservice;
 	
-//	@Test
+
+	//@Test
 	public void insertUserTest() {
 		BuyUserVO vo = new BuyUserVO();
 		vo.setBuy_no("u000001");
@@ -37,4 +38,11 @@ public class BuyTests {
 		vo.setAddr2("팔달");
 		bservice.insertUserBuy(vo);
 	} 
+
+	
+	@Test
+	public void sqlTest() {
+		System.out.println(bservice.getMaxBno()+1);
+	}
+
 }

@@ -26,10 +26,11 @@ public interface QuestionService {
     
     /* 문의 총 갯수 */
     public int getTotal(Criteria cri);
-    
+
     /* 문의 조회수 */
 	public void increaseReadCount(int qno);
 	
 	/* 문의 답변 */
 	public void insertReply(QuestionVO quest);
+
 }

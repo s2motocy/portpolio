@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import com.cook.mymealkit.domain.QuestionVO;
 import com.cook.mymealkit.domain.Criteria;
 import com.cook.mymealkit.domain.PageMakerDTO;
-import com.cook.mymealkit.domain.QuestionVO;
+import com.cook.mymealkit.domain.UserVO;
 import com.cook.mymealkit.service.QuestionService;
 
 import lombok.Setter;
@@ -43,8 +43,6 @@ public class QuestionController {
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 		model.addAttribute("pageMaker",pageMake);
 	}	
-	
-
 	    
     @GetMapping("/enroll")
     public void questionEnrollGET() { 

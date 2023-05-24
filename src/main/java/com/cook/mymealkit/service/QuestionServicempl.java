@@ -61,4 +61,5 @@ public class QuestionServicempl implements QuestionService {
 	public void insertReply(QuestionVO quest) {
         qmapper.insertReply(quest);
     }
+
 }

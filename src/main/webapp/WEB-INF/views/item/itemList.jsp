@@ -26,15 +26,13 @@ tr{
 </style>
 <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
 <script>
-$(document).ready(function () {
-	
+$(document).ready(function () {	
 	/* 이미지 경로 변경 */
 	$("img").each(function (idx, data) {
 		var r = $(this).attr('src')
 		u = r.replaceAll('\\', '/')
 		$(this).attr('src', u)
 	})
-	
 	/* 삭제버튼 */
 	$("button#deletebtn").each(function (idx, data) {
 		$(this).click(function (e) {
@@ -49,7 +47,6 @@ $(document).ready(function () {
 			}
 		}) // click
 	}) // each
-
 }) // ready
 </script>
 <body>
@@ -85,8 +82,8 @@ $(document).ready(function () {
 		</tr>	
 		<c:forEach var="list" items="${list}">
 			<tr class="table-light">
-				<td>${list.item_id}</td>
-				<td data-label=""><img src="/display?fileName=/${list.attachList[0].uploadPath}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}" /></td>
+				<td>${list.item_id}</td>	
+				<td data-label=""><img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}" /></td>
 				<td>${list.category}</td>
 				<td><a href="detail?item_id=${list.item_id}">${list.item_name}</a></td>
 				<td>${list.item_price}</td>
@@ -98,5 +95,4 @@ $(document).ready(function () {
 	</table>
 </div>
 </body>
-</html>
 <%@ include file="../include/footer.jsp" %>

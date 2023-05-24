@@ -1,18 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
   <style>
-  .input_wrap, .u-s-m-b-30 {
+<<<<<<< HEAD
+.input_wrap, .u-s-m-b-30 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +18,7 @@
 .text-field1{
 	border-radius:5px;}	
 	.table_wrap {
-  width: 100%;
+  		width: 100%;
 }
 
 .table_wrap table {
@@ -52,14 +49,13 @@
 .input_wrap input:read-only {
   color: #888;
 }
-<style type="text/css">
+
 .input_wrap{
 	padding: 5px 20px;
 }
 label{
     display: block;
-    margin: 10px 0;
-}
+    margin: 10px 0;}
 input{
 	padding: 5px;
     font-size: 17px;
@@ -102,8 +98,8 @@ textarea{
 	padding-left : 80px;
 	margin-top : 50px;
 	margin-bottom : 30px;
-	  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .container{
 	margin-top:10px;}
@@ -181,7 +177,6 @@ textarea{
         </div>
       </td>
     </tr>
-</div>
 <form action="/question/reply"  method="post" id="replyShow">
 	<div class="input_wrap" id="reply_input_wrap" style="display: none;">
 	  <label>답글 내용</label>
@@ -199,9 +194,6 @@ textarea{
   <label>답글 내용</label>
   <textarea rows="3" readonly="readonly" id="reply_output"></textarea>
 </div>	
-<!-- <div class="btn_wrap" id="reply_btn_wrap">
-  <button class="btn" id="reply_btn">답글 작성</button>
-</div> -->
 </div>
 <form id="infoForm" action="/question/modify" method="get">
   <input type="hidden" id="qno" name="qno" value='<c:out value="${pageInfo.qno}"/>'>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.cook.mymealkit.domain.UserVO;
 import com.cook.mymealkit.mapper.UserMapper;
 
 import lombok.Setter;
@@ -18,11 +19,19 @@ public class UserTests {
 	private UserMapper umapper;
 	
 	@Test
-	public void memberIdChk() throws Exception{
-		String id = "test";	// 존재하는 아이디
-		String id2 = "test123";	// 존재하지 않는 아이디
-		umapper.idCheck(id);
-		umapper.idCheck(id2);
+	public void dummyInsert() {
+		/* 회원 아이디 생성 */
+		UserVO vo = new UserVO();
+		vo.setUser_id("user");
+		vo.setUser_name("회원");
+		vo.setPwd("1234");
+		vo.setEmail("test@test.com");
+		vo.setPhone("010-0000-0000");
+		vo.setPost_code("35410");
+		vo.setAddr("서울시");
+		vo.setAddr2("관악산쪽");
+		umapper.insertUser(vo);
 	}
 
 }
+

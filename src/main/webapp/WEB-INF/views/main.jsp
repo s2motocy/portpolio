@@ -1,11 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <!doctype html>
 <style>
 .container {
 	margin-top:10px;}
+img {
+  margin: 0 auto;
+  display: block;
+  margin-top: 20%;}
 </style>
 <html lang="en">
 <body>

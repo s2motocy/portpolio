@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>상품 정보 수정 페이지</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js"> </script>
  <script>
      $(document).ready(function(){ ///// 전체 추가
@@ -29,7 +29,6 @@
  			console.log(str)
  			formObj.append(str).submit()
  		})
- 		
  		var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$")
  		var maxSize = 5242880  //5MB
  		const checkExtension=(fileName, fileSize)=>{
@@ -43,7 +42,6 @@
  			}
  			return true;
  		}
-
  		$("input[type='file']").change(function(e){ 
  			var formData = new FormData()
  			var inputFile = $("input[name='uploadFile']")
@@ -53,7 +51,6 @@
  				if(!checkExtension(i.name, i.size)) return false;
  				formData.append("uploadFile", i)
  			}
- 			
  			var uploadResult =$(".uploadResult ul")
  			const showUploadedFile=(uploadResultArr)=>{
  				if(!uploadResultArr || uploadResultArr.length ==0) return
@@ -238,7 +235,6 @@ textarea {
         <button type="submit" class="updatebtn">수정</button>   
         </div>   
     </form>
-
 </body>
 </html>
 <%@ include file="../include/footer.jsp" %>

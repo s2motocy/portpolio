@@ -6,12 +6,13 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cook.mymealkit.domain.UserVO;
@@ -42,7 +43,7 @@ public class UserController {
             return "/user/login";
         }
         session.setAttribute("vo", uservice.mypage(vo));
-        return "redirect:/user/mypage";
+        return "redirect:/";
     }
     
     //회원가입 처리
@@ -53,22 +54,35 @@ public class UserController {
     public String signUP(UserVO vo,Model model) throws Exception {
     	System.out.println(vo);
     	uservice.join(vo);
-    	return "redirect:/user/login";
+    	return "redirect:/index";
     }
-    // 아이디 중복 확인 
-    @RequestMapping(value = "/userIdCheck", method = RequestMethod.POST)
-    @ResponseBody
-	public String IdChkPOST(String user_id) throws Exception{
-		System.out.println("잘 넘어오는지 확인");
-			int result = uservice.idCheck(user_id);
-			System.out.println("결과값 = " + result);	
-			if(result != 0) {	
-				return "fail";
-			} else {
-				return "success";	
-			}	
-		
+
+//    // 아이디 중복 확인 
+//    @RequestMapping(value = "/userIdCheck", method = RequestMethod.POST)
+//    @ResponseBody
+//	public String IdChkPOST(String user_id) throws Exception{
+//		System.out.println("잘 넘어오는지 확인");
+//			int result = uservice.idCheck(user_id);
+//			System.out.println("결과값 = " + result);	
+//			if(result != 0) {	
+//				return "fail";
+//			} else {
+//				return "success";	
+//			}	
+//		
+//	}
+    
+    
+  //아이디 중복조회
+    @GetMapping("/idCheck")
+	public ResponseEntity<Integer> idCheck(String user_id) {
+    	System.out.println("여기는 컨트롤렁 :" +user_id);
+		int res = uservice.idCheck(user_id);
+		System.out.println(res);
+		return new ResponseEntity<Integer>(res, HttpStatus.OK);
+
 	}
+    
     /* 이메일 인증 */
 	@GetMapping("/mailCheck")
 	@ResponseBody
@@ -125,11 +139,9 @@ public class UserController {
     
     //회원조회 처리
     @GetMapping("/userList")
-    public String userList(Model model) {
+    public void userList(Model model) {
     	List<UserVO> users = uservice.getAllUsers();
     	model.addAttribute("list1", users);
-    	return "/user/userList";
-    }
     
     //마이페이지
     @GetMapping("/mypage")

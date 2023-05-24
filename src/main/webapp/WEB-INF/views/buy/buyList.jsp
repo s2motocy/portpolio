@@ -20,6 +20,10 @@ table{
 	margin-right: auto;
 }
 
+th, td {
+	text-align: center;
+}
+
 .navi_bar_area #admin4:visited{
     color:black;
     font-weight: bold;
@@ -50,31 +54,29 @@ table{
 <div class="container">
 	<table  class="table table-striped" id="buytable">
 	<tr>
-		<th>주문번호</th>
-		<th>주문 아이디</th>
-		<th>주문날짜</th>
-		<th>주문 상품</th>
-		<th>주문 상태</th>
+		<th>번호</th>
+		<th>아이디</th>
+		<th>결제일</th>
+		<th>상품</th>
+		<th>수량</th>
+		<th>가격</th>
+		<th>상태</th>
 	</tr>
-	
-	<c:forEach items="${buylist}" var="buylist">
+	<c:forEach var="list" items="${buyList}">
 		<tr>
-			<td id="first">${buylist.buy_no}</td>
-			<td>${buylist.user_id}"</td>
-			<td><fmt:formatDate value="${buylist.buy_date}" pattern="yyyy-MM-dd" /></td>
-			<td>"${buylist.buy_list}</td>
-			<td>
-				<select name="buy_status" id="buy_status">
-					<option value="결제 완료">결제 완료</option>
-					<option value="상품 준비 중">상품 준비중</option>
-					<option value="배송 시작">배송 시작</option>
-					<option value="배송 중">배송 중</option>
-					<option value="배송 완료">배송 완료</option>
-				</select>
-			<div class="action-wrapper">
-				<button class="button button-outline-secondary fas fa-sync"></button>
-			</div>
-			</td>
+			<td>${list.buy_no}</td>
+			<td>${list.user_id}</td>
+			<td><fmt:formatDate value="${list.buy_date}" pattern="yyyy-MM-dd" /></td>
+			<td><c:forEach var="add" items="${bblist}" varStatus="stat">
+				${add.item_name}<br>
+			</c:forEach></td>
+			<td><c:forEach var="add" items="${bblist}" varStatus="stat">
+				${add.amount}<br>
+			</c:forEach></td>
+			<td><c:forEach var="add" items="${bblist}" varStatus="stat">
+				${add.buy_price}<br>
+			</c:forEach></td>
+			<td>${list.buy_status}</td>
 		</tr>
 	</c:forEach>
 	</table>

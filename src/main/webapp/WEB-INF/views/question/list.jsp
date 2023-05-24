@@ -3,90 +3,71 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 <%@ include file="../include/header.jsp" %>
 <style>
-  a{
-  	text-decoration : none;
-  }
-  table{
- 	border-collapse: collapse;
- 	width: 1000px;    
- 	margin-top : 20px;
- 	text-align: center;
-  }
-  td, th{
-  	border : 1px solid black;
-  	height: 80px;
-  }
-  th{
-  	font-size : 25px;
-  }
-  thead{
-  	font-weight: 700;
-  }
-    .table_wrap{
-  	margin : 50px 0 0 50px;
-  }
-  .bno_width{
-  	width: 12%;
-  }
-  .writer_width{
-  	width: 20%;
-  }
-  .regdate_width{
-  	width: 15%;
-  }
-  .updatedate_width{
-  	width: 15%;
-  }
-  .top_btn{
-  	font-size: 20px;
-    padding: 6px 12px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    font-weight: 600;
-  }
-  .pageInfo{
-  	list-style : none;
-  	display: inline-block;
-    margin: 50px 0 0 100px;  	
-  }
-  .pageInfo li{
-  	float: left;
-    font-size: 20px;
-    margin-left: 18px;
-    padding: 7px;
-    font-weight: 500;
-  }
+a{
+	text-decoration : none;}
+table {
+	border-collapse: collapse;
+	width: 1000px;    
+	margin-top : 20px;
+	text-align: center;}
+td, th {
+	border : 1px solid black;
+	height: 80px;}
+th {
+	font-size : 25px;}
+thead {
+	font-weight: 700;}
+.table_wrap {
+	margin : 50px 0 0 50px;}
+.bno_width {
+	width: 12%;}
+.writer_width {
+	width: 20%;}
+.regdate_width {
+	width: 15%;}
+.updatedate_width {
+	width: 15%;}
+.top_btn {
+	font-size: 20px;
+	padding: 6px 12px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	font-weight: 600;}
+.pageInfo {
+	list-style : none;
+	display: inline-block;
+	margin: 50px 0 0 100px;}
+.pageInfo l i {
+	float: left;
+	font-size: 20px;
+	margin-left: 18px;
+	padding: 7px;
+	font-weight: 500;}
  a:link {color:black; text-decoration: none;}
  a:visited {color:black; text-decoration: none;}
- a:hover {color:black; text-decoration: underline;} */
+ a:hover {color:black; text-decoration: underline;}
   .active{
-  	background-color: #cdd5ec;
-  }
-  .search_area{
-    display: inline-block;
-    margin-top: 30px;
-    margin-left: 260px;
-  }
-  .search_area input{
-  	height: 30px;
-    width: 250px;
-  }
-  .search_area button{
- 	width: 100px;
-    height: 36px;
-  } 
-  .search_area select{
-  	height: 35px;
-  }
-  .access_warn{
-    margin-top: 30px;
-    text-align: center;
-    color : red;
-}
-
-   
+  	background-color: #cdd5ec;}
+.search_area {
+	display: inline-block;
+	margin-top: 30px;
+	margin-left: 260px;}
+.search_area input {
+	height: 30px;
+	width: 250px;}
+.search_area button {
+	width: 100px;
+	height: 36px;} 
+.search_area select {
+	height: 35px;}
+.access_warn {
+	margin-top: 30px;
+	text-align: center;
+	color : red;}
 </style>
 </head>
+<body>
+<div class="container">
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -95,7 +76,7 @@
         <div class="modal-body">
         	<form id="frm">
         		<div>
-        			암호 입력 <input type="password" id="password"/>
+        			암호 입력 <input type="password"  id="password"/>
         			<button id="a">확인</button>
         		</div>
             </form>
@@ -126,12 +107,11 @@
             </div>
         </div>
     </div>
-    <!-- Page Introduction Wrapper /- -->
-    <!-- FAQ-Page -->
-<div class="container">
-	<div class="table_wrap">
+<!-- Page Introduction Wrapper /- -->
+<!-- FAQ-Page -->
+<div class="table_wrap">
 	<a href="/question/enroll" class="top_btn">문의 등록</a>
-	<table class="table table-hover">
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th class="qno_width">번호</th>
@@ -145,7 +125,7 @@
                 <td><c:out value="${list.qno}"/></td>
                 <td><a class="a_move" href="${list.qno}">${list.title}</a></td>
                 <td><c:out value="${list.writer}"/></td>
-                <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.writedate}"/></td>
+			    <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.updateDate}"/></td>
             </tr>
         </c:forEach>
 	</table>
@@ -164,7 +144,7 @@
             <button id='search'>Search</button>
         </div>
     </div>   
-<div class="" >
+<div class="pageInfo_wrap" >
 		<div class="pageInfo_area">
 			<ul id="pageInfo" class="pageInfo">
 				<c:if test="${pageMaker.prev}">
@@ -272,6 +252,7 @@ $(document).ready(function(){
 		        moveForm.attr("action", "/question/list");
 		        moveForm.submit();      
     		});
+
 			 function search({type ,keyword ,pageNum }){
 				console.log("호출 ",  type, keyword, pageNum)
 				$.ajax({
@@ -283,7 +264,7 @@ $(document).ready(function(){
 	    			error:function(e){
 	    				console.log("error")
 	    			}
-    			}) 
+    			});
 			} 
 			$("#search").on("click", function(e){
 				console.log('검색 버튼이 눌렸어요')
@@ -305,6 +286,7 @@ $(document).ready(function(){
 			    moveForm.submit();
 			});
 		});
+
 </script>
 </body>
 <%@ include file="../include/footer.jsp" %>

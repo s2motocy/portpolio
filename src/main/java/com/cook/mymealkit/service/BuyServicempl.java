@@ -37,8 +37,9 @@ public class BuyServicempl implements BuyService{
 	
 	@Override
 	public int getMaxBno() {
-		System.out.println("Buy 서비스에서 bno의 Max 값 조회 : ");
-		return bmapper.getMaxBno();
+		int result = bmapper.getMaxBno();
+		System.out.println("Buy 서비스에서 bno의 Max 값 조회 : "+result);
+		return result;
 	}
 
 	@Override

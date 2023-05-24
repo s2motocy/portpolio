@@ -26,7 +26,7 @@
 
     <!-- 문의 등록 -->
     <insert id="enroll">    
-        insert into tbl_question(qno, title, content, writer, password, category) values (seq_question.NEXTVAL, #{title}, #{content}, #{writer}, #{password}, #{category})        
+        insert into tbl_question(qno, title, content, writer, password, category) values (seq_question.NEXTVAL, #{title}, #{content}, #{writer}, #{password}, #{category})   
     </insert>
     
     <!-- 문의 목록 -->

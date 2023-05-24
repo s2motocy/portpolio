@@ -7,26 +7,34 @@
 		insert into tbl_item (item_id, category, item_name, item_price, description, item_stock, item_sold) 
 			values(seq_item.nextval,#{category},#{item_name},#{item_price},#{description},#{item_stock},#{item_sold})
 	</insert>
+	
 	<select id="itemList" resultType="com.cook.mymealkit.domain.ItemVO">
 		<![CDATA[
   		select * from tbl_item where item_id >0
   		]]>
 	</select>
+	
 	<select id="itemFindById" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="long">
 		select * from tbl_item where item_id=#{item_id}
 	</select>
+	
 	<update id="itemUpdate" parameterType="com.cook.mymealkit.domain.ItemVO">
-		update tbl_item set category=#{category}, item_name=#{item_name}, item_price=#{item_price},description=#{description},item_stock=#{item_stock} where item_id=#{item_id}
+		update tbl_item set category=#{category}, item_name=#{item_name}, item_price=#{item_price},
+			item_stock=#{item_stock}, item_sold=#{item_sold}, description=#{description} where item_id=#{item_id}
 	</update>
+	
 	<delete id="itemDelete">
 		delete from tbl_item where item_id=#{item_id}
 	</delete>
+	
 	<select id="getMax" resultType="long">
-		select max(item_id) from tbl_item
+		select coalesce(max(item_id),0) from tbl_item
 	</select>
+	
 	<select id="get_price" resultType="int">
 		select item_price from tbl_item where item_id=#{item_id}
 	</select>
+	
 	<select id="categoryItemList" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="string" >
 		select * from tbl_item where category=#{category}
 	</select>
