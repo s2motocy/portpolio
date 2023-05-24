@@ -13,4 +13,6 @@ public interface CartService {
 	public void cartDelete(long cart_id); 			// 삭제
 	public void cartAllRemove();					// 전체삭제
 	
+	public List<CartDTO> cartFindByUser(String user_id);	// user_id 로 조회
+	
 }

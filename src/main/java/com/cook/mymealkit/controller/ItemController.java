@@ -64,12 +64,14 @@ public class ItemController {
 	
 	/* 상품 상세 |--------------------------------------------------- */
 	@GetMapping("/detail")
-	public void detail(@RequestParam("item_id") Long item_id, Model model) {
-		System.out.println("Item 컨트롤러에서 조회 : item_id="+ item_id);
+	public void detail(@RequestParam("item_id") Long item_id, String user_id, Model model) {
+		System.out.println("Item 컨트롤러에서 조회 : item_id="+ item_id+" , user_id: "+ user_id);
 		ItemVO vo = iservice.itemFindById(item_id);
 		List<AttachFileDTO> attachList = iservice.getAttachList(item_id);
 		vo.setAttachList(attachList);
+		System.out.println("조회한 값 저장: "+vo);
 		model.addAttribute("list", vo);
+		model.addAttribute("user_id", user_id);
 	}
 	
 	/* 상품 수정 |--------------------------------------------------- */

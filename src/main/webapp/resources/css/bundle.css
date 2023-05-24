@@ -1741,9 +1741,9 @@ body {
   border: 1px solid #eceff8;
   color: #333333;
   font-size: 14px;
-  height: 45px;
+  height: 55px;
   padding: 0 15px;
-  width: 300px;
+  width: 600px;
   transition: all .3s; }
  .text-area1 {
   display: block;
@@ -3358,7 +3358,8 @@ body {
   display: flex; }
 
 .grid-style .item {
-  margin: 0 0 30px; }
+  margin-right: 29px;
+  margin-left: 29px; }
 
 .grid-style .item-description {
   display: none; }
@@ -3602,6 +3603,7 @@ body {
   .page-bar {
     text-align: center; }
     .page-bar .shop-settings {
+      margin-top: 8px;
       margin-bottom: 8px;
       float: none; }
     .page-bar .toolbar-sorter {

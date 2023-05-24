@@ -29,4 +29,8 @@
 		delete from tbl_cart
 	</delete>
 	
+	<select id="cartFindByUser" resultType="com.cook.mymealkit.domain.CartDTO" parameterType="String">
+		select * from tbl_cart where user_id=#{user_id}
+	</select>
+	
 </mapper>

@@ -738,7 +738,7 @@
                                         </li>
                                         <li class="menu-title">Single Product Page</li>
                                         <li>
-                                            <a href="single-product.html" class="u-c-brand">Single Product Fullwidth</a>
+                                            <a href="single-product.html">Single Product Fullwidth</a>
                                         </li>
                                         <li class="menu-title">Blog</li>
                                         <li>
@@ -751,7 +751,7 @@
                                     <ul>
                                         <li class="menu-title">Ecommerce Pages</li>
                                         <li>
-                                            <a href="shop-v2-sub-category.html">Shop</a>
+                                            <a href="shop-v2-sub-category.html" class="u-c-brand">Shop</a>
                                         </li>
                                         <li>
                                             <a href="cart.html">Cart</a>
@@ -789,7 +789,7 @@
                                             <a href="shop-v1-root-category.html">Shop Ver 1 Root Category</a>
                                         </li>
                                         <li>
-                                            <a href="shop-v2-sub-category.html">Shop Ver 2 Sub Category</a>
+                                            <a href="shop-v2-sub-category.html" class="u-c-brand">Shop Ver 2 Sub Category</a>
                                         </li>
                                         <li>
                                             <a href="shop-v3-sub-sub-category.html">Shop Ver 3 Sub Sub Category</a>
@@ -835,811 +835,545 @@
     <div class="page-style-a">
         <div class="container">
             <div class="page-intro">
-                <h2>Detail</h2>
+                <h2>Shop</h2>
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
                         <a href="home.html">Home</a>
                     </li>
                     <li class="is-marked">
-                        <a href="single-product.html">Detail</a>
+                        <a href="shop-v2-sub-category.html">Shop</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
     <!-- Page Introduction Wrapper /- -->
-    <!-- Single-Product-Full-Width-Page -->
-    <div class="page-detail u-s-p-t-80">
+    <!-- Shop-Page -->
+    <div class="page-shop u-s-p-t-80">
         <div class="container">
-            <!-- Product-Detail -->
+            <!-- Shop-Intro -->
+            <div class="shop-intro">
+                <ul class="bread-crumb">
+                    <li class="has-separator">
+                        <a href="home.html">Home</a>
+                    </li>
+                    <li class="has-separator">
+                        <a href="shop-v1-root-category.html">Men's Clothing</a>
+                    </li>
+                    <li class="is-marked">
+                        <a href="shop-v3-sub-sub-category.html">Tops</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Shop-Intro /- -->
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <!-- Product-zoom-area -->
-                    <div class="zoom-area">
-                        <img id="zoom-pro" class="img-fluid" src="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg" alt="Zoom Image">
-                        <div id="gallery" class="u-s-m-t-10">
-                            <a class="active" data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                <img src="/resources/images/product/product@2x.jpg" alt="Product">
+                <!-- Shop-Left-Side-Bar-Wrapper -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <!-- Fetch-Categories-from-Root-Category  -->
+                    <div class="fetch-categories">
+                        <h3 class="title-name">Browse Categories</h3>
+                        <h3 class="fetch-mark-category">
+                            <a href="shop-v2-sub-category.html">Tops
+                                <span class="total-fetch-items">(5)</span>
                             </a>
-                            <a data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                            </a>
-                            <a data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                            </a>
-                            <a data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                            </a>
-                            <a data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                            </a>
-                            <a data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                            </a>
-                        </div>
+                        </h3>
+                        <!-- Level 3 -->
+                        <ul>
+                            <li>
+                                <a href="shop-v3-sub-sub-category.html">T-Shirts
+                                    <span class="total-fetch-items">(2)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="shop-v2-sub-category.html">Hoodies
+                                    <span class="total-fetch-items">(1)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="shop-v3-sub-sub-category.html">Suits
+                                    <span class="total-fetch-items">(1)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="shop-v4-filter-as-category.html">Black Bean T-Shirt
+                                    <span class="total-fetch-items">(1)</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- //end Level 3 -->
                     </div>
-                    <!-- Product-zoom-area /- -->
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <!-- Product-details -->
-                    <div class="all-information-wrapper">
-                        <div class="section-1-title-breadcrumb-rating">
-                            <div class="product-title">
-                                <h1>
-                                    <a href="single-product.html">Casual Hoodie Full Cotton</a>
-                                </h1>
+                    <!-- Fetch-Categories-from-Root-Category  /- -->
+                    <!-- Filters -->
+                    <!-- Filter-Size -->
+                    <div class="facet-filter-associates">
+                        <h3 class="title-name">Size</h3>
+                        <form class="facet-form" action="#" method="post">
+                            <div class="associate-wrapper">
+                                <input type="checkbox" class="check-box" id="cbs-01">
+                                <label class="label-text" for="cbs-01">Male 2XL
+                                    <span class="total-fetch-items">(2)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-02">
+                                <label class="label-text" for="cbs-02">Male 3XL
+                                    <span class="total-fetch-items">(2)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-03">
+                                <label class="label-text" for="cbs-03">Kids 4
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-04">
+                                <label class="label-text" for="cbs-04">Kids 6
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-05">
+                                <label class="label-text" for="cbs-05">Kids 8
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-06">
+                                <label class="label-text" for="cbs-06">Kids 10
+                                    <span class="total-fetch-items">(2)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-07">
+                                <label class="label-text" for="cbs-07">Kids 12
+                                    <span class="total-fetch-items">(2)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-08">
+                                <label class="label-text" for="cbs-08">Female Small
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-09">
+                                <label class="label-text" for="cbs-09">Male Small
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-10">
+                                <label class="label-text" for="cbs-10">Female Medium
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-11">
+                                <label class="label-text" for="cbs-11">Male Medium
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-12">
+                                <label class="label-text" for="cbs-12">Female Large
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-13">
+                                <label class="label-text" for="cbs-13">Male Large
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-14">
+                                <label class="label-text" for="cbs-14">Female XL
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-15">
+                                <label class="label-text" for="cbs-15">Male XL
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
                             </div>
-                            <ul class="bread-crumb">
-                                <li class="has-separator">
-                                    <a href="home.html">Home</a>
-                                </li>
-                                <li class="has-separator">
-                                    <a href="shop-v1-root-category.html">Men's Clothing</a>
-                                </li>
-                                <li class="has-separator">
-                                    <a href="shop-v2-sub-category.html">Tops</a>
-                                </li>
-                                <li class="is-marked">
-                                    <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                </li>
-                            </ul>
-                            <div class="product-rating">
-                                <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                    <span style='width:67px'></span>
-                                </div>
-                                <span>(23)</span>
+                        </form>
+                    </div>
+                    <!-- Filter-Size -->
+                    <!-- Filter-Color -->
+                    <div class="facet-filter-associates">
+                        <h3 class="title-name">Color</h3>
+                        <form class="facet-form" action="#" method="post">
+                            <div class="associate-wrapper">
+                                <input type="checkbox" class="check-box" id="cbs-16">
+                                <label class="label-text" for="cbs-16">Heather Grey
+                                    <span class="total-fetch-items">(1)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-17">
+                                <label class="label-text" for="cbs-17">Black
+                                    <span class="total-fetch-items">(1)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-18">
+                                <label class="label-text" for="cbs-18">White
+                                    <span class="total-fetch-items">(3)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-19">
+                                <label class="label-text" for="cbs-19">Mischka Plain
+                                    <span class="total-fetch-items">(1)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-20">
+                                <label class="label-text" for="cbs-20">Black Bean
+                                    <span class="total-fetch-items">(1)</span>
+                                </label>
                             </div>
-                        </div>
-                        <div class="section-2-short-description u-s-p-y-14">
-                            <h6 class="information-heading u-s-m-b-8">Description:</h6>
-                            <p>This hoodie is full cotton. It includes a muff sewn onto the lower front, and (usually) a drawstring to adjust the hood opening. Throughout the U.S., it is common for middle-school, high-school, and college students to wear this sweatshirts—with or without hoods—that display their respective school names or mascots across the chest, either as part of a uniform or personal preference.
-                            </p>
-                        </div>
-                        <div class="section-3-price-original-discount u-s-p-y-14">
-                            <div class="price">
-                                <h4>$55.00</h4>
+                        </form>
+                    </div>
+                    <!-- Filter-Color /- -->
+                    <!-- Filter-Brand -->
+                    <div class="facet-filter-associates">
+                        <h3 class="title-name">Brand</h3>
+                        <form class="facet-form" action="#" method="post">
+                            <div class="associate-wrapper">
+                                <input type="checkbox" class="check-box" id="cbs-21">
+                                <label class="label-text" for="cbs-21">Calvin Klein
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-22">
+                                <label class="label-text" for="cbs-22">Diesel
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-23">
+                                <label class="label-text" for="cbs-23">Polo
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
+                                <input type="checkbox" class="check-box" id="cbs-24">
+                                <label class="label-text" for="cbs-24">Tommy Hilfiger
+                                    <span class="total-fetch-items">(0)</span>
+                                </label>
                             </div>
-                            <div class="original-price">
-                                <span>Original Price:</span>
-                                <span>$60.00</span>
+                        </form>
+                    </div>
+                    <!-- Filter-Brand /- -->
+                    <!-- Filter-Price -->
+                    <div class="facet-filter-by-price">
+                        <h3 class="title-name">Price</h3>
+                        <form class="facet-form" action="#" method="post">
+                            <!-- Final-Result -->
+                            <div class="amount-result clearfix">
+                                <div class="price-from">$0</div>
+                                <div class="price-to">$3000</div>
                             </div>
-                            <div class="discount-price">
-                                <span>Discount:</span>
-                                <span>8%</span>
-                            </div>
-                            <div class="total-save">
-                                <span>Save:</span>
-                                <span>$5</span>
-                            </div>
-                        </div>
-                        <div class="section-4-sku-information u-s-p-y-14">
-                            <h6 class="information-heading u-s-m-b-8">Sku Information:</h6>
-                            <div class="availability">
-                                <span>Availability:</span>
-                                <span>In Stock</span>
-                            </div>
-                            <div class="left">
-                                <span>Only:</span>
-                                <span>50 left</span>
-                            </div>
-                        </div>
-                        <div class="section-5-product-variants u-s-p-y-14">
-                            <h6 class="information-heading u-s-m-b-8">Product Variants:</h6>
-                            <div class="color u-s-m-b-11">
-                                <span>Available Color:</span>
-                                <div class="color-variant select-box-wrapper">
-                                    <select class="select-box product-color">
-                                        <option value="1">Heather Grey</option>
-                                        <option value="3">Black</option>
-                                        <option value="5">White</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="sizes u-s-m-b-11">
-                                <span>Available Size:</span>
-                                <div class="size-variant select-box-wrapper">
-                                    <select class="select-box product-size">
-                                        <option value="">Male 2XL</option>
-                                        <option value="">Male 3XL</option>
-                                        <option value="">Kids 4</option>
-                                        <option value="">Kids 6</option>
-                                        <option value="">Kids 8</option>
-                                        <option value="">Kids 10</option>
-                                        <option value="">Kids 12</option>
-                                        <option value="">Female Small</option>
-                                        <option value="">Male Small</option>
-                                        <option value="">Female Medium</option>
-                                        <option value="">Male Medium</option>
-                                        <option value="">Female Large</option>
-                                        <option value="">Male Large</option>
-                                        <option value="">Female XL</option>
-                                        <option value="">Male XL</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="section-6-social-media-quantity-actions u-s-p-y-14">
-                            <form action="#" class="post-form">
-                                <div class="quick-social-media-wrapper u-s-m-b-22">
-                                    <span>Share:</span>
-                                    <ul class="social-media-list">
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-facebook-f"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-google-plus-g"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fas fa-rss"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fab fa-pinterest"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="quantity-wrapper u-s-m-b-22">
-                                    <span>Quantity:</span>
-                                    <div class="quantity">
-                                        <input type="text" class="quantity-text-field" value="1">
-                                        <a class="plus-a" data-max="1000">&#43;</a>
-                                        <a class="minus-a" data-min="1">&#45;</a>
+                            <!-- Final-Result /- -->
+                            <!-- Range-Slider  -->
+                            <div class="price-filter"></div>
+                            <!-- Range-Slider /- -->
+                            <!-- Range-Manipulator -->
+                            <div class="price-slider-range" data-min="0" data-max="5000" data-default-low="0" data-default-high="3000" data-currency="$"></div>
+                            <!-- Range-Manipulator /- -->
+                            <button type="submit" class="button button-primary">Filter</button>
+                        </form>
+                    </div>
+                    <!-- Filter-Price /- -->
+                    <!-- Filter-Free-Shipping -->
+                    <div class="facet-filter-by-shipping">
+                        <h3 class="title-name">Shipping</h3>
+                        <form class="facet-form" action="#" method="post">
+                            <input type="checkbox" class="check-box" id="cb-free-ship">
+                            <label class="label-text" for="cb-free-ship">Free Shipping</label>
+                        </form>
+                    </div>
+                    <!-- Filter-Free-Shipping /- -->
+                    <!-- Filter-Rating -->
+                    <div class="facet-filter-by-rating">
+                        <h3 class="title-name">Rating</h3>
+                        <div class="facet-form">
+                            <!-- 5 Stars -->
+                            <div class="facet-link">
+                                <div class="item-stars">
+                                    <div class='star'>
+                                        <span style='width:76px'></span>
                                     </div>
                                 </div>
-                                <div>
-                                    <button class="button button-outline-secondary" type="submit">Add to cart</button>
-                                    <button class="button button-outline-secondary far fa-heart u-s-m-l-6"></button>
-                                    <button class="button button-outline-secondary far fa-envelope u-s-m-l-6"></button>
+                                <span class="total-fetch-items">(0)</span>
+                            </div>
+                            <!-- 5 Stars /- -->
+                            <!-- 4 & Up Stars -->
+                            <div class="facet-link">
+                                <div class="item-stars">
+                                    <div class='star'>
+                                        <span style='width:60px'></span>
+                                    </div>
                                 </div>
-                            </form>
+                                <span class="total-fetch-items">& Up (5)</span>
+                            </div>
+                            <!-- 4 & Up Stars /- -->
+                            <!-- 3 & Up Stars -->
+                            <div class="facet-link">
+                                <div class="item-stars">
+                                    <div class='star'>
+                                        <span style='width:45px'></span>
+                                    </div>
+                                </div>
+                                <span class="total-fetch-items">& Up (0)</span>
+                            </div>
+                            <!-- 3 & Up Stars /- -->
+                            <!-- 2 & Up Stars -->
+                            <div class="facet-link">
+                                <div class="item-stars">
+                                    <div class='star'>
+                                        <span style='width:30px'></span>
+                                    </div>
+                                </div>
+                                <span class="total-fetch-items">& Up (0)</span>
+                            </div>
+                            <!-- 2 & Up Stars /- -->
+                            <!-- 1 & Up Stars -->
+                            <div class="facet-link">
+                                <div class="item-stars">
+                                    <div class='star'>
+                                        <span style='width:15px'></span>
+                                    </div>
+                                </div>
+                                <span class="total-fetch-items">& Up (0)</span>
+                            </div>
+                            <!-- 1 & Up Stars /- -->
                         </div>
                     </div>
-                    <!-- Product-details /- -->
+                    <!-- Filter-Rating -->
+                    <!-- Filters /- -->
                 </div>
-            </div>
-            <!-- Product-Detail /- -->
-            <!-- Detail-Tabs -->
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="detail-tabs-wrapper u-s-p-t-80">
-                        <div class="detail-nav-wrapper u-s-m-b-30">
-                            <ul class="nav single-product-nav justify-content-center">
-                                <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#description">Description</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#specification">Specifications</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#review">Reviews (15)</a>
-                                </li>
-                            </ul>
+                <!-- Shop-Left-Side-Bar-Wrapper /- -->
+                <!-- Shop-Right-Wrapper -->
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <!-- Page-Bar -->
+                    <div class="page-bar clearfix">
+                        <div class="shop-settings">
+                            <a id="list-anchor" class="active">
+                                <i class="fas fa-th-list"></i>
+                            </a>
+                            <a id="grid-anchor">
+                                <i class="fas fa-th"></i>
+                            </a>
                         </div>
-                        <div class="tab-content">
-                            <!-- Description-Tab -->
-                            <div class="tab-pane fade active show" id="description">
-                                <div class="description-whole-container">
-                                    <p class="desc-p u-s-m-b-26">This hoodie is full cotton. It includes a muff sewn onto the lower front, and (usually) a drawstring to adjust the hood opening. Throughout the U.S., it is common for middle-school, high-school, and college students to wear this sweatshirts—with or without hoods—that display their respective school names or mascots across the chest, either as part of a uniform or personal preference.
-                                    </p>
-                                    <img class="desc-img img-fluid u-s-m-b-26" src="/resources/images/product/product@3x.jpg" alt="Product">
-                                    <iframe class="desc-iframe u-s-m-b-45" width="710" height="400" src="/resources/images/product/iframe-youtube.jpg" allowfullscreen></iframe>
-                                </div>
+                        <!-- Toolbar Sorter 1  -->
+                        <div class="toolbar-sorter">
+                            <div class="select-box-wrapper">
+                                <label class="sr-only" for="sort-by">Sort By</label>
+                                <select class="select-box" id="sort-by">
+                                    <option selected="selected" value="">Sort By: Best Selling</option>
+                                    <option value="">Sort By: Latest</option>
+                                    <option value="">Sort By: Lowest Price</option>
+                                    <option value="">Sort By: Highest Price</option>
+                                    <option value="">Sort By: Best Rating</option>
+                                </select>
                             </div>
-                            <!-- Description-Tab /- -->
-                            <!-- Specifications-Tab -->
-                            <div class="tab-pane fade" id="specification">
-                                <div class="specification-whole-container">
-                                    <div class="spec-ul u-s-m-b-50">
-                                        <h4 class="spec-heading">Key Features</h4>
-                                        <ul>
-                                            <li>Heather Grey</li>
-                                            <li>Black</li>
-                                            <li>White</li>
+                        </div>
+                        <!-- //end Toolbar Sorter 1  -->
+                        <!-- Toolbar Sorter 2  -->
+                        <div class="toolbar-sorter-2">
+                            <div class="select-box-wrapper">
+                                <label class="sr-only" for="show-records">Show Records Per Page</label>
+                                <select class="select-box" id="show-records">
+                                    <option selected="selected" value="">Show: 8</option>
+                                    <option value="">Show: 16</option>
+                                    <option value="">Show: 28</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- //end Toolbar Sorter 2  -->
+                    </div>
+                    <!-- Page-Bar /- -->
+                    <!-- Row-of-Product-Container -->
+                    <div class="row product-container list-style">
+                        <div class="product-item col-lg-4 col-md-6 col-sm-6">
+                            <div class="item">
+                                <div class="image-container">
+                                    <a class="item-img-wrapper-link" href="single-product.html">
+                                        <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
+                                    </a>
+                                    <div class="item-action-behaviors">
+                                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
+                                        <a class="item-mail" href="javascript:void(0)">Mail</a>
+                                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
+                                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                    </div>
+                                </div>
+                                <div class="item-content">
+                                    <div class="what-product-is">
+                                        <ul class="bread-crumb">
+                                            <li class="has-separator">
+                                                <a href="shop-v1-root-category.html">Men's</a>
+                                            </li>
+                                            <li class="has-separator">
+                                                <a href="shop-v2-sub-category.html">Tops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop-v3-sub-sub-category.html">Hoodies</a>
+                                            </li>
                                         </ul>
+                                        <h6 class="item-title">
+                                            <a href="single-product.html">Casual Hoodie Full Cotton</a>
+                                        </h6>
+                                        <div class="item-description">
+                                            <p>This hoodie is full cotton. It includes a muff sewn onto the lower front, and (usually) a drawstring to adjust the hood opening. Throughout the U.S., it is common for middle-school, high-school, and college students to wear this sweatshirts—with or without hoods—that display their respective school names or mascots across the chest, either as part of a uniform or personal preference.
+                                            </p>
+                                        </div>
+                                        <div class="item-stars">
+                                            <div class='star' title="4.5 out of 5 - based on 23 Reviews">
+                                                <span style='width:67px'></span>
+                                            </div>
+                                            <span>(23)</span>
+                                        </div>
                                     </div>
-                                    <div class="u-s-m-b-50">
-                                        <h4 class="spec-heading">What's in the Box?</h4>
-                                        <h3 class="spec-answer">1 x hoodie</h3>
+                                    <div class="price-template">
+                                        <div class="item-new-price">
+                                            $55.00
+                                        </div>
+                                        <div class="item-old-price">
+                                            $60.00
+                                        </div>
                                     </div>
-                                    <div class="spec-table u-s-m-b-50">
-                                        <h4 class="spec-heading">General Information</h4>
-                                        <table>
-                                            <tr>
-                                                <td>Sku</td>
-                                                <td>AY536FA08JT86NAFAMZ</td>
-                                            </tr>
-                                        </table>
+                                </div>
+                                <div class="tag new">
+                                    <span>NEW</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item col-lg-4 col-md-6 col-sm-6">
+                            <div class="item">
+                                <div class="image-container">
+                                    <a class="item-img-wrapper-link" href="single-product.html">
+                                        <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
+                                    </a>
+                                    <div class="item-action-behaviors">
+                                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
+                                        <a class="item-mail" href="javascript:void(0)">Mail</a>
+                                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
+                                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
                                     </div>
-                                    <div class="spec-table u-s-m-b-50">
-                                        <h4 class="spec-heading">Product Information</h4>
-                                        <table>
-                                            <tr>
-                                                <td>Main Material</td>
-                                                <td>Cotton</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Color</td>
-                                                <td>Heather Grey, Black, White</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sleeves</td>
-                                                <td>Long Sleeve</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Top Fit</td>
-                                                <td>Regular</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Print</td>
-                                                <td>Not Printed</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Neck</td>
-                                                <td>Round Neck</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Pieces Count</td>
-                                                <td>1 piece</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Occasion</td>
-                                                <td>Casual</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shipping Weight (kg)</td>
-                                                <td>0.5</td>
-                                            </tr>
-                                        </table>
+                                </div>
+                                <div class="item-content">
+                                    <div class="what-product-is">
+                                        <ul class="bread-crumb">
+                                            <li class="has-separator">
+                                                <a href="shop-v1-root-category.html">Men's</a>
+                                            </li>
+                                            <li class="has-separator">
+                                                <a href="shop-v2-sub-category.html">Tops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop-v3-sub-sub-category.html">T-Shirts</a>
+                                            </li>
+                                        </ul>
+                                        <h6 class="item-title">
+                                            <a href="single-product.html">Mischka Plain Men T-Shirt</a>
+                                        </h6>
+                                        <div class="item-description">
+                                            <p>T-shirts with bold slogans were popular in the UK in the 1980s. T-shirts were originally worn as undershirts, but are now worn frequently as the only piece of clothing on the top half of the body, other than possibly a brassiere or, rarely, a waistcoat (vest). T-shirts have also become a medium for self-expression and advertising, with any imaginable combination of words, art and photographs on display.</p>
+                                        </div>
+                                        <div class="item-stars">
+                                            <div class='star' title="4.5 out of 5 - based on 23 Reviews">
+                                                <span style='width:67px'></span>
+                                            </div>
+                                            <span>(23)</span>
+                                        </div>
+                                    </div>
+                                    <div class="price-template">
+                                        <div class="item-new-price">
+                                            $55.00
+                                        </div>
+                                        <div class="item-old-price">
+                                            $60.00
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Specifications-Tab /- -->
-                            <!-- Reviews-Tab -->
-                            <div class="tab-pane fade" id="review">
-                                <div class="review-whole-container">
-                                    <div class="row r-1 u-s-m-b-26 u-s-p-b-22">
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="total-score-wrapper">
-                                                <h6 class="review-h6">Average Rating</h6>
-                                                <div class="circle-wrapper">
-                                                    <h1>4.5</h1>
-                                                </div>
-                                                <h6 class="review-h6">Based on 23 Reviews</h6>
-                                            </div>
+                        </div>
+                        <div class="product-item col-lg-4 col-md-6 col-sm-6">
+                            <div class="item">
+                                <div class="image-container">
+                                    <a class="item-img-wrapper-link" href="single-product.html">
+                                        <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
+                                    </a>
+                                    <div class="item-action-behaviors">
+                                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
+                                        <a class="item-mail" href="javascript:void(0)">Mail</a>
+                                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
+                                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                    </div>
+                                </div>
+                                <div class="item-content">
+                                    <div class="what-product-is">
+                                        <ul class="bread-crumb">
+                                            <li class="has-separator">
+                                                <a href="shop-v1-root-category.html">Men's</a>
+                                            </li>
+                                            <li class="has-separator">
+                                                <a href="shop-v2-sub-category.html">Tops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop-v4-filter-as-category.html">T-Shirts</a>
+                                            </li>
+                                        </ul>
+                                        <h6 class="item-title">
+                                            <a href="single-product.html">Black Bean Plain Men T-Shirt</a>
+                                        </h6>
+                                        <div class="item-description">
+                                            <p>T-shirts with bold slogans were popular in the UK in the 1980s. T-shirts were originally worn as undershirts, but are now worn frequently as the only piece of clothing on the top half of the body, other than possibly a brassiere or, rarely, a waistcoat (vest). T-shirts have also become a medium for self-expression and advertising, with any imaginable combination of words, art and photographs on display.</p>
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="total-star-meter">
-                                                <div class="star-wrapper">
-                                                    <span>5 Stars</span>
-                                                    <div class="star">
-                                                        <span style='width:0'></span>
-                                                    </div>
-                                                    <span>(0)</span>
-                                                </div>
-                                                <div class="star-wrapper">
-                                                    <span>4 Stars</span>
-                                                    <div class="star">
-                                                        <span style='width:67px'></span>
-                                                    </div>
-                                                    <span>(23)</span>
-                                                </div>
-                                                <div class="star-wrapper">
-                                                    <span>3 Stars</span>
-                                                    <div class="star">
-                                                        <span style='width:0'></span>
-                                                    </div>
-                                                    <span>(0)</span>
-                                                </div>
-                                                <div class="star-wrapper">
-                                                    <span>2 Stars</span>
-                                                    <div class="star">
-                                                        <span style='width:0'></span>
-                                                    </div>
-                                                    <span>(0)</span>
-                                                </div>
-                                                <div class="star-wrapper">
-                                                    <span>1 Star</span>
-                                                    <div class="star">
-                                                        <span style='width:0'></span>
-                                                    </div>
-                                                    <span>(0)</span>
-                                                </div>
+                                        <div class="item-stars">
+                                            <div class='star' title="4.5 out of 5 - based on 23 Reviews">
+                                                <span style='width:67px'></span>
                                             </div>
+                                            <span>(23)</span>
                                         </div>
                                     </div>
-                                    <div class="row r-2 u-s-m-b-26 u-s-p-b-22">
-                                        <div class="col-lg-12">
-                                            <div class="your-rating-wrapper">
-                                                <h6 class="review-h6">Your Review is matter.</h6>
-                                                <h6 class="review-h6">Have you used this product before?</h6>
-                                                <div class="star-wrapper u-s-m-b-8">
-                                                    <div class="star">
-                                                        <span id="your-stars" style='width:0'></span>
-                                                    </div>
-                                                    <label for="your-rating-value"></label>
-                                                    <input id="your-rating-value" type="text" class="text-field" placeholder="0.0">
-                                                    <span id="star-comment"></span>
-                                                </div>
-                                                <form>
-                                                    <label for="your-name">Name
-                                                        <span class="astk"> *</span>
-                                                    </label>
-                                                    <input id="your-name" type="text" class="text-field" placeholder="Your Name">
-                                                    <label for="your-email">Email
-                                                        <span class="astk"> *</span>
-                                                    </label>
-                                                    <input id="your-email" type="text" class="text-field" placeholder="Your Email">
-                                                    <label for="review-title">Review Title
-                                                        <span class="astk"> *</span>
-                                                    </label>
-                                                    <input id="review-title" type="text" class="text-field" placeholder="Review Title">
-                                                    <label for="review-text-area">Review
-                                                        <span class="astk"> *</span>
-                                                    </label>
-                                                    <textarea class="text-area u-s-m-b-8" id="review-text-area" placeholder="Review"></textarea>
-                                                    <button class="button button-outline-secondary">Submit Review</button>
-                                                </form>
-                                            </div>
+                                    <div class="price-template">
+                                        <div class="item-new-price">
+                                            $55.00
+                                        </div>
+                                        <div class="item-old-price">
+                                            $60.00
                                         </div>
                                     </div>
-                                    <!-- Get-Reviews -->
-                                    <div class="get-reviews u-s-p-b-22">
-                                        <!-- Review-Options -->
-                                        <div class="review-options u-s-m-b-16">
-                                            <div class="review-option-heading">
-                                                <h6>Reviews
-                                                    <span> (15) </span>
-                                                </h6>
-                                            </div>
-                                            <div class="review-option-box">
-                                                <div class="select-box-wrapper">
-                                                    <label class="sr-only" for="review-sort">Review Sorter</label>
-                                                    <select class="select-box" id="review-sort">
-                                                        <option value="">Sort by: Best Rating</option>
-                                                        <option value="">Sort by: Worst Rating</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Review-Options /- -->
-                                        <!-- All-Reviews -->
-                                        <div class="reviewers">
-                                            <div class="review-data">
-                                                <div class="reviewer-name-and-date">
-                                                    <h6 class="reviewer-name">John</h6>
-                                                    <h6 class="review-posted-date">10 May 2018</h6>
-                                                </div>
-                                                <div class="reviewer-stars-title-body">
-                                                    <div class="reviewer-stars">
-                                                        <div class="star">
-                                                            <span style='width:67px'></span>
-                                                        </div>
-                                                        <span class="review-title">Good!</span>
-                                                    </div>
-                                                    <p class="review-body">
-                                                        Good Quality...!
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="review-data">
-                                                <div class="reviewer-name-and-date">
-                                                    <h6 class="reviewer-name">Doe</h6>
-                                                    <h6 class="review-posted-date">10 June 2018</h6>
-                                                </div>
-                                                <div class="reviewer-stars-title-body">
-                                                    <div class="reviewer-stars">
-                                                        <div class="star">
-                                                            <span style='width:67px'></span>
-                                                        </div>
-                                                        <span class="review-title">Well done!</span>
-                                                    </div>
-                                                    <p class="review-body">
-                                                        Cotton is good.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="review-data">
-                                                <div class="reviewer-name-and-date">
-                                                    <h6 class="reviewer-name">Tim</h6>
-                                                    <h6 class="review-posted-date">10 July 2018</h6>
-                                                </div>
-                                                <div class="reviewer-stars-title-body">
-                                                    <div class="reviewer-stars">
-                                                        <div class="star">
-                                                            <span style='width:67px'></span>
-                                                        </div>
-                                                        <span class="review-title">Well done!</span>
-                                                    </div>
-                                                    <p class="review-body">
-                                                        Excellent condition
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="review-data">
-                                                <div class="reviewer-name-and-date">
-                                                    <h6 class="reviewer-name">Johnny</h6>
-                                                    <h6 class="review-posted-date">10 March 2018</h6>
-                                                </div>
-                                                <div class="reviewer-stars-title-body">
-                                                    <div class="reviewer-stars">
-                                                        <div class="star">
-                                                            <span style='width:67px'></span>
-                                                        </div>
-                                                        <span class="review-title">Bright!</span>
-                                                    </div>
-                                                    <p class="review-body">
-                                                        Cotton
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="review-data">
-                                                <div class="reviewer-name-and-date">
-                                                    <h6 class="reviewer-name">Alexia C. Marshall</h6>
-                                                    <h6 class="review-posted-date">12 May 2018</h6>
-                                                </div>
-                                                <div class="reviewer-stars-title-body">
-                                                    <div class="reviewer-stars">
-                                                        <div class="star">
-                                                            <span style='width:67px'></span>
-                                                        </div>
-                                                        <span class="review-title">Well done!</span>
-                                                    </div>
-                                                    <p class="review-body">
-                                                        Good polyester Cotton
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- All-Reviews /- -->
-                                        <!-- Pagination-Review -->
-                                        <div class="pagination-review-area">
-                                            <div class="pagination-review-number">
-                                                <ul>
-                                                    <li style="display: none">
-                                                        <a href="single-product.html" title="Previous">
-                                                            <i class="fas fa-angle-left"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="active">
-                                                        <a href="single-product.html">1</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product.html">2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product.html">3</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product.html">...</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product.html">10</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product.html" title="Next">
-                                                            <i class="fas fa-angle-right"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- Pagination-Review /- -->
-                                    </div>
-                                    <!-- Get-Reviews /- -->
                                 </div>
                             </div>
-                            <!-- Reviews-Tab /- -->
+                        </div>
+                        <div class="product-item col-lg-4 col-md-6 col-sm-6">
+                            <div class="item">
+                                <div class="image-container">
+                                    <a class="item-img-wrapper-link" href="single-product.html">
+                                        <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
+                                    </a>
+                                    <div class="item-action-behaviors">
+                                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
+                                        <a class="item-mail" href="javascript:void(0)">Mail</a>
+                                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
+                                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                    </div>
+                                </div>
+                                <div class="item-content">
+                                    <div class="what-product-is">
+                                        <ul class="bread-crumb">
+                                            <li class="has-separator">
+                                                <a href="shop-v1-root-category.html">Men's</a>
+                                            </li>
+                                            <li class="has-separator">
+                                                <a href="shop-v2-sub-category.html">Tops</a>
+                                            </li>
+                                            <li>
+                                                <a href="shop-v3-sub-sub-category.html">Suits</a>
+                                            </li>
+                                        </ul>
+                                        <h6 class="item-title">
+                                            <a href="single-product.html">Black Maire Full Men Suit</a>
+                                        </h6>
+                                        <div class="item-description">
+                                            <p>British dandy Beau Brummell redefined and adapted this style, then popularised it, leading European men to wearing well-cut, tailored clothes, adorned with carefully knotted neckties. The simplicity of the new clothes and their sombre colours contrasted strongly with the extravagant, foppish styles just before. Brummell's influence introduced the modern era of men's clothing which now includes the modern suit and necktie.</p>
+                                        </div>
+                                        <div class="item-stars">
+                                            <div class='star' title="4.5 out of 5 - based on 23 Reviews">
+                                                <span style='width:67px'></span>
+                                            </div>
+                                            <span>(23)</span>
+                                        </div>
+                                    </div>
+                                    <div class="price-template">
+                                        <div class="item-new-price">
+                                            $55.00
+                                        </div>
+                                        <div class="item-old-price">
+                                            $60.00
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tag sale">
+                                    <span>SALE</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- Row-of-Product-Container /- -->
                 </div>
+                <!-- Shop-Right-Wrapper /- -->
             </div>
-            <!-- Detail-Tabs /- -->
-            <!-- Different-Product-Section -->
-            <div class="detail-different-product-section u-s-p-t-80">
-                <!-- Similar-Products -->
-                <section class="section-maker">
-                    <div class="container">
-                        <div class="sec-maker-header text-center">
-                            <h3 class="sec-maker-h3">Similar Products</h3>
-                        </div>
-                        <div class="slider-fouc">
-                            <div class="products-slider owl-carousel" data-item="4">
-                                <div class="item">
-                                    <div class="image-container">
-                                        <a class="item-img-wrapper-link" href="single-product.html">
-                                            <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
-                                        </a>
-                                        <div class="item-action-behaviors">
-                                            <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                            <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                            <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                            <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="item-content">
-                                        <div class="what-product-is">
-                                            <ul class="bread-crumb">
-                                                <li class="has-separator">
-                                                    <a href="shop-v1-root-category.html">Men's</a>
-                                                </li>
-                                                <li class="has-separator">
-                                                    <a href="shop-v2-sub-category.html">Tops</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                                </li>
-                                            </ul>
-                                            <h6 class="item-title">
-                                                <a href="single-product.html">Casual Hoodie Full Cotton</a>
-                                            </h6>
-                                            <div class="item-stars">
-                                                <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                    <span style='width:0'></span>
-                                                </div>
-                                                <span>(0)</span>
-                                            </div>
-                                        </div>
-                                        <div class="price-template">
-                                            <div class="item-new-price">
-                                                $55.00
-                                            </div>
-                                            <div class="item-old-price">
-                                                $60.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tag new">
-                                        <span>NEW</span>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="image-container">
-                                        <a class="item-img-wrapper-link" href="single-product.html">
-                                            <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
-                                        </a>
-                                        <div class="item-action-behaviors">
-                                            <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                            <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                            <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                            <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="item-content">
-                                        <div class="what-product-is">
-                                            <ul class="bread-crumb">
-                                                <li class="has-separator">
-                                                    <a href="shop-v1-root-category.html">Men's</a>
-                                                </li>
-                                                <li class="has-separator">
-                                                    <a href="shop-v2-sub-category.html">Outwear</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-v3-sub-sub-category.html">Jackets</a>
-                                                </li>
-                                            </ul>
-                                            <h6 class="item-title">
-                                                <a href="single-product.html">Fern Green Men's Jacket</a>
-                                            </h6>
-                                            <div class="item-stars">
-                                                <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                    <span style='width:0'></span>
-                                                </div>
-                                                <span>(0)</span>
-                                            </div>
-                                        </div>
-                                        <div class="price-template">
-                                            <div class="item-new-price">
-                                                $55.00
-                                            </div>
-                                            <div class="item-old-price">
-                                                $60.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tag hot">
-                                        <span>HOT</span>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="image-container">
-                                        <a class="item-img-wrapper-link" href="single-product.html">
-                                            <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
-                                        </a>
-                                        <div class="item-action-behaviors">
-                                            <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                            <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                            <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                            <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="item-content">
-                                        <div class="what-product-is">
-                                            <ul class="bread-crumb">
-                                                <li class="has-separator">
-                                                    <a href="shop-v1-root-category.html">Men's</a>
-                                                </li>
-                                                <li class="has-separator">
-                                                    <a href="shop-v2-sub-category.html">Sunglasses</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-v3-sub-sub-category.html">Round</a>
-                                                </li>
-                                            </ul>
-                                            <h6 class="item-title">
-                                                <a href="single-product.html">Brown Dark Tan Round Double Bridge Sunglasses</a>
-                                            </h6>
-                                            <div class="item-stars">
-                                                <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                    <span style='width:0'></span>
-                                                </div>
-                                                <span>(0)</span>
-                                            </div>
-                                        </div>
-                                        <div class="price-template">
-                                            <div class="item-new-price">
-                                                $55.00
-                                            </div>
-                                            <div class="item-old-price">
-                                                $60.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tag hot">
-                                        <span>HOT</span>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="image-container">
-                                        <a class="item-img-wrapper-link" href="single-product.html">
-                                            <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
-                                        </a>
-                                        <div class="item-action-behaviors">
-                                            <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                            <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                            <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                            <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="item-content">
-                                        <div class="what-product-is">
-                                            <ul class="bread-crumb">
-                                                <li class="has-separator">
-                                                    <a href="shop-v1-root-category.html">Men's</a>
-                                                </li>
-                                                <li class="has-separator">
-                                                    <a href="shop-v2-sub-category.html">Sunglasses</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-v3-sub-sub-category.html">Round</a>
-                                                </li>
-                                            </ul>
-                                            <h6 class="item-title">
-                                                <a href="single-product.html">Black Round Double Bridge Sunglasses</a>
-                                            </h6>
-                                            <div class="item-stars">
-                                                <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                    <span style='width:0'></span>
-                                                </div>
-                                                <span>(0)</span>
-                                            </div>
-                                        </div>
-                                        <div class="price-template">
-                                            <div class="item-new-price">
-                                                $55.00
-                                            </div>
-                                            <div class="item-old-price">
-                                                $60.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tag hot">
-                                        <span>HOT</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- Similar-Products /- -->
-                <!-- Recently-View-Products  -->
-                <section class="section-maker">
-                    <div class="container">
-                        <div class="sec-maker-header text-center">
-                            <h3 class="sec-maker-h3">Recently View</h3>
-                        </div>
-                        <div class="slider-fouc">
-                            <div class="products-slider owl-carousel" data-item="4">
-                                <div class="item">
-                                    <div class="image-container">
-                                        <a class="item-img-wrapper-link" href="single-product.html">
-                                            <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
-                                        </a>
-                                        <div class="item-action-behaviors">
-                                            <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                            <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                            <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                            <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                    <div class="item-content">
-                                        <div class="what-product-is">
-                                            <ul class="bread-crumb">
-                                                <li class="has-separator">
-                                                    <a href="shop-v1-root-category.html">Men's</a>
-                                                </li>
-                                                <li class="has-separator">
-                                                    <a href="shop-v2-sub-category.html">Outwear</a>
-                                                </li>
-                                                <li>
-                                                    <a href="shop-v3-sub-sub-category.html">Jackets</a>
-                                                </li>
-                                            </ul>
-                                            <h6 class="item-title">
-                                                <a href="single-product.html">Maire Battlefield Jeep Men's Jacket</a>
-                                            </h6>
-                                            <div class="item-stars">
-                                                <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                    <span style='width:0'></span>
-                                                </div>
-                                                <span>(0)</span>
-                                            </div>
-                                        </div>
-                                        <div class="price-template">
-                                            <div class="item-new-price">
-                                                $55.00
-                                            </div>
-                                            <div class="item-old-price">
-                                                $60.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tag hot">
-                                        <span>HOT</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- Recently-View-Products /- -->
-            </div>
-            <!-- Different-Product-Section /- -->
         </div>
     </div>
-    <!-- Single-Product-Full-Width-Page /- -->
+    <!-- Shop-Page /- -->
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1781,7 +1515,8 @@
                     </ul>
                 </div>
                 <p class="copyright-text">Copyright &copy; 2018
-                    <a href="home.html">Groover</a> All Right Reserved</p>
+                    <a href="home.html">Groover</a> All Right Reserved
+                </p>
             </div>
         </div>
         <!-- Bottom-Footer /- -->

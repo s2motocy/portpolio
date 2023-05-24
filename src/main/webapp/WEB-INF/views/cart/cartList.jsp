@@ -37,6 +37,7 @@
                                         <th>상품</th>
                                         <th>단가</th>
                                         <th>수량</th>
+                                        <th>변경</th>
                                         <th>합계</th>
                                     </tr>
                                 </thead>
@@ -46,7 +47,7 @@
 	                                        <td>
 	                                            <div class="cart-anchor-image">
 	                                                <a href="#">
-	                                                    <img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/s_${list.attachList[0].uuid}_${list.attachList[0].fileName}" width="50px" height="50px" />
+	                                                    <img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" width="50px" height="50px" />
 	                                                    <h6> ${list.item_name} </h6>
 	                                                    <input type="hidden" name="buy_list[${stat.index}].item_name" value="${list.item_name}" />
 	                                                </a>
@@ -61,7 +62,7 @@
 	                                        <td>
 	                                            <div class="cart-quantity">
 	                                                <div class="quantity">
-	                                                    <input type="text" class="quantity-text-field" name="buy_list[${stat.index}].amount" value="1">
+	                                                    <input type="text" class="quantity-text-field" name="buy_list[${stat.index}].amount" value="${list.amount}">
 	                                                    <a class="plus-a" data-max="1000">&#43;</a>
 	                                                    <a class="minus-a" data-min="1">&#45;</a>
 	                                                </div>
@@ -75,6 +76,11 @@
 	                                            <input type="hidden" id="userData${stat.index}" value="${list.user_id}" />
 	                                            <input type="hidden" id="itemData${stat.index}" name="buy_list[${stat.index}].item_id" value="${list.item_id}" />
 	                                        </td>
+	                                        <td>
+	                                        	<div class="cart-total">
+	                                        		<fmt:formatNumber value="0" pattern="###,### 원" />
+	                                        	</div>
+	                                        </td>
 	                                    </tr>
                                     </c:forEach>
                                 </tbody>
@@ -84,7 +90,7 @@
                         
                         <div class="coupon-continue-checkout u-s-m-b-60">
                             <div class="button-area">
-                                <a href="/cart/cartList" class="continue">계속 쇼핑하기</a>
+                                <a href="/item/itemList?user_id='${list.user_id}'" class="continue">계속 쇼핑하기</a>
                                 <a href="#" class="checkout">구매 로 이동</a>
                             </div>
                         </div>

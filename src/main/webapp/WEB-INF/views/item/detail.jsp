@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../include/header.jsp" %>
 
+<script>
+$(document).ready(function(){
+	/* "장바구니에 담기" 버튼 클릭시 수량값 실어보내기 */
+	$(".gocart").click(function(e){
+		var amount = parseInt($(".quantity-text-field").val())
+		$(".quantity-text-field").val(amount)
+		$(".post-form").submit()
+	})
+	
+})
+</script>
+
+<body>
+<div id="app">
     <!-- Page Introduction Wrapper -->
     <div class="page-style-a">
         <div class="container">
@@ -64,21 +79,17 @@
                         </div>
                         <div class="section-3-price-original-discount u-s-p-y-14">
                             <div class="price">
-                                <h4>${list.item_price} 원</h4>
+                                <h4><fmt:formatNumber value="${list.item_price}" pattern="###,### 원" /></h4>
                             </div>
                             <div class="original-price">
                                 <span>단가:</span>
-                                <span>${list.item_price} 원</span>
+                                <span><fmt:formatNumber value="${list.item_price}" pattern="###,### 원" /></span>
                             </div>
                             <div class="discount-price">
                                 <span>할인:</span>
                                 <span>0%</span>
                                 <span><img src="https://cdn-pro-web-134-253.cdn-nhncommerce.com/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_coupon_apply.png" /></span>
                             </div>
-                            <!-- <div class="total-save">
-                                <span>Save:</span>
-                                <span>$5</span>
-                            </div> -->
                         </div>
                         <div class="section-4-sku-information u-s-p-y-14">
                             <h6 class="information-heading u-s-m-b-8">판매 정보:</h6>
@@ -89,21 +100,28 @@
                             <div class="left">
                                 <span>재고:</span>
                                 <span>${list.item_stock} 개 남음</span>
+                                <input type="hidden" class="stockData" value="${list.item_stock}" />
                             </div>
                         </div>
                         <div class="section-6-social-media-quantity-actions u-s-p-y-14">
-                            <form action="#" class="post-form">
+                            <form action="/cart/register" method="post" class="post-form">
                                 <div class="quantity-wrapper u-s-m-b-22">
                                     <span>수량:</span>
                                     <div class="quantity">
-                                        <input type="text" class="quantity-text-field" value="1">
+                                        <input type="text" class="quantity-text-field" name="amount" value="1">
                                         <a class="plus-a" data-max="1000">&#43;</a>
                                         <a class="minus-a" data-min="1">&#45;</a>
                                     </div>
                                 </div>
+                                <div class="hiddenData">
+                                	<input type="hidden" name="item_id" value="${list.item_id}" />
+                                	<input type="hidden" name="item_name" value="${list.item_name}" />
+                                	<input type="hidden" name="item_price" value="${list.item_price}" />
+                                	<input type="hidden" name="user_id" value="${user_id}" />
+                                </div>
                                 <div>
                                     <button class="button button-outline-secondary far fa-heart u-s-m-l-6"></button>
-                                    <button class="button button-outline-secondary" type="submit">장바구니에 담기</button>
+                                    <button class="button button-outline-secondary gocart" type="submit">장바구니에 담기</button>
                                 </div>
                             </form>
                         </div>
@@ -450,119 +468,7 @@
     </div>
     <!-- Single-Product-Full-Width-Page /- -->
 
-    <!-- Dummy Selectbox -->
-    <div class="select-dummy-wrapper">
-        <select id="compute-select">
-            <option id="compute-option">All</option>
-        </select>
-    </div>
-    <!-- Dummy Selectbox /- -->
-    <!-- Responsive-Search -->
-    <div class="responsive-search-wrapper">
-        <button type="button" class="button ion ion-md-close" id="responsive-search-close-button"></button>
-        <div class="responsive-search-container">
-            <div class="container">
-                <p>Start typing and press Enter to search</p>
-                <form class="responsive-search-form">
-                    <label class="sr-only" for="search-text">Search</label>
-                    <input id="search-text" type="text" class="responsive-search-field" placeholder="PLEASE SEARCH">
-                    <i class="fas fa-search"></i>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Responsive-Search /- -->
-    <!-- Quick-view-Modal -->
-    <div id="quick-view" class="modal fade">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <button type="button" class="button dismiss-button ion ion-ios-close" data-dismiss="modal"></button>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <!-- Product-details -->
-                            <div class="all-information-wrapper">
-                                <div class="section-1-price-original-discount u-s-p-y-14">
-                                    <div class="original-price">
-                                        <span>단가:</span>
-                                        <span class="priceData"></span>
-                                    </div>
-                                    <div class="total-price">
-                                        <span>총액:</span>
-                                        <span class="totalData"></span>
-                                    </div>
-                                    <div class="amount">
-                                        <span>수량:</span>
-                                        <span class="amountData"></span>
-                                    </div>
-                                </div>
-
-                                <div class="section-6-social-media-quantity-actions u-s-p-y-14">
-                                    <form action="/cart/register" method="post" class="post-form">
-                                        <div class="quantity-wrapper u-s-m-b-22">
-                                            <span>Quantity:</span>
-                                            <div class="quantity">
-                                                <input type="text" class="quantity-text-field" value="1">
-                                                <a class="plus-a" data-max="1000">&#43;</a>
-                                                <a class="minus-a" data-min="1">&#45;</a>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button class="button button-outline-secondary" type="submit">Add to cart</button>
-                                            <button class="button button-outline-secondary far fa-heart u-s-m-l-6"></button>
-                                            <button class="button button-outline-secondary far fa-envelope u-s-m-l-6"></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- Product-details /- -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Quick-view-Modal /- -->
 </div>
-<!-- app /- -->
-<!--[if lte IE 9]>
-<div class="app-issue">
-    <div class="vertical-center">
-        <div class="text-center">
-            <h1>You are using an outdated browser.</h1>
-            <span>This web app is not compatible with following browser. Please upgrade your browser to improve your security and experience.</span>
-        </div>
-    </div>
-</div>
-<style> #app {
-    display: none;
-} </style>
-<![endif]-->
-<!-- NoScript -->
-<noscript>
-    <div class="app-issue">
-        <div class="vertical-center">
-            <div class="text-center">
-                <h1>JavaScript is disabled in your browser.</h1>
-                <span>Please enable JavaScript in your browser or upgrade to a JavaScript-capable browser to register for Groover.</span>
-            </div>
-        </div>
-    </div>
-    <style>
-    #app {
-        display: none;
-    }
-    </style>
-</noscript>
-<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-<script>
-window.ga = function() {
-    ga.q.push(arguments)
-};
-ga.q = [];
-ga.l = +new Date;
-ga('create', 'UA-XXXXX-Y', 'auto');
-ga('send', 'pageview')
-</script>
+</body>
 
 <%@ include file="../include/footer.jsp" %>

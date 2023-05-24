@@ -34,11 +34,22 @@ public class CartController {
 	
 	
 	/* 장바구니 등록 |--------------------------------------------------- */
+
 	@PostMapping("/register")
 	public String cartInsert(CartDTO dto) {
 		System.out.println("Cart 컨트롤러에서 등록 : dto="+ dto);
 		List<CartDTO> cartList = cservice.cartList();
-		
+		/* user_id 값이 없을때 값 생성 */
+		if(dto.getUser_id()==null || dto.getUser_id() == "") {
+			System.out.println("값이 없으니 여기에 들어와야해");
+			var num = imapper.getMax();
+			var str = "cart-";
+			for(int i=0;i<6-num.toString().length();i++) {
+				str += "0";
+			}
+			str += num;
+			dto.setUser_id(str);
+		}
 		/* DB에 값이 있을때 */
 		for(int i=0;i<cartList.size();i++) {
 			if(cartList.get(i).getItem_id().equals(dto.getItem_id())) {
@@ -61,6 +72,8 @@ public class CartController {
 	/* 장바구니 목록 |--------------------------------------------------- */
 	@GetMapping("/cartList")
 	public void cartList(Model model) {
+//		System.out.println("Cart 컨트롤러에서 목록 : dto="+ dto);
+//		List<CartDTO> dtoList = cservice.cartFindByUser(dto.getUser_id());
 		System.out.println("Cart 컨트롤러에서 목록 : ");
 		List<CartDTO> dtoList = cservice.cartList();
 		System.out.println(dtoList);
