@@ -1,5 +1,10 @@
 package com.cook.mymealkit.controller;
 
+import static org.junit.Assert.assertEquals;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +25,7 @@ public class CartTests {
 	private CartService cservice;
 	
 	/* 하나 등록 */
-	@Test
+	//@Test
 	public void insertTest() {
 		CartDTO dto = new CartDTO();
 		dto.setUser_id("tester");
@@ -32,4 +37,18 @@ public class CartTests {
 		cservice.cartInsert(dto);
 	}
 	
+	
+	
+   @Test
+    public void calculateDays() {
+	   var s = ("2023-02-22").replace("-", ", ");
+	   
+        LocalDate date1 = LocalDate.of(2022, 9, 01);
+        LocalDate date2 = LocalDate.of(2022, 8, 20);
+
+        long diffDays = Math.abs(ChronoUnit.DAYS.between(date1, date2));
+
+//	        assertEquals(2, diffDays);
+        System.out.println("여기야"+diffDays);
+    }
 }

@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.web.bind.annotation.ResponseBody;
-
-
 import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.BuyGuestVO;
 import com.cook.mymealkit.domain.BuyListDTO;
@@ -50,7 +47,7 @@ public class BuyController {
 	
 	
 	/* 회원 구매 로그인 */
-	@GetMapping("/buyPageLogin")
+	@GetMapping("/buyLogin")
 	public void registerUser(BuyUserVO bvo,BuyGuestVO gvo, HttpSession session, Model model) {
 		System.out.println("vo : "+bvo);
 		model.addAttribute("test", gvo);
@@ -58,7 +55,7 @@ public class BuyController {
 	}
 	
 	/* 로그인 세션처리 */
-	@PostMapping("buyPageLogin")
+	@PostMapping("/buyLogin")
 	public ResponseEntity<String> UserLoginPost(@RequestBody UserVO uvo, BuyUserVO bvo, HttpSession session) {
 		System.out.println("uvo:"+uvo+" ,bvo:"+bvo);
 		if(uvo.getUser_id() ==null || uvo.getUser_id().isEmpty() || uvo.getPwd() == null || uvo.getPwd().isEmpty()) {
@@ -88,9 +85,9 @@ public class BuyController {
 	}
 	
 	/* 회원 구매 페이지 */
-	@GetMapping("/buyPageUser")
+	@GetMapping("/buyUser")
 	public void register(UserVO uvo, BuyUserVO bvo, HttpServletRequest request, HttpSession session, Model model) {
-		System.out.println("BuyPageUser 에서 uvo : "+uvo + " , bvo"+bvo);
+		System.out.println("BuyUser 에서 uvo : "+uvo + " , bvo"+bvo);
 		
 		if(session.getAttribute("user") != null) {
 			
@@ -133,9 +130,9 @@ public class BuyController {
 	}
 	
 	/* 비회원 구매 페이지 */
-	@GetMapping("/buyPageGuest")
+	@GetMapping("/buyGuest")
 	public void guestRegister(BuyGuestVO gvo, Model model) {
-		System.out.println("BuyPageGuest 에서 gvo : "+gvo);
+		System.out.println("BuyGuest 에서 gvo : "+gvo);
 		
 		/* 구매정보 */
 		String str="g"; // 문자열(u: user의 앞글자) 생성
@@ -164,7 +161,7 @@ public class BuyController {
 	}
 	
 	/* 구매 등록 */
-	@PostMapping("register")
+	@PostMapping("/register")
 	public String registerPost(BuyUserVO bvo, BuyGuestVO gvo, HttpSession session) {
 		if(session.getAttribute("user") != null) {
 			
@@ -184,11 +181,11 @@ public class BuyController {
 			
 		}
 		
-		return "redirect:/buy/buySuccess";
+		return "redirect:/buy/buyDone";
 	}
 	
 	/* 구매완료 페이지 */
-	@GetMapping("buySuccess")
+	@GetMapping("/buyDone")
 	public void success() {}
 	
 	// 회원 구매내역 조회
@@ -205,24 +202,6 @@ public class BuyController {
 
 	// 관리자권한 전체 구매내역 조회
 	@GetMapping("/buyList")
-	public String Buy(Model model) throws ParseException {
-		List<BuyUserVO> buylist = bservice.userBuyList();
-		System.out.println(buylist);
-		model.addAttribute("buylist", buylist);
-		System.out.println(buylist);
-		return "/buy/buyList";
-	} 
-	
-	@PostMapping("/order")
-	@ResponseBody
-	public int OrderModify(BuyUserVO vo){
-		
-		System.out.println("이야이애애애애호" + vo);
-		
-		return bservice.statusUpdate(vo);
-	}
-	
-
 	public void Buy(Model model) {
 		List<BuyUserVO> buyList = bservice.userBuyList(); // 전체 회원구매 목록
 		List<BuyListDTO> bblist = new ArrayList<BuyListDTO>(); // 아이템 목록만 저장할 공간

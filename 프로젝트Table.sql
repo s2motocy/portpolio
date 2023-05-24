@@ -85,7 +85,7 @@ create sequence seq_cart;
 -- 장바구니(cart) 테이블 생성
 create table tbl_cart (
     cart_id     number(30) not null primary key,    -- 카트 번호 (시퀀스 사용)
-    user_id     varchar2(50),                       -- 회원 번호
+    cart_name   varchar2(50),                       -- 카트 이름
     item_id     number(30),                         -- 상품 번호
     item_name   varchar2(50),                       -- 상품 이름
     amount      number(10),                         -- 상품 수량

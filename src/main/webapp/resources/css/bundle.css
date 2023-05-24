@@ -1734,6 +1734,7 @@ body {
     outline: 0;
     border-color: #292929; }
 
+/* 항목추가 시작 ; text-field 의 width 를 300px 로 조정 */
 .text-field1 {
   background-color: #ffffff;
   border: 1px solid #eceff8;
@@ -1741,7 +1742,7 @@ body {
   font-size: 14px;
   height: 55px;
   padding: 0 15px;
-  width: 300px;
+  width: 600px;
   transition: all .3s; }
  .text-area1 {
   display: block;
@@ -1754,6 +1755,7 @@ body {
   .text-area:focus {
     outline: 0;
     border-color: #292929; }
+/* 항목추가 종료 */
 /*--------------------------------------------------------------
 7.0 Header
 --------------------------------------------------------------*/
@@ -3029,7 +3031,8 @@ body {
     .coupon-continue-checkout .button-area .checkout {
       margin-left: 6px;
       transition: all .4s;
-      background: #d90429;
+      background: #ff6b00;
+      border-radius: 4px;
       color: #ffffff; }
       .coupon-continue-checkout .button-area .checkout:hover {
         background: #cf0427; }
@@ -3354,7 +3357,7 @@ body {
 
 .grid-style .item {
   margin-right: 29px;
-  margin-left: 29px;}
+  margin-left: 29px; }
 
 .grid-style .item-description {
   display: none; }
@@ -3598,6 +3601,7 @@ body {
   .page-bar {
     text-align: center; }
     .page-bar .shop-settings {
+      margin-top: 8px;
       margin-bottom: 8px;
       float: none; }
     .page-bar .toolbar-sorter {

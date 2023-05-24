@@ -52,4 +52,10 @@ public class CartServiceImpl implements CartService {
 		cmapper.cartAllRemove();
 	}
 
+	@Override
+	public List<CartDTO> cartFindByUser(String user_id) {
+		System.out.println("Cart 서비스에서 user_id 로 조회 : user_id="+ user_id);
+		return cmapper.cartFindByUser(user_id);
+	}
+
 }
