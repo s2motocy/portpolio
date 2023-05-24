@@ -1216,7 +1216,6 @@ body {
   position: relative; }
   .item-img-wrapper-link:before {
     display: block;
-    content: '';
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
@@ -1740,7 +1739,7 @@ body {
   border: 1px solid #eceff8;
   color: #333333;
   font-size: 14px;
-  height: 45px;
+  height: 55px;
   padding: 0 15px;
   width: 300px;
   transition: all .3s; }
@@ -3354,7 +3353,8 @@ body {
   display: flex; }
 
 .grid-style .item {
-  margin: 0 0 30px; }
+  margin-right: 29px;
+  margin-left: 29px;}
 
 .grid-style .item-description {
   display: none; }

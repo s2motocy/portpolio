@@ -67,4 +67,12 @@ public class ItemServicempl implements ItemService{
 		return attachList;
 	}
 
+	@Override
+	public List<ItemVO> categoryItemList(String category) {
+		// TODO Auto-generated method stub
+		return imapper.categoryItemList(category);
+	}
+
+
+
 }

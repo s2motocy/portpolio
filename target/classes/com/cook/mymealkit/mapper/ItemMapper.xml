@@ -27,8 +27,8 @@
 	<select id="get_price" resultType="int">
 		select item_price from tbl_item where item_id=#{item_id}
 	</select>
-	<select id="categoryItemList" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="com.cook.mymealkit.domain.ItemVO">
-		select (category, item_name, item_price) from tbl_item where category=#{category}
+	<select id="categoryItemList" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="string" >
+		select * from tbl_item where category=#{category}
 	</select>
 
 </mapper>

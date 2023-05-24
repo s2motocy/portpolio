@@ -1,41 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
-<!DOCTYPE html>
-<html class="no-js" lang="en-US">
-<head>
 <%@ include file="../include/header.jsp" %>
-    <meta charset="UTF-8">
-    <!--[if IE]>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Groover - Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more</title>
-    <!-- Standard Favicon -->
-    <link href="favicon.ico" rel="shortcut icon">
-    <!-- Base Google Font for Web-app -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-    <!-- Google Fonts for Banners only -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
-    <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <!-- Font Awesome 5 -->
-    <link rel="stylesheet" href="/resources/css/fontawesome.min.css">
-    <!-- Ion-Icons 4 -->
-    <link rel="stylesheet" href="/resources/css/ionicons.min.css">
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="/resources/css/animate.min.css">
-    <!-- Owl-Carousel -->
-    <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-    <!-- Jquery-Ui-Range-Slider -->
-    <link rel="stylesheet" href="/resources/css/jquery-ui-range-slider.min.css">
-    <!-- Utility -->
-    <link rel="stylesheet" href="/resources/css/utility.css">
-    <!-- Main -->
-    <link rel="stylesheet" href="/resources/css/bundle.css">
-      <style>
+<style>
   a{
   	text-decoration : none;
   }
@@ -118,7 +85,7 @@
 }
 
    
-  </style>
+</style>
 </head>
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -146,7 +113,6 @@
             <div class="page-intro">
                 <h2>문의</h2>
                 <div class="container">
-	
 				</div>
                 <ul class="bread-crumb">
                     <li class="has-separator">
@@ -162,10 +128,9 @@
     </div>
     <!-- Page Introduction Wrapper /- -->
     <!-- FAQ-Page -->
-   	<div class="container">
+<div class="container">
 	<div class="table_wrap">
 	<a href="/question/enroll" class="top_btn">문의 등록</a>
-
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -180,11 +145,10 @@
                 <td><c:out value="${list.qno}"/></td>
                 <td><a class="a_move" href="${list.qno}">${list.title}</a></td>
                 <td><c:out value="${list.writer}"/></td>
-                <td><fmt:formatDate pattern="yyyy년MM월dd일HH시mm분" value="${list.writedate}"/></td>
+                <td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.writedate}"/></td>
             </tr>
         </c:forEach>
 	</table>
-
 	    <div class="search_wrap">
         <div class="search_area">
             <select name="type">
@@ -200,7 +164,7 @@
             <button id='search'>Search</button>
         </div>
     </div>   
-
+<div class="" >
 		<div class="pageInfo_area">
 			<ul id="pageInfo" class="pageInfo">
 				<c:if test="${pageMaker.prev}">
@@ -214,7 +178,7 @@
 				</c:if>	
 			</ul>
 		</div>
-
+	</div>
 	<form id="moveForm" method="get">  
 		<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
     	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">  
@@ -245,8 +209,8 @@
             </div>
         </div>
     </div>
-   	</div>
     <!-- Responsive-Search /- -->
+</div>
 </div>
 <!-- app /- -->
 <script>
@@ -305,13 +269,13 @@ $(document).ready(function(){
 			$(".pageInfo_btn a").on("click", function(e){
        			e.preventDefault();
 		        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-		        moveForm.attr("action", "faq");
+		        moveForm.attr("action", "/question/list");
 		        moveForm.submit();      
     		});
 			 function search({type ,keyword ,pageNum }){
 				console.log("호출 ",  type, keyword, pageNum)
 				$.ajax({
-				    url: "faq", 
+				    url: "list", 
 				    method: "GET",   
 				    success:function(result){
 				    	console.log(result)
@@ -341,6 +305,6 @@ $(document).ready(function(){
 			    moveForm.submit();
 			});
 		});
-		</script>
+</script>
 </body>
 <%@ include file="../include/footer.jsp" %>

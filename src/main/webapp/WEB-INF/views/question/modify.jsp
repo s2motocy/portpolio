@@ -12,6 +12,46 @@
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
   <style>
+  .input_wrap, .u-s-m-b-30 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.text-field1{
+	border-radius:5px;}	
+	.table_wrap {
+  		width: 100%;
+}
+
+.table_wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table_wrap th, .table_wrap td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.table_wrap th {
+  background-color: #f2f2f2;
+}
+
+.table_wrap th label {
+  font-weight: bold;
+}
+
+.input_wrap input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input_wrap input:read-only {
+  color: #888;
+}
 <style type="text/css">
 .input_wrap{
 	padding: 5px 20px;
@@ -19,7 +59,6 @@
 label{
     display: block;
     margin: 10px 0;
-    font-size: 20px;	
 }
 input{
 	padding: 5px;
@@ -28,7 +67,7 @@ input{
 textarea{
 	width: 800px;
     height: 200px;
-    font-size: 15px;
+    font-size: 20px;
     padding: 10px;
 }
 .btn{
@@ -44,62 +83,116 @@ textarea{
     text-align : center;
     margin-left : 30px;
     cursor : pointer;
+    margin: 0 10px;
+    border-radius: 4px;
+    color: #fff;
 }
+
 .btn_wrap{
 	padding-left : 80px;
 	margin-top : 50px;
+	margin-bottom : 30px;
+	  display: flex;
+  justify-content: center;
 }
-#delete_btn{
-	background-color: #f3e3e7;
+#modify_btn {
+  background-color: blue;
+  color: #fff;
 }
+
+#cancel_btn {
+  background-color: purple;
+  color: #fff;
+}
+
+#list_btn {
+  background-color: gray;
+  color: #fff;
+}
+
+#delete_btn {
+  background-color: red;
+  color: #fff;
+}
+.container{
+	margin-top:10px;}
 </style>
 </head>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <body>
-<!-- Page Introduction Wrapper -->
-<div class="page-style-a">
-    <div class="container">
-        <div class="page-intro">
-            <h2>문의 수정</h2>
-            <ul class="bread-crumb">
-                <li class="has-separator">
-                    <i class="ion ion-md-home"></i>
-                    <a href="home.html">Home</a>
-                </li>
-                <li class="is-marked">
-                    <a href="single-product.html">문의</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+<form id="modifyForm" action="/question/modify" method="post">	
+	<div class="page-style-a">
+	    <div class="container">
+	        <div class="page-intro">
+	            <h2>문의 조회</h2>
+	            <ul class="bread-crumb">
+	                <li class="has-separator">
+	                    <i class="ion ion-md-home"></i>
+	                    Home
+	                </li>
+	                <li class="is-marked">
+	                    문의
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+<div class="container">
+	<div class="table_wrap">
+	   <table>
+	        <tr>
+	      <th>
+	        <label for="category">문의 종류</label>
+	      </th>
+		  <td>
+	        <div class="input_wrap">
+	          <input name="category" readonly="readonly" value='<c:out value="${pageInfo.category}"/>'>
+	        </div>
+	      </td>
+	    </tr>
+	  	<tr>
+	      <th>
+	        <label for="category">문의 번호</label>
+	      </th>
+		  <td>
+	        <div class="input_wrap">
+	          <input name="qno" readonly="readonly" value='<c:out value="${pageInfo.qno}"/>'>
+	        </div>
+	      </td>
+	    </tr> 
+	    <tr>
+	      <th>
+	        <label>문의 작성자</label>
+	      </th>
+	      <td>
+	        <div class="input_wrap">
+	          <input name="writer"  value='<c:out value="${pageInfo.writer}"/>'>
+	        </div>
+	      </td>
+	    </tr>
+		<tr>
+	    <th>
+	    	<label>문의 제목</label>
+	    </th>
+	    <td>
+	    	<div class="input_wrap">
+	        	<input name="title" value='<c:out value="${pageInfo.title}"/>'>
+	        </div>
+	    </td>
+	    </tr>
+		<tr>
+	      <th>
+	        <label>문의 내용</label>
+	      </th>
+	      <td>
+	        <div class="input_wrap">
+	          <textarea rows="3" name="content" style="width : 985px;"><c:out value="${pageInfo.content}"/></textarea>
+	        </div>
+	      </td>
+	    </tr>
+	</table>
+	</div>
 </div>
-<!-- Page Introduction Wrapper /- -->
-	<form id="modifyForm" action="/question/modify" method="post">
-	<div class="input_wrap">
-		<label>문의 등록일</label>
-		<input readonly="readonly" value='<fmt:formatDate pattern="yyyy년MM월dd일HH시mm분" value="${pageInfo.writedate}"/>' >
-	</div>
-	
-	<div class="input_wrap">
-		<label>문의 수정일</label>
-		<input readonly="readonly" value='<fmt:formatDate pattern="yyyy년MM월dd일HH시mm분" value="${pageInfo.updateDate}"/>' >
-	</div>	
-
-	<div class="input_wrap">
-		<label>문의 작성자</label>
-		<input name="writer" readonly="readonly" value='<c:out value="${pageInfo.writer}"/>' >
-	</div>
-	
-	<div class="input_wrap">
-		<label>문의 제목</label>
-		<input name="title" value='<c:out value="${pageInfo.title}"/>' >
-	</div>
-	
-	<div class="input_wrap">
-		<label>문의 내용</label>
-		<textarea rows="3" name="content"><c:out value="${pageInfo.content}"/></textarea>
-	</div>
-		
 	<div class="btn_wrap">
 		<a class="btn" id="list_btn">목록 페이지</a> 
 		<a class="btn" id="modify_btn">수정 완료</a>
@@ -107,7 +200,7 @@ textarea{
 		<a class="btn" id="cancel_btn">수정 취소</a>
 	</div>
 	</form>
-	<form id="infoForm" action="/question/modify" method="get">
+		<form id="infoForm" action="/question/modify" method="get">
 		<input type="hidden" id="qno" name="qno" value='<c:out value="${pageInfo.qno}"/>'>
 		<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
 		<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
@@ -147,4 +240,5 @@ textarea{
 	
 </script>	
 </body>
+<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </html>

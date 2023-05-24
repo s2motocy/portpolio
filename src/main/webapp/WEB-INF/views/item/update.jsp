@@ -136,13 +136,6 @@ textarea {
    border-radius:5px
 }
 
-hr {
-	width: 80%;
-	border: 1px solid #ff6b00;
-	margin-bottom: 25px;
-	opacity: 0.5;
-}
-
 .resetbtn {
    background-color: #ff6b00;
    color: white;
@@ -195,7 +188,6 @@ hr {
 <!-- Page Introduction Wrapper /- -->
 <form action="update" method="post" id="update" role="form">
  	<div class="container">
- 	<hr>
          <label><b>카테고리</b></label>
          <br>
 	         <select name="category">

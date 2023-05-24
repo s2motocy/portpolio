@@ -13,6 +13,6 @@ public interface ItemMapper {
 	public int itemDelete(long item_id);					// 삭제
 	public Long getMax();									// item_id 가 0 일때 최대값(max) 찾기
 	public int get_price(long item_id);						// price 값 찾기
-	public List<ItemVO> categoryItemList(ItemVO vo);	// 카테고리 상품보기
+	public List<ItemVO> categoryItemList(String category);	// 카테고리 상품보기
 	
 }

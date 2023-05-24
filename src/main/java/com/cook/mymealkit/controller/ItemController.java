@@ -93,4 +93,32 @@ public class ItemController {
 		imapper.itemDelete(item_id);
 		return "redirect:/item/itemList";
 	}
+	
+	/* 카테고리 |--------------------------------------------------- */
+	@GetMapping("/category")
+	public String category(String category  , Model model) {
+		System.out.println(category);
+        List<ItemVO> categoryList = iservice.categoryItemList(category);
+        System.out.println(categoryList);        
+        categoryList.forEach(i->{
+			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
+			i.setAttachList(attachList);
+		});
+        System.out.println(categoryList);
+        model.addAttribute("categoryList", categoryList);
+		return "/item/listByCategory";
+    }
+	
+	/* 카테고리 전체|--------------------------------------------------- */
+	@GetMapping("/categoryAll")
+	public String all(Model model) {
+		List<ItemVO> itemList = imapper.itemList();
+		itemList.forEach(i->{
+			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
+			i.setAttachList(attachList);
+		});
+		 System.out.println("왜 4개밖에 안나옴" + itemList);        
+		model.addAttribute("itemList",itemList);
+		return "/item/categoryAll";
+	}
 }

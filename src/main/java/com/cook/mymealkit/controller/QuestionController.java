@@ -76,6 +76,7 @@ public class QuestionController {
     /* 문의 수정 */	
     @PostMapping("/modify")
     public String questModifyPOST(QuestionVO quest, RedirectAttributes rttr) {
+    	System.out.println("수정:" + quest);
     	qservice.modify(quest);
     	rttr.addFlashAttribute("result", "modify success");
     	return "redirect:/question/list";

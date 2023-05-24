@@ -2,54 +2,98 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<style>
-.input_wrap, .u-s-m-b-30 {
+ <style>
+  .input_wrap, .u-s-m-b-30 {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px; /* 필요에 따라 조정할 수 있습니다 */
 }
-.u-s-m-b-25 {
+.text-field1{
+	border-radius:5px;}	
+	.table_wrap {
+  width: 100%;
+}
+
+.table_wrap table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table_wrap th, .table_wrap td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.table_wrap th {
+  background-color: #f2f2f2;
+}
+
+.table_wrap th label {
+  font-weight: bold;
+}
+
+.input_wrap input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input_wrap input:read-only {
+  color: #888;
+}
+<style type="text/css">
+.input_wrap{
+	padding: 5px 20px;
+}
+label{
+    display: block;
+    margin: 10px 0;
+}
+input{
+	padding: 5px;
+    font-size: 17px;
+}
+textarea{
+	width: 800px;
+    height: 200px;
+    font-size: 20px;
+    padding: 10px;
+}
+.btn{
+  	display: inline-block;
+    font-size: 22px;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    font-weight: 600;
+    width: 140px;
+    height: 41px;
+    line-height: 39px;
+    text-align : center;
+    margin-left : 30px;
+    cursor : pointer;
+    margin: 0 10px;
+    border-radius: 4px;
+    color: #fff;
+    }
+.btn_wrap{
+	padding-left : 80px;
+	margin-top : 50px;
+	margin-bottom : 30px;
+	  display: flex;
+  justify-content: center;
+}
+.container{
 	margin-top:10px;}
 </style>
 <head>
-    <meta charset="UTF-8">
-    <!--[if IE]>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">aaaa
-    <meta name="author" content="">
-    <title>밀키트 등록</title>
-    <!-- Standard Favicon -->
-    <link href="favicon.ico" rel="shortcut icon">
-    <!-- Base Google Font for Web-app -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-    <!-- Google Fonts for Banners only -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
-    <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <!-- Font Awesome 5 -->
-    <link rel="stylesheet" href="/resources/css/fontawesome.min.css">
-    <!-- Ion-Icons 4 -->
-    <link rel="stylesheet" href="/resources/css/ionicons.min.css">
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="/resources/css/animate.min.css">
-    <!-- Owl-Carousel -->
-    <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-    <!-- Jquery-Ui-Range-Slider -->
-    <link rel="stylesheet" href="/resources/css/jquery-ui-range-slider.min.css">
-    <!-- Utility -->
-    <link rel="stylesheet" href="/resources/css/utility.css">
-    <!-- Main -->
-    <link rel="stylesheet" href="/resources/css/bundle.css">
-<meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
+</head>
 <body>
-<!-- Page Introduction Wrapper -->
+    <form action="/question/enroll" method="post">
 <div class="page-style-a">
     <div class="container">
         <div class="page-intro">
@@ -57,79 +101,78 @@
             <ul class="bread-crumb">
                 <li class="has-separator">
                     <i class="ion ion-md-home"></i>
-                    <a href="home.html">Home</a>
+                    Home
                 </li>
                 <li class="is-marked">
-                    <a href="single-product.html">문의</a>
+                    문의
                 </li>
             </ul>
         </div>
     </div>
 </div>
-<!-- Page Introduction Wrapper /- -->
-    <form action="/question/enroll" method="post">
-	<div class="input_wrap u-s-m-b-25">
-    <label>카테고리</label>
-		<select name="category">
-			<option value="회원/정보관리">회원/정보관리</option>
+<div class="container">
+<div class="table_wrap">
+  <table>
+      <tr>
+      <th>
+        <label for="category">문의 종류</label>
+      </th>
+      <td>
+        <div class="input_wrap">
+          <select name="category">
+          	<option value="회원/정보관리">회원/정보관리</option>
 			<option value="주문/결제">주문/결제</option>
 			<option value="환불/교환">환불/교환</option>
 			<option value="기타">기타</option>
 		</select>
-	</div>
-	<div class="input_wrap u-s-m-b-30">
-    	<label for="comment-name">제목
-    		<span class="astk">*</span>
-    	</label>
-    	<input type="text" id="title" class="text-field1">
-    </div>
-    <div class="input_wrap u-s-m-b-30">
-    	<label for="content">내용</label>
-        	<textarea class="text-area1" id="content"></textarea>
-    </div>
-	<div class="input_wrap u-s-m-b-30">
-    	<label for="writer">작성자
-        	<span class="writer">*</span>
-    	</label>
-   		<input type="text" id="writer" class="text-field1">
-	</div>
-	<div class="input_wrap u-s-m-b-30">
-    	<label for="password">비밀번호</label>
-        	<input type="password" id="password" class="text-field1" placeholder="미입력시 열람불가">
-	</div>
-	<div class="u-s-m-b-30">
-    	<button class="button button-outline-secondary w-123">문의등록</button>
-	</div>
+        </div>
+      </td>
+    </tr>
+        <tr>
+      <th>
+        <label for="title">제목</label>
+      </th>
+      <td>
+        <div class="input_wrap">
+         <input type="text" id="title" class="text-field1" placeholder="제목을 입력하세요" name="title">
+        </div>
+      </td>
+    </tr>
+        <tr>
+      <th>
+        <label for="writer">작성자</label>
+      </th>
+      <td>
+        <div class="input_wrap">
+         	<input type="text" id="writer" class="text-field1" name="writer">
+        </div>
+      </td>
+    </tr>
+        <tr>
+      <th>
+        <label for="content">내용</label>
+      </th>
+      <td>
+        <div class="input_wrap">
+          <textarea id="content" style="width: 985px; height: 200px; border-radius: 5px;" name="content"></textarea>
+        </div>
+      </td>
+    </tr>
+            <tr>
+      <th>
+        <label for="password">비밀번호</label>
+      </th>
+      <td>
+        <div class="input_wrap">
+          <input type="password" id="password" class="text-field1" placeholder="미입력시 열람불가" name="password">
+        </div>
+      </td>
+    </tr>
+    </table>
+<div style="text-align: center; margin-bottom: 100px;">
+    <button type="reset" class="button button-outline-secondary" style="display: inline-block; width: 200px; height: 50px; background-color: gray; color: white; border: gray;">취소</button>
+    <button type="submit" class="button button-outline-secondary" style="display: inline-block; width: 200px; height: 50px; background-color: orange; color: white; border: orange;">문의등록</button>
+</div>
     </form>
-<script src="https://www.google-analytics.com/analytics.js" async defer></script>
-<!-- Modernizr-JS -->
-<script type="text/javascript" src="/resources/js/vendor/modernizr-custom.min.js"></script>
-<!-- NProgress -->
-<script type="text/javascript" src="/resources/js/nprogress.min.js"></script>
-<!-- jQuery -->
-<script type="text/javascript" src="/resources/js/jquery.min.js"></script>
-<!-- Bootstrap JS -->
-<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-<!-- Popper -->
-<script type="text/javascript" src="/resources/js/popper.min.js"></script>
-<!-- ScrollUp -->
-<script type="text/javascript" src="/resources/js/jquery.scrollUp.min.js"></script>
-<!-- Elevate Zoom -->
-<script type="text/javascript" src="/resources/js/jquery.elevatezoom.min.js"></script>
-<!-- jquery-ui-range-slider -->
-<script type="text/javascript" src="/resources/js/jquery-ui.range-slider.min.js"></script>
-<!-- jQuery Slim-Scroll -->
-<script type="text/javascript" src="/resources/js/jquery.slimscroll.min.js"></script>
-<!-- jQuery Resize-Select -->
-<script type="text/javascript" src="/resources/js/jquery.resize-select.min.js"></script>
-<!-- jQuery Custom Mega Menu -->
-<script type="text/javascript" src="/resources/js/jquery.custom-megamenu.min.js"></script>
-<!-- jQuery Countdown -->
-<script type="text/javascript" src="/resources/js/jquery.custom-countdown.min.js"></script>
-<!-- Owl Carousel -->
-<script type="text/javascript" src="/resources/js/owl.carousel.min.js"></script>
-<!-- Main -->
-<script type="text/javascript" src="/resources/js/app.js"></script>
-</body>
-<%@ include file="/WEB-INF/views/include/footer.jsp" %>
+ <%@ include file="/WEB-INF/views/include/footer.jsp" %>   
 </html>
