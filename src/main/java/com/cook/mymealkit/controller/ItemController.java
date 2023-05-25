@@ -2,6 +2,7 @@ package com.cook.mymealkit.controller;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -124,6 +125,23 @@ public class ItemController {
 		model.addAttribute("itemList",itemList);
 		model.addAttribute("user_id", user_id);
 		return "/item/categoryAll";
+	}
+	
+	/* 신상품/인기상품 보기|--------------------------------------------------- */
+	@GetMapping("/newOrBest")
+	public String newI(@Param("itemType") String itemType,Model model) {
+		System.out.println("itemType:"+itemType);
+		ItemVO vo = new ItemVO();
+		vo.setItemType(itemType);
+		List<ItemVO> newItemList = imapper.categoryByNewOrBest(vo);
+		System.out.println("itmelist : " + newItemList);
+		newItemList.forEach(i->{
+			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
+			i.setAttachList(attachList);
+		});
+		System.out.println("이야ㅑ이야호" + newItemList);
+		model.addAttribute("newItemList", newItemList);
+		return "/item/newOrBest";
 	}
 
 	@GetMapping("/sample")
