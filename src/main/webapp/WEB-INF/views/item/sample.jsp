@@ -742,7 +742,7 @@
                                         </li>
                                         <li class="menu-title">Blog</li>
                                         <li>
-                                            <a href="blog.html">Blog Page</a>
+                                            <a href="blog.html" class="u-c-brand">Blog Page</a>
                                         </li>
                                         <li>
                                             <a href="blog-detail.html">Blog Details</a>
@@ -751,7 +751,7 @@
                                     <ul>
                                         <li class="menu-title">Ecommerce Pages</li>
                                         <li>
-                                            <a href="shop-v2-sub-category.html" class="u-c-brand">Shop</a>
+                                            <a href="shop-v2-sub-category.html">Shop</a>
                                         </li>
                                         <li>
                                             <a href="cart.html">Cart</a>
@@ -789,7 +789,7 @@
                                             <a href="shop-v1-root-category.html">Shop Ver 1 Root Category</a>
                                         </li>
                                         <li>
-                                            <a href="shop-v2-sub-category.html" class="u-c-brand">Shop Ver 2 Sub Category</a>
+                                            <a href="shop-v2-sub-category.html">Shop Ver 2 Sub Category</a>
                                         </li>
                                         <li>
                                             <a href="shop-v3-sub-sub-category.html">Shop Ver 3 Sub Sub Category</a>
@@ -835,545 +835,311 @@
     <div class="page-style-a">
         <div class="container">
             <div class="page-intro">
-                <h2>Shop</h2>
+                <h2>Blog</h2>
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>
                         <a href="home.html">Home</a>
                     </li>
                     <li class="is-marked">
-                        <a href="shop-v2-sub-category.html">Shop</a>
+                        <a href="blog.html">Blog</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
     <!-- Page Introduction Wrapper /- -->
-    <!-- Shop-Page -->
-    <div class="page-shop u-s-p-t-80">
+    <!-- Blog-Page -->
+    <div class="page-blog u-s-p-t-80">
         <div class="container">
-            <!-- Shop-Intro -->
-            <div class="shop-intro">
-                <ul class="bread-crumb">
-                    <li class="has-separator">
-                        <a href="home.html">Home</a>
-                    </li>
-                    <li class="has-separator">
-                        <a href="shop-v1-root-category.html">Men's Clothing</a>
-                    </li>
-                    <li class="is-marked">
-                        <a href="shop-v3-sub-sub-category.html">Tops</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- Shop-Intro /- -->
             <div class="row">
-                <!-- Shop-Left-Side-Bar-Wrapper -->
-                <div class="col-lg-3 col-md-3 col-sm-12">
-                    <!-- Fetch-Categories-from-Root-Category  -->
-                    <div class="fetch-categories">
-                        <h3 class="title-name">Browse Categories</h3>
-                        <h3 class="fetch-mark-category">
-                            <a href="shop-v2-sub-category.html">Tops
-                                <span class="total-fetch-items">(5)</span>
+                <div class="col-lg-9 col-md-9">
+                    <!-- Blog-Posts -->
+                    <div class="blog-post u-s-m-b-80">
+                        <div class="blog-post-wrapper u-s-m-b-26">
+                            <a class="blog-post-anchor" href="blog-detail.html">
+                                <img class="img-fluid" src="/resources/images/blog/blog-01.jpg" alt="Blog post 1">
                             </a>
-                        </h3>
-                        <!-- Level 3 -->
-                        <ul>
+                        </div>
+                        <h1 class="blog-post-heading u-s-m-b-13">
+                            <a href="blog-detail.html">Your Life is an extraordinary Adventure</a>
+                        </h1>
+                        <div class="blog-post-info u-s-m-b-13">
+                            <span class="blog-post-preposition">By</span>
+                            <a class="blog-post-author-name" href="blog-detail.html">Admin</a>
+                            <span class="blog-post-info-separator">/</span>
+                            <a class="blog-post-comment" href="blog-detail.html">Comments (6)</a>
+                            <span class="blog-post-info-separator">/</span>
+                            <span class="blog-post-published-date">
+                                <span>14</span>/
+                                <span>06</span>/
+                                <span>2016</span>
+                            </span>
+                        </div>
+                        <p class="blog-post-paragraph u-s-m-b-16">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aliquid, architecto corporis enim eum exercitationem fugit harum iste laudantium maxime nam non ratione reiciendis repellendus repudiandae soluta, velit veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At autem beatae, consequuntur dolores inventore laboriosam maiores necessitatibus neque odit quisquam ratione rerum sequi unde veniam veritatis, voluptatem, voluptatibus. Amet, dicta?
+                        </p>
+                        <a href="blog-detail.html" class="blog-post-read-more">Read More</a>
+                    </div>
+                    <div class="blog-post u-s-m-b-80">
+                        <div class="blog-post-wrapper u-s-m-b-26">
+                            <a class="blog-post-anchor" href="blog-detail.html">
+                                <img class="img-fluid" src="/resources/images/blog/blog-01.jpg" alt="Blog post 2">
+                            </a>
+                        </div>
+                        <h1 class="blog-post-heading u-s-m-b-13">
+                            <a href="blog-detail.html">Be More Confident in 30 Seconds</a>
+                        </h1>
+                        <div class="blog-post-info u-s-m-b-13">
+                            <span class="blog-post-preposition">By</span>
+                            <a class="blog-post-author-name" href="blog-detail.html">Admin</a>
+                            <span class="blog-post-info-separator">/</span>
+                            <a class="blog-post-comment" href="blog-detail.html">Comments (4)</a>
+                            <span class="blog-post-info-separator">/</span>
+                            <span class="blog-post-published-date">
+                                <span>14</span>/
+                                <span>06</span>/
+                                <span>2016</span>
+                            </span>
+                        </div>
+                        <p class="blog-post-paragraph u-s-m-b-16">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aliquid, architecto corporis enim eum exercitationem fugit harum iste laudantium maxime nam non ratione reiciendis repellendus repudiandae soluta, velit veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At autem beatae, consequuntur dolores inventore laboriosam maiores necessitatibus neque odit quisquam ratione rerum sequi unde veniam veritatis, voluptatem, voluptatibus. Amet, dicta?
+                        </p>
+                        <a href="blog-detail.html" class="blog-post-read-more">Read More</a>
+                    </div>
+                    <div class="blog-post u-s-m-b-80">
+                        <div class="blog-post-wrapper u-s-m-b-26">
+                            <a class="blog-post-anchor" href="blog-detail.html">
+                                <img class="img-fluid" src="/resources/images/blog/blog-01.jpg" alt="Blog post 3">
+                            </a>
+                        </div>
+                        <h1 class="blog-post-heading u-s-m-b-13">
+                            <a href="blog-detail.html">Bury A Body With Me</a>
+                        </h1>
+                        <div class="blog-post-info u-s-m-b-13">
+                            <span class="blog-post-preposition">By</span>
+                            <a class="blog-post-author-name" href="blog-detail.html">Admin</a>
+                            <span class="blog-post-info-separator">/</span>
+                            <a class="blog-post-comment" href="blog-detail.html">Comments (2)</a>
+                            <span class="blog-post-info-separator">/</span>
+                            <span class="blog-post-published-date">
+                                <span>14</span>/
+                                <span>06</span>/
+                                <span>2016</span>
+                            </span>
+                        </div>
+                        <p class="blog-post-paragraph u-s-m-b-16">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aliquid, architecto corporis enim eum exercitationem fugit harum iste laudantium maxime nam non ratione reiciendis repellendus repudiandae soluta, velit veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At autem beatae, consequuntur dolores inventore laboriosam maiores necessitatibus neque odit quisquam ratione rerum sequi unde veniam veritatis, voluptatem, voluptatibus. Amet, dicta?
+                        </p>
+                        <a href="blog-detail.html" class="blog-post-read-more">Read More</a>
+                    </div>
+                    <div class="blog-post u-s-m-b-80">
+                        <div class="blog-post-wrapper u-s-m-b-26">
+                            <a class="blog-post-anchor" href="blog-detail.html">
+                                <img class="img-fluid" src="/resources/images/blog/blog-01.jpg" alt="Blog post 4">
+                            </a>
+                        </div>
+                        <h1 class="blog-post-heading u-s-m-b-13">
+                            <a href="blog-detail.html">Everything Must Die</a>
+                        </h1>
+                        <div class="blog-post-info u-s-m-b-13">
+                            <span class="blog-post-preposition">By</span>
+                            <a class="blog-post-author-name" href="blog-detail.html">John Doe</a>
+                            <span class="blog-post-info-separator">/</span>
+                            <a class="blog-post-comment" href="blog-detail.html">Comments (0)</a>
+                            <span class="blog-post-info-separator">/</span>
+                            <span class="blog-post-published-date">
+                                <span>14</span>/
+                                <span>06</span>/
+                                <span>2016</span>
+                            </span>
+                        </div>
+                        <p class="blog-post-paragraph u-s-m-b-16">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam aliquid, architecto corporis enim eum exercitationem fugit harum iste laudantium maxime nam non ratione reiciendis repellendus repudiandae soluta, velit veritatis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. At autem beatae, consequuntur dolores inventore laboriosam maiores necessitatibus neque odit quisquam ratione rerum sequi unde veniam veritatis, voluptatem, voluptatibus. Amet, dicta?
+                        </p>
+                        <a href="blog-detail.html" class="blog-post-read-more">Read More</a>
+                    </div>
+                    <!-- Blog-Posts /- -->
+                    <!-- Blog-Posts-Pagination -->
+                    <div class="blog-pagination u-s-m-b-80">
+                        <ul class="blog-pg-list">
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">T-Shirts
-                                    <span class="total-fetch-items">(2)</span>
-                                </a>
+                                <a href="blog.html" class="bl-pg-link d-none">Back</a>
                             </li>
                             <li>
-                                <a href="shop-v2-sub-category.html">Hoodies
-                                    <span class="total-fetch-items">(1)</span>
-                                </a>
+                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-a bl-pg-link-is-active">1</a>
                             </li>
                             <li>
-                                <a href="shop-v3-sub-sub-category.html">Suits
-                                    <span class="total-fetch-items">(1)</span>
-                                </a>
+                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-a">2</a>
                             </li>
                             <li>
-                                <a href="shop-v4-filter-as-category.html">Black Bean T-Shirt
-                                    <span class="total-fetch-items">(1)</span>
-                                </a>
+                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-a">3</a>
+                            </li>
+                            <li>
+                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-gap">......</a>
+                            </li>
+                            <li>
+                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-a">4</a>
+                            </li>
+                            <li>
+                                <a href="blog.html" class="bl-pg-link bl-pg-link-hover-b">Previous</a>
                             </li>
                         </ul>
-                        <!-- //end Level 3 -->
                     </div>
-                    <!-- Fetch-Categories-from-Root-Category  /- -->
-                    <!-- Filters -->
-                    <!-- Filter-Size -->
-                    <div class="facet-filter-associates">
-                        <h3 class="title-name">Size</h3>
-                        <form class="facet-form" action="#" method="post">
-                            <div class="associate-wrapper">
-                                <input type="checkbox" class="check-box" id="cbs-01">
-                                <label class="label-text" for="cbs-01">Male 2XL
-                                    <span class="total-fetch-items">(2)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-02">
-                                <label class="label-text" for="cbs-02">Male 3XL
-                                    <span class="total-fetch-items">(2)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-03">
-                                <label class="label-text" for="cbs-03">Kids 4
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-04">
-                                <label class="label-text" for="cbs-04">Kids 6
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-05">
-                                <label class="label-text" for="cbs-05">Kids 8
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-06">
-                                <label class="label-text" for="cbs-06">Kids 10
-                                    <span class="total-fetch-items">(2)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-07">
-                                <label class="label-text" for="cbs-07">Kids 12
-                                    <span class="total-fetch-items">(2)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-08">
-                                <label class="label-text" for="cbs-08">Female Small
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-09">
-                                <label class="label-text" for="cbs-09">Male Small
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-10">
-                                <label class="label-text" for="cbs-10">Female Medium
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-11">
-                                <label class="label-text" for="cbs-11">Male Medium
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-12">
-                                <label class="label-text" for="cbs-12">Female Large
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-13">
-                                <label class="label-text" for="cbs-13">Male Large
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-14">
-                                <label class="label-text" for="cbs-14">Female XL
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-15">
-                                <label class="label-text" for="cbs-15">Male XL
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Filter-Size -->
-                    <!-- Filter-Color -->
-                    <div class="facet-filter-associates">
-                        <h3 class="title-name">Color</h3>
-                        <form class="facet-form" action="#" method="post">
-                            <div class="associate-wrapper">
-                                <input type="checkbox" class="check-box" id="cbs-16">
-                                <label class="label-text" for="cbs-16">Heather Grey
-                                    <span class="total-fetch-items">(1)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-17">
-                                <label class="label-text" for="cbs-17">Black
-                                    <span class="total-fetch-items">(1)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-18">
-                                <label class="label-text" for="cbs-18">White
-                                    <span class="total-fetch-items">(3)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-19">
-                                <label class="label-text" for="cbs-19">Mischka Plain
-                                    <span class="total-fetch-items">(1)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-20">
-                                <label class="label-text" for="cbs-20">Black Bean
-                                    <span class="total-fetch-items">(1)</span>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Filter-Color /- -->
-                    <!-- Filter-Brand -->
-                    <div class="facet-filter-associates">
-                        <h3 class="title-name">Brand</h3>
-                        <form class="facet-form" action="#" method="post">
-                            <div class="associate-wrapper">
-                                <input type="checkbox" class="check-box" id="cbs-21">
-                                <label class="label-text" for="cbs-21">Calvin Klein
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-22">
-                                <label class="label-text" for="cbs-22">Diesel
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-23">
-                                <label class="label-text" for="cbs-23">Polo
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                                <input type="checkbox" class="check-box" id="cbs-24">
-                                <label class="label-text" for="cbs-24">Tommy Hilfiger
-                                    <span class="total-fetch-items">(0)</span>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Filter-Brand /- -->
-                    <!-- Filter-Price -->
-                    <div class="facet-filter-by-price">
-                        <h3 class="title-name">Price</h3>
-                        <form class="facet-form" action="#" method="post">
-                            <!-- Final-Result -->
-                            <div class="amount-result clearfix">
-                                <div class="price-from">$0</div>
-                                <div class="price-to">$3000</div>
-                            </div>
-                            <!-- Final-Result /- -->
-                            <!-- Range-Slider  -->
-                            <div class="price-filter"></div>
-                            <!-- Range-Slider /- -->
-                            <!-- Range-Manipulator -->
-                            <div class="price-slider-range" data-min="0" data-max="5000" data-default-low="0" data-default-high="3000" data-currency="$"></div>
-                            <!-- Range-Manipulator /- -->
-                            <button type="submit" class="button button-primary">Filter</button>
-                        </form>
-                    </div>
-                    <!-- Filter-Price /- -->
-                    <!-- Filter-Free-Shipping -->
-                    <div class="facet-filter-by-shipping">
-                        <h3 class="title-name">Shipping</h3>
-                        <form class="facet-form" action="#" method="post">
-                            <input type="checkbox" class="check-box" id="cb-free-ship">
-                            <label class="label-text" for="cb-free-ship">Free Shipping</label>
-                        </form>
-                    </div>
-                    <!-- Filter-Free-Shipping /- -->
-                    <!-- Filter-Rating -->
-                    <div class="facet-filter-by-rating">
-                        <h3 class="title-name">Rating</h3>
-                        <div class="facet-form">
-                            <!-- 5 Stars -->
-                            <div class="facet-link">
-                                <div class="item-stars">
-                                    <div class='star'>
-                                        <span style='width:76px'></span>
-                                    </div>
-                                </div>
-                                <span class="total-fetch-items">(0)</span>
-                            </div>
-                            <!-- 5 Stars /- -->
-                            <!-- 4 & Up Stars -->
-                            <div class="facet-link">
-                                <div class="item-stars">
-                                    <div class='star'>
-                                        <span style='width:60px'></span>
-                                    </div>
-                                </div>
-                                <span class="total-fetch-items">& Up (5)</span>
-                            </div>
-                            <!-- 4 & Up Stars /- -->
-                            <!-- 3 & Up Stars -->
-                            <div class="facet-link">
-                                <div class="item-stars">
-                                    <div class='star'>
-                                        <span style='width:45px'></span>
-                                    </div>
-                                </div>
-                                <span class="total-fetch-items">& Up (0)</span>
-                            </div>
-                            <!-- 3 & Up Stars /- -->
-                            <!-- 2 & Up Stars -->
-                            <div class="facet-link">
-                                <div class="item-stars">
-                                    <div class='star'>
-                                        <span style='width:30px'></span>
-                                    </div>
-                                </div>
-                                <span class="total-fetch-items">& Up (0)</span>
-                            </div>
-                            <!-- 2 & Up Stars /- -->
-                            <!-- 1 & Up Stars -->
-                            <div class="facet-link">
-                                <div class="item-stars">
-                                    <div class='star'>
-                                        <span style='width:15px'></span>
-                                    </div>
-                                </div>
-                                <span class="total-fetch-items">& Up (0)</span>
-                            </div>
-                            <!-- 1 & Up Stars /- -->
-                        </div>
-                    </div>
-                    <!-- Filter-Rating -->
-                    <!-- Filters /- -->
+                    <!-- Blog-Posts-Pagination /- -->
                 </div>
-                <!-- Shop-Left-Side-Bar-Wrapper /- -->
-                <!-- Shop-Right-Wrapper -->
-                <div class="col-lg-9 col-md-9 col-sm-12">
-                    <!-- Page-Bar -->
-                    <div class="page-bar clearfix">
-                        <div class="shop-settings">
-                            <a id="list-anchor" class="active">
-                                <i class="fas fa-th-list"></i>
-                            </a>
-                            <a id="grid-anchor">
-                                <i class="fas fa-th"></i>
-                            </a>
-                        </div>
-                        <!-- Toolbar Sorter 1  -->
-                        <div class="toolbar-sorter">
-                            <div class="select-box-wrapper">
-                                <label class="sr-only" for="sort-by">Sort By</label>
-                                <select class="select-box" id="sort-by">
-                                    <option selected="selected" value="">Sort By: Best Selling</option>
-                                    <option value="">Sort By: Latest</option>
-                                    <option value="">Sort By: Lowest Price</option>
-                                    <option value="">Sort By: Highest Price</option>
-                                    <option value="">Sort By: Best Rating</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- //end Toolbar Sorter 1  -->
-                        <!-- Toolbar Sorter 2  -->
-                        <div class="toolbar-sorter-2">
-                            <div class="select-box-wrapper">
-                                <label class="sr-only" for="show-records">Show Records Per Page</label>
-                                <select class="select-box" id="show-records">
-                                    <option selected="selected" value="">Show: 8</option>
-                                    <option value="">Show: 16</option>
-                                    <option value="">Show: 28</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- //end Toolbar Sorter 2  -->
+                <div class="col-lg-3 col-md-3">
+                    <!-- Blog-Sidebar-Search -->
+                    <div class="bl-sidebar-widget u-s-m-b-50">
+                        <h3 class="bl-sidebar-title-h3 u-s-m-b-20">Search</h3>
+                        <form class="group-text-blog-search">
+                            <label class="sr-only" for="blog-search">Search On Blog</label>
+                            <input type="text" id="blog-search" class="text-field" placeholder="Type to search">
+                            <button type="submit" class="button fas fa-search"></button>
+                        </form>
                     </div>
-                    <!-- Page-Bar /- -->
-                    <!-- Row-of-Product-Container -->
-                    <div class="row product-container list-style">
-                        <div class="product-item col-lg-4 col-md-6 col-sm-6">
-                            <div class="item">
-                                <div class="image-container">
-                                    <a class="item-img-wrapper-link" href="single-product.html">
-                                        <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
-                                    </a>
-                                    <div class="item-action-behaviors">
-                                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                        <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                    </div>
-                                </div>
-                                <div class="item-content">
-                                    <div class="what-product-is">
-                                        <ul class="bread-crumb">
-                                            <li class="has-separator">
-                                                <a href="shop-v1-root-category.html">Men's</a>
-                                            </li>
-                                            <li class="has-separator">
-                                                <a href="shop-v2-sub-category.html">Tops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                            </li>
-                                        </ul>
-                                        <h6 class="item-title">
-                                            <a href="single-product.html">Casual Hoodie Full Cotton</a>
-                                        </h6>
-                                        <div class="item-description">
-                                            <p>This hoodie is full cotton. It includes a muff sewn onto the lower front, and (usually) a drawstring to adjust the hood opening. Throughout the U.S., it is common for middle-school, high-school, and college students to wear this sweatshirts—with or without hoods—that display their respective school names or mascots across the chest, either as part of a uniform or personal preference.
-                                            </p>
-                                        </div>
-                                        <div class="item-stars">
-                                            <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                                <span style='width:67px'></span>
-                                            </div>
-                                            <span>(23)</span>
-                                        </div>
-                                    </div>
-                                    <div class="price-template">
-                                        <div class="item-new-price">
-                                            $55.00
-                                        </div>
-                                        <div class="item-old-price">
-                                            $60.00
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tag new">
-                                    <span>NEW</span>
-                                </div>
+                    <!-- Blog-Sidebar-Search /- -->
+                    <!-- Blog-Sidebar-Category -->
+                    <div class="bl-sidebar u-s-m-b-50">
+                        <h3 class="bl-sidebar-title-h3 u-s-m-b-20">Categories</h3>
+                        <ul class="bl-sidebar-list">
+                            <li>
+                                <a href="blog.html">Corporate</a>
+                            </li>
+                            <li>
+                                <a href="blog.html">Creative</a>
+                            </li>
+                            <li>
+                                <a href="blog.html">Design</a>
+                            </li>
+                            <li>
+                                <a href="blog.html">News</a>
+                            </li>
+                            <li>
+                                <a href="blog.html">Photography</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Blog-Sidebar-Category /- -->
+                    <!-- Blog-Sidebar-Archive -->
+                    <div class="bl-sidebar u-s-m-b-50">
+                        <h3 class="bl-sidebar-title-h3 u-s-m-b-20">Archives</h3>
+                        <ul class="bl-sidebar-list">
+                            <li>
+                                <a href="blog.html">March 2017 (1)</a>
+                            </li>
+                            <li>
+                                <a href="blog.html">December 2017 (3)</a>
+                            </li>
+                            <li>
+                                <a href="blog.html">November 2017 (4)</a>
+                            </li>
+                            <li>
+                                <a href="blog.html">September 2017 (1)</a>
+                            </li>
+                            <li>
+                                <a href="blog.html">August 2014 (1)</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Blog-Sidebar-Archive /- -->
+                    <!-- Blog-Sidebar-Recent-Post -->
+                    <div class="bl-sidebar u-s-m-b-50">
+                        <h3 class="bl-sidebar-title-h3 u-s-m-b-20">Recent Post</h3>
+                        <div class="recent-post u-s-m-b-18">
+                            <div class="recent-post-image">
+                                <a class="" href="blog-detail.html">
+                                    <img src="/resources/images/blog/blog-recent.jpg" alt="recent post 1">
+                                </a>
+                            </div>
+                            <div class="recent-post-info">
+                                <a class="" href="blog-detail.html">Your Life is an extraordinary Adventure</a>
+                                <span class="recent-post-date">
+                                    <span>16</span>/
+                                    <span>10</span>/
+                                    <span>2016</span>
+                                </span>
                             </div>
                         </div>
-                        <div class="product-item col-lg-4 col-md-6 col-sm-6">
-                            <div class="item">
-                                <div class="image-container">
-                                    <a class="item-img-wrapper-link" href="single-product.html">
-                                        <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
-                                    </a>
-                                    <div class="item-action-behaviors">
-                                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                        <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                    </div>
-                                </div>
-                                <div class="item-content">
-                                    <div class="what-product-is">
-                                        <ul class="bread-crumb">
-                                            <li class="has-separator">
-                                                <a href="shop-v1-root-category.html">Men's</a>
-                                            </li>
-                                            <li class="has-separator">
-                                                <a href="shop-v2-sub-category.html">Tops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-v3-sub-sub-category.html">T-Shirts</a>
-                                            </li>
-                                        </ul>
-                                        <h6 class="item-title">
-                                            <a href="single-product.html">Mischka Plain Men T-Shirt</a>
-                                        </h6>
-                                        <div class="item-description">
-                                            <p>T-shirts with bold slogans were popular in the UK in the 1980s. T-shirts were originally worn as undershirts, but are now worn frequently as the only piece of clothing on the top half of the body, other than possibly a brassiere or, rarely, a waistcoat (vest). T-shirts have also become a medium for self-expression and advertising, with any imaginable combination of words, art and photographs on display.</p>
-                                        </div>
-                                        <div class="item-stars">
-                                            <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                                <span style='width:67px'></span>
-                                            </div>
-                                            <span>(23)</span>
-                                        </div>
-                                    </div>
-                                    <div class="price-template">
-                                        <div class="item-new-price">
-                                            $55.00
-                                        </div>
-                                        <div class="item-old-price">
-                                            $60.00
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="recent-post u-s-m-b-18">
+                            <div class="recent-post-image">
+                                <a class="" href="blog-detail.html">
+                                    <img src="/resources/images/blog/blog-recent.jpg" alt="recent post 2">
+                                </a>
+                            </div>
+                            <div class="recent-post-info">
+                                <a class="" href="blog-detail.html">Be More Confident in 30 Seconds</a>
+                                <span class="recent-post-date">
+                                    <span>16</span>/
+                                    <span>10</span>/
+                                    <span>2016</span>
+                                </span>
                             </div>
                         </div>
-                        <div class="product-item col-lg-4 col-md-6 col-sm-6">
-                            <div class="item">
-                                <div class="image-container">
-                                    <a class="item-img-wrapper-link" href="single-product.html">
-                                        <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
-                                    </a>
-                                    <div class="item-action-behaviors">
-                                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                        <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                    </div>
-                                </div>
-                                <div class="item-content">
-                                    <div class="what-product-is">
-                                        <ul class="bread-crumb">
-                                            <li class="has-separator">
-                                                <a href="shop-v1-root-category.html">Men's</a>
-                                            </li>
-                                            <li class="has-separator">
-                                                <a href="shop-v2-sub-category.html">Tops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-v4-filter-as-category.html">T-Shirts</a>
-                                            </li>
-                                        </ul>
-                                        <h6 class="item-title">
-                                            <a href="single-product.html">Black Bean Plain Men T-Shirt</a>
-                                        </h6>
-                                        <div class="item-description">
-                                            <p>T-shirts with bold slogans were popular in the UK in the 1980s. T-shirts were originally worn as undershirts, but are now worn frequently as the only piece of clothing on the top half of the body, other than possibly a brassiere or, rarely, a waistcoat (vest). T-shirts have also become a medium for self-expression and advertising, with any imaginable combination of words, art and photographs on display.</p>
-                                        </div>
-                                        <div class="item-stars">
-                                            <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                                <span style='width:67px'></span>
-                                            </div>
-                                            <span>(23)</span>
-                                        </div>
-                                    </div>
-                                    <div class="price-template">
-                                        <div class="item-new-price">
-                                            $55.00
-                                        </div>
-                                        <div class="item-old-price">
-                                            $60.00
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="recent-post u-s-m-b-18">
+                            <div class="recent-post-image">
+                                <a class="" href="blog-detail.html">
+                                    <img src="/resources/images/blog/blog-recent.jpg" alt="recent post 3">
+                                </a>
+                            </div>
+                            <div class="recent-post-info">
+                                <a class="" href="blog-detail.html">Bury A Body With Me</a>
+                                <span class="recent-post-date">
+                                    <span>16</span>/
+                                    <span>10</span>/
+                                    <span>2016</span>
+                                </span>
                             </div>
                         </div>
-                        <div class="product-item col-lg-4 col-md-6 col-sm-6">
-                            <div class="item">
-                                <div class="image-container">
-                                    <a class="item-img-wrapper-link" href="single-product.html">
-                                        <img class="img-fluid" src="/resources/images/product/product@3x.jpg" alt="Product">
-                                    </a>
-                                    <div class="item-action-behaviors">
-                                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                        <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                    </div>
-                                </div>
-                                <div class="item-content">
-                                    <div class="what-product-is">
-                                        <ul class="bread-crumb">
-                                            <li class="has-separator">
-                                                <a href="shop-v1-root-category.html">Men's</a>
-                                            </li>
-                                            <li class="has-separator">
-                                                <a href="shop-v2-sub-category.html">Tops</a>
-                                            </li>
-                                            <li>
-                                                <a href="shop-v3-sub-sub-category.html">Suits</a>
-                                            </li>
-                                        </ul>
-                                        <h6 class="item-title">
-                                            <a href="single-product.html">Black Maire Full Men Suit</a>
-                                        </h6>
-                                        <div class="item-description">
-                                            <p>British dandy Beau Brummell redefined and adapted this style, then popularised it, leading European men to wearing well-cut, tailored clothes, adorned with carefully knotted neckties. The simplicity of the new clothes and their sombre colours contrasted strongly with the extravagant, foppish styles just before. Brummell's influence introduced the modern era of men's clothing which now includes the modern suit and necktie.</p>
-                                        </div>
-                                        <div class="item-stars">
-                                            <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                                <span style='width:67px'></span>
-                                            </div>
-                                            <span>(23)</span>
-                                        </div>
-                                    </div>
-                                    <div class="price-template">
-                                        <div class="item-new-price">
-                                            $55.00
-                                        </div>
-                                        <div class="item-old-price">
-                                            $60.00
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tag sale">
-                                    <span>SALE</span>
-                                </div>
+                        <div class="recent-post u-s-m-b-18">
+                            <div class="recent-post-image">
+                                <a class="" href="blog-detail.html">
+                                    <img src="/resources/images/blog/blog-recent.jpg" alt="recent post 4">
+                                </a>
+                            </div>
+                            <div class="recent-post-info">
+                                <a class="" href="blog-detail.html">Everything Must Die</a>
+                                <span class="recent-post-date">
+                                    <span>16</span>/
+                                    <span>10</span>/
+                                    <span>2016</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="recent-post u-s-m-b-18">
+                            <div class="recent-post-image">
+                                <a class="" href="blog-detail.html">
+                                    <img src="/resources/images/blog/blog-recent.jpg" alt="recent post 5">
+                                </a>
+                            </div>
+                            <div class="recent-post-info">
+                                <a class="" href="blog-detail.html">See A World in Grain Of Sand</a>
+                                <span class="recent-post-date">
+                                    <span>16</span>/
+                                    <span>10</span>/
+                                    <span>2016</span>
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <!-- Row-of-Product-Container /- -->
+                    <!-- Blog-Sidebar-Recent-Post /- -->
+                    <!-- Blog-Sidebar-Tag -->
+                    <div class="bl-sidebar u-s-m-b-50">
+                        <h3 class="bl-sidebar-title-h3 u-s-m-b-20">Tags</h3>
+                        <a href="blog.html" class="bl-tag u-s-m-b-8">Life</a>
+                        <a href="blog.html" class="bl-tag u-s-m-b-8">Creative</a>
+                        <a href="blog.html" class="bl-tag u-s-m-b-8">Ui/Ux</a>
+                        <a href="blog.html" class="bl-tag u-s-m-b-8">Design</a>
+                        <a href="blog.html" class="bl-tag u-s-m-b-8">Branding</a>
+                        <a href="blog.html" class="bl-tag u-s-m-b-8">World</a>
+                        <a href="blog.html" class="bl-tag u-s-m-b-8">Print</a>
+                    </div>
+                    <!-- Blog-Sidebar-Tag /- -->
                 </div>
-                <!-- Shop-Right-Wrapper /- -->
             </div>
         </div>
     </div>
-    <!-- Shop-Page /- -->
+    <!-- Blog-Page /- -->
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -1515,8 +1281,7 @@
                     </ul>
                 </div>
                 <p class="copyright-text">Copyright &copy; 2018
-                    <a href="home.html">Groover</a> All Right Reserved
-                </p>
+                    <a href="home.html">Groover</a> All Right Reserved</p>
             </div>
         </div>
         <!-- Bottom-Footer /- -->
@@ -1544,194 +1309,6 @@
         </div>
     </div>
     <!-- Responsive-Search /- -->
-    <!-- Quick-view-Modal -->
-    <div id="quick-view" class="modal fade">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <button type="button" class="button dismiss-button ion ion-ios-close" data-dismiss="modal"></button>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <!-- Product-zoom-area -->
-                            <div class="zoom-area">
-                                <img id="zoom-pro-quick-view" class="img-fluid" src="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg" alt="Zoom Image">
-                                <div id="gallery-quick-view" class="u-s-m-t-10">
-                                    <a class="active" data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                        <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                                    </a>
-                                    <a data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                        <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                                    </a>
-                                    <a data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                        <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                                    </a>
-                                    <a data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                        <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                                    </a>
-                                    <a data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                        <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                                    </a>
-                                    <a data-image="/resources/images/product/product@4x.jpg" data-zoom-image="/resources/images/product/product@4x.jpg">
-                                        <img src="/resources/images/product/product@2x.jpg" alt="Product">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Product-zoom-area /- -->
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <!-- Product-details -->
-                            <div class="all-information-wrapper">
-                                <div class="section-1-title-breadcrumb-rating">
-                                    <div class="product-title">
-                                        <h1>
-                                            <a href="single-product.html">Casual Hoodie Full Cotton</a>
-                                        </h1>
-                                    </div>
-                                    <ul class="bread-crumb">
-                                        <li class="has-separator">
-                                            <a href="home.html">Home</a>
-                                        </li>
-                                        <li class="has-separator">
-                                            <a href="shop-v1-root-category.html">Men's Clothing</a>
-                                        </li>
-                                        <li class="has-separator">
-                                            <a href="shop-v2-sub-category.html">Tops</a>
-                                        </li>
-                                        <li class="is-marked">
-                                            <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                        </li>
-                                    </ul>
-                                    <div class="product-rating">
-                                        <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                            <span style='width:67px'></span>
-                                        </div>
-                                        <span>(23)</span>
-                                    </div>
-                                </div>
-                                <div class="section-2-short-description u-s-p-y-14">
-                                    <h6 class="information-heading u-s-m-b-8">Description:</h6>
-                                    <p>This hoodie is full cotton. It includes a muff sewn onto the lower front, and (usually) a drawstring to adjust the hood opening. Throughout the U.S., it is common for middle-school, high-school, and college students to wear this sweatshirts—with or without hoods—that display their respective school names or mascots across the chest, either as part of a uniform or personal preference.
-                                    </p>
-                                </div>
-                                <div class="section-3-price-original-discount u-s-p-y-14">
-                                    <div class="price">
-                                        <h4>$55.00</h4>
-                                    </div>
-                                    <div class="original-price">
-                                        <span>Original Price:</span>
-                                        <span>$60.00</span>
-                                    </div>
-                                    <div class="discount-price">
-                                        <span>Discount:</span>
-                                        <span>8%</span>
-                                    </div>
-                                    <div class="total-save">
-                                        <span>Save:</span>
-                                        <span>$5</span>
-                                    </div>
-                                </div>
-                                <div class="section-4-sku-information u-s-p-y-14">
-                                    <h6 class="information-heading u-s-m-b-8">Sku Information:</h6>
-                                    <div class="availability">
-                                        <span>Availability:</span>
-                                        <span>In Stock</span>
-                                    </div>
-                                    <div class="left">
-                                        <span>Only:</span>
-                                        <span>50 left</span>
-                                    </div>
-                                </div>
-                                <div class="section-5-product-variants u-s-p-y-14">
-                                    <h6 class="information-heading u-s-m-b-8">Product Variants:</h6>
-                                    <div class="color u-s-m-b-11">
-                                        <span>Available Color:</span>
-                                        <div class="color-variant select-box-wrapper">
-                                            <select class="select-box product-color">
-                                                <option value="1">Heather Grey</option>
-                                                <option value="3">Black</option>
-                                                <option value="5">White</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="sizes u-s-m-b-11">
-                                        <span>Available Size:</span>
-                                        <div class="size-variant select-box-wrapper">
-                                            <select class="select-box product-size">
-                                                <option value="">Male 2XL</option>
-                                                <option value="">Male 3XL</option>
-                                                <option value="">Kids 4</option>
-                                                <option value="">Kids 6</option>
-                                                <option value="">Kids 8</option>
-                                                <option value="">Kids 10</option>
-                                                <option value="">Kids 12</option>
-                                                <option value="">Female Small</option>
-                                                <option value="">Male Small</option>
-                                                <option value="">Female Medium</option>
-                                                <option value="">Male Medium</option>
-                                                <option value="">Female Large</option>
-                                                <option value="">Male Large</option>
-                                                <option value="">Female XL</option>
-                                                <option value="">Male XL</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="section-6-social-media-quantity-actions u-s-p-y-14">
-                                    <form action="#" class="post-form">
-                                        <div class="quick-social-media-wrapper u-s-m-b-22">
-                                            <span>Share:</span>
-                                            <ul class="social-media-list">
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fab fa-facebook-f"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fab fa-twitter"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fab fa-google-plus-g"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fas fa-rss"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="fab fa-pinterest"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="quantity-wrapper u-s-m-b-22">
-                                            <span>Quantity:</span>
-                                            <div class="quantity">
-                                                <input type="text" class="quantity-text-field" value="1">
-                                                <a class="plus-a" data-max="1000">&#43;</a>
-                                                <a class="minus-a" data-min="1">&#45;</a>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <button class="button button-outline-secondary" type="submit">Add to cart</button>
-                                            <button class="button button-outline-secondary far fa-heart u-s-m-l-6"></button>
-                                            <button class="button button-outline-secondary far fa-envelope u-s-m-l-6"></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- Product-details /- -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Quick-view-Modal /- -->
 </div>
 <!-- app /- -->
 <!--[if lte IE 9]>

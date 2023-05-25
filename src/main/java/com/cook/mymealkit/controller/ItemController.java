@@ -47,7 +47,7 @@ public class ItemController {
 			vo.getAttachList().forEach(i->fmapper.fileInsert(i));
 		}
 		imapper.itemInsert(vo);
-		return "redirect:/item/itemList";
+		return "redirect:/item/categoryAll";
 	}
 	
 	/* 상품 목록 |--------------------------------------------------- */
@@ -86,7 +86,7 @@ public class ItemController {
 		System.out.println("Item 컨트롤러에서 수정(post) : vo="+ vo);
 		imapper.itemUpdate(vo);
 		rttr.addFlashAttribute("list",imapper.itemList());
-		return "redirect:/item/itemList";
+		return "redirect:/item/categoryAll";
 	}
 	
 	/* 상품 삭제 |--------------------------------------------------- */
@@ -94,7 +94,7 @@ public class ItemController {
 	public String delete(int item_id) {
 		System.out.println("Item 컨트롤러에서 삭제 : item_id="+ item_id);
 		imapper.itemDelete(item_id);
-		return "redirect:/item/itemList";
+		return "redirect:/item/categoryAll";
 	}
 	
 	/* 카테고리 |--------------------------------------------------- */
@@ -114,7 +114,7 @@ public class ItemController {
 	
 	/* 카테고리 전체|--------------------------------------------------- */
 	@GetMapping("/categoryAll")
-	public String all(Model model) {
+	public String all(Model model, String user_id) {
 		List<ItemVO> itemList = imapper.itemList();
 		itemList.forEach(i->{
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
@@ -122,7 +122,10 @@ public class ItemController {
 		});
 		 System.out.println("왜 4개밖에 안나옴" + itemList);        
 		model.addAttribute("itemList",itemList);
+		model.addAttribute("user_id", user_id);
 		return "/item/categoryAll";
 	}
 
+	@GetMapping("/sample")
+	public void sample() {}
 }

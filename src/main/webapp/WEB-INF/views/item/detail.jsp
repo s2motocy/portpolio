@@ -11,6 +11,27 @@ $(document).ready(function(){
 		$(".post-form").submit()
 	})
 	
+	/* 재고 10개 미만시 - "매진임박", 소진시 - "재고준비중" 표기 및 버튼 비활성화 */
+	if(parseInt($(".stockData").val()) <= 10 ){
+		$(".available").text("매진임박").attr('style','color:red')
+		$(".stock").attr('style','color:red')
+	} else if(parseInt($(".stockData").val()) == 0){
+		$(".available").text("재고준비중").attr('style','color:gray')
+		$(".stock").attr('style','color:gray')
+		$(".gocart").text('재료소진').attr('disabled',true).attr('style','color:#d3d3d3;border:none;')
+	}
+	
+	/* 수량 적용하기 */
+	$("a[class^=plus-a]").click(function(e){
+		var amount = parseInt($(".amountData").val())
+		$(".amountData").val(amount)
+	})
+	
+	$("a[class^=minus-a]").click(function(e){
+		var amount = parseInt($(".amountData").val())
+		$(".amountData").val(amount)
+	})
+	
 })
 </script>
 
@@ -95,11 +116,11 @@ $(document).ready(function(){
                             <h6 class="information-heading u-s-m-b-8">판매 정보:</h6>
                             <div class="availability">
                                 <span>상태:</span>
-                                <span>구매 가능</span>
+                                <span class="available">구매 가능</span>
                             </div>
                             <div class="left">
                                 <span>재고:</span>
-                                <span>${list.item_stock} 개 남음</span>
+                                <span class="stock">${list.item_stock} 개 남음</span>
                                 <input type="hidden" class="stockData" value="${list.item_stock}" />
                             </div>
                         </div>
@@ -108,7 +129,7 @@ $(document).ready(function(){
                                 <div class="quantity-wrapper u-s-m-b-22">
                                     <span>수량:</span>
                                     <div class="quantity">
-                                        <input type="text" class="quantity-text-field" name="amount" value="1">
+                                        <input type="text" class="quantity-text-field amountData" name="amount" value="1">
                                         <a class="plus-a" data-max="1000">&#43;</a>
                                         <a class="minus-a" data-min="1">&#45;</a>
                                     </div>
