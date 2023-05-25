@@ -3,12 +3,8 @@ package com.cook.mymealkit.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import com.cook.mymealkit.domain.UserVO;
-
-import lombok.Getter;
-import lombok.Setter;
 
 @Mapper
 public interface UserMapper {

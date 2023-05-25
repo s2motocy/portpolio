@@ -12,14 +12,14 @@ $(document).ready(function(){
 	})
 	
 	/* 재고 10개 미만시 - "매진임박", 소진시 - "재고준비중" 표기 및 버튼 비활성화 */
-	if(parseInt($(".stockData").val()) <= 10 ){
-		$(".available").text("매진임박").attr('style','color:red')
-		$(".stock").attr('style','color:red')
-	} else if(parseInt($(".stockData").val()) == 0){
+	if(parseInt($(".stockData").val()) == 0){
 		$(".available").text("재고준비중").attr('style','color:gray')
 		$(".stock").attr('style','color:gray')
 		$(".gocart").text('재료소진').attr('disabled',true).attr('style','color:#d3d3d3;border:none;')
-	}
+	} else if(parseInt($(".stockData").val()) <= 10 ){
+		$(".available").text("매진임박").attr('style','color:red')
+		$(".stock").attr('style','color:red')
+	} 
 	
 	/* 수량 적용하기 */
 	$("a[class^=plus-a]").click(function(e){

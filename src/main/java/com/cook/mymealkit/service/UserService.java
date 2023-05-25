@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Service;
-
 import com.cook.mymealkit.domain.UserVO;
 
 public interface UserService {

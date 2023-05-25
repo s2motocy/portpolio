@@ -16,18 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.cook.mymealkit.domain.QuestionVO;
+
 import com.cook.mymealkit.domain.Criteria;
 import com.cook.mymealkit.domain.PageMakerDTO;
-import com.cook.mymealkit.domain.UserVO;
+import com.cook.mymealkit.domain.QuestionVO;
 import com.cook.mymealkit.service.QuestionService;
 
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/question/*")
-@Log4j
 public class QuestionController {
 	
 	@Setter(onMethod_=@Autowired)
