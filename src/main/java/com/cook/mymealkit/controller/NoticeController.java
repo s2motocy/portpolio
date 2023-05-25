@@ -18,24 +18,24 @@ import com.cook.mymealkit.service.NoticeService;
 public class NoticeController {
 
 	@Autowired
-	private NoticeService nservice;
+	private NoticeService boardService;
 
     // 게시글 목록 조회
 	@GetMapping("/list")
 	public String list(Model model,NoticeVO vo) {
-		List<NoticeVO> posts = nservice.getPostList();
+		List<NoticeVO> posts = boardService.getPostList();
 		System.out.println("컨트롤러: " +posts);
 		model.addAttribute("list1", posts);
 		return "/notice/list";
+		
 	}
 
 	// 게시글 상세 조회
 	@GetMapping("/get")
 	public void get(NoticeVO vo, Model model) {
-		NoticeVO post = nservice.getPostById(vo);
+		NoticeVO post = boardService.getPostById(vo);
 		model.addAttribute("pageInfo", post);
 	}
-	
 	// 게시글 생성 처리
 	@GetMapping("/enroll")
 	public void enroll() {
@@ -43,27 +43,26 @@ public class NoticeController {
 	}
 	@PostMapping("/enroll")
 	public String enroll(NoticeVO vo,RedirectAttributes rttr) {
-		nservice.createPost(vo);
+		boardService.createPost(vo);
+//		rttr.addFlashAttribute("result", "enroll success");
 		return "redirect:/notice/list";
 	}
 
 	// 게시글 수정 처리
 	@GetMapping("/modify")
 	public void update(NoticeVO vo,Model model) {
-		NoticeVO id=nservice.getPostById(vo);
+		NoticeVO id=boardService.getPostById(vo);
 		model.addAttribute("pageInfo", id);
 	}
-	
 	@PostMapping("/modify")
     public String boardModifyPOST(NoticeVO vo) {
-		nservice.updatePost(vo);
+		boardService.updatePost(vo);
         return "redirect:/notice/list";
     }
-	
 	// 게시글 삭제 처리
 	@PostMapping("/delete")
 	public String delete(NoticeVO vo) {
-		nservice.deletePost(vo);
+		boardService.deletePost(vo);
 		return "redirect:/notice/list";
     }
 
