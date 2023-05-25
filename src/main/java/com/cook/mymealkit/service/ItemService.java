@@ -14,5 +14,6 @@ public interface ItemService {
 	public int itemDelete(long item_id);					// 삭제
 	public List<AttachFileDTO> getAttachList(long item_id);	// 파일 정보
 	public List<ItemVO> categoryItemList(String category);	// 카테고리 상품보기
+	public void categoryByNewOrBest(ItemVO vo);				// 신상품/인기상품
 	
 }

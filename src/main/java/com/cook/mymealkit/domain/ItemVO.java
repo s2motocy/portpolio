@@ -19,6 +19,8 @@ public class ItemVO {
 	private int item_stock; 					// 상품 재고
 	private int item_sold;						// 상품 판매량
   	private Date update_date;					// 수정일
+  	
+  	private String itemType;					// 신상품,인기상품 분류
 
 	
 	/* 참조 데이터 */

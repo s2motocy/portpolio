@@ -69,8 +69,13 @@ public class ItemServicempl implements ItemService{
 
 	@Override
 	public List<ItemVO> categoryItemList(String category) {
-		// TODO Auto-generated method stub
 		return imapper.categoryItemList(category);
+	}
+
+	@Override
+	public void categoryByNewOrBest(ItemVO vo) {
+		imapper.categoryByNewOrBest(vo);
+		
 	}
 
 

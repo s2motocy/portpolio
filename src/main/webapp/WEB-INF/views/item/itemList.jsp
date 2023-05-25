@@ -11,15 +11,11 @@ tr{
 .navi_bar_area #admin2:visited{
     color:black;
     font-weight: bold; }
+.table td {
+	vertical-align: middle;}
 </style>
 <script>
-$(document).ready(function () {	
-	/* 이미지 경로 변경 */
-	$("img").each(function (idx, data) {
-		var r = $(this).attr('src')
-		u = r.replaceAll('\\', '/')
-		$(this).attr('src', u)
-	})
+$(document).ready(function () {
 	/* 삭제버튼 */
 	$("button#deletebtn").each(function (idx, data) {
 		$(this).click(function (e) {
@@ -73,7 +69,7 @@ $(document).ready(function () {
 			<c:forEach var="list" items="${list}">
 				<tr class="table-light">
 					<td>${list.item_id}</td>	
-					<td data-label=""><img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" /></td>
+					<td data-label=""><img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" width="100px" height="100px" /></td>
 					<td>${list.category}</td>
 					<td><a href="detail?item_id=${list.item_id}">${list.item_name}</a></td>
 					<td><fmt:formatNumber value="${list.item_price}" pattern="###,### 원" /></td>

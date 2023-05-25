@@ -39,4 +39,29 @@
 		select * from tbl_item where category=#{category}
 	</select>
 
+	<select id="categoryByNewOrBest" resultType="com.cook.mymealkit.domain.ItemVO">
+			<choose>
+				<when test="itemType == 1">
+					select *
+						from (
+						    select *
+						    from tbl_item
+						    order by update_date desc
+						)
+					<![CDATA[where rownum <= 10]]>	
+				</when>
+				<otherwise>
+					select *
+						from (
+						    select *
+						    from tbl_item
+						    order by item_sold desc
+						)
+					<![CDATA[where rownum <= 10]]>	
+				</otherwise>
+			</choose>
+	</select>
+	
+	<!-- <select id="listBy"></select> -->
+	
 </mapper>

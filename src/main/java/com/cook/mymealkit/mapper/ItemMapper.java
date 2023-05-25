@@ -14,5 +14,6 @@ public interface ItemMapper {
 	public Long getMax();									// item_id 가 0 일때 최대값(max) 찾기
 	public int get_price(long item_id);						// price 값 찾기
 	public List<ItemVO> categoryItemList(String category);	// 카테고리 상품보기
+	public List<ItemVO> categoryByNewOrBest(ItemVO vo);		// 신상품/인기상품
 	
 }

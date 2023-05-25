@@ -275,12 +275,12 @@
    								</div>
                             </li>
                             <li>
-                                <a href="/item/itemList">신상품
+                                <a href="/item/newOrBest?itemType=1">신상품
                                     <span class="superscript-label-new">NEW</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/item/itemList">인기상품
+                                <a href="/item/newOrBest?itemType=2">인기상품
                                     <span class="superscript-label-hot">HOT</span>
                                 </a>
                             </li>

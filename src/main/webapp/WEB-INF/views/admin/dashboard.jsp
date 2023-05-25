@@ -12,7 +12,7 @@
 	margin-top:10px;}
 .input-group input[type=text] {
 	display:block;
-	width: 120px;
+	width: 150px;
 	height: 30px; }
 .input-group button[type=button] {
 	height: 30px; }
@@ -216,7 +216,7 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<!-- 일일 주문 수 -->
-			<div class="flex-row d-flex justify-content-center">
+			<div class="col-lg-6">
 				<label id="chart_label">일일 주문량</label>
 				<div class="input-group input-daterange">
 				    <input type="text" class="date-input input3 datepicker" name="startDateB" value="${ublist[0].startDateB}" readonly>
