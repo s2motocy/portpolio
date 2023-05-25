@@ -37,6 +37,7 @@ public class UserController {
     }
     @PostMapping("login")
     public String login(UserVO vo,Model model,HttpSession session) throws Exception {
+    	System.out.println("UserVO 에서 vo는 뭔가?: "+vo);
     	boolean success = uservice.login(vo);
         if(!success) {
         	session.setAttribute("user",vo);
@@ -104,7 +105,7 @@ public class UserController {
     	return "/user/mypage";
     }
     //로그아웃처리
-    @PostMapping("/logout")
+    @GetMapping("/logout")
     public String logout(HttpSession session) {
     	uservice.logout(session);
         return "redirect:/";

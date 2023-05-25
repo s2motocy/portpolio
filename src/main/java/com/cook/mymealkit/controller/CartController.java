@@ -1,5 +1,6 @@
 package com.cook.mymealkit.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,15 +78,18 @@ public class CartController {
 		System.out.println("Cart 컨트롤러에서 목록 : ");
 		List<CartDTO> dtoList = cservice.cartList();
 		System.out.println(dtoList);
-		
+		List<String> users = new ArrayList<String>();
 		dtoList.forEach(i->{
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			System.out.println("Cart 컨트롤러의 목록에서 attachList="+attachList);
 			i.setAttachList(attachList);
 			i.setItem_price(imapper.get_price(i.getItem_id()));
+			users.add(i.getUser_id());
 		});
-		System.out.println(dtoList);
+		System.out.println("적용된: "+dtoList);
+		System.out.println("user_id: "+users.get(0));
 		model.addAttribute("dtoList", dtoList);
+		model.addAttribute("user_id", users.get(0));
 	}
 	
 	/* 장바구니 수정 |--------------------------------------------------- */

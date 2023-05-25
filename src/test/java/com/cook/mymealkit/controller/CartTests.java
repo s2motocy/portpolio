@@ -1,7 +1,5 @@
 package com.cook.mymealkit.controller;
 
-import static org.junit.Assert.assertEquals;
-
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -42,7 +40,7 @@ public class CartTests {
    @Test
     public void calculateDays() {
 	   var s = ("2023-02-22").replace("-", ", ");
-	   
+	   System.out.println("날짜변경: "+s);
         LocalDate date1 = LocalDate.of(2022, 9, 01);
         LocalDate date2 = LocalDate.of(2022, 8, 20);
 
