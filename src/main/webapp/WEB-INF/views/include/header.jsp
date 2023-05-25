@@ -113,23 +113,23 @@
 		                            </a>
 		                            <ul class="g-dropdown" style="width:200px">
 		                            	<li>
-		                                    <a href="checkout.html">
+		                                    <a href="/user/login">
 		                                        <i class="far fa-check-circle u-s-m-r-9"></i>
 		                                        로그인</a>
 		                                </li>
 		                                <li>
-		                                    <a href="account.html">
+		                                    <a href="/user/join">
 		                                        <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
 		                                        회원가입</a>
 		                                </li>
 		                                <!-- 로그인 세션 시작 -->
 		                                <li>
-		                                    <a href="checkout.html">
+		                                    <a href="/user/mypage">
 		                                        <i class="far fa-check-circle u-s-m-r-9"></i>
 		                                        회원이름</a>
 		                                </li>
 		                                <li>
-		                                    <a href="account.html">
+		                                    <a href="/user/logout">
 		                                        <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
 		                                        로그아웃</a>
 		                                </li>
@@ -275,12 +275,12 @@
    								</div>
                             </li>
                             <li>
-                                <a href="/item/itemList">신상품
+                                <a href="/item/newOrBest?itemType=1">신상품
                                     <span class="superscript-label-new">NEW</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/item/itemList">인기상품
+                                <a href="/item/newOrBest?itemType=2">인기상품
                                     <span class="superscript-label-hot">HOT</span>
                                 </a>
                             </li>

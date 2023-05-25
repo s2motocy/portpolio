@@ -69,7 +69,14 @@ commit;
 -- 조회
 select * from tbl_item;
 select * from tbl_file_item;
-
+select * from tbl_item order by update_date desc;
+select *
+				from (
+				    select *
+				    from tbl_item
+				    order by item_sold desc
+				)
+				where rownum <= 6;
 -- drop item
 drop sequence seq_item;
 drop table tbl_item;
@@ -77,6 +84,19 @@ drop table tbl_item;
 drop sequence seq_file_item;
 drop table tbl_file_item;
 
+
+SELECT *
+			FROM (
+			  SELECT *,
+		  	  CASE
+		     	 WHEN update_date = 'n' THEN update_date
+		     	 WHEN update_date = 'b' THEN item_sold
+		     	 ELSE null
+		   	 END AS sort_by
+		 	 FROM tbl_item
+		 	 ORDER BY sort_by DESC
+		) 
+		WHERE ROWNUM <= 6;
 
 -------------------------------------------------------------------------------- 장바구니 (cart)
 
@@ -209,4 +229,6 @@ insert into notice values(seq_notice.nextval, '제목', '내요오오옹', '아무개', '2
 select * from notice;
 -- 커밋
 commit;
-desc tbl_user;
+
+update tbl_item set item_sold=100 where item_id=5;
+select * from tbl_item order by item_sold desc;

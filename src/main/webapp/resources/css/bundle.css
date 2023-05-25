@@ -1057,7 +1057,8 @@ body {
 /* Filter component */
 /* Apply styles to all filters */
 .facet-filter-associates, .facet-filter-by-price, .facet-filter-by-shipping, .facet-filter-by-rating {
-  margin-bottom: 32px; }
+	margin-top:20px;
+	margin-bottom: 10px;}
 
 /* Color, Size, Brand, Free-Shipping */
 .facet-filter-associates .associate-wrapper .check-box + .label-text {
