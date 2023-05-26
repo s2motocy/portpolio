@@ -108,5 +108,7 @@ public class CartController {
 		return "redirect:/cart/cartList";
 	}
 	
+	@GetMapping("/sample")
+	public void test() {}
 	
 }
