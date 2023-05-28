@@ -6,24 +6,27 @@ public class Criteria {
 
 	/* 현재 페이지 */
 	private int pageNum;
-	
+
 	/* 한 페이지 당 보여질 게시물 갯수 */
 	private int amount;
-	
+
 	/* 검색 키워드 */
 	private String keyword;
-	
+
 	/* 검색 타입 */
 	private String type;
-	
+
 	/* 검색 타입 배열 변환 */
 	private String[] typeArr;
-	
+
+	/* 상품 번호(댓글 기능에서 사용) */
+	private long item_id;
+
 	/* 기본세팅 : pageNum = 1, amount = 10 */
 	public Criteria() {
-		this(1,10);
+		this(1, 10);
 	}
-	
+
 	public Criteria(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
@@ -52,7 +55,7 @@ public class Criteria {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
@@ -70,10 +73,17 @@ public class Criteria {
 		this.typeArr = typeArr;
 	}
 
+	public long getItem_id() {
+		return item_id;
+	}
+
+	public void setItem_id(long item_id) {
+		this.item_id = item_id;
+	}
+
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", keyword=" + keyword + ", type=" + type
-				+ ", typeArr=" + Arrays.toString(typeArr) + "]";
-	}	
+				+ ", typeArr=" + Arrays.toString(typeArr) + ", item_id=" + item_id + "]";
+	}
 }
-

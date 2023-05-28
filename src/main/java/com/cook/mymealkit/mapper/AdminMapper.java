@@ -6,7 +6,7 @@ import com.cook.mymealkit.domain.ChartVO;
 
 public interface AdminMapper {
 
-	 List<ChartVO> getUserCountByRegDate(ChartVO vo);
-	 
-	 List<ChartVO> getUserBuyCountByBuyDate(ChartVO vo);
+	List<ChartVO> getUserCountByRegDate(ChartVO vo);
+
+	List<ChartVO> getUserBuyCountByBuyDate(ChartVO vo);
 }

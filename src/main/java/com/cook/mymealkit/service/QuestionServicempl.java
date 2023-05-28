@@ -14,7 +14,7 @@ import lombok.Setter;
 @Service
 public class QuestionServicempl implements QuestionService {
 
-	@Setter(onMethod_=@Autowired)
+	@Setter(onMethod_ = @Autowired)
 	private QuestionMapper qmapper;
 
 	@Override
@@ -54,12 +54,12 @@ public class QuestionServicempl implements QuestionService {
 
 	@Override
 	public void increaseReadCount(int qno) {
-        qmapper.increaseReadCount(qno);
+		qmapper.increaseReadCount(qno);
 	}
-	
+
 	@Override
 	public void insertReply(QuestionVO quest) {
-        qmapper.insertReply(quest);
-    }
+		qmapper.insertReply(quest);
+	}
 
 }
