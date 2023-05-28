@@ -110,6 +110,7 @@ public class ItemController {
 		});
         System.out.println(categoryList);
         model.addAttribute("categoryList", categoryList);
+        model.addAttribute("category", category);
 		return "/item/listByCategory";
     }
 	

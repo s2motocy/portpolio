@@ -12,22 +12,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <style>
 .container{
-	padding-top:10px;
-}
-
+	padding-top:10px;}
 table{
 	margin-left: auto;
-	margin-right: auto;
-}
-
+	margin-right: auto;}
 th, td {
-	text-align: center;
-}
-
+	text-align: center;}
 .navi_bar_area #admin4:visited{
     color:black;
-    font-weight: bold;
-}
+    font-weight: bold;}
 </style>
 </head>
 <body>
@@ -39,10 +32,10 @@ th, td {
               <ul class="bread-crumb">
                   <li class="has-separator">
                       <i class="ion ion-md-home"></i>
-                      <a href="home.html">Home</a>
+                      <a href="/">Home</a>
                   </li>
                   <li class="is-marked">
-                      <a href="single-product.html">구매 관리</a>
+                      <a href="#">구매 관리</a>
                       <font size:3px></font>
                   </li>
               </ul>

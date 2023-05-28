@@ -18,6 +18,7 @@ public class BuyGuestVO {
 	private String post_code; 			// 우편번호
 	private String addr; 				// 주소
 	private String addr2; 				// 주소(상세)
+	private String buy_note;			// 배송시 요청사항
 	private String buy_status; 			// 시퀀스 주문 상태
 	private Date buy_date; 				// 주문한 날짜
 	

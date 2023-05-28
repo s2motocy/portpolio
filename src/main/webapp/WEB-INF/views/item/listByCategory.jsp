@@ -31,14 +31,14 @@ const attachClickGridAndList = function () {
 <div class="page-style-a">
     <div class="container">
         <div class="page-intro">
-            <h2>한식</h2>
+            <h2>${category}</h2>
             <ul class="bread-crumb">
                 <li class="has-separator">
                     <i class="ion ion-md-home"></i>
-                    <a href="home.html">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="is-marked">
-                    <a href="single-product.html">한식</a>
+                    <a href="/item/category?category=${category}">${category}</a>
                 </li>
             </ul>
         </div>
@@ -64,7 +64,7 @@ const attachClickGridAndList = function () {
 		            <div class="item-content">
 		                <div class="what-product-is">
 		                    <h6 class="item-title">
-		                       <a href="/item/detail?item_id=${category.item_id}">${category.item_name}</a>
+		                       <a href="/item/detail?item_id=${category.item_id}">[<span>${category.category}</span>] <span>${category.item_name}</span></a>
 		                    </h6>
 		                    <div class="item-stars">
 		                        <div class='star' title="0 out of 5 - based on 0 Reviews">

@@ -72,12 +72,13 @@ public class CartController {
 	
 	/* 장바구니 목록 |--------------------------------------------------- */
 	@GetMapping("/cartList")
-	public void cartList(Model model) {
-//		System.out.println("Cart 컨트롤러에서 목록 : dto="+ dto);
-//		List<CartDTO> dtoList = cservice.cartFindByUser(dto.getUser_id());
+	public String cartList(Model model) {
 		System.out.println("Cart 컨트롤러에서 목록 : ");
 		List<CartDTO> dtoList = cservice.cartList();
 		System.out.println(dtoList);
+		if(dtoList.isEmpty()) {
+			return "redirect:/cart/cartEmpty";
+		}
 		List<String> users = new ArrayList<String>();
 		dtoList.forEach(i->{
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
@@ -90,6 +91,7 @@ public class CartController {
 		System.out.println("user_id: "+users.get(0));
 		model.addAttribute("dtoList", dtoList);
 		model.addAttribute("user_id", users.get(0));
+		return "/cart/cartList";
 	}
 	
 	/* 장바구니 수정 |--------------------------------------------------- */
@@ -108,7 +110,7 @@ public class CartController {
 		return "redirect:/cart/cartList";
 	}
 	
-	@GetMapping("/sample")
-	public void test() {}
+	@GetMapping("/cartEmpty")
+	public void cartEmpty() {}
 	
 }
