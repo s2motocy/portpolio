@@ -3,12 +3,14 @@
 <style>
     .btn-primary {
   background-color: #ff6b00;
-  border-color: #ff6b00;
+  border-color: #ffb600;
   color: #ffffff; /* 버튼 텍스트 색상을 밝은 색상으로 설정 */
 }
 #check {
   background-color: #ff6b00;
 }
+
+
 </style>
 <body>
     <div class="page-style-a">
@@ -36,7 +38,6 @@
                 <div class="col-lg-12">
                     <div class="reg-wrapper">
                         <h2 class="account-h2 u-s-m-b-20">회원가입</h2>
-                        <h6 class="account-h6 u-s-m-b-30">Registering for this site allows you to access your order status and history.</h6>
                         <form 
                         id="signupForm"
                         method="post"
@@ -96,41 +97,29 @@
                                     />
                                 </div>
                             </div>
-                        <div class="form-group email-form">
-                            <label for="email">이메일</label>
-                        <div class="input-group">
-                          <input type="text" class="form-control" name="email" id="email" placeholder="이메일" >
-                          <select class="form-control" name="userEmail2" id="userEmail2" >
-                            <option>@naver.com</option>
-                            <option>@daum.net</option>
-                            <option>@gmail.com</option>
-                            <option>@hanmail.com</option>
-                            <option>@yahoo.co.kr</option>
-                          </select>
-                        </div>
-                          <span class="mail_input_box_warn"></span>
-                          <div class="mail_check_wrap">
-                            <div class="clearfix"></div>
-                            <span id="mail_check_input_box_warn"></span>
-                          </div>
-                          <div class="input-group-addon">
-                            <button type="button" class="btn btn-primary" id="mail-Check-Btn">인증번호 전송</button>
-                          </div>
-                            <div class="mail-check-box">
-                          <input class="form-control mail-check-input" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6">
-                          </div>
-                        <span id="mail-check-warn"></span>
-                        </div>
+                            <div class="mail_wrap">
+                                <div class="mail_name">이메일</div> 
+                                <div class="mail_input_box">
+                                    <input class="mail_input" name="email" id="email">
+                                    <input type="button"  class='mail_check_button' value="인증번호전송" id="check" class="btn btn-secondary"/>
+                                </div>
+                                <div class="mail_check_wrap">
+                                       <input class="mail_check_input" />
+                                    <div class="mail_check_button">
+										<span id="mail_check_input_box_warn"></span>
+                                  </div>
+                             </div>
+                            </div>
                             <div class="u-s-m-b-30">
                                 <label for="phone">전화번호
                                     <span class="astk">*</span>
                                 </label>
                                 <input
                                 type="tel"
-                                class="form-control"
+                                class="phone-number-check"
                                 id="phone"
                                 name="phone"
-                                placeholder="핸드폰 번호 입력"
+                                placeholder="000-0000-0000"
                                 />
                             </div>
                             <div class="u-s-m-b-30">
@@ -147,9 +136,14 @@
                                     type="submit"
                                     class="btn btn-primary"
                                     value="회원가입"
+                                    onclick="displayAlert()"
                                     >
                                     회원가입
-                                    </button>
+                                </button>
+                                &nbsp;
+                                <button class="btn btn-primary"><a href="/"></a>
+                                    회원가입취소
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -190,52 +184,63 @@
                 console.log("사랑")
             }
         })
-$('#mail-Check-Btn').click(function() {
-      const email = $('#email').val() + $('#userEmail2').val(); // 이메일 주소값 얻어오기!
-      console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
-      const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
-  var warnMsg = $(".mail_input_box_warn")	// 이메일 입력 경고글 
-  
-    /* 이메일 형식 유효성 검사 */
-      if(mailFormCheck(email)){
-          warnMsg.html("이메일이 전송 되었습니다. 이메일을 확인해주세요.")
-          warnMsg.css("display", "inline-block")
-      } else {
-          warnMsg.html("올바르지 못한 이메일 형식입니다.")
-          warnMsg.css("display", "inline-block")
-          return false;
-      }
-      $.ajax({
-          type : 'get',
-          url : '/user/mailCheck?email='+email, // GET방식이라 Url 뒤에 email을 뭍힐수있다.
-          success : function (data) {
-              console.log("data : " +  data);
-              checkInput.attr('disabled',false);
-              code =data;
-              alert('인증번호가 전송되었습니다.')
-          }			
-      }); // end ajax
-  }); // end send eamil
-  
-  /* 인증번호 비교 */
-  $(".mail_check_input").blur(function(){
-      
-      var inputCode = $(".mail_check_input").val();		// 입력코드	
-      var checkResult = $("#mail_check_input_box_warn");	// 비교 결과 	
-      
-      if(inputCode == code){							// 일치할 경우
-          checkResult.html("인증번호가 일치합니다.");
-          checkResult.attr("class", "correct");		
-          mailnumCheck = true;
-      } else {											// 일치하지 않을 경우
-          checkResult.html("인증번호를 다시 확인해주세요.");
-          checkResult.attr("class", "incorrect");
-          mailnumCheck = false;
-      }	
-      
-  });
+        var code;
+$(".mail_check_button").click(function(){
+	
+    	var email = $(".mail_input").val()			// 입력한 이메일
+    	var checkBox = $(".mail_check_input")		// 인증번호 입력란
+    	var boxWrap = $("input[id^=mail_check_input]")	// 인증번호 입력란 박스
+    	var warnMsg = $(".mail_check_input_box")	// 이메일 입력 경고글   
+    	console.log("눌렸어", email , checkBox ,boxWrap , warnMsg )
+    	/* 이메일 형식 유효성 검사 */
+    	if(mailFormCheck(email)){
+    		console.log("여기 1")
+    		warnMsg.html("인증번호를확인해주세요")
+    		warnMsg.css("display", "inline-block")
+    	} else {
+    		console.log("여기 2")
+    		warnMsg.html("올바르지 못한 이메일 형식입니다.")
+    		warnMsg.css("display", "inline-block")
+    		return false;
+    	}
+    	$.ajax({	
+    		type:"GET",
+    		url:"mailCheck?email=" + email,
+    		success:function(data){
+    			console.log("data : " + data);
+    			// checkBox.val(data);
+    			code = data
+    			setTimeout(() => {
+    				console.log("눌렷어")
+    				checkBox.trigger('blur');
+    				$(".correct").css("color","green")
+    				$(".incorrect").css("color","red")
+				}, 100);
+    			//$("#mail_check_input_box_false").text(data)
+    		}		
+    	})	// ajax
+    }) // click button
+    
+    /* 인증번호 비교 */
+    $(".mail_check_input").blur(function(){
+    	console.log("인증번호 비교 ")
+    	var inputCode = $(".mail_check_input").val();		// 입력코드	
+    	var checkResult = $("#mail_check_input_box_warn");	// 비교 결과 	
+    	console.log("어기들어온다" ,inputCode , checkResult)
+    	if(inputCode == code){							// 일치할 경우
+    		checkResult.html("인증번호가 일치합니다.");	
+    		checkResult.attr("class", "correct");		
+    		mailnumCheck = true;
+    	} else {											// 일치하지 않을 경우
+    		checkResult.html("인증번호를 다시 확인해주세요.");
+    		checkResult.attr("class", "incorrect");
+    		mailnumCheck = false;
+    	}	
+    	
+    });
   
   function mailFormCheck(email){
+	  console.log('form check , ' ,email)
       var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
       return form.test(email);
   }
@@ -252,5 +257,58 @@ $('#mail-Check-Btn').click(function() {
       }).open();
   }
   </script>
+  <script>
+   $(function(){
+        $(".phone-number-check").on('keydown', function(e){
+        // 숫자만 입력받기
+            var trans_num = $(this).val().replace(/-/gi,'');
+        var k = e.keyCode;
+                    
+        if(trans_num.length >= 11 && ((k >= 48 && k <=126) || (k >= 12592 && k <= 12687 || k==32 || k==229 || (k>=45032 && k<=55203)) ))
+        {
+            e.preventDefault();
+        }
+        }).on('blur', function(){ // 포커스를 잃었을때 실행합니다.
+            if($(this).val() == '') return;
+
+            // 기존 번호에서 - 를 삭제합니다.
+            var trans_num = $(this).val().replace(/-/gi,'');
+        
+            // 입력값이 있을때만 실행합니다.
+            if(trans_num != null && trans_num != '')
+            {
+                // 총 핸드폰 자리수는 11글자이거나, 10자여야 합니다.
+                if(trans_num.length==11 || trans_num.length==10) 
+                {   
+                    // 유효성 체크
+                    var regExp_ctn = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})([0-9]{3,4})([0-9]{4})$/;
+                    if(regExp_ctn.test(trans_num))
+                    {
+                        // 유효성 체크에 성공하면 하이픈을 넣고 값을 바꿔줍니다.
+                        trans_num = trans_num.replace(/^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?([0-9]{3,4})-?([0-9]{4})$/, "$1-$2-$3");                  
+                        $(this).val(trans_num);
+                    }
+                    else
+                    {
+                        alert("유효하지 않은 전화번호 입니다.");
+                        $(this).val("");
+                        $(this).focus();
+                    }
+                }
+                else 
+                {
+                    alert("유효하지 않은 전화번호 입니다.");
+                    $(this).val("");
+                    $(this).focus();
+                }
+        }
+        });  
+        });
+    </script>
+    <script>
+        function displayAlert() {
+          alert("회원가입 되었습니다");
+        }
+      </script>
 </body>
 <%@ include file="../include/footer.jsp" %>
