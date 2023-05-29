@@ -17,17 +17,16 @@ import lombok.Setter;
 
 @Controller
 public class MainController {
-
-	@Setter(onMethod_ = @Autowired)
+	/* Mapper 설정 */
+	@Setter(onMethod_=@Autowired)
 	ItemMapper imapper;
-
-	@Setter(onMethod_ = @Autowired)
+	@Setter(onMethod_=@Autowired)
 	FileMapper fmapper;
-
 	/* Service 설정 */
-	@Setter(onMethod_ = @Autowired)
+	@Setter(onMethod_=@Autowired)
 	ItemService iservice;
 
+	/* 메인 페이지 |--------------------------------------------------- */
 	@RequestMapping({ "/", "/main" })
 	public String main(Model model, String search) {
 		if (search == null) {

@@ -26,20 +26,19 @@ import lombok.Setter;
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
-
-	@Setter(onMethod_ = @Autowired)
+	/* Service 설정 */
+	@Setter(onMethod_=@Autowired)
 	UserService uservice;
-
-	@Autowired
-	private JavaMailSenderImpl mailSender;
+	/* 메일 전송 Java 라이브러리 설정 */
+	@Setter(onMethod_=@Autowired)
+	JavaMailSenderImpl mailSender;
 	
 	
-	// 로그인 페이지 처리
-	@GetMapping("login")
-	public void login() {
-	}
+	/* 로그인 페이지 처리 |--------------------------------------------------- */
+	@GetMapping("/login")
+	public void login() {}
 
-	@PostMapping("login")
+	@PostMapping("/login")
 	public String login(UserVO vo, Model model, HttpSession session) throws Exception {
 		System.out.println("UserVO 에서 vo는 뭔가?: " + vo);
 		boolean success = uservice.login(vo);
@@ -59,29 +58,26 @@ public class UserController {
 			} catch(Exception e) {
 				System.out.println("예외:"+user);
 			}
-			
 		}
-		
-		//System.out.println(user);
 		return "redirect:/";
 	}
-    //회원가입 처리
-    @GetMapping("join")
-    public void join() {
-    	
-    }
+	
+	/* 회원가입 처리 |--------------------------------------------------- */
+    @GetMapping("/join")
+    public void join() {}
+    
     @PostMapping("/join")
     public String signUP(UserVO vo,Model model) throws Exception {
     	System.out.println(vo);
     	uservice.join(vo);
     	return "redirect:/user/login";
     }
-    //회원 수정 처리
+    
+	/* 회원 수정 처리 |--------------------------------------------------- */
     @GetMapping("/update")
-    public String update(UserVO vo,Model model,HttpSession session) {
+    public void update(UserVO vo,Model model,HttpSession session) {
     	UserVO user= (UserVO) session.getAttribute("vo");
 		model.addAttribute("vo",user);
-		return "/user/update";
 	}
 
 	@PostMapping("/update")
@@ -96,11 +92,9 @@ public class UserController {
 		return "redirect:/user/mypage";
 	}
 
-	// 회원탈퇴 처리
+	/* 회원탈퇴 처리 |--------------------------------------------------- */
 	@GetMapping("/remove")
-	public void remove() {
-
-	}
+	public void remove() {}
 
 	@PostMapping("/remove")
 	public String remove(UserVO vo) {
@@ -113,31 +107,28 @@ public class UserController {
 		}
 	}
 
-	// 회원조회 처리
+	/* 회원조회 처리 |--------------------------------------------------- */
 	@GetMapping("/userlist")
-	public String memberlist(Model model) {
+	public void memberlist(Model model) {
 		List<UserVO> users = uservice.getAllUser();
 		model.addAttribute("list1", users);
-		return "/user/userlist";
 	}
 
-	// 마이페이지
+	/* 마이페이지 |--------------------------------------------------- */
 	@GetMapping("/mypage")
-	public String mypage(Model model, HttpSession session) {
+	public void mypage(Model model, HttpSession session) {
 		UserVO user = (UserVO) session.getAttribute("vo");
-		
 		model.addAttribute("vo", user);
-		return "/user/mypage";
 	}
 
-	// 로그아웃처리
+	/* 로그아웃처리 |--------------------------------------------------- */
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		uservice.logout(session);
 		return "redirect:/";
 	}
 
-	// 아이디 중복조회
+	/* 아이디 중복조회 |--------------------------------------------------- */
 	@GetMapping("/idCheck")
 	public ResponseEntity<String> idCheck(String user_id) {
 		System.out.println("여기는 컨트롤렁 :" + user_id);
@@ -146,11 +137,9 @@ public class UserController {
 		return new ResponseEntity<>(email, HttpStatus.OK);
 	}
 
-	// 아이디 찾기
+	/* 아이디 찾기 |--------------------------------------------------- */
 	@GetMapping("/findid")
-	public String findIdView() {
-		return "user/findid";
-	}
+	public void findIdView() {}
 
 	@PostMapping("/findid")
 	public String findIdAction(UserVO vo, Model model) {
@@ -162,36 +151,30 @@ public class UserController {
 			model.addAttribute("check", 0);
 			model.addAttribute("id", user.getUser_id());
 		}
-		return "user/findid";
+		return "redirect:/user/findid";
 	}
 
-	// 비밀번호 찾기
+	/* 비밀번호 찾기 |--------------------------------------------------- */
 	@GetMapping("/findpwd")
-	public String findPasswordView() {
-		return "user/findpwd";
-	}
+	public void findPasswordView() {}
 
 	@PostMapping("/findpwd")
 	public String findPasswordAction(UserVO vo, Model model) {
 		UserVO user = uservice.findPassword(vo);
-
 		if (user == null) {
 			model.addAttribute("check", 1);
 		} else {
 			model.addAttribute("check", 0);
 			model.addAttribute("user_id", user.getUser_id());
 		}
-
-		return "user/findpwd";
+		return "redirect:/user/findpwd";
 	}
- // 비밀번호 바꾸기 실행
-    @GetMapping("update_password")
-    public void updatePassword() {
-    	
-    }
 
-	// 비밀번호 바꾸기 실행
-	@PostMapping("update_password")
+	/* 비밀번호 바꾸기 실행 |--------------------------------------------------- */
+    @GetMapping("/update_password")
+    public void updatePassword() {}
+
+	@PostMapping("/update_password")
 	public String updatePasswordAction(UserVO vo, Model model, String user_id2) {
 		System.out.println("컨트롤러 vo: " + vo);
 		vo.setUser_id(user_id2);
@@ -199,7 +182,7 @@ public class UserController {
 		return "redirect:/user/login";
 	}
 
-	// 이메일 인증
+	/* 이메일 인증 |--------------------------------------------------- */
 	@GetMapping("/mailCheck")
 	@ResponseBody
 	public String mailCheck(String email) {
@@ -220,21 +203,25 @@ public class UserController {
                 "<br>" + 
                 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
 		System.out.println("여기는 서비스 결과 왜 여기서 터지는가 " + content);
-		try {
-		            
-		            MimeMessage message = mailSender.createMimeMessage();
-		            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-		            helper.setFrom(setFrom);
-		            helper.setTo(toMail);
-		            helper.setSubject(title);
-		            helper.setText(content,true);
-		            mailSender.send(message);
-		            
-		        }catch(Exception e) {
-		            e.printStackTrace();
-		        }
-		 String num = Integer.toString(checkNum);
+		try {       
+	            MimeMessage message = mailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+	            helper.setFrom(setFrom);
+	            helper.setTo(toMail);
+	            helper.setSubject(title);
+	            helper.setText(content,true);
+	            mailSender.send(message);
+	        }catch(Exception e) {
+	            e.printStackTrace();
+	        }
+		String num = Integer.toString(checkNum);
 		return num;
 	}
-
+	
+	/* 삭제 |--------------------------------------------------- */
+	@GetMapping("/delete")
+	public String userDelete(long uno) {
+		uservice.userDelete(uno);
+		return "redirect:/user/userlist";
+	}
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script>
@@ -63,6 +64,7 @@ $(document).ready(function(){
 	}
 })
 </script>
+
 <body>
 <!-- app -->
 <div id="app">
@@ -190,7 +192,6 @@ $(document).ready(function(){
         </div>
     </div>
     <!-- Checkout-Page /- -->
-
 </div>
 </body>
 <%@ include file="../include/footer.jsp" %>

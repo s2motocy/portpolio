@@ -28,25 +28,20 @@ import lombok.Setter;
 @Controller
 @RequestMapping("/item/*")
 public class ItemController {
-
 	/* Mapper 설정 */
-	@Setter(onMethod_ = @Autowired)
+	@Setter(onMethod_=@Autowired)
 	ItemMapper imapper;
-
-	@Setter(onMethod_ = @Autowired)
+	@Setter(onMethod_=@Autowired)
 	FileMapper fmapper;
-
 	/* Service 설정 */
-	@Setter(onMethod_ = @Autowired)
+	@Setter(onMethod_=@Autowired)
 	ItemService iservice;
-
-	@Setter(onMethod_ = @Autowired)
-	private ReplyService rservice;
+	@Setter(onMethod_=@Autowired)
+	ReplyService rservice;
 
 	/* 상품 등록 |--------------------------------------------------- */
 	@GetMapping("/register")
-	public void register() {
-	}
+	public void register() {}
 
 	@PostMapping("/register")
 	public String insert(ItemVO vo) {
@@ -144,7 +139,7 @@ public class ItemController {
 		return "/item/categoryAll";
 	}
 
-	/* 신상품/인기상품 보기|--------------------------------------------------- */
+	/* 신상품/인기상품 보기 |--------------------------------------------------- */
 	@GetMapping("/newOrBest")
 	public String newI(@Param("itemType") String itemType, Model model) {
 		System.out.println("itemType:" + itemType);
@@ -161,22 +156,19 @@ public class ItemController {
 		return "/item/newOrBest";
 	}
 	
-	 @GetMapping("/between")
-	    public ResponseEntity<List<ItemVO>> ubChartgogo(ItemVO vo){
-		 System.out.println(vo);
-		 List<ItemVO> list = iservice.categoryItemListByStartAndEnd(vo);
-		 System.out.println("itmelist : " + list);
-		 list.forEach(i->{
-				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
-				i.setAttachList(attachList);
-			});
-		 return new ResponseEntity<>(list,HttpStatus.OK);
-	    }
-
-	@GetMapping("/sample")
-	public void sample() {
+	@GetMapping("/between")
+	public ResponseEntity<List<ItemVO>> ubChartgogo(ItemVO vo){
+		System.out.println(vo);
+		List<ItemVO> list = iservice.categoryItemListByStartAndEnd(vo);
+		System.out.println("itmelist : " + list);
+		list.forEach(i->{
+			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
+			i.setAttachList(attachList);
+		});
+		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
 
+	/* 리뷰 등록 |--------------------------------------------------- */
 	@GetMapping("/replyEnroll/{user_id}")
 	public String replyEnrollWindowGET(@PathVariable("user_id") String user_id, long item_id, Model model) {
 		ItemVO item = iservice.getItemIdName(item_id);
@@ -185,7 +177,7 @@ public class ItemController {
 		return "/item/replyEnroll";
 	}
 
-	/* 리뷰 수정 팝업창 */
+	/* 리뷰 수정 팝업창 |--------------------------------------------------- */
 	@GetMapping("/replyUpdate")
 	public String replyUpdateWindowGET(ReplyDTO dto, Model model) {
 		ItemVO item = iservice.getItemIdName(dto.getItem_id());

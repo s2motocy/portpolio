@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <!-- Style -->
 <style type="text/css">
-    .col-lg-3 {
-        display: table-cell;
-        vertical-align: middle;
-        width: 25%;
-        height: 20%;
-    }
+.col-lg-3 {
+    display: table-cell;
+    vertical-align: middle;
+    width: 25%;
+    height: 20%;}
 </style>
 
 <!-- Footer -->

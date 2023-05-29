@@ -21,20 +21,16 @@ import lombok.Setter;
 @Controller
 @RequestMapping("/cart/*")
 public class CartController {
-
 	/* Service 설정 */
-	@Setter(onMethod_ = @Autowired)
-	private CartService cservice;
-
-	@Setter(onMethod_ = @Autowired)
-	private ItemService iservice;
-
+	@Setter(onMethod_=@Autowired)
+	CartService cservice;
+	@Setter(onMethod_=@Autowired)
+	ItemService iservice;
 	/* Mapper 설정 */
-	@Setter(onMethod_ = @Autowired)
-	private ItemMapper imapper;
+	@Setter(onMethod_=@Autowired)
+	ItemMapper imapper;
 
 	/* 장바구니 등록 |--------------------------------------------------- */
-
 	@PostMapping("/register")
 	public String cartInsert(CartDTO dto) {
 		System.out.println("Cart 컨트롤러에서 등록 : dto=" + dto);

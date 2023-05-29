@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	// 회원가입
 	@Override
-	public void join(UserVO vo) throws Exception {
+	public void join(UserVO vo) {
 		umapper.insertUser(vo);
 	}
 
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
 	// 회원정보 수정
 	@Override
-	public void updateUser(UserVO vo) throws Exception {
+	public void updateUser(UserVO vo) {
 		umapper.updateUser(vo);
 	}
 
@@ -53,13 +53,13 @@ public class UserServiceImpl implements UserService {
 
 	// 회원탈퇴
 	@Override
-	public void deleteUser(UserVO vo) throws Exception {
+	public void deleteUser(UserVO vo) {
 		umapper.deleteUser(vo);
 	}
 
 	// 마이페이지
 	@Override
-	public UserVO mypage(UserVO vo) throws Exception {
+	public UserVO mypage(UserVO vo) {
 		return umapper.readUser(vo);
 	}
 
@@ -105,5 +105,11 @@ public class UserServiceImpl implements UserService {
 		List<UserVO> user = umapper.idCheck(user_id);
 		System.out.println("서비스에서 user : " +user);
 		return umapper.UserById(user_id);
+	}
+
+	@Override
+	public int userDelete(long uno) {
+		System.out.println("삭제 확인" + uno);
+		return umapper.userDelete(uno);
 	}
 }

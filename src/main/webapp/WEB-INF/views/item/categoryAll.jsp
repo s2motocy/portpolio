@@ -18,6 +18,7 @@
 	font-size:10px;
 	color:#d90429;}
 </style>
+
 <script>
 const attachClickGridAndList = function () {
     $('#list-anchor').on('click',function () {

@@ -15,9 +15,9 @@
         WHERE bno = #{bno}
     </select>
         <!-- 게시글 입력 -->
-    <insert id="insert">
-        INSERT INTO notice (bno, title, content,writer)
-        VALUES (seq_notice.nextval, #{title}, #{content}, #{writer})
+    <insert id="insert" parameterType="com.cook.mymealkit.domain.NoticeVO">
+        INSERT INTO notice (bno, title, content)
+        VALUES (seq_notice.nextval, #{title}, #{content})
     </insert>
         <!-- 게시글 업데이트 -->
     <update id="update">

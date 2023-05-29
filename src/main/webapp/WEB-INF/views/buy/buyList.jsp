@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
+
 <style>
 .container{
 	padding-top:10px;}
@@ -12,6 +13,7 @@ th, td {
     color:black;
     font-weight: bold;}
 </style>
+
 <script>
 $(document).ready(function (e) {
 	$(".button-outline-secondary").each(function (idx, data) {
@@ -37,26 +39,26 @@ $(document).ready(function (e) {
 	})
 })
 </script>
-</head>
+
 <body>
 <!-- Page Introduction Wrapper -->
-  <div class="page-style-a">
-      <div class="container">
-          <div class="page-intro">
-              <h2>주문 리스트</h2>
-              <ul class="bread-crumb">
-                  <li class="has-separator">
-                      <i class="ion ion-md-home"></i>
-                      <a href="home.html">Home</a>
-                  </li>
-                  <li class="is-marked">
-                      <a href="single-product.html">구매 관리</a>
-                      <font size:3px></font>
-                  </li>
-              </ul>
-          </div>
-      </div>
-  </div>
+<div class="page-style-a">
+    <div class="container">
+        <div class="page-intro">
+            <h2>주문 리스트</h2>
+            <ul class="bread-crumb">
+                <li class="has-separator">
+                    <i class="ion ion-md-home"></i>
+                    <a href="home.html">Home</a>
+                </li>
+                <li class="is-marked">
+                    <a href="single-product.html">구매 관리</a>
+                    <font size:3px></font>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 <!-- Page Introduction Wrapper /- -->
 <div id="app">
 	<div class="container">

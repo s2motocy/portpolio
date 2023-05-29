@@ -19,14 +19,11 @@ import lombok.Setter;
 @Controller
 @RequestMapping("/admin/*")
 public class AdminController {
-
-	@Setter(onMethod_ = @Autowired)
+	/* Mapper 설정 */
+	@Setter(onMethod_=@Autowired)
 	AdminMapper amapper;
-
-	@GetMapping("/adminPage")
-	public void admin() {
-	};
-
+	
+	/* 대시보드 |--------------------------------------------------- */
 	@GetMapping("/dashboard")
 	public String showChart(Model model) throws ParseException {
 		// 일일 회원가입자 수

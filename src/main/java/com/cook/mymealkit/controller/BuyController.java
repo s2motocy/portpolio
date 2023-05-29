@@ -35,7 +35,7 @@ import lombok.Setter;
 @Controller
 @RequestMapping("/buy/*")
 public class BuyController {
-
+	/* Service 설정 */
 	@Setter(onMethod_ = @Autowired)
 	BuyService bservice;
 	@Setter(onMethod_ = @Autowired)
@@ -46,10 +46,11 @@ public class BuyController {
 	BuyListService blistservice;
 	@Setter(onMethod_=@Autowired)
 	CartService cservice;
+	/* Mapper 설정 */
 	@Setter(onMethod_ = @Autowired)
 	FileMapper fmapper;
 
-	/* 회원 구매 로그인 */
+	/* 회원 구매 로그인 |--------------------------------------------------- */
 	@GetMapping("/buyLogin")
 	public void registerUser(BuyUserVO bvo, BuyGuestVO gvo, HttpSession session, Model model) {
 		System.out.println("vo : " + bvo);
@@ -57,7 +58,7 @@ public class BuyController {
 		// 여기 페이지에서 login 관련만 화면에 보이게 하고 나머지는 hidden으로 감춘후 처리함
 	}
 
-	/* 로그인 세션처리 */
+	/* 로그인 세션처리 |--------------------------------------------------- */
 	@PostMapping("/buyLogin")
 	public ResponseEntity<String> UserLoginPost(@RequestBody UserVO uvo, BuyUserVO bvo, HttpSession session) {
 		System.out.println("uvo:"+uvo+" ,bvo:"+bvo);
@@ -92,7 +93,7 @@ public class BuyController {
 		}
 	}
 
-	/* 회원 구매 페이지 */
+	/* 회원 구매 페이지 |--------------------------------------------------- */
 	@GetMapping("/buyUser")
 	public void register(UserVO uvo, BuyUserVO bvo, HttpServletRequest request, HttpSession session, Model model) {
 		System.out.println("BuyUser 에서 uvo : " + uvo + " , bvo" + bvo);
@@ -139,7 +140,7 @@ public class BuyController {
 		}
 	}
 
-	/* 비회원 구매 페이지 */
+	/* 비회원 구매 페이지 |--------------------------------------------------- */
 	@GetMapping("/buyGuest")
 	public void guestRegister(BuyGuestVO gvo, Model model) {
 		System.out.println("BuyGuest 에서 gvo : " + gvo);
@@ -172,7 +173,7 @@ public class BuyController {
 		model.addAttribute("vlist", volist);
 	}
 
-	/* 구매 등록 */
+	/* 구매 등록 |--------------------------------------------------- */
 	@PostMapping("/register")
 	public String registerPost(BuyUserVO bvo, BuyGuestVO gvo, HttpSession session) {
 		if (session.getAttribute("user") != null) {
@@ -210,26 +211,38 @@ public class BuyController {
 		return "redirect:/buy/buyDone";
 	}
 
-	/* 구매완료 페이지 */
+	/* 구매완료 페이지 |--------------------------------------------------- */
 	@GetMapping("/buyDone")
 	public void success() {
 		// buy_no 번호를 화면에 뿌린다
 		// "결제내역 조회하기" 버튼을 누르면 조회하기 위한 입력페이지로 간다 
 	}
 
-	// 회원 구매내역 조회
-	@GetMapping("/mBuyGet")
-	public void userBuy(Model model, HttpSession session, String user_id) {
-		System.out.println("멤버아이디 잘못됬음?" + user_id);
-		List<BuyUserVO> mbList = bservice.bListByUserId(user_id);
-		System.out.println(mbList);
-		model.addAttribute("mblist", mbList);
-		mbList.forEach(i -> {
-			System.out.println(i);
+	/* 회원 구매내역 조회 |--------------------------------------------------- */
+	@GetMapping("/userBuyList")
+	public String userBuy(Model model, HttpSession session, String user_id) {
+		System.out.println("멤버아이디?" + user_id);
+		List<BuyUserVO> userBuyList = bservice.bListByUserId(user_id);
+		List<BuyListDTO> userBuyItemList = new ArrayList<BuyListDTO>();
+		userBuyList.forEach(i -> {
+			List<BuyListDTO> buyList = blistservice.listOfNo(i.getBuy_no());
+			buyList.forEach(v -> userBuyItemList.add(v));
+			i.setBuy_list(buyList);
 		});
+		if(userBuyList.isEmpty()) {
+			return "redirect:/buy/buyEmpty";
+		}
+		System.out.println(userBuyList);
+		model.addAttribute("userBuyList", userBuyList);
+		model.addAttribute("userBuyItemList", userBuyItemList);
+		
+		return "/buy/userBuyList";
 	}
+	
+	@GetMapping("/buyEmpty")
+	public void buyEmpty() {}
 
-	// 관리자권한 전체 구매내역 조회
+	/* 관리자권한 전체 구매내역 조회 |--------------------------------------------------- */
 	@GetMapping("/buyList")
 	public void Buy(Model model) {
 		List<BuyUserVO> buyList = bservice.userBuyList(); // 전체 회원구매 목록
@@ -242,7 +255,6 @@ public class BuyController {
 		System.out.println(buyList);
 		model.addAttribute("buyList", buyList);
 		model.addAttribute("bblist", bblist);
-
 	}
 	
 	@PostMapping("/order")
