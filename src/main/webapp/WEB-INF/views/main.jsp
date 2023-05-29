@@ -12,21 +12,21 @@
 </style>
 
 <script>
-	$(document).ready(function () {
-		/* 이미지 경로 변경 */
-		$("img").each(function (idx, data) {
-			var r = $(this).attr('src')
-			u = r.replaceAll('\\', '/')
-			$(this).attr('src', u)
-		})
+$(document).ready(function () {
+	/* 이미지 경로 변경 */
+	$("img").each(function (idx, data) {
+		var r = $(this).attr('src')
+		u = r.replaceAll('\\', '/')
+		$(this).attr('src', u)
 	})
-	window.ga = function () {
-		ga.q.push(arguments)
-	};
-	ga.q = [];
-	ga.l = +new Date;
-	ga('create', 'UA-XXXXX-Y', 'auto');
-	ga('send', 'pageview')
+})
+window.ga = function () {
+	ga.q.push(arguments)
+};
+ga.q = [];
+ga.l = +new Date;
+ga('create', 'UA-XXXXX-Y', 'auto');
+ga('send', 'pageview')
 </script>
 
 <body>
@@ -64,17 +64,14 @@
 					<c:forEach var="list" items="${list}">
 						<div class="item" class="col">
 							<div>
-								<a class="item-img-wrapper-link"
-									href="item/detail?item_id=${list.item_id}">
-									<img src="/display?fileName=/${list.attachList[0].uploadPath}/${list.attachList[0].uuid}_${list.attachList[0].fileName}"
-										width="254px" height="254px" />
+								<a class="item-img-wrapper-link" href="item/detail?item_id=${list.item_id}">
+									<img src="/display?fileName=/${list.attachList[0].uploadPath}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" width="254px" height="254px" />
 								</a>
 							</div>
 							<div class="item-content">
 								<div class="what-product-is">
 									<h6 class="item-title">
-										<a
-											href="item/detail?item_id=${list.item_id}">${list.item_name}</a>
+										<a href="item/detail?item_id=${list.item_id}">${list.item_name}</a>
 									</h6>
 									<div class="item-stars">
 										<div class='star' title="0 out of 5 - based on 0 Reviews">

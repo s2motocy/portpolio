@@ -81,7 +81,7 @@
 		select * from
 			(select rownum as rn, item_id, item_name (select category from tbl_item where tbl_item.category = tbl_item.category) as category
 				from tbl_item
-					<![CDATA[where rn < 9]]>	
+					<![CDATA[where rn < 9]]>
 	</select>
 	
 </mapper>

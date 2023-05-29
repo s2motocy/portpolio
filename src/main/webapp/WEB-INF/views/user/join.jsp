@@ -1,17 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 <style>
-    .btn-primary {
+.btn-primary {
   background-color: #ff6b00;
   border-color: #ffb600;
-  color: #ffffff; /* 버튼 텍스트 색상을 밝은 색상으로 설정 */
-}
+  color: #ffffff; /* 버튼 텍스트 색상을 밝은 색상으로 설정 */}
 #check {
-  background-color: #ff6b00;
-}
-
-
+  background-color: #ff6b00;}
 </style>
+
 <body>
     <div class="page-style-a">
         <div class="container">
@@ -158,8 +155,6 @@
             </div>
         </div>
     </div>
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-
 <script type="text/javascript" >
     $(document).ready(function () {
         function checkId(){
@@ -252,19 +247,7 @@ $(".mail_check_button").click(function(){
       return form.test(email);
   }
 }) // ready
-  </script>
-  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script>
-  function kakaopost() {
-      new daum.Postcode({
-          oncomplete: function(data) {
-             document.querySelector("#post_code").value = data.zonecode;
-             document.querySelector("#addr").value =  data.address;
-          }
-      }).open();
-  }
-  </script>
-  <script>
+
    $(function(){
         $(".phone-number-check").on('keydown', function(e){
         // 숫자만 입력받기
@@ -311,8 +294,7 @@ $(".mail_check_button").click(function(){
         }
         });  
         });
-    </script>
-      <script>
+
         $('.pw2').keyup(function(){
             var p1 = document.getElementById('pwd').value;
             var p2 = document.getElementById('pwd2').value;
@@ -342,10 +324,19 @@ $(".mail_check_button").click(function(){
         document.getElementById("signup-button").addEventListener("click", function(event) {
         if (!checkPassword()) {
             event.preventDefault(); // 비밀번호 확인 실패 시 기본 동작을 중단합니다.
-        }else{
-            alert("회원가입 되었습니다");
         }
         });
       </script>
-</body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function kakaopost() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+           document.querySelector("#post_code").value = data.zonecode;
+           document.querySelector("#addr").value =  data.address;
+        }
+    }).open();
+}
+</script>
+
 <%@ include file="../include/footer.jsp" %>
