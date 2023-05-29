@@ -1,158 +1,156 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!DOCTYPE html>
-<html class="no-js" lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <!--[if IE]>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <!DOCTYPE html>
+        <html class="no-js" lang="ko">
+        <%
+        	session = request.getSession();
+        	out.println(session.getAttribute("admin"));
+        %>
+        <head>
+            <meta charset="UTF-8">
+            <!--[if IE]>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>마이 밀키트</title>
-    <!-- Standard Favicon -->
-    <link href="favicon.ico" rel="shortcut icon">
-    <!-- Base Google Font for Web-app -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-    <!-- Google Fonts for Banners only -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
-    
-    <!-- CSS -->
-    <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
-    <!-- Font Awesome 5 -->
-    <link rel="stylesheet" href="/resources/css/fontawesome.min.css">
-    <!-- Ion-Icons 4 -->
-    <link rel="stylesheet" href="/resources/css/ionicons.min.css">
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="/resources/css/animate.min.css">
-    <!-- Owl-Carousel -->
-    <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
-    <!-- Jquery-Ui-Range-Slider -->
-    <link rel="stylesheet" href="/resources/css/jquery-ui-range-slider.min.css">
-    <!-- Utility -->
-    <link rel="stylesheet" href="/resources/css/utility.css">
-    <!-- Main -->
-    <link rel="stylesheet" href="/resources/css/bundle.css">
-</head>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <title>마이 밀키트</title>
+            <!-- Standard Favicon -->
+            <link href="favicon.ico" rel="shortcut icon">
+            <!-- Base Google Font for Web-app -->
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+            <!-- Google Fonts for Banners only -->
+            <link href="https://fonts.googleapis.com/css?family=Raleway:400,800" rel="stylesheet">
 
-<!-- Script -->
-    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
-	<!-- Modernizr-JS -->
-	<script type="text/javascript" src="/resources/js/vendor/modernizr-custom.min.js"></script>
-	<!-- NProgress -->
-	<script type="text/javascript" src="/resources/js/nprogress.min.js"></script>
-	<!-- jQuery -->
-	<script type="text/javascript" src="/resources/js/jquery.min.js"></script>
-	<!-- Bootstrap JS -->
-	<script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
-	<!-- Popper -->
-	<script type="text/javascript" src="/resources/js/popper.min.js"></script>
-	<!-- ScrollUp -->
-	<script type="text/javascript" src="/resources/js/jquery.scrollUp.min.js"></script>
-	<!-- Elevate Zoom -->
-	<script type="text/javascript" src="/resources/js/jquery.elevatezoom.min.js"></script>
-	<!-- jquery-ui-range-slider -->
-	<script type="text/javascript" src="/resources/js/jquery-ui.range-slider.min.js"></script>
-	<!-- jQuery Slim-Scroll -->
-	<script type="text/javascript" src="/resources/js/jquery.slimscroll.min.js"></script>
-	<!-- jQuery Resize-Select -->
-	<script type="text/javascript" src="/resources/js/jquery.resize-select.min.js"></script>
-	<!-- jQuery Custom Mega Menu -->
-	<script type="text/javascript" src="/resources/js/jquery.custom-megamenu.min.js"></script>
-	<!-- jQuery Countdown -->
-	<script type="text/javascript" src="/resources/js/jquery.custom-countdown.min.js"></script>
-	<!-- Owl Carousel -->
-	<script type="text/javascript" src="/resources/js/owl.carousel.min.js"></script>
-	
-	
-	
-<!-- app -->
-<div id="app">
-    <!-- Header -->
-    <header>
-        <!-- Mid-Header -->
-        <div class="full-layer-mid-header">
-            <div class="container">
-                <div class="row clearfix align-items-center">
-                    <div class="col-lg-3 col-md-9 col-sm-6">
-                        <div class="brand-logo text-lg-center">
-                            <a href="/">
-                                <img src="/resources/images/main-logo/main-logo.png" alt="Logo" class="app-brand-logo" style="width:280px; height:120px">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 u-d-none-lg">
-                        <form class="form-searchbox">
-                            <label class="sr-only" for="search-landscape">Search</label>
-                            <input id="search-landscape" type="text" class="text-field" placeholder="검색어를 입력하세요">
-                            <div class="select-box-position">
-                                <div class="select-box-wrapper select-hide">
-                                    <label class="sr-only" for="select-category">Choose category for search</label>
-                                    <select class="select-box" id="select-category">
-                                        <option selected="selected" value="전체">전체</option>
-                                        <option value="한식">한식</option>
-                                        <option value="양식">양식</option>
-                                        <option value="중식">중식</option>
-                                        <option value="야식">야식</option>
-                                        <option value="분식">분식</option>
-                                        <option value="기타">기타</option>
-                                    </select>
+            <!-- CSS -->
+            <!-- Bootstrap 4 -->
+            <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+            <!-- Font Awesome 5 -->
+            <link rel="stylesheet" href="/resources/css/fontawesome.min.css">
+            <!-- Ion-Icons 4 -->
+            <link rel="stylesheet" href="/resources/css/ionicons.min.css">
+            <!-- Animate CSS -->
+            <link rel="stylesheet" href="/resources/css/animate.min.css">
+            <!-- Owl-Carousel -->
+            <link rel="stylesheet" href="/resources/css/owl.carousel.min.css">
+            <!-- Jquery-Ui-Range-Slider -->
+            <link rel="stylesheet" href="/resources/css/jquery-ui-range-slider.min.css">
+            <!-- Utility -->
+            <link rel="stylesheet" href="/resources/css/utility.css">
+            <!-- Main -->
+            <link rel="stylesheet" href="/resources/css/bundle.css">
+        </head>
+
+        <!-- Script -->
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+        <!-- Modernizr-JS -->
+        <script type="text/javascript" src="/resources/js/vendor/modernizr-custom.min.js"></script>
+        <!-- NProgress -->
+        <script type="text/javascript" src="/resources/js/nprogress.min.js"></script>
+        <!-- jQuery -->
+        <script type="text/javascript" src="/resources/js/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script type="text/javascript" src="/resources/js/bootstrap.min.js"></script>
+        <!-- Popper -->
+        <script type="text/javascript" src="/resources/js/popper.min.js"></script>
+        <!-- ScrollUp -->
+        <script type="text/javascript" src="/resources/js/jquery.scrollUp.min.js"></script>
+        <!-- Elevate Zoom -->
+        <script type="text/javascript" src="/resources/js/jquery.elevatezoom.min.js"></script>
+        <!-- jquery-ui-range-slider -->
+        <script type="text/javascript" src="/resources/js/jquery-ui.range-slider.min.js"></script>
+        <!-- jQuery Slim-Scroll -->
+        <script type="text/javascript" src="/resources/js/jquery.slimscroll.min.js"></script>
+        <!-- jQuery Resize-Select -->
+        <script type="text/javascript" src="/resources/js/jquery.resize-select.min.js"></script>
+        <!-- jQuery Custom Mega Menu -->
+        <script type="text/javascript" src="/resources/js/jquery.custom-megamenu.min.js"></script>
+        <!-- jQuery Countdown -->
+        <script type="text/javascript" src="/resources/js/jquery.custom-countdown.min.js"></script>
+        <!-- Owl Carousel -->
+        <script type="text/javascript" src="/resources/js/owl.carousel.min.js"></script>
+
+
+
+        <!-- app -->
+        <div id="app">
+            <!-- Header -->
+            <header>
+                <!-- Mid-Header -->
+                <div class="full-layer-mid-header">
+                    <div class="container">
+                        <div class="row clearfix align-items-center">
+                            <div class="col-lg-3 col-md-9 col-sm-6">
+                                <div class="brand-logo text-lg-center">
+                                    <a href="/">
+                                        <img src="/resources/images/main-logo/main-logo.png" alt="Logo"
+                                            class="app-brand-logo" style="width:280px; height:120px">
+                                    </a>
                                 </div>
                             </div>
-                            <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
-                        </form>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6">
- 	                   <nav>
-		                    <ul class="g-nav">
-		                        <li>
-		                            <a>회원 정보
-		                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-		                            </a>
-		                            <ul class="g-dropdown" style="width:200px">
-		                            	<li>
-		                                    <a href="/user/login">
-		                                        <i class="far fa-check-circle u-s-m-r-9"></i>
-		                                        로그인</a>
-		                                </li>
-		                                <li>
-		                                    <a href="/user/join">
-		                                        <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-		                                        회원가입</a>
-		                                </li>
-		                                <!-- 로그인 세션 시작 -->
-		                                <li>
-		                                    <a href="/user/mypage">
-		                                        <i class="far fa-check-circle u-s-m-r-9"></i>
-		                                        회원이름</a>
-		                                </li>
-		                                <li>
-		                                    <a href="/user/logout">
-		                                        <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-		                                        로그아웃</a>
-		                                </li>
-		                                <!-- 로그인 세션 종료 -->
-		                                <li>
-		                                    <a id="mini-cart-trigger">
-		                                        <i class="fa fa-shopping-cart u-s-m-r-9"></i>
-		                                        장바구니</a>
-		                                </li>
-		                                <li>
-		                                    <a href="#">
-		                                        <i class="far fa-heart u-s-m-r-9"></i>
-		                                        찜 목록</a>
-		                                </li>
-		                            </ul>
-		                        </li>
-		                    </ul>  
-		                </nav>
+                            <div class="col-lg-6 u-d-none-lg">
+                                <form class="form-searchbox">
+                                    <label class="sr-only" for="search-landscape">Search</label>
+                                    <input id="search-landscape" type="text" class="text-field" name='search'
+                                        placeholder="검색어를 입력하세요">
+                                    <button id="btn-search" type="submit"
+                                        class="button button-primary fas fa-search"></button>
+                                </form>
+                            </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            <nav>
+                                <ul class="g-nav">
+                                    <c:if test="${vo == null}">
+                                        <li>
+                                            <a href="/user/login" class="g-nav-link">
+                                                <i class="far fa-user"></i>
+                                                로그인
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/user/join" class="g-nav-link">
+                                                <i class="fas fa-user-plus"></i>
+                                                회원가입
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/cart/cartList/join" class="g-nav-link">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                장바구니
+                                            </a>
+                                        </li>
+                                    </c:if>
+
+                                    <!-- 로그인 세션 시작 -->
+                                    <c:if test="${vo != null}">
+                                        <li>
+                                            <a href="/user/mypage" class="g-nav-link">
+                                                <i class="far fa-user"></i>
+                                                ${vo.user_name}님 환영합니다!
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/user/logout.do" class="g-nav-link">
+                                                <i class="fas fa-sign-out-alt"></i>
+                                                로그아웃
+                                            </a>
+                                        </li>
+                                        <!-- 로그인 세션 종료 -->
+                                        <li>
+                                            <a href="/cart/cartList" class="g-nav-link">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                장바구니
+                                            </a>
+                                        </li>
+                                    </c:if>
+
+                                </ul>
+                            </nav>
+                        </div>
+
+
                     </div>
                 </div>
-            </div>
         </div>
         <!-- Mid-Header /- -->
         <!-- Responsive-Buttons -->
@@ -202,8 +200,9 @@
         <div class="full-layer-bottom-header">
             <div class="container">
                 <div class="row clearfix align-items-center">
-                	<!-- 관리자 세션 시작 -->
-                	<div class="col-lg-2">
+                    <!-- 관리자 세션 시작 -->
+                    <c:if test="${admin == 'a'}">
+                    <div class="col-lg-2">
                         <div class="v-menu v-close">
                             <span class="v-title">
                                 <i class="ion ion-md-menu"></i>
@@ -218,18 +217,18 @@
                                         </li>
                                         <li>
                                             <a href="#">상품관리
-                                            	<i class="ion ion-ios-arrow-forward"></i>
+                                                <i class="ion ion-ios-arrow-forward"></i>
                                             </a>
                                             <div class="v-drop-right" style="width: 150px;">
-			                                    <ul class="v-level-2">
-			                                        <li>
-			                                            <a href="/item/register">상품 등록</a>
-			                                        </li>
-			                                        <li>
-			                                            <a href="/item/itemList">재고 관리</a>
-			                                        </li>
-			                                    </ul>
-			                                </div>
+                                                <ul class="v-level-2">
+                                                    <li>
+                                                        <a href="/item/register">상품 등록</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/item/itemList">재고 관리</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </li>
                                         <li>
                                             <a href="/buy/buyList">구매관리</a>
@@ -239,24 +238,25 @@
                                         </li>
                                         <li>
                                             <a href="#">고객응대
-                                            	<i class="ion ion-ios-arrow-forward"></i>
+                                                <i class="ion ion-ios-arrow-forward"></i>
                                             </a>
                                             <div class="v-drop-right" style="width: 150px;">
-			                                    <ul class="v-level-2">
-			                                        <li>
-			                                            <a href="/notice/list">공지</a>
-			                                        </li>
-			                                        <li>
-			                                            <a href="/question/list">문의</a>
-			                                        </li>
-			                                    </ul>
-			                                </div>
+                                                <ul class="v-level-2">
+                                                    <li>
+                                                        <a href="/notice/list">공지</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/question/list">문의</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
                             </nav>
                         </div>
                     </div>
+                    </c:if>
                     <!-- 관리자 세션 종료 -->
                     <div class="col-lg-9">
                         <ul class="bottom-nav g-nav u-d-none-lg">
@@ -264,17 +264,17 @@
                                 <a>카테고리
                                     <i class="fas fa-chevron-down u-s-m-l-9"></i>
                                 </a>
-                    			<div class="mega-menu mega-3-colm"> 
-                                	<ul>
-                                		<li class="menu-title"><a href="/item/categoryAll">전체</a></li>
+                                <div class="mega-menu mega-3-colm">
+                                    <ul>
+                                        <li class="menu-title"><a href="/item/categoryAll">전체</a></li>
                                         <li class="menu-title"><a href="/item/category?category=한식">한식</a></li>
                                         <li class="menu-title"><a href="/item/category?category=양식">양식</a></li>
                                         <li class="menu-title"><a href="/item/category?category=중식">중식</a></li>
                                         <li class="menu-title"><a href="/item/category?category=분식">분식</a></li>
                                         <li class="menu-title"><a href="/item/category?category=야식">야식</a></li>
                                         <li class="menu-title"><a href="/item/category?category=기타">기타</a></li>
-                                   </ul>   
-   								</div>
+                                    </ul>
+                                </div>
                             </li>
                             <li>
                                 <a href="/item/newOrBest?itemType=1">신상품
@@ -300,6 +300,35 @@
             </div>
         </div>
         <!-- Bottom-Header /- -->
-    </header>
-    <!-- Header /- -->
-</div>	                        
+        </header>
+        <!-- Header /- -->
+        </div>
+        <script>
+            $("#gnb_logout_button").click(function () {
+                //alert("버튼 작동");
+                $.ajax({
+                    type: "POST",
+                    url: "/user/logout.do",
+                    success: function (data) {
+                        alert("로그아웃 성공");
+                        document.location.reload();
+                    }
+                }); // ajax 
+            });
+            function searchFunction(event) {
+                event.preventDefault();
+                const keyword = document.getElementById("search-landscape").value;
+                const category = document.getElementById("select-category").value;
+                performSearch(keyword, category);
+            }
+            function performSearch(keyword, category) {
+                console.log("Performing search with keyword:", keyword);
+                console.log("Selected category:", category);
+            }
+            $(document).ready(function () {
+                $("#btn-search").click(function (e) {
+                    var search = $("#search-landscape").val()
+                    console.log(search)
+                })
+            })
+        </script>

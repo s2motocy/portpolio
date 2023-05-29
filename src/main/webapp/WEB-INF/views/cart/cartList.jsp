@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ include file="../include/header.jsp" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+			<%@ include file="../include/header.jsp" %>
 <style>
 .modal {
         text-align: center;
@@ -60,6 +59,7 @@ $(document).ready(function(){
 	/* 수정버튼 누르면 ajax 를 사용하여 수정 */
 	$("button[id^=apply]").each(function(idx, data){
 		$(this).click(function(e){
+			e.preventDefault()
 			var amountData = $(".amountData"+idx).val()
 			var priceData = $(".item_price"+idx).val()
 			var userid = $("#userData"+idx).val()
@@ -71,7 +71,7 @@ $(document).ready(function(){
 				type: 'POST',
 				data: formData,
 				success: function(result){ 
-					alert('success')
+					alert('정상적으로 수정되었습니다.')
 					window.location.href="cartList"
 				},
 				error: function(xhr,status,error){ 
@@ -107,6 +107,7 @@ $(document).ready(function(){
 	})
 
 	$(".checkout").click(function(e){
+		e.preventDefault()
 		$('#myModal').modal('show')
 	})
 	
@@ -145,30 +146,27 @@ $(document).ready(function(){
 		console.log("비회원구매")
 		$("#frm").attr("action", "/buy/buyGuest").submit()
 	})
-
-})
 </script>
 <body>
-
 <div id="app">
-    <!-- Page Introduction Wrapper -->
-    <div class="page-style-a">
-        <div class="container">
-            <div class="page-intro">
-                <h2>장바구니</h2>
-                <ul class="bread-crumb">
-                    <li class="has-separator">
-                        <i class="ion ion-md-home"></i>
-                        <a href="/">Home</a>
-                    </li>
-                    <li class="is-marked">
-                        <a href="/cart/cartList">장바구니</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Page Introduction Wrapper /- -->
+	<!-- Page Introduction Wrapper -->
+	<div class="page-style-a">
+		<div class="container">
+			<div class="page-intro">
+				<h2>장바구니</h2>
+				<ul class="bread-crumb">
+					<li class="has-separator">
+						<i class="ion ion-md-home"></i>
+						<a href="/">Home</a>
+					</li>
+					<li class="is-marked">
+						<a href="/cart/cartList">장바구니</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- Page Introduction Wrapper /- -->
 
 	<!-- Modal 1 -->
 	<div class="modal fade" id="myModal" role="dialog">
@@ -177,171 +175,194 @@ $(document).ready(function(){
 			<div class="modal-content">
 				<div class="modal-body">
 					<button type="button" class="btn btn-primary" data-dismiss="modal">회원구매</button>
-		            <button type="button" class="btn btn-secondary" data-dismiss="modal">비회원구매</button>
-        		</div>
-      		</div>
-    	</div>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">비회원구매</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<!-- Modal 2 -->
 	<div class="modal fade" id="yourModal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
-		    <div class="modal-content">
+			<div class="modal-content">
 				<div class="modal-body">
-					<div class="u-s-m-b-10">
-                        <label for="user_id">아이디:</label>
-                        <input type="text" class="form-control" id="user_id" placeholder="아이디를 입력하세요" />
-                    </div>
-                    <div class="u-s-m-b-10">
-                        <label for="pwd">비밀번호:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력하세요" />
-                    </div>
-					<button class="button button-outline-secondary" id="buyLogin">로그인</button>
+					<div>
+						아이디<input type="text" name="user_id" />
+					</div>
+					<div>
+						암호<input type="password" name="pwd" />
+					</div>
+					<input type='submit' id="buyLogin" value="전송" />
 				</div>
 			</div>
 		</div>
 	</div>
-	
-    <!-- Cart-Page -->
-    <div class="page-cart u-s-p-t-80">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <form action="/buyUser" id="frm">
-                        <!-- Products-List-Wrapper -->
-                        <div class="table-wrapper u-s-m-b-60">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>상품</th>
-                                        <th>단가</th>
-                                        <th>수량</th>
-                                        <th>변경</th>
-                                        <th>합계</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                	<c:forEach var="list" items="${dtoList}" varStatus="stat">
-	                                    <tr>
-	                                        <td>
-	                                            <div class="cart-anchor-image">
-	                                                <a href="#">
-	                                                    <img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" width="50px" height="50px" />
-	                                                    <h6> ${list.item_name} </h6>
-	                                                    <input type="hidden" name="buy_list[${stat.index}].item_name" value="${list.item_name}" />
-	                                                </a>
-	                                            </div>
-	                                        </td>
-	                                        <td>
-	                                            <div class="cart-price">
-	                                                <fmt:formatNumber value="${list.item_price}" pattern="###,### 원" />
-	                                                <input type="hidden" class="item_price${stat.index}" name="buy_list[${stat.index}].buy_price" value="${list.item_price}" />
-	                                            </div>
-	                                        </td>
-	                                        <td>
-	                                            <div class="cart-quantity">
-	                                                <div class="quantity">
-	                                                    <input type="text" class="quantity-text-field amountData${stat.index}" name="buy_list[${stat.index}].amount" value="${list.amount}">
-	                                                    <a class="plus-a plusQty${stat.index}" data-max="1000">&#43;</a>
-	                                                    <a class="minus-a minusQty${stat.index}" data-min="1">&#45;</a>
-	                                                </div>
-	                                            </div>
-	                                        </td>
-	                                        <td>
-	                                            <div class="action-wrapper">
-	                                                <button class="button button-outline-secondary fas fa-sync" id="apply${stat.index}"></button>
-	                                                <button class="button button-outline-secondary fas fa-trash" id="remove${stat.index}" data-cart_id="${list.cart_id}"></button>
-	                                            </div>
-	                                            <input type="hidden" id="userData${stat.index}" value="${list.user_id}" />
-	                                            <input type="hidden" id="itemData${stat.index}" name="buy_list[${stat.index}].item_id" value="${list.item_id}" />
-	                                        </td>
-	                                        <td>
-	                                        	<div class="cart-total">
-	                                        		<span class="totalprice${stat.index}">0</span>원
-	                                        		<input type="hidden" class="totalData${stat.index}" />
-	                                        	</div>
-	                                        	<div class="h-class${stat.index}">
-	                                        		<input type="hidden" class="item_price${stat.index}" value="${list.item_price}" />
-	                                        		<input type="hidden" class="amount${stat.index}" value="${list.amount}">
-	                                        	</div>
-	                                        </td>
-	                                    </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- Products-List-Wrapper /- -->
-                        
-                        <div class="coupon-continue-checkout u-s-m-b-60">
-                            <div class="button-area">
-                                <a href="/item/categoryAll?user_id=${user_id}" class="continue">계속 쇼핑하기</a>
-                                <a href="#" class="checkout">구매 로 이동</a>
-                            </div>
-                        </div>
-                    </form>
-                    
-                    <!-- hidden cart Delete area -->
-                    <form action="#" method="get" id="delete_hidden">
+
+	<!-- Cart-Page -->
+	<div class="page-cart u-s-p-t-80">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<form id="frm">
+						<!-- Products-List-Wrapper -->
+						<div class="table-wrapper u-s-m-b-60">
+							<table>
+								<thead>
+									<tr>
+										<th>상품</th>
+										<th>단가</th>
+										<th>수량</th>
+										<th>변경</th>
+										<th>합계</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="list" items="${dtoList}" varStatus="stat">
+										<tr>
+											<td>
+												<div class="cart-anchor-image">
+													<a href="#">
+														<img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}"
+															width="50px" height="50px" />
+														<h6> ${list.item_name} </h6>
+														<input type="hidden"
+															name="buy_list[${stat.index}].item_name"
+															value="${list.item_name}" />
+													</a>
+												</div>
+											</td>
+											<td>
+												<div class="cart-price">
+													<fmt:formatNumber value="${list.item_price}"
+														pattern="###,### 원" />
+													<input type="hidden"
+														class="item_price${stat.index}"
+														name="buy_list[${stat.index}].buy_price"
+														value="${list.item_price}" />
+												</div>
+											</td>
+											<td>
+												<div class="cart-quantity">
+													<div class="quantity">
+														<input type="text"
+															class="quantity-text-field amountData${stat.index}"
+															name="buy_list[${stat.index}].amount"
+															value="${list.amount}">
+														<a class="plus-a plusQty${stat.index}"
+															data-max="1000">&#43;</a>
+														<a class="minus-a minusQty${stat.index}"
+															data-min="1">&#45;</a>
+													</div>
+												</div>
+											</td>
+											<td>
+												<div class="action-wrapper">
+													<button
+														class="button button-outline-secondary fas fa-sync"
+														id="apply${stat.index}"></button>
+													<button
+														class="button button-outline-secondary fas fa-trash"
+														id="remove${stat.index}"
+														data-cart_id="${list.cart_id}"></button>
+												</div>
+												<input type="hidden" id="userData${stat.index}"
+													value="${list.user_id}" />
+												<input type="hidden" id="itemData${stat.index}"
+													name="buy_list[${stat.index}].item_id"
+													value="${list.item_id}" />
+											</td>
+											<td>
+												<div class="cart-total">
+													<span class="totalprice${stat.index}">0</span>원
+													<input type="hidden"
+														class="totalData${stat.index}" />
+												</div>
+												<div class="h-class${stat.index}">
+													<input type="hidden"
+														class="item_price${stat.index}"
+														value="${list.item_price}" />
+													<input type="hidden" class="amount${stat.index}"
+														value="${list.amount}">
+												</div>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+						<!-- Products-List-Wrapper /- -->
+
+						<div class="coupon-continue-checkout u-s-m-b-60">
+							<div class="button-area">
+								<a href="/item/categoryAll?user_id=${user_id}" class="continue">계속
+									쇼핑하기</a>
+								<a href="#" class="checkout">구매 로 이동</a>
+							</div>
+						</div>
+					</form>
+
+					<!-- hidden cart Delete area -->
+					<form action="#" method="get" id="delete_hidden">
 						<input type="hidden" name="cart_id" id="cart_id" />
 					</form>
-					
-                    <!-- Billing -->
-                    <div class="calculation u-s-m-b-60">
-                        <div class="table-wrapper-2">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">결제예정 금액</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <h3 class="calc-h3 u-s-m-b-0">상품 금액</h3>
-                                        </td>
-                                        <td>
-                                            <span class="calc-text totals">0</span>원
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h3 class="calc-h3 u-s-m-b-0">할인</h3>
-                                        </td>
-                                        <td>
-                                            <span class="calc-text discount">0</span>%
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h3 class="calc-h3 u-s-m-b-0">배송비</h3>
-                                            <span><font size="1">10,000원 이상시 무료배송</font></span>
-                                        </td>
-                                        <td>
-                                            <span class="calc-text del_cost">0</span>원
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h3 class="calc-h3 u-s-m-b-0">총 합계</h3>
-                                        </td>
-                                        <td>
-                                            <span class="calc-text final-totals">0</span>원
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- Billing /- -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Cart-Page /- -->
 
+					<!-- Billing -->
+					<div class="calculation u-s-m-b-60">
+						<div class="table-wrapper-2">
+							<table>
+								<thead>
+									<tr>
+										<th colspan="2">결제예정 금액</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<h3 class="calc-h3 u-s-m-b-0">상품 금액</h3>
+										</td>
+										<td>
+											<span class="calc-text totals">0</span>원
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h3 class="calc-h3 u-s-m-b-0">할인</h3>
+										</td>
+										<td>
+											<span class="calc-text discount">0</span>%
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h3 class="calc-h3 u-s-m-b-0">배송비</h3>
+											<span>
+												<font size="1">10,000원 이상시 무료배송</font>
+											</span>
+										</td>
+										<td>
+											<span class="calc-text del_cost">0</span>원
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h3 class="calc-h3 u-s-m-b-0">총 합계</h3>
+										</td>
+										<td>
+											<span class="calc-text final-totals">0</span>원
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- Billing /- -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Cart-Page /- -->
 </div>
-
 </body>
-
 <%@ include file="../include/footer.jsp" %>
