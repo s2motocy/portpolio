@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cook.mymealkit.domain.UserVO;
+import com.cook.mymealkit.mapper.UserMapper;
 import com.cook.mymealkit.service.UserService;
 
 import lombok.Setter;
@@ -234,6 +235,12 @@ public class UserController {
 		        }
 		 String num = Integer.toString(checkNum);
 		return num;
+	}
+	
+	@GetMapping("/delete")
+	public String userDelete(long uno) {
+		uservice.userDelete(uno);
+		return "redirect:/user/userlist";
 	}
 
 }

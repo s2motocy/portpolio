@@ -13,6 +13,8 @@ public interface UserMapper {
 	public UserVO readUser(UserVO vo); // 로그인
 
 	public List<UserVO> getAllUser();// 관리자 회원정보 전체 조회
+	
+	public int userDelete(long uno);	 // 관리자 권한 회원정보 삭제
 
 	public void updateUser(UserVO vo);// 회원 정보 업데이트
 

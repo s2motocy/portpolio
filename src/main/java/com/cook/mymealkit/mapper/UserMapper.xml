@@ -19,11 +19,15 @@
         DELETE FROM tbl_user
         WHERE user_id = #{user_id} AND pwd = #{pwd}
     </delete>
-         <!--관리자 전체 회원 정보 조회 -->
+    <!--관리자 전체 회원 정보 조회 -->
 	<select id="getAllUser" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
         SELECT *
         FROM tbl_user
     </select>
+    <!--관리자 권한 회원 정보 삭제 -->
+    <delete id="userDelete">
+    	delete from tbl_user where uno=#{uno}
+    </delete>
      <!--마이페이지 -->
     <!-- 로그인 처리를 위한 회원 정보 조회 -->
     <select id="readUser" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">

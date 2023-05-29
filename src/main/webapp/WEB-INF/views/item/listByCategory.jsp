@@ -123,7 +123,7 @@ $(document).ready(function(e){
 	    <c:forEach var="category" items="${categoryList}">
 	        <div class="item" class="col">
 		        <div class="image-container">
-		            <a class="item-img-wrapper-link" href="single-product.html">
+		            <a class="item-img-wrapper-link" href="item/detail?item_id=${list.item_id}">
 		                <img class="img-fluid" src="/display?fileName=/${category.attachList[0].uploadPath.replace('\\','/')}/${category.attachList[0].uuid}_${category.attachList[0].fileName}" alt="Product" width="225px" height="225px" />
 		            </a>
 		        </div>
@@ -133,7 +133,7 @@ $(document).ready(function(e){
 		                	<span><a href="/item/category?category=${category.category}">${category.category}</a></span>
 		                </div>
 		                    <h6 class="item-title">
-		                       <a href="single-product.html">${category.item_name}</a>
+		                       <a href="item/detail?item_id=${category.item_id}">${category.item_name}</a>
 		                    </h6>
 		                    <div class="item-stars">
 		                        <div class='star' title="0 out of 5 - based on 0 Reviews">

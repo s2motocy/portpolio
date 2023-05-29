@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 <style>
-    .btn-primary {
+.btn-primary {
   background-color: #ff6b00;
   border-color: #ffb600;
   color: #ffffff; /* 버튼 텍스트 색상을 밝은 색상으로 설정 */
@@ -9,7 +9,6 @@
 #check {
   background-color: #ff6b00;
 }
-
 
 </style>
 <body>
@@ -54,7 +53,6 @@
                                 id="user_name"
                                 name="user_name"
                                 placeholder="이름 입력"
-                                minlength="5"
                               />
                             </div>
                             <div class="u-s-m-b-30">
@@ -141,7 +139,7 @@
                                     회원가입
                                 </button>
                                 &nbsp;
-                                <button class="btn btn-primary"><a href="/"></a>
+                                <button type="reset" class="btn btn-primary">
                                     회원가입취소
                                 </button>
                             </div>

@@ -203,15 +203,19 @@ public class BuyController {
 	}
 
 	// 회원 구매내역 조회
-	@GetMapping("/mBuyGet")
+	@GetMapping("/userBuyList")
 	public void userBuy(Model model, HttpSession session, String user_id) {
-		System.out.println("멤버아이디 잘못됬음?" + user_id);
-		List<BuyUserVO> mbList = bservice.bListByUserId(user_id);
-		System.out.println(mbList);
-		model.addAttribute("mblist", mbList);
-		mbList.forEach(i -> {
-			System.out.println(i);
+		System.out.println("멤버아이디?" + user_id);
+		List<BuyUserVO> userBuyList = bservice.bListByUserId(user_id);
+		List<BuyListDTO> userBuyItemList = new ArrayList<BuyListDTO>();
+		userBuyList.forEach(i -> {
+			List<BuyListDTO> buyList = blistservice.listOfNo(i.getBuy_no());
+			buyList.forEach(v -> userBuyItemList.add(v));
+			i.setBuy_list(buyList);
 		});
+		System.out.println(userBuyList);
+		model.addAttribute("userBuyList", userBuyList);
+		model.addAttribute("userBuyItemList", userBuyItemList);
 	}
 
 	// 관리자권한 전체 구매내역 조회

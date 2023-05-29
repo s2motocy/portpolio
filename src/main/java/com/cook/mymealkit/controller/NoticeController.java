@@ -46,7 +46,6 @@ public class NoticeController {
 	@PostMapping("/enroll")
 	public String enroll(NoticeVO vo, RedirectAttributes rttr) {
 		boardService.createPost(vo);
-		// rttr.addFlashAttribute("result", "enroll success");
 		return "redirect:/notice/list";
 	}
 
