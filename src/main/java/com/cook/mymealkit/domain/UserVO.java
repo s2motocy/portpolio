@@ -20,6 +20,6 @@ public class UserVO {
 	 private String phone;//사용자 전화번호
 	 private String addr;//사용자 주소
 	 private String addr2;//사용자 상세주소
-	private String Post_code;
-	private String auth;
+	 private String Post_code;
+	 private String auth;
 }
