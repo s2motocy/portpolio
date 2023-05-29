@@ -1,35 +1,33 @@
 package com.cook.mymealkit.domain;
 
 public class PageMakerDTO {
-private int startPage;
-	
-	private int endPage;
-	
-	private boolean prev, next;
-	
-	private int total;
-	
-	private Criteria cri;	
-	
-	public PageMakerDTO(Criteria cri, int total) {
-		
+	private int startPage; // 시작페이지
+
+	private int endPage; // 마지막페이지
+
+	private boolean prev, next; // 페이지 수에 따라 다음, 이전 생성
+
+	private long total; // 페이지 갯수
+
+	private Criteria cri;
+
+	public PageMakerDTO(Criteria cri, long total) {
+
 		this.cri = cri;
 		this.total = total;
-		
-		this.endPage = (int)(Math.ceil(cri.getPageNum()/10.0))*10;
-		
+
+		this.endPage = (int) (Math.ceil(cri.getPageNum() / 10.0)) * 10;
+
 		this.startPage = this.endPage - 9;
-		
-		int realEnd = (int)(Math.ceil(total * 1.0/cri.getAmount()));
-		
-		if(realEnd < this.endPage) {
+
+		int realEnd = (int) (Math.ceil(total * 1.0 / cri.getAmount()));
+
+		if (realEnd < this.endPage) {
 			this.endPage = realEnd;
 		}
-		
+
 		this.prev = this.startPage > 1;
-		
 		this.next = this.endPage < realEnd;
-				
 	}
 
 	public int getStartPage() {
@@ -64,11 +62,11 @@ private int startPage;
 		this.next = next;
 	}
 
-	public int getTotal() {
+	public long getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(long total) {
 		this.total = total;
 	}
 
@@ -84,5 +82,5 @@ private int startPage;
 	public String toString() {
 		return "PageMakerDTO [startPage=" + startPage + ", endPage=" + endPage + ", prev=" + prev + ", next=" + next
 				+ ", total=" + total + ", cri=" + cri + "]";
-	}	
+	}
 }

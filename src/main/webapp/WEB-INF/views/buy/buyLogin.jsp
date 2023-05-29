@@ -17,7 +17,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<form action="/buy/buyPage">
+<form action="/buy/buyUser">
     <div class="히든">
     	아이디<input type="text" name="user_id" value="test1" ><br/>
 	     암호<input type="password" name="pwd"><br/>

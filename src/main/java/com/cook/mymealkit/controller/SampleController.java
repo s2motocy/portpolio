@@ -1,7 +1,5 @@
 package com.cook.mymealkit.controller;
 
-
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -25,19 +23,17 @@ public class SampleController {
 	}
 
 	@GetMapping(value = "/question")
-	public String getText2(ChatMessage vo ,Model model) {
+	public String getText2(ChatMessage vo, Model model) {
 		System.out.println(vo);
 		RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:5000/";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<ChatMessage> request = new HttpEntity<ChatMessage>(vo, headers);
-        String response = restTemplate.postForObject(url, request, String.class);
-        System.out.println(response);
+		String url = "http://localhost:5000/";
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<ChatMessage> request = new HttpEntity<ChatMessage>(vo, headers);
+		String response = restTemplate.postForObject(url, request, String.class);
+		System.out.println(response);
 		model.addAttribute("answer", response);
 		return "answer";
 	}
-
-
 
 }
