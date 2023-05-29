@@ -26,6 +26,7 @@ import com.cook.mymealkit.domain.UserVO;
 import com.cook.mymealkit.mapper.FileMapper;
 import com.cook.mymealkit.service.BuyListService;
 import com.cook.mymealkit.service.BuyService;
+import com.cook.mymealkit.service.CartService;
 import com.cook.mymealkit.service.ItemService;
 import com.cook.mymealkit.service.UserService;
 
@@ -43,6 +44,8 @@ public class BuyController {
 	ItemService iservice;
 	@Setter(onMethod_ = @Autowired)
 	BuyListService blistservice;
+	@Setter(onMethod_=@Autowired)
+	CartService cservice;
 	@Setter(onMethod_ = @Autowired)
 	FileMapper fmapper;
 
@@ -180,6 +183,11 @@ public class BuyController {
 			bservice.insertUserBuy(bvo);
 			bvo.getBuy_list().forEach(i -> {
 				blistservice.register(i);
+				ItemVO vo = iservice.itemFindById(Integer.parseInt(i.getItem_id()));
+				vo.setItem_sold(i.getAmount());
+				vo.setItem_stock(vo.getItem_stock()-i.getAmount());
+				iservice.itemUpdate(vo);
+				cservice.cartAllRemove();
 			});
 
 		} else {
@@ -190,9 +198,14 @@ public class BuyController {
 			bservice.insertGuestBuy(gvo);
 			gvo.getBuy_list().forEach(i -> {
 				blistservice.register(i);
+				ItemVO vo = iservice.itemFindById(Integer.parseInt(i.getItem_id()));
+				vo.setItem_sold(i.getAmount());
+				vo.setItem_stock(vo.getItem_stock()-i.getAmount());
+				iservice.itemUpdate(vo);
+				cservice.cartAllRemove();
 			});
-
 		}
+		// buy_no 번호를 실어보낸다
 
 		return "redirect:/buy/buyDone";
 	}
@@ -200,6 +213,8 @@ public class BuyController {
 	/* 구매완료 페이지 */
 	@GetMapping("/buyDone")
 	public void success() {
+		// buy_no 번호를 화면에 뿌린다
+		// "결제내역 조회하기" 버튼을 누르면 조회하기 위한 입력페이지로 간다 
 	}
 
 	// 회원 구매내역 조회

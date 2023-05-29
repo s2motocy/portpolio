@@ -83,14 +83,14 @@ $(document).ready(function(e){
 <div class="page-style-a">
     <div class="container">
         <div class="page-intro">
-            <h2>한식</h2>
+            <h2>${category}</h2>
             <ul class="bread-crumb">
                 <li class="has-separator">
                     <i class="ion ion-md-home"></i>
-                    <a href="home.html">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="is-marked">
-                    <a href="single-product.html">한식</a>
+                    <a href="/item/category?category=${category}">${category}</a>
                 </li>
             </ul>
         </div>
@@ -100,7 +100,7 @@ $(document).ready(function(e){
 	<div class="facet-filter-by-price">  
         <div class="price-bar">
 			<a data-toggle="collapse" href="#faq-1">가격 설정</a>
-				<div class="collapse show" id="faq-1">
+				<div class="collapse" id="faq-1">
 		            <div class="amount-result clearfix">
 		                <div class="price-from"></div>
 		                <div class="price-to"></div>
@@ -123,7 +123,7 @@ $(document).ready(function(e){
 	    <c:forEach var="category" items="${categoryList}">
 	        <div class="item" class="col">
 		        <div class="image-container">
-		            <a class="item-img-wrapper-link" href="single-product.html">
+		            <a class="item-img-wrapper-link" href="/item/detail?item_id=${category.item_id}">
 		                <img class="img-fluid" src="/display?fileName=/${category.attachList[0].uploadPath.replace('\\','/')}/${category.attachList[0].uuid}_${category.attachList[0].fileName}" alt="Product" width="225px" height="225px" />
 		            </a>
 		        </div>
@@ -133,7 +133,7 @@ $(document).ready(function(e){
 		                	<span><a href="/item/category?category=${category.category}">${category.category}</a></span>
 		                </div>
 		                    <h6 class="item-title">
-		                       <a href="single-product.html">${category.item_name}</a>
+		                       <a href="/item/detail?item_id=${category.item_id}">${category.item_name}</a>
 		                    </h6>
 		                    <div class="item-stars">
 		                        <div class='star' title="0 out of 5 - based on 0 Reviews">

@@ -146,6 +146,7 @@ $(document).ready(function(){
 		console.log("비회원구매")
 		$("#frm").attr("action", "/buy/buyGuest").submit()
 	})
+})
 </script>
 <body>
 <div id="app">
@@ -175,26 +176,27 @@ $(document).ready(function(){
 			<div class="modal-content">
 				<div class="modal-body">
 					<button type="button" class="btn btn-primary" data-dismiss="modal">회원구매</button>
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">비회원구매</button>
-				</div>
-			</div>
-		</div>
+		            <button type="button" class="btn btn-secondary" data-dismiss="modal">비회원구매</button>
+        		</div>
+      		</div>
+    	</div>
 	</div>
 
 	<!-- Modal 2 -->
 	<div class="modal fade" id="yourModal" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
-			<div class="modal-content">
+		    <div class="modal-content">
 				<div class="modal-body">
-					<div>
-						아이디<input type="text" name="user_id" />
-					</div>
-					<div>
-						암호<input type="password" name="pwd" />
-					</div>
-					<input type='submit' id="buyLogin" value="전송" />
+					<div class="u-s-m-b-10">
+                        <label for="user_id">아이디:</label>
+                        <input type="text" class="form-control" id="user_id" placeholder="아이디를 입력하세요" />
+                    </div>
+                    <div class="u-s-m-b-10">
+                        <label for="pwd">비밀번호:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력하세요" />
+                    </div>
+					<button class="button button-outline-secondary" id="buyLogin">로그인</button>
 				</div>
 			</div>
 		</div>
@@ -205,7 +207,7 @@ $(document).ready(function(){
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<form id="frm">
+					<form action="/buy/buyUser" id="frm">
 						<!-- Products-List-Wrapper -->
 						<div class="table-wrapper u-s-m-b-60">
 							<table>
@@ -224,67 +226,43 @@ $(document).ready(function(){
 											<td>
 												<div class="cart-anchor-image">
 													<a href="#">
-														<img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}"
-															width="50px" height="50px" />
+														<img src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" width="50px" height="50px" />
 														<h6> ${list.item_name} </h6>
-														<input type="hidden"
-															name="buy_list[${stat.index}].item_name"
-															value="${list.item_name}" />
+														<input type="hidden" name="buy_list[${stat.index}].item_name" value="${list.item_name}" />
 													</a>
 												</div>
 											</td>
 											<td>
 												<div class="cart-price">
-													<fmt:formatNumber value="${list.item_price}"
-														pattern="###,### 원" />
-													<input type="hidden"
-														class="item_price${stat.index}"
-														name="buy_list[${stat.index}].buy_price"
-														value="${list.item_price}" />
+													<fmt:formatNumber value="${list.item_price}" pattern="###,### 원" />
+													<input type="hidden" class="item_price${stat.index}" name="buy_list[${stat.index}].buy_price" value="${list.item_price}" />
 												</div>
 											</td>
 											<td>
 												<div class="cart-quantity">
 													<div class="quantity">
-														<input type="text"
-															class="quantity-text-field amountData${stat.index}"
-															name="buy_list[${stat.index}].amount"
-															value="${list.amount}">
-														<a class="plus-a plusQty${stat.index}"
-															data-max="1000">&#43;</a>
-														<a class="minus-a minusQty${stat.index}"
-															data-min="1">&#45;</a>
+														<input type="text" class="quantity-text-field amountData${stat.index}" name="buy_list[${stat.index}].amount" value="${list.amount}">
+														<a class="plus-a plusQty${stat.index}" data-max="1000">&#43;</a>
+														<a class="minus-a minusQty${stat.index}" data-min="1">&#45;</a>
 													</div>
 												</div>
 											</td>
 											<td>
 												<div class="action-wrapper">
-													<button
-														class="button button-outline-secondary fas fa-sync"
-														id="apply${stat.index}"></button>
-													<button
-														class="button button-outline-secondary fas fa-trash"
-														id="remove${stat.index}"
-														data-cart_id="${list.cart_id}"></button>
+													<button class="button button-outline-secondary fas fa-sync" id="apply${stat.index}"></button>
+													<button class="button button-outline-secondary fas fa-trash" id="remove${stat.index}" data-cart_id="${list.cart_id}"></button>
 												</div>
-												<input type="hidden" id="userData${stat.index}"
-													value="${list.user_id}" />
-												<input type="hidden" id="itemData${stat.index}"
-													name="buy_list[${stat.index}].item_id"
-													value="${list.item_id}" />
+												<input type="hidden" id="userData${stat.index}" value="${list.user_id}" />
+												<input type="hidden" id="itemData${stat.index}" name="buy_list[${stat.index}].item_id" value="${list.item_id}" />
 											</td>
 											<td>
 												<div class="cart-total">
 													<span class="totalprice${stat.index}">0</span>원
-													<input type="hidden"
-														class="totalData${stat.index}" />
+													<input type="hidden" class="totalData${stat.index}" />
 												</div>
 												<div class="h-class${stat.index}">
-													<input type="hidden"
-														class="item_price${stat.index}"
-														value="${list.item_price}" />
-													<input type="hidden" class="amount${stat.index}"
-														value="${list.amount}">
+													<input type="hidden" class="item_price${stat.index}" value="${list.item_price}" />
+													<input type="hidden" class="amount${stat.index}" value="${list.amount}">
 												</div>
 											</td>
 										</tr>

@@ -572,7 +572,7 @@ $(function () {
      * Rating Stars Control
      */
     const ratingStarsControl = function () {
-        let oneStarWidth = 15; // 15 * 5 = 75
+    	let oneStarWidth = 15; // 15 * 5 = 75
         let newStarWidth;
         let ratingthresholdNumber = 5;
         let comment;

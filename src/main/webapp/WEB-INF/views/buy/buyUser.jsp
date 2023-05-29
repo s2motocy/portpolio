@@ -13,6 +13,26 @@ function kakaopost() {
 }
 
 $(document).ready(function(){
+	/* 상품별 '가격'x'수량' 을 '합계'에 입력 */
+	const priced=()=>{
+		$("td[class^=h-class]").each(function(idx, data){
+			var price = parseInt($(data).find(".item_price"+idx).val())
+			var amount = parseInt($(data).find(".amount"+idx).val())
+			$(".totalData"+idx).text(price*amount)
+		})
+	}
+	priced()
+	
+	/* '상품별 합계' 를 '결제예정금액' 에 입력 */
+	const pricing=()=>{
+		var total=0
+		$("td[class^=h-class]").each(function(idx, data){
+			total += parseInt($(".totalData"+idx).text())
+		})
+		$(".final-totals").text(total) // item 의 price 를 더해 total 에 전달
+	}
+	pricing() // 함수 호출
+	
 	/* 결제 API 활용 */
 	$("#").click(function(e){ // #buybtn
 		e.preventDefault()
@@ -23,24 +43,24 @@ $(document).ready(function(){
 				
 		requestPay(buy_no,item_name,sum_price)
 	})
-	  const IMP = window.IMP; // 생략 가능
-	  IMP.init("imp86273375");
-	  function requestPay(buy_no,item_name,sum_price) {
-	    IMP.request_pay({
-	      pg: "INIBillTst",
-	      pay_method: "card",
-	      merchant_uid: buy_no,   // 주문번호
-	      name: item_name, // 이름
-	      amount: sum_price // 숫자 타입
-	    }, function (rsp) { // callback
-	      //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
-			if(rsp.success){
-				$('form').submit()
-			} else {
-				alert("결제에 실패하였습니다. ${rsp.error_msg}")
-			}
-	    });
-	  }
+	const IMP = window.IMP; // 생략 가능
+	IMP.init("imp86273375");
+	function requestPay(buy_no,item_name,sum_price) {
+	  IMP.request_pay({
+	    pg: "INIBillTst",
+	    pay_method: "card",
+	    merchant_uid: buy_no,   // 주문번호
+	    name: item_name, // 이름
+	    amount: sum_price // 숫자 타입
+	  }, function (rsp) { // callback
+	    //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
+	if(rsp.success){
+		$('form').submit()
+	} else {
+		alert("결제에 실패하였습니다. ${rsp.error_msg}")
+	}
+	  });
+	}
 })
 </script>
 <body>
@@ -95,16 +115,22 @@ $(document).ready(function(){
 	                                                	<span class="order-span-quantity">x <c:out value="${dto.amount}" /></span>
 	                                                	<input type="hidden" name="buy_list[${stat.index}].amount" value="${dto.amount }" />
 	                                                </td>
-	                                                <td>
-	                                                    <h6 class="order-h6"><fmt:formatNumber value="${dto.buy_price}" pattern="###,### 원" /></h6>
-	                                                    <input type="hidden" name="buy_list[${stat.index}].buy_price" value="${dto.buy_price}" />
+	                                                <td class="h-class${stat.index}">
+	                                                	<span class="totalData${stat.index}"></span>원
+	                                                    <input type="hidden" class="totalprice${stat.index}" name="buy_list[${stat.index}].buy_price" value="${dto.buy_price}" />
+	                                                    <input type="hidden" class="item_price${stat.index}" value="${dto.buy_price}" />
 	                                                    <input type="hidden" name="buy_list[${stat.index}].buy_no" value="${dto.buy_no}" />
 														<input type="hidden" name="buy_list[${stat.index}].item_id" value="${dto.item_id}" />
+														<input type="hidden" class="amount${stat.index}" value="${dto.amount }" />
 	                                                </td>
 	                                            </tr>
 											</c:forEach>
                                         </tbody>
                                     </table>
+                                    <div class="text-right">
+                                    	<label for="calc-text">총합: </label>
+	                                	<span class="calc-text final-totals">0</span>원
+	                                </div>
                                 </div>
                             </div>
                             <!-- Checkout /- -->
@@ -151,56 +177,10 @@ $(document).ready(function(){
                                 
                                 <h4 class="section-h4">배송 정보</h4>
                                 <div class="u-s-m-b-24">
-                                    <input type="checkbox" class="check-box" id="ship-to-different-address" data-toggle="collapse" data-target="#showdifferent">
-                                    <label class="label-text" for="ship-to-different-address">신규 배송지 입력</label>
-                                </div>
-                                <div>
                                     <label for="order-notes">배송시 요청사항</label>
                                     <textarea class="text-area" id="buy_note" name="buy_note" placeholder="배송시 요청사항을 입력해주세요"></textarea>
                                 </div>
                                 <button type="submit" class="button button-outline-secondary u-s-m-t-10">주문하기</button>
-                                
-                                <div class="collapse" id="showdifferent">
-                                    <!-- Form-Fields -->
-                                    <div class="u-s-m-b-13">
-	                                    <label for="buyer_name">구매자 이름
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="text" id="buyer_name" name="buyer_name-extra" class="text-field" placeholder="아이디를 입력해주세요" required />
-	                                </div>
-	                                <div class="u-s-m-b-13">
-	                                    <label for="pwd">비밀번호
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="password" id="pwd" name="pwd-extra" class="text-field" placeholder="비밀번호를 입력해주세요 (4자 이상)" required />
-	                                </div>
-	                                <div class="u-s-m-b-13">
-	                                    <label for="phone">연락처
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="tel" id="phone" name="phone-extra" class="text-field" placeholder="전화번호를 입력해주세요 (ex.  01012340000)" required />
-	                                </div>
-	                                <div class="u-s-m-b-13">
-	                                    <label for="post_code">우편번호
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="text" id="post_code" name="post_code-extra" class="text-field" placeholder="우편번호 찾기를 이용하세요" required />
-	                                    <input type="button" value="우편번호찾기" onclick="kakaopost()" />
-	                                </div>
-	                                <div class="u-s-m-b-13">
-	                                    <label for="addr">주소
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="text" id="addr" name="addr-extra" class="text-field" required />
-	                                </div>
-	                                <div class="u-s-m-b-13">
-	                                    <label for="addr2">상세주소
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="text" id="addr2" name="addr2-extra" class="text-field" placeholder="상세주소를 입력해주세요" required />
-	                                </div>
-                                    <!-- Form-Fields /- -->
-                                </div>
                             </div>
                             <!-- Billing-&-Shipping-Details /- -->
                         </div>

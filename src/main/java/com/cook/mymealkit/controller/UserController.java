@@ -125,6 +125,7 @@ public class UserController {
 	@GetMapping("/mypage")
 	public String mypage(Model model, HttpSession session) {
 		UserVO user = (UserVO) session.getAttribute("vo");
+		
 		model.addAttribute("vo", user);
 		return "/user/mypage";
 	}

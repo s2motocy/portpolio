@@ -13,6 +13,26 @@ function kakaopost() {
 }
 
 $(document).ready(function(){
+	/* 상품별 '가격'x'수량' 을 '합계'에 입력 */
+	const priced=()=>{
+		$("td[class^=h-class]").each(function(idx, data){
+			var price = parseInt($(data).find(".item_price"+idx).val())
+			var amount = parseInt($(data).find(".amount"+idx).val())
+			$(".totalData"+idx).text(price*amount)
+		})
+	}
+	priced()
+	
+	/* '상품별 합계' 를 '결제예정금액' 에 입력 */
+	const pricing=()=>{
+		var total=0
+		$("td[class^=h-class]").each(function(idx, data){
+			total += parseInt($(".totalData"+idx).text())
+		})
+		$(".final-totals").text(total) // item 의 price 를 더해 total 에 전달
+	}
+	pricing() // 함수 호출
+	
 	/* 결제 API 활용 */
 	$("#").click(function(e){ // #buybtn
 		e.preventDefault()
@@ -95,16 +115,22 @@ $(document).ready(function(){
 	                                                	<span class="order-span-quantity">x <c:out value="${dto.amount}" /></span>
 	                                                	<input type="hidden" name="buy_list[${stat.index}].amount" value="${dto.amount }" />
 	                                                </td>
-	                                                <td>
-	                                                    <h6 class="order-h6"><fmt:formatNumber value="${dto.buy_price}" pattern="###,### 원" /></h6>
-	                                                    <input type="hidden" name="buy_list[${stat.index}].buy_price" value="${dto.buy_price}" />
+	                                                <td class="h-class${stat.index}">
+	                                                	<span class="totalData${stat.index}"></span>원
+	                                                    <input type="hidden" class="totalprice${stat.index}" name="buy_list[${stat.index}].buy_price" value="${dto.buy_price}" />
+	                                                    <input type="hidden" class="item_price${stat.index}" value="${dto.buy_price}" />
 	                                                    <input type="hidden" name="buy_list[${stat.index}].buy_no" value="${dto.buy_no}" />
 														<input type="hidden" name="buy_list[${stat.index}].item_id" value="${dto.item_id}" />
+														<input type="hidden" class="amount${stat.index}" value="${dto.amount }" />
 	                                                </td>
 	                                            </tr>
 											</c:forEach>
                                         </tbody>
                                     </table>
+                                    <div class="text-right">
+                                    	<label for="calc-text">총합: </label>
+	                                	<span class="calc-text final-totals">0</span>원
+	                                </div>
                                 </div>
                             </div>
                             <!-- Checkout /- -->
@@ -148,6 +174,7 @@ $(document).ready(function(){
                                         <span class="astk">*</span>
                                     </label>
                                     <input type="text" id="addr2" name="addr2" class="text-field" placeholder="상세주소를 입력해주세요" required />
+                                    <input type="hidden" id="buy_no" name="buy_no" value="${data.buy_no}" />
                                 </div>
 							</div>
 							    <!-- Form-Fields /- -->

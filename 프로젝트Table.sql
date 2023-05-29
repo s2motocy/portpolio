@@ -160,7 +160,7 @@ insert into tbl_buy_list values(seq_buy_list.nextval,'u12345',1,'±èÄ¡Âî°³',1,100
 update tbl_buy_list set buy_no='u12345', item_id=2,item_name='asdfas',amount=1,buy_price=8000 where buy_no='u12345';
 -- Ä¿¹Ô
 commit;
-delete from tbl_buy_list where blist_no = 4;
+delete from tbl_buy_list where blist_no = 1;
 -- Á¶È¸
 select * from tbl_user_buy;
 select * from tbl_guest_buy;
@@ -220,3 +220,24 @@ commit;
 
 update tbl_item set item_sold=100 where item_id=5;
 select * from tbl_item;
+
+
+-------------------------------------------------------------------------------- ¸®ºä (reply)
+create table reply(
+    reply_id number primary key,
+    item_id number not null,
+    user_id varchar2(50) not null,
+    regDate date default sysdate,
+    content varchar2(3500),
+    rating number(2,1) not null,
+    FOREIGN KEY (user_id)REFERENCES tbl_user(user_id),
+    FOREIGN KEY (item_id) REFERENCES tbl_item(item_id),
+    UNIQUE(item_id, user_id)
+);
+create sequence seq_reply;
+
+select * from reply;
+
+commit;
+
+alter table tbl_item add ratingAvg number(2,1);

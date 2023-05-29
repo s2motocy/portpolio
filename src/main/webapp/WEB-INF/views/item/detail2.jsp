@@ -144,71 +144,6 @@
 			</style>
 			<script>
 				$(document).ready(function () {
-					
-					  const ratingStarsControl = function () {
-						    let $ratingField = $('#your-rating-value');
-						    let $starWidth = $('#your-stars');
-						    let $starComment = $('#star-comment');
-						    var r = $( "#your-rating-value" ).val()
-						    console.log(r)
-						    setTimeout(() => {
-						      console.log("여기 호출은?")
-						      $( "#your-rating-value" ).val(Number(r)+Number(0.0))
-						      $( "#your-rating-value" ).trigger('keyup')
-						    }, 1);
-						    let oneStarWidth = 15; // 15 * 5 = 75
-						    let newStarWidth;
-						    let ratingthresholdNumber = 5;
-						    let comment;
-						    let currentVal;
-						    $ratingField.on('keyup',function () {
-						      $starWidth.css('width',0);
-						      $starComment.text('');
-						      if ($.isNumeric($ratingField.val())) {
-						        currentVal = parseFloat($ratingField.val());
-						      } else {
-						        currentVal = NaN;
-						      }
-						      if ( !currentVal || currentVal === '' || currentVal === 'NaN' || currentVal === 0) {
-						        currentVal = 0;
-						        $starWidth.css('width',0);
-						        $starComment.text('');
-						      } else {
-						        if ( (currentVal >=1) && (currentVal <= ratingthresholdNumber)) {
-						          if (currentVal === 1 ) {
-						            comment = 'I hate it.';
-						          }
-						          else if(currentVal === 2 ) {
-						            comment = "I don't like it.";
-						          }
-						          else if(currentVal === 3 ) {
-						            comment = "It's OK.";
-						          }
-						          else if(currentVal === 4 ) {
-						            comment = "I like it.";
-						          }
-						          else if(currentVal === 5 ) {
-						            comment = "It's Perfect.";
-						          }
-
-						          currentVal = currentVal.toFixed(1);
-
-						          newStarWidth = oneStarWidth * currentVal;
-
-						          newStarWidth = Math.floor(newStarWidth);
-
-						          $starWidth.css('width',newStarWidth);
-
-						          $starComment.text(comment);
-						        }
-						      }
-						    });
-						  };
-
-						  ratingStarsControl();
-					
-					
-					
 					const item_id = '${list.item_id}';
 					/* "장바구니에 담기" 버튼 클릭시 수량값 실어보내기 */
 					$(".gocart").click(function (e) {
@@ -329,8 +264,6 @@
 								reply_list += '<span class="id_span">' + obj.user_id + '</span>';
 								/* 평점 */
 								reply_list += '<span class="rating_span"> 평점 : <span class="rating_value_span">' + obj.rating + '</span>/5 점</span>';
-								reply_list +='<div class="star"><span id="your-stars" style="width:0"></span></div><input id="your-rating-value" type="text" class="text-field" value="'+obj.rating+'">'
-	                            
 								/* 날짜 */
 								reply_list += '<span class="date_span">' + obj.regDate + '</span>';
 								if (obj.user_id === uid) {
@@ -344,8 +277,6 @@
 								reply_list += '</li>';
 							});
 							$(".reply_content_ul").html(reply_list);
-							ratingStarsControl();
-							
 							/* 페이지 버튼 */
 							let reply_pageMaker = '';
 							/* prev */
@@ -376,7 +307,7 @@
 							$(".pageMaker").html(reply_pageMaker);
 						}
 					}
-					//ratingStarsControl()
+					ratingStarsControl()
 				})
 			</script>
 
@@ -490,7 +421,7 @@
 													</div>
 												</div>
 												<div class="hiddenData">
-													<input type="text" name="item_id" value="${list.item_id}" />
+													<input type="hidden" name="item_id" value="${list.item_id}" />
 													<input type="hidden" name="item_name" value="${list.item_name}" />
 													<input type="hidden" name="item_price" value="${list.item_price}" />
 													<input type="hidden" name="user_id" value="${user_id}" />
