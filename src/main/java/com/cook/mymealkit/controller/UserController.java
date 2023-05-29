@@ -1,12 +1,16 @@
 package com.cook.mymealkit.controller;
 
 import java.util.List;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cook.mymealkit.domain.UserVO;
-import com.cook.mymealkit.service.MailSendService;
 import com.cook.mymealkit.service.UserService;
 
 import lombok.Setter;
@@ -28,7 +31,7 @@ public class UserController {
 	UserService uservice;
 	 
 	@Autowired
-	private MailSendService mailService;
+	private JavaMailSenderImpl mailSender;
 	
 	
 	 //로그인 페이지 처리
@@ -40,11 +43,15 @@ public class UserController {
     	System.out.println("UserVO 에서 vo는 뭔가?: "+vo);
     	boolean success = uservice.login(vo);
         if(!success) {
+        	model.addAttribute("message","로그인에 실패하셨습니다");
         	session.setAttribute("user",vo);
             return "/user/login";
         }
-        session.setAttribute("vo", uservice.mypage(vo));
-        return "redirect:/";
+        else {
+            model.addAttribute("message", "로그인 성공하셨습니다");
+            session.setAttribute("vo", uservice.mypage(vo));
+            return "redirect:/";
+        }
     }
     //회원가입 처리
     @GetMapping("join")
@@ -154,12 +161,16 @@ public class UserController {
 		return "user/findpwd";
 	}
  // 비밀번호 바꾸기 실행
+    @GetMapping("update_password")
+    public void updatePassword() {
+    	
+    }
  	@PostMapping("update_password")
  	public String updatePasswordAction(UserVO vo,Model model,String user_id2) {
  		System.out.println("컨트롤러 vo: "+vo);
  		vo.setUser_id(user_id2);
  		uservice.updatePassword(vo);
- 		return "redirect:/user/login";
+ 		return "user/login";
  	}
 
  	//이메일 인증
@@ -168,7 +179,36 @@ public class UserController {
     public String mailCheck(String email) {
 		System.out.println("이메일 인증 요청이 들어옴!");
 		System.out.println("이메일 인증 이메일 : " + email);
-		return mailService.joinEmail(email);
+		 /* 인증번호(난수) 생성 */
+        Random random = new Random();
+        int checkNum = random.nextInt(888888) + 111111;
+        System.out.println("인증번호 " + checkNum);
+        /* 이메일 보내기 */
+        String setFrom = "sjinjin6@naver.com";
+        String toMail = email;
+        String title = "회원가입 인증 이메일 입니다.";
+        String content = 
+                "홈페이지를 방문해주셔서 감사합니다." +
+                "<br><br>" + 
+                "인증 번호는 " + checkNum + "입니다." + 
+                "<br>" + 
+                "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+		System.out.println("여기는 서비스 결과 왜 여기서 터지는가 " + content);
+		try {
+		            
+		            MimeMessage message = mailSender.createMimeMessage();
+		            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+		            helper.setFrom(setFrom);
+		            helper.setTo(toMail);
+		            helper.setSubject(title);
+		            helper.setText(content,true);
+		            mailSender.send(message);
+		            
+		        }catch(Exception e) {
+		            e.printStackTrace();
+		        }
+		 String num = Integer.toString(checkNum);
+		return num;
 	}
     
 }
