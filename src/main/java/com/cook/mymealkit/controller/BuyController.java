@@ -204,7 +204,7 @@ public class BuyController {
 
 	// 회원 구매내역 조회
 	@GetMapping("/userBuyList")
-	public void userBuy(Model model, HttpSession session, String user_id) {
+	public String userBuy(Model model, HttpSession session, String user_id) {
 		System.out.println("멤버아이디?" + user_id);
 		List<BuyUserVO> userBuyList = bservice.bListByUserId(user_id);
 		List<BuyListDTO> userBuyItemList = new ArrayList<BuyListDTO>();
@@ -213,10 +213,18 @@ public class BuyController {
 			buyList.forEach(v -> userBuyItemList.add(v));
 			i.setBuy_list(buyList);
 		});
+		if(userBuyList.isEmpty()) {
+			return "redirect:/buy/buyEmpty";
+		}
 		System.out.println(userBuyList);
 		model.addAttribute("userBuyList", userBuyList);
 		model.addAttribute("userBuyItemList", userBuyItemList);
+		
+		return "/buy/userBuyList";
 	}
+	
+	@GetMapping("/buyEmpty")
+	public void buyEmpty() {};
 
 	// 관리자권한 전체 구매내역 조회
 	@GetMapping("/buyList")
@@ -231,7 +239,6 @@ public class BuyController {
 		System.out.println(buyList);
 		model.addAttribute("buyList", buyList);
 		model.addAttribute("bblist", bblist);
-
 	}
 	
 	@PostMapping("/order")

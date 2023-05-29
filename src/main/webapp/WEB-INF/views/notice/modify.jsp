@@ -4,36 +4,29 @@
 <%@ include file="../include/header.jsp" %>
 
 <style>
-.btn_wrap {
-    margin-top: 20px;
-    text-align: center;}
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;}
-.btn-primary {
-    background-color: #ff6b00;
-    color: #fff;}
-.btn-secondary {
-    background-color: #ff6b00;
-    color: #fff;}
-.btn-danger {
-    background-color: #ff6b00;
-    color: #fff;}
-.btn-success {
-    background-color: #ff6b00;
-    color: #fff;}
-#modifyForm .form-group {
-    width: 50%;}
+.container {
+	margin-top:10px;}
+label {
+	display: block;
+	font-weight: bold;}
 #modifyForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;}
+	text-align:center;}
+.form-control,
+.input-notice,
+textarea {
+	width: 30%;
+	padding: 10px;
+	margin:0 auto;
+	border: 1px solid #ccc;
+	border-radius: 4px;}
+button {
+	margin-top:10px;
+	padding: 10px 20px;
+	background-color: #ff6b00;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;}
 </style>
 <script>
  $(document)ready(function(e){
@@ -46,12 +39,7 @@
          form.attr("action", "/notice/list");
          form.submit();
      });
-
-     /* 수정 하기 버튼 */
-     $("#modify_btn").on("click", function (e) {
-         mForm.submit();
-     });
-
+     
      /* 취소 버튼 */
      $("#cancel_btn").on("click", function (e) {
          form.attr("action", "/notice/get");
@@ -70,7 +58,7 @@
  <div class="page-style-a">
      <div class="container">
          <div class="page-intro">
-             <h2>공지사항 수정</h2>
+             <h2>공지사항</h2>
              <ul class="bread-crumb">
                  <li class="has-separator">
                      <i class="ion ion-md-home"></i>
@@ -84,31 +72,33 @@
      </div>
  </div>
  <div class="container">
-     <form id="modifyForm" action="/notice/modify" method="post">
-         <div class="form-group">
-             <label>게시판 번호</label>
-             <input class="form-control" name="bno" readonly="readonly"
-                 value='<c:out value="${pageInfo.bno}"/>'>
-         </div>
-         <div class="form-group">
-             <label>게시판 제목</label>
-             <input class="form-control" name="title" value='<c:out value="${pageInfo.title}"/>'>
-         </div>
-         <div class="form-group">
-             <label>게시판 내용</label>
-             <textarea class="form-control" rows="3"
-                 name="content"><c:out value="${pageInfo.content}"/></textarea>
-         </div>
-         <div class="btn_wrap">
-             <a class="btn btn-primary" id="list_btn">목록 페이지</a>
-             <a class="btn btn-secondary" id="cancel_btn">수정 취소</a>
-             <a class="btn btn-danger" id="delete_btn">삭제</a>
-             <input type='submit' class="btn btn-success" value='수정 완료' />
-         </div>
-     </form>
-     <form id="infoForm" action="/notice/modify" method="get">
-         <input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
-     </form>
- </div>
+ <form id="modifyForm" action="/notice/modify" method="post">
+   	<div class="form-group">
+        <label>게시판 번호</label>
+        <input class="form-control" name="bno" readonly="readonly" value='<c:out value="${pageInfo.bno}"/>'>
+    </div>
+    <div class="form-group">
+        <label>게시판 제목</label>
+        <input class="input-notice" name="title" value='<c:out value="${pageInfo.title}"/>'>
+    </div>
+    <div class="form-group">
+        <label>게시판 내용</label>
+        <textarea class="input-notice" rows="3" name="content" readonly="readonly"><c:out value="${pageInfo.content}"/></textarea>
+    </div>
+    <div class="form-group">
+        <label>게시판 등록일</label>
+        <input class="form-control" name="regdater" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.regdate}"/>'>
+    </div>
+    <div class="btn_wrap">
+        <button id="list_btn">목록</button>
+    	<button id="cancel_btn">취소</button>
+    	<button id="delete_btn">삭제</button>
+    	<button id="good_btn">완료</button>
+    </div>
+    </form>
+    <form id="infoForm" action="/notice/modify" method="get">
+        <input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
+    </form>
+  </div>
 </body>
 <%@ include file="../include/footer.jsp" %>

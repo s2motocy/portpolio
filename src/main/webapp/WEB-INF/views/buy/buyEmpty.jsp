@@ -8,7 +8,7 @@
     <div class="page-style-a">
         <div class="container">
             <div class="page-intro">
-                <h2>장바구니</h2>
+                <h2>마이페이지</h2>
                 <ul class="bread-crumb">
                     <li class="has-separator">
                         <i class="ion ion-md-home"></i>

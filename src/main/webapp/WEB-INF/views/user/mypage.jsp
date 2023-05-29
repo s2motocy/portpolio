@@ -63,7 +63,7 @@
         </table>
         <button type="submit" class="btn btn-modify">수정하러가기</button>
         </form>
-      <a href="/buy/userBuyList">구매내역</a>
+      <a href="/buy/userBuyList?user_id=${vo.user_id}">구매내역</a>
     </div>
 </body>
 <%@ include file="../include/footer.jsp" %>

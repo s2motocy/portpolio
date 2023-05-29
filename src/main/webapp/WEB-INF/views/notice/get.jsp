@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 <style>
+.container {
+	margin-top:10px;}
 .form-group {
     display: flex;
     flex-direction: column;
@@ -85,7 +87,7 @@ $(document).ready(function(e){
         <input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
     </form>
     </div>   
-   </div>
+</div>
 </body>
  
 <%@ include file="../include/footer.jsp" %>

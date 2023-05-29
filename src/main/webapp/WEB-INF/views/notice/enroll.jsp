@@ -8,7 +8,9 @@
 label {
 	display: block;
 	font-weight: bold;}
-input[type="text"],
+#enrollForm {
+	text-align:center;}
+.input-notice,
 textarea {
 	width: 30%;
 	padding: 10px;
@@ -42,14 +44,14 @@ button {
 </div>
 
 <div class="container">
-    <form action="enroll" method="post">
+    <form action="enroll" method="post" id="enrollForm">
       <div class="form-group">
-        <label for="title">제목:</label>
-        <input type="text" class="form-control" name="title">
+        <label for="title">제목</label>
+        <input type="text" class="input-notice" name="title">
       </div>
       <div class="form-group2">
-        <label for="content">내용:</label>
-        <textarea class="form-control" rows="3" name="content"></textarea>
+        <label for="content">내용</label>
+        <textarea class="input-notice" rows="3" name="content"></textarea>
       </div>
       <button type="submit">등록</button>
     </form>
