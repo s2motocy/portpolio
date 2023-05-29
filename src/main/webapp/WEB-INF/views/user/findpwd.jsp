@@ -46,8 +46,6 @@
             </div>
         </div>
     </div>
-    <!-- Page Introduction Wrapper /- -->
-    <!-- FAQ-Page -->
 	<form method="post" class="form-signin" action="findpwd" name="findpwd">
         <div class="form-label-group">
             <label for="user_id">ID</label>
@@ -76,47 +74,8 @@
 
         <!-- 이름과 전화번호가 일치할떄 -->
         <c:if test="${check == 0 }">
-        <div>
-            <label>비밀번호를 변경해주세요.</label>
-        </div>
-        <div class="form-label-group">
-            <input type="text" id="user_id" name="user_id2" value="${user_id}">
-            <label for="userid">아이디</label>
-        </div>
-        <div class="form-label-group">
-            <input type="password" id="pwd" name="pwd" class="form-control"/>
-            <label for="password">비밀번호</label>
-        </div>
-        
-        <div class="form-label-group">
-            <input type="password" id="pwd2" name="pwd2" class="form-control"/>
-            <label for="confirmpassword">비밀번호 확인</label>
-        </div>
-        
-        <div class="form-label-group">
-                <input class="btn btn-lg btn-secondary btn-block text-uppercase"
-                    type="button" value="update password" onclick="updatePassword()">
-            </div>
+            <a href="update_password">비밀번호 바꾸러가기</a>
         </c:if>
     </form>
-    <script type="text/javascript">
-        function updatePassword(){
-            if(document.findpwd.pwd.value==""){
-                alert("비밀번호를 입력해주세요.");
-                document.findform.pwd.focus();
-            } else if(document.findpwd.pwd.value != document.findpwd.pwd2.value){
-                alert("비밀번호가 일치하지 않습니다.");
-                document.findpwd.pwd2.focus();
-            } else {
-                document.findpwd.action="update_password";
-                document.findpwd.submit();
-                
-                alert("비밀번호가 변경되었습니다.");
-                self.close();
-            }
-        }
-    </script>
-    <!-- FAQ-Page /- -->
-    <!-- Footer -->
 </body>
 <%@ include file="../include/footer.jsp" %>

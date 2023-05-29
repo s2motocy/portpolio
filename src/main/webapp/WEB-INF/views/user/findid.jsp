@@ -26,7 +26,7 @@
   margin: 0 auto;
 }
 button a {
-  color: #ff6b00;
+  color: #ffb600;
 }
 
 button a:hover {
