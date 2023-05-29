@@ -15,7 +15,7 @@
                         <a href="/">Home</a>
                     </li>
                     <li class="is-marked">
-                        <a href="/buy/userBuyList">구매내역</a>
+                        <a href="/cart/cartList">장바구니</a>
                     </li>
                 </ul>
             </div>
@@ -27,7 +27,7 @@
     <div class="page-cart u-s-p-t-80 u-s-p-b-40">
         <div class="vertical-middle">
             <div class="text-center">
-                <h5>구매내역이 비었어요.</h5>
+                <h5>장바구니가 비었어요.</h5>
                 <div class="redirect-link-wrapper u-s-p-t-25">
                     <a class="redirect-link" href="/item/categoryAll">
                         <span>돌아가기</span>

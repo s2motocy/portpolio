@@ -8,6 +8,153 @@
 #check {
   background-color: #ff6b00;}
 </style>
+
+<body>
+    <div class="page-style-a">
+        <div class="container">
+            <div class="page-intro">
+                <h2>회원가입</h2>
+                <ul class="bread-crumb">
+                    <li class="has-separator">
+                        <i class="ion ion-md-home"></i>
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="is-marked">
+                        <a href="join">회원가입</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Page Introduction Wrapper /- -->
+    <!-- Account-Page -->
+    <div class="page-account u-s-p-t-80">
+        <div class="container">
+            <div class="row">
+                <!-- Register -->
+                <div class="col-lg-12">
+                    <div class="reg-wrapper">
+                        <h2 class="account-h2 u-s-m-b-20">회원가입</h2>
+                        <form 
+                        id="signupForm"
+                        method="post"
+                        class="form-horizontal"
+                        action="/user/join"
+                        >
+                            <div class="u-s-m-b-30">
+                                <label for="user_name">사용자이름
+                                    <span class="astk">*</span>
+                                    </label>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="user_name"
+                                name="user_name"
+                                placeholder="이름 입력"
+                                minlength="1"
+                                required
+                              />
+                            </div>
+                            <div class="u-s-m-b-30">
+                                <label for="user_id">아이디
+                                    <span class="astk">*</span>
+                                    </label>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="user_id"
+                                name="user_id"
+                                minlength="3"
+                                placeholder="아이디 입력"
+                                required
+                                />
+                            </div>
+                            <input type="button" value="중복 체크" id="check" class="btn btn-default"/>
+
+                            <div class="u-s-m-b-30">
+                                <label for="pwd">비밀번호
+                                    <span class="astk">*</span>
+                                </label>
+                               <input
+                                type="password"
+                                class="form-control"
+                                id="pwd"
+                                name="pwd"
+                                placeholder="비밀번호 입력"
+                                required
+                                />
+                            </div>
+                            <div class="u-s-m-b-30">
+                                <label for="pwd2">비밀번호 확인
+                                    <span class="astk">*</span>
+                                </label>
+                                <div class="col-sm-13">
+                                    <input
+                                      type="password"
+                                      class="pw2"
+                                      id="pwd2"
+                                      name="pwd2"
+                                      placeholder="확인 비밀번호 입력"
+                                      required
+                                    />
+                                </div>
+                            </div>
+                            <font id="pwCheck" size="2"></font>
+                            <div class="mail_wrap">
+                                <div class="mail_name">이메일</div> 
+                                <div class="mail_input_box">
+                                    <input class="mail_input" name="email" id="email" required>
+                                    <input type="button"  class='mail_check_button' value="인증번호전송" id="check" class="btn btn-secondary"/>
+                                </div>
+                                <div class="mail_check_wrap">
+                                       <input class="mail_check_input" />
+                                    <div class="mail_check_button">
+										<span id="mail_check_input_box_warn"></span>
+                                  </div>
+                             </div>
+                            </div>
+                            <div class="u-s-m-b-30">
+                                <label for="phone">전화번호
+                                    <span class="astk">*</span>
+                                </label>
+                                <input
+                                type="tel"
+                                class="phone-number-check"
+                                id="phone"
+                                name="phone"
+                                placeholder="000-0000-0000"
+                                required
+                                />
+                            </div>
+                            <div class="u-s-m-b-30">
+                                <label class="col-sm-4 control-label" for="address" >주소</label>
+                                <div class="col-sm-13">
+                                  <input type="button" value="우편번호찾기" onclick="kakaopost()" class="btn btn-default"><br>   
+                                  <input type="text" id="post_code" name="post_code" placeholder="우편번호" class="form-control" />
+                                  <input type="text" id="addr" name="addr" class="form-control" /><br>
+                                  <input type="text" id="addr2" name="addr2" placeholder="상세주소" class="form-control" /><br>
+                                </div>
+                              </div>
+                            <div class="u-s-m-b-45">
+                                <button
+                                    id="signup-button"
+                                    type="submit"
+                                    class="btn btn-primary"
+                                    value="회원가입"
+                                    >
+                                    회원가입
+                                </button>
+                                &nbsp;
+                                <button class="btn btn-primary"><a href="/"></a>
+                                    회원가입취소
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <script type="text/javascript" >
     $(document).ready(function () {
         function checkId(){
@@ -63,7 +210,7 @@ $(".mail_check_button").click(function(){
     		url:"mailCheck?email=" + email,
     		success:function(data){
     			console.log("data : " + data);
-    			checkBox.val(data);
+    			//checkBox.val(data);
     			code = data
     			setTimeout(() => {
     				console.log("눌렷어")
@@ -148,10 +295,6 @@ $(".mail_check_button").click(function(){
         });  
         });
 
-        function displayAlert() {
-          alert("회원가입 되었습니다");
-        }
-
         $('.pw2').keyup(function(){
             var p1 = document.getElementById('pwd').value;
             var p2 = document.getElementById('pwd2').value;
@@ -167,6 +310,22 @@ $(".mail_check_button").click(function(){
             }
             
         })
+        function checkPassword() {
+        var password1 = document.getElementById("pwd").value;
+        var password2 = document.getElementById("pwd2").value;
+
+        if (password1 !== password2) {
+            alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+            return false; // 회원가입이 안되도록 false를 반환합니다.
+        }
+
+        return true; // 비밀번호가 일치하면 회원가입이 가능하도록 true를 반환합니다.
+        }
+        document.getElementById("signup-button").addEventListener("click", function(event) {
+        if (!checkPassword()) {
+            event.preventDefault(); // 비밀번호 확인 실패 시 기본 동작을 중단합니다.
+        }
+        });
       </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -179,92 +338,5 @@ function kakaopost() {
     }).open();
 }
 </script>
-<body>
-    <div class="page-style-a">
-        <div class="container">
-            <div class="page-intro">
-                <h2>회원가입</h2>
-                <ul class="bread-crumb">
-                    <li class="has-separator">
-                        <i class="ion ion-md-home"></i>
-                        <a href="/">Home</a>
-                    </li>
-                    <li class="is-marked">
-                        <a href="join">회원가입</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Page Introduction Wrapper /- -->
-    <!-- Account-Page -->
-    <div class="page-account u-s-p-t-80">
-        <div class="container">
-            <div class="row">
-                <!-- Register -->
-                <div class="col-lg-12">
-                    <div class="reg-wrapper">
-                        <h2 class="account-h2 u-s-m-b-20">회원가입</h2>
-                        <form id="signupForm" method="post" class="form-horizontal" action="/user/join">
-                            <div class="u-s-m-b-30">
-                                <label for="user_name">사용자이름<span class="astk">*</span></label>
-                                <input type="text" class="form-control" id="user_name" name="user_name" placeholder="이름 입력" minlength="1" />
-                            </div>
-                            <div class="u-s-m-b-30">
-                                <label for="user_id">아이디<span class="astk">*</span></label>
-                                <input type="text" class="form-control" id="user_id" name="user_id" placeholder="아이디 입력" />
-                            </div>
-                            <input type="button" value="중복 체크" id="check" class="btn btn-default"/>
 
-                            <div class="u-s-m-b-30">
-                                <label for="pwd">비밀번호<span class="astk">*</span></label>
-                               <input type="password" class="form-control" id="pwd" name="pwd" placeholder="비밀번호 입력" />
-                            </div>
-                            <div class="u-s-m-b-30">
-                                <label for="pwd2">비밀번호 확인<span class="astk">*</span></label>
-                                <div class="col-sm-13">
-                                    <input type="password" class="pw2" id="pwd2" name="pwd2" placeholder="확인 비밀번호 입력"/>
-                                </div>
-                            </div>
-                            <font id="pwCheck" size="2"></font>
-                            <div class="mail_wrap">
-                                <div class="mail_name">이메일</div> 
-                                <div class="mail_input_box">
-                                    <input class="mail_input" name="email" id="email">
-                                    <input type="button"  class='mail_check_button' value="인증번호전송" id="check" class="btn btn-secondary"/>
-                                </div>
-                                <div class="mail_check_wrap">
-                                       <input class="mail_check_input" />
-                                    <div class="mail_check_button">
-										<span id="mail_check_input_box_warn"></span>
-                                  	</div>
-                             </div>
-                            </div>
-                            <div class="u-s-m-b-30">
-                                <label for="phone">전화번호<span class="astk">*</span></label>
-                                <input type="tel" class="phone-number-check" id="phone" name="phone" placeholder="000-0000-0000" />
-                            </div>
-                            <div class="u-s-m-b-30">
-                                <label class="col-sm-4 control-label" for="address" >주소</label>
-                                <div class="col-sm-13">
-                                  <input type="button" value="우편번호찾기" onclick="kakaopost()" class="btn btn-default"><br>   
-                                  <input type="text" id="post_code" name="post_code" placeholder="우편번호" class="form-control" />
-                                  <input type="text" id="addr" name="addr" class="form-control" /><br>
-                                  <input type="text" id="addr2" name="addr2" placeholder="상세주소" class="form-control" /><br>
-                                </div>
-                              </div>
-                            <div class="u-s-m-b-45">
-                                <button type="submit" class="btn btn-primary" value="회원가입" onclick="displayAlert()" > 회원가입</button>
-                                &nbsp;
-                                <button type="reset" class="btn btn-primary">
-                                    회원가입취소
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
 <%@ include file="../include/footer.jsp" %>

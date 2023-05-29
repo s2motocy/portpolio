@@ -96,81 +96,81 @@
 </script>
 <!-- app -->
 <div id="app">
-    <!-- Header -->
-    <header>
-        <!-- Mid-Header -->
-        <div class="full-layer-mid-header">
-            <div class="container">
-                <div class="row clearfix align-items-center">
-                    <div class="col-lg-3 col-md-9 col-sm-6">
-                        <div class="brand-logo text-lg-center">
-                            <a href="/">
-                                <img src="/resources/images/main-logo/main-logo.png" alt="Logo"
-                                    class="app-brand-logo" style="width:280px; height:120px">
-                            </a>
-                        </div>
+<!-- Header -->
+<header>
+    <!-- Mid-Header -->
+    <div class="full-layer-mid-header">
+        <div class="container">
+            <div class="row clearfix align-items-center">
+                <div class="col-lg-3 col-md-9 col-sm-6">
+                    <div class="brand-logo text-lg-center">
+                        <a href="/">
+                            <img src="/resources/images/main-logo/main-logo.png" alt="Logo"
+                                class="app-brand-logo" style="width:280px; height:120px">
+                        </a>
                     </div>
-                    <div class="col-lg-6 u-d-none-lg">
-                        <form class="form-searchbox">
-                            <label class="sr-only" for="search-landscape">Search</label>
-                            <input id="search-landscape" type="text" class="text-field" name='search'
-                                placeholder="검색어를 입력하세요">
-                            <button id="btn-search" type="submit"
-                                class="button button-primary fas fa-search"></button>
-                        </form>
-                    </div>
-                <div class="col-lg-3 col-md-3 col-sm-6">
-                    <nav>
-                        <ul class="g-nav">
-                            <c:if test="${vo == null}">
-                                <li>
-                                    <a href="/user/login" class="g-nav-link">
-                                        <i class="far fa-user"></i>
-                                        로그인
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/user/join" class="g-nav-link">
-                                        <i class="fas fa-user-plus"></i>
-                                        회원가입
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/cart/cartList/join" class="g-nav-link">
-                                        <i class="fas fa-shopping-cart"></i>
-                                        장바구니
-                                    </a>
-                                </li>
-                            </c:if>
-
-                            <!-- 로그인 세션 시작 -->
-                            <c:if test="${vo != null}">
-                                <li>
-                                    <a href="/user/mypage" class="g-nav-link">
-                                        <i class="far fa-user"></i>
-                                        ${vo.user_name}님 환영합니다!
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/user/logout.do" class="g-nav-link">
-                                        <i class="fas fa-sign-out-alt"></i>
-                                        로그아웃
-                                    </a>
-                                </li>
-                                <!-- 로그인 세션 종료 -->
-                                <li>
-                                    <a href="/cart/cartList" class="g-nav-link">
-                                        <i class="fas fa-shopping-cart"></i>
-                                        장바구니
-                                    </a>
-                                </li>
-                            </c:if>
-
-                        </ul>
-                    </nav>
                 </div>
+                <div class="col-lg-6 u-d-none-lg">
+                    <form class="form-searchbox">
+                        <label class="sr-only" for="search-landscape">Search</label>
+                        <input id="search-landscape" type="text" class="text-field" name='search'
+                            placeholder="검색어를 입력하세요">
+                        <button id="btn-search" type="submit"
+                            class="button button-primary fas fa-search"></button>
+                    </form>
+                </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <nav>
+                    <ul class="g-nav">
+                        <c:if test="${vo == null}">
+                            <li>
+                                <a href="/user/login" class="g-nav-link">
+                                    <i class="far fa-user"></i>
+                                    로그인
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/user/join" class="g-nav-link">
+                                    <i class="fas fa-user-plus"></i>
+                                    회원가입
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/cart/cartList/join" class="g-nav-link">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    장바구니
+                                </a>
+                            </li>
+                        </c:if>
+
+                        <!-- 로그인 세션 시작 -->
+                        <c:if test="${vo != null}">
+                            <li>
+                                <a href="/user/mypage" class="g-nav-link">
+                                    <i class="far fa-user"></i>
+                                    ${vo.user_name}님 환영합니다!
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/user/logout.do" class="g-nav-link">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    로그아웃
+                                </a>
+                            </li>
+                            <!-- 로그인 세션 종료 -->
+                            <li>
+                                <a href="/cart/cartList" class="g-nav-link">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    장바구니
+                                </a>
+                            </li>
+                        </c:if>
+
+                    </ul>
+                </nav>
             </div>
         </div>
+    </div>
 </div>
 <!-- Mid-Header /- -->
 <!-- Responsive-Buttons -->
