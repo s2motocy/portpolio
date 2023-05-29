@@ -39,11 +39,26 @@ public class UserController {
 	public String login(UserVO vo, Model model, HttpSession session) throws Exception {
 		System.out.println("UserVO 에서 vo는 뭔가?: " + vo);
 		boolean success = uservice.login(vo);
+		UserVO user = uservice.getUserById(vo.getUser_id());
+		System.out.println("관리자:"+user);
 		if (!success) {
 			session.setAttribute("user", vo);
 			return "/user/login";
 		}
-		session.setAttribute("vo", uservice.mypage(vo));
+		if(success) {
+			session.setAttribute("vo", uservice.mypage(vo));
+			try {
+				if(user.getAuth().equals("a")) {
+					 System.out.println(user);
+					 session.setAttribute("admin", uservice.getUserById(vo.getUser_id()).getAuth());
+				}
+			} catch(Exception e) {
+				System.out.println("예외:"+user);
+			}
+			
+		}
+		
+		//System.out.println(user);
 		return "redirect:/";
 	}
 

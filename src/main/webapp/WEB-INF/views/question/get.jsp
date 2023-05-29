@@ -206,7 +206,9 @@
               <div class="btn_wrap" id="action_btn_wrap">
                 <button class="btn" id="modify_btn">수정하기</button>
                 <button class="btn" id="list_btn">문의 페이지</button>
+                <c:if test="${admin == 'a'}">
                 <button class="btn" id="reply_btn">답글 작성</button>
+                </c:if>
               </div>
               <div class="input_wrap" id="reply_output_wrap" style="display: none;">
                 <label>답글 내용</label>

@@ -18,6 +18,8 @@ public interface UserService {
 	public void deleteUser(UserVO vo) throws Exception;// 회원탈퇴
 
 	public UserVO mypage(UserVO vo) throws Exception;// 마이페이지
+	
+	//public UserVO adminpage(UserVO vo); // 관리자페이지
 
 	public void logout(HttpSession session);// 로그아웃
 

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 			<%@ include file="../include/header.jsp" %>
@@ -58,10 +58,13 @@
 						font-weight: 600;
 					}
 
-					.pageInfo {
+					ul.pageInfo {
 						list-style: none;
 						display: inline-block;
 						margin: 50px 0 0 100px;
+					}
+					li {
+						display: inline-block;
 					}
 
 					.pageInfo l i {
@@ -142,7 +145,7 @@
 						a_move.each(function (idx, data) {
 							$(this).click(function (e) {
 								e.preventDefault();
-								if (${ user.auth == 'a' }){
+								if (${admin == 'a'}){
 								moveForm.append("<input type='hidden' name='qno' value='" + $(this).attr("href") + "'>");
 								moveForm.attr("action", "/question/get");
 								moveForm.submit();
@@ -239,6 +242,7 @@
 						<!-- Page Introduction Wrapper /- -->
 
 						<!-- Modal -->
+						<c:if test="${admin != 'a'}">
 						<div class="modal fade" id="myModal" role="dialog">
 							<div class="modal-dialog">
 								<!-- Modal content-->
@@ -254,7 +258,7 @@
 								</div>
 							</div>
 						</div>
-
+						</c:if>
 						<div class="container">
 							<!-- FAQ-Page -->
 							<div class="table_wrap">

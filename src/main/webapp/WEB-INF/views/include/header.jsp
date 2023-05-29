@@ -2,7 +2,10 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <!DOCTYPE html>
         <html class="no-js" lang="ko">
-
+        <%
+        	session = request.getSession();
+        	out.println(session.getAttribute("admin"));
+        %>
         <head>
             <meta charset="UTF-8">
             <!--[if IE]>
@@ -198,6 +201,7 @@
             <div class="container">
                 <div class="row clearfix align-items-center">
                     <!-- 관리자 세션 시작 -->
+                    <c:if test="${admin == 'a'}">
                     <div class="col-lg-2">
                         <div class="v-menu v-close">
                             <span class="v-title">
@@ -252,6 +256,7 @@
                             </nav>
                         </div>
                     </div>
+                    </c:if>
                     <!-- 관리자 세션 종료 -->
                     <div class="col-lg-9">
                         <ul class="bottom-nav g-nav u-d-none-lg">
