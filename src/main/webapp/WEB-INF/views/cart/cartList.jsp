@@ -60,6 +60,7 @@ $(document).ready(function(){
 	/* 수정버튼 누르면 ajax 를 사용하여 수정 */
 	$("button[id^=apply]").each(function(idx, data){
 		$(this).click(function(e){
+			e.preventDefault()
 			var amountData = $(".amountData"+idx).val()
 			var priceData = $(".item_price"+idx).val()
 			var userid = $("#userData"+idx).val()
@@ -71,7 +72,7 @@ $(document).ready(function(){
 				type: 'POST',
 				data: formData,
 				success: function(result){ 
-					alert('success')
+					alert('정상적으로 수정되었습니다.')
 					window.location.href="cartList"
 				},
 				error: function(xhr,status,error){ 
@@ -107,6 +108,7 @@ $(document).ready(function(){
 	})
 
 	$(".checkout").click(function(e){
+		e.preventDefault()
 		$('#myModal').modal('show')
 	})
 	
@@ -208,7 +210,7 @@ $(document).ready(function(){
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/buyUser" id="frm">
+                    <form action="/buy/buyUser" id="frm">
                         <!-- Products-List-Wrapper -->
                         <div class="table-wrapper u-s-m-b-60">
                             <table>
