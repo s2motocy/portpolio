@@ -46,7 +46,7 @@ public class UploadController {
 			log.info("----------------");
 			log.info("Upload File Name: " + i.getOriginalFilename());
 			log.info("Upload File Size: " + i.getSize());
-			// p499
+			
 			File saveFile = new File(uploadFolder, i.getOriginalFilename()); // java.io.File 로 설정
 			try {
 				i.transferTo(saveFile);
@@ -56,13 +56,13 @@ public class UploadController {
 		} // for
 	}
 
-	// p500 (ajax 를 이용한 파일업로드)
+	// (ajax 를 이용한 파일업로드)
 	@GetMapping("/uploadAjax")
 	public void uploadAjax() {
 		log.info("upload ajax");
 	}
 
-	// p508 (날짜 이용하여 폴더와 파일 생성)
+	// (날짜 이용하여 폴더와 파일 생성)
 	private String getFolder() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date(); // java.util.Date
@@ -70,7 +70,6 @@ public class UploadController {
 		return str.replace("-", File.separator); // - 를 파일의 구분자로 대체(replace)
 	}
 
-	// p513
 	private boolean checkImageType(File file) {
 		try {
 			String contentType = Files.probeContentType(file.toPath());
@@ -81,7 +80,7 @@ public class UploadController {
 		return false;
 	}
 
-	// p504 => 파일 저장
+	// 파일 저장
 	@PostMapping("/uploadAjaxAction")
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 		log.info("ajax file Controller: ");
@@ -133,7 +132,6 @@ public class UploadController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
-	// p526
 	@GetMapping("/display")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) { // File 객체를 Byte 배열로 변환하여 header 와 함께 반환함
@@ -151,7 +149,6 @@ public class UploadController {
 		return result;
 	}
 
-	// p531
 	// MIME 타입은 다운로드 할 수 있는 application/octet_stream 으로 지정하고 다운로드시 저장되는 이름은
 	// Content-Disposition 을 이용하여 저장
 	@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)

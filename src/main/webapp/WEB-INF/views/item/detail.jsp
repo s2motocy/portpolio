@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../include/header.jsp" %>
+
 <style>
 /* 리뷰쓰기 버튼 */
 .reply_button_wrap {
@@ -107,6 +107,7 @@
 	color: white;
 	cursor: pointer;}
 </style>
+
 <script>
 $(document).ready(function () {
 	const item_id = '${list.item_id}';
@@ -272,6 +273,8 @@ $(document).ready(function () {
 			$(".pageMaker").html(reply_pageMaker);
 		}
 	}
+	
+	
 })
 </script>
 
@@ -330,10 +333,11 @@ $(document).ready(function () {
 								</li>
 							</ul>
 							<div class="product-rating">
-								<div class='star' title="4.5 out of 5 - based on 23 Reviews">
-									<span style='width:67px'></span>
-								</div>
-								<span>(23)</span>
+								<div class="star">
+                                    <span id="your-stars" style='width:0'></span>
+                                </div>
+                                <span>(23)</span>
+                                <input id="your-rating-value" type="hidden" class="input-field" value="${list.item_id}">
 							</div>
 						</div>
 						<div class="section-2-short-description u-s-p-y-14">

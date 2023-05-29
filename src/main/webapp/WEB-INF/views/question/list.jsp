@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp" %>
 
 <style>
@@ -54,29 +52,29 @@ a:hover {
 </style>
 
 <script>
-	$(document).ready(function () {
-		let result = '<c:out value="${result}"/>';
-		checkAlert(result);
-		function checkAlert(result) {
-			if (result === '') {
-				return;
-			}
-			if (result === "enrol success") {
-				alert("등록이 완료되었습니다.");
-			}
-			if (result === "modify success") {
-				alert("수정이 완료되었습니다.");
-			}
-			if (result === "delete success") {
-				alert("삭제가 완료되었습니다.");
-			}
+$(document).ready(function () {
+	let result = '<c:out value="${result}"/>';
+	checkAlert(result);
+	function checkAlert(result) {
+		if (result === '') {
+			return;
 		}
-		let a_move = $(".a_move");
-		let moveForm = $("#moveForm");
-		a_move.each(function (idx, data) {
-			$(this).click(function (e) {
-				e.preventDefault();
-				if (${admin == 'a'}){
+		if (result === "enrol success") {
+			alert("등록이 완료되었습니다.");
+		}
+		if (result === "modify success") {
+			alert("수정이 완료되었습니다.");
+		}
+		if (result === "delete success") {
+			alert("삭제가 완료되었습니다.");
+		}
+	}
+	let a_move = $(".a_move");
+	let moveForm = $("#moveForm");
+	a_move.each(function (idx, data) {
+		$(this).click(function (e) {
+			e.preventDefault();
+			if (${admin == 'a'}){
 				moveForm.append("<input type='hidden' name='qno' value='" + $(this).attr("href") + "'>");
 				moveForm.attr("action", "/question/get");
 				moveForm.submit();
@@ -150,118 +148,118 @@ a:hover {
 
 <body>
 <div id="app">
-<!-- Page Introduction Wrapper -->
-<div class="page-style-a">
-	<div class="container">
-		<div class="page-intro">
-			<h2>문의사항</h2>
-			<ul class="bread-crumb">
-				<li class="has-separator">
-					<i class="ion ion-md-home"></i>
-					<a href="home.html">Home</a>
-				</li>
-				<li class="is-marked">
-					<a href="single-product.html">목록</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
-<!-- Page Introduction Wrapper /- -->
-
-<!-- Modal -->
-<c:if test="${admin != 'a'}">
-<div class="modal fade" id="myModal" role="dialog">
-	<div class="modal-dialog">
-		<!-- Modal content-->
-		<div class="modal-content">
-			<div class="modal-body">
-				<form id="frm">
-					<div>
-						암호 입력 <input type="password" id="password" />
-						<button id="a">확인</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-</c:if>
-
-<div class="container">
-<!-- FAQ-Page -->
-	<div class="table_wrap">
-		<a href="/question/enroll" class="top_btn">문의 등록</a>
-		<table class="table">
-			<thead>
-				<tr>
-					<th class="qno_width">번호</th>
-					<th class="title_width">제목</th>
-					<th class="writer_width">작성자</th>
-					<th class="regdate_width">작성일</th>
-				</tr>
-			</thead>
-			<c:forEach items="${list}" var="list">
-				<tr>
-					<td><c:out value="${list.qno}" /></td>
-					<td><a class="a_move" href="${list.qno}">${list.title}</a></td>
-					<td><c:out value="${list.writer}" /></td>
-					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.updateDate}" /></td>
-				</tr>
-			</c:forEach>
-		</table>
-		<div class="search_wrap">
-			<div class="search_area">
-				<select name="type">
-					<option value="" <c:out
-						value="${pageMaker.cri.type == null?'selected':'' }" />>--</option>
-					<option value="T" <c:out
-						value="${pageMaker.cri.type eq 'T'?'selected':'' }" />>제목</option>
-					<option value="C" <c:out
-						value="${pageMaker.cri.type eq 'C'?'selected':'' }" />>내용</option>
-					<option value="W" <c:out
-						value="${pageMaker.cri.type eq 'W'?'selected':'' }" />>작성자</option>
-					<option value="TC" <c:out
-						value="${pageMaker.cri.type eq 'TC'?'selected':'' }" />>제목 + 내용</option>
-					<option value="TW" <c:out
-						value="${pageMaker.cri.type eq 'TW'?'selected':'' }" />>제목 + 작성자
-					</option>
-					<option value="TCW" <c:out
-						value="${pageMaker.cri.type eq 'TCW'?'selected':'' }" />>제목 + 내용 + 작성자
-					</option>
-				</select>
-				<input type="text" name="keyword" value="${pageMaker.cri.keyword }">
-				<button id='search'>Search</button>
-			</div>
-		</div>
-		<div class="pageInfo_wrap">
-			<div class="pageInfo_area">
-				<ul id="pageInfo" class="pageInfo">
-					<c:if test="${pageMaker.prev}">
-						<li class="pageInfo_btn previous"><a
-								href="${pageMaker.startPage-1}">이전</a></li>
-					</c:if>
-					<c:forEach var="num" begin="${pageMaker.startPage}"
-						end="${pageMaker.endPage}">
-						<li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? 'active':'' }">
-							<a href="${num}">${num}</a></li>
-					</c:forEach>
-					<c:if test="${pageMaker.next}">
-						<li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">다음</a>
-						</li>
-					</c:if>
+	<!-- Page Introduction Wrapper -->
+	<div class="page-style-a">
+		<div class="container">
+			<div class="page-intro">
+				<h2>문의사항</h2>
+				<ul class="bread-crumb">
+					<li class="has-separator">
+						<i class="ion ion-md-home"></i>
+						<a href="home.html">Home</a>
+					</li>
+					<li class="is-marked">
+						<a href="single-product.html">목록</a>
+					</li>
 				</ul>
 			</div>
 		</div>
-		<form id="moveForm" method="get">
-			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-			<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-			<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
-			<input type="hidden" name="type" value="${pageMaker.cri.type }">
-		</form>
 	</div>
-<!-- FAQ-Page /- -->
-</div>
+	<!-- Page Introduction Wrapper /- -->
+	
+	<!-- Modal -->
+	<c:if test="${admin != 'a'}">
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-body">
+						<form id="frm">
+							<div>
+								암호 입력 <input type="password" id="password" />
+								<button id="a">확인</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:if>
+	
+	<div class="container">
+	<!-- FAQ-Page -->
+		<div class="table_wrap">
+			<a href="/question/enroll" class="top_btn">문의 등록</a>
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="qno_width">번호</th>
+						<th class="title_width">제목</th>
+						<th class="writer_width">작성자</th>
+						<th class="regdate_width">작성일</th>
+					</tr>
+				</thead>
+				<c:forEach items="${list}" var="list">
+					<tr>
+						<td><c:out value="${list.qno}" /></td>
+						<td><a class="a_move" href="${list.qno}">${list.title}</a></td>
+						<td><c:out value="${list.writer}" /></td>
+						<td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.updateDate}" /></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<div class="search_wrap">
+				<div class="search_area">
+					<select name="type">
+						<option value="" <c:out
+							value="${pageMaker.cri.type == null?'selected':'' }" />>--</option>
+						<option value="T" <c:out
+							value="${pageMaker.cri.type eq 'T'?'selected':'' }" />>제목</option>
+						<option value="C" <c:out
+							value="${pageMaker.cri.type eq 'C'?'selected':'' }" />>내용</option>
+						<option value="W" <c:out
+							value="${pageMaker.cri.type eq 'W'?'selected':'' }" />>작성자</option>
+						<option value="TC" <c:out
+							value="${pageMaker.cri.type eq 'TC'?'selected':'' }" />>제목 + 내용</option>
+						<option value="TW" <c:out
+							value="${pageMaker.cri.type eq 'TW'?'selected':'' }" />>제목 + 작성자
+						</option>
+						<option value="TCW" <c:out
+							value="${pageMaker.cri.type eq 'TCW'?'selected':'' }" />>제목 + 내용 + 작성자
+						</option>
+					</select>
+					<input type="text" name="keyword" value="${pageMaker.cri.keyword }">
+					<button id='search'>Search</button>
+				</div>
+			</div>
+			<div class="pageInfo_wrap">
+				<div class="pageInfo_area">
+					<ul id="pageInfo" class="pageInfo">
+						<c:if test="${pageMaker.prev}">
+							<li class="pageInfo_btn previous"><a
+									href="${pageMaker.startPage-1}">이전</a></li>
+						</c:if>
+						<c:forEach var="num" begin="${pageMaker.startPage}"
+							end="${pageMaker.endPage}">
+							<li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? 'active':'' }">
+								<a href="${num}">${num}</a></li>
+						</c:forEach>
+						<c:if test="${pageMaker.next}">
+							<li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">다음</a>
+							</li>
+						</c:if>
+					</ul>
+				</div>
+			</div>
+			<form id="moveForm" method="get">
+				<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+				<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+				<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+				<input type="hidden" name="type" value="${pageMaker.cri.type }">
+			</form>
+		</div>
+	<!-- FAQ-Page /- -->
+	</div>
 </div>
 <!-- app /- -->
 </body>

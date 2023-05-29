@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-<!DOCTYPE html>
-<html>
+
 <style>
 .container {
 	margin-top: 10px;}
@@ -9,7 +8,8 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;}
+	justify-content: center;
+	padding: 5px 20px;}
 .text-field1 {
 	border-radius: 5px;}
 .table_wrap th,
@@ -27,9 +27,6 @@
   box-sizing: border-box;}
 .input_wrap input:read-only {
   color: #888;}
-
-<style type="text/css">.input_wrap {
-  padding: 5px 20px;}
 label {
   display: block;
   margin: 10px 0;}
@@ -62,7 +59,6 @@ textarea {
   margin-bottom: 30px;
   display: flex;
   justify-content: center;}
-
 </style>
 
 <body>

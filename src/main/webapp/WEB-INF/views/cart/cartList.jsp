@@ -1,19 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-		<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-			<%@ include file="../include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
+
 <style>
 .modal {
-        text-align: center;
-}
+	text-align: center;}
  
 @media screen and (min-width: 768px) { 
-        .modal:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 100%;
-        }
+	.modal:before {
+		display: inline-block;
+		vertical-align: middle;
+		content: " ";
+		height: 100%;}
 }
 .modal-content {
 	margin-left:36.7%;
@@ -148,6 +145,7 @@ $(document).ready(function(){
 	})
 })
 </script>
+
 <body>
 <div id="app">
 	<!-- Page Introduction Wrapper -->

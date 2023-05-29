@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../include/header.jsp" %>
-<!DOCTYPE html>
-<html class="no-js" lang="en-US">
+
 <style>
 .container {
 	margin-top:10px;}
@@ -25,9 +22,9 @@
     margin-right: 10px;
     background-color: #ff6b00;}
 </style>
+
 <script>
 $(document).ready(function(e){
-	
 	let form = $("#infoForm");
 	
 	$("#list_btn").on("click", function(e){
@@ -43,8 +40,8 @@ $(document).ready(function(e){
 	});	
 });
 </script>
-<body>
 
+<body>
 <div id="app">
     <div class="page-style-a">
         <div class="container">
@@ -62,32 +59,31 @@ $(document).ready(function(e){
             </div>
         </div>
     </div>
-   <div class="container">
-   	<div class="form-group">
-        <label>게시판 번호</label>
-        <input class="form-control" name="bno" readonly="readonly" value='<c:out value="${pageInfo.bno}"/>'>
-    </div>
-    <div class="form-group">
-        <label>게시판 제목</label>
-        <input class="form-control" name="title" readonly="readonly" value='<c:out value="${pageInfo.title}"/>'>
-    </div>
-    <div class="form-group">
-        <label>게시판 내용</label>
-        <textarea class="form-control" rows="3" name="content" readonly="readonly"><c:out value="${pageInfo.content}"/></textarea>
-    </div>
-    <div class="form-group">
-        <label>게시판 등록일</label>
-        <input class="form-control" name="regdater" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.regdate}"/>'>
-    </div>
-    <div class="btn_wrap">
-        <a class="btn btn-list" id="list_btn">목록 페이지</a>
-        <a class="btn btn-modify" id="modify_btn">수정 하러가기</a>
-    </div>
-    <form id="infoForm" action="/notice/modify" method="get">
-        <input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
-    </form>
+	<div class="container">
+		<div class="form-group">
+			<label>게시판 번호</label>
+			<input class="form-control" name="bno" readonly="readonly" value='<c:out value="${pageInfo.bno}"/>'>
+		</div>
+		<div class="form-group">
+			<label>게시판 제목</label>
+			<input class="form-control" name="title" readonly="readonly" value='<c:out value="${pageInfo.title}"/>'>
+		</div>
+		<div class="form-group">
+			<label>게시판 내용</label>
+			<textarea class="form-control" rows="3" name="content" readonly="readonly"><c:out value="${pageInfo.content}"/></textarea>
+		</div>
+		<div class="form-group">
+			<label>게시판 등록일</label>
+			<input class="form-control" name="regdater" readonly="readonly" value='<fmt:formatDate pattern="yyyy/MM/dd" value="${pageInfo.regdate}"/>'>
+		</div>
+		<div class="btn_wrap">
+			<a class="btn btn-list" id="list_btn">목록 페이지</a>
+			<a class="btn btn-modify" id="modify_btn">수정 하러가기</a>
+		</div>
+		<form id="infoForm" action="/notice/modify" method="get">
+			<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
+		</form>
     </div>   
 </div>
 </body>
- 
 <%@ include file="../include/footer.jsp" %>

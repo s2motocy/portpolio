@@ -566,17 +566,22 @@ $(function () {
     let $starWidth = $('#your-stars');
     let $starComment = $('#star-comment');
 
-
-
     /**
      * Rating Stars Control
      */
     const ratingStarsControl = function () {
-        let oneStarWidth = 15; // 15 * 5 = 75
+    	let oneStarWidth = 15; // 15 * 5 = 75
         let newStarWidth;
         let ratingthresholdNumber = 5;
         let comment;
         let currentVal;
+        let r = $( "#your-rating-value" ).val()
+        console.log(r)
+        setTimeout(()=>{
+        	$( "#your-rating-value" ).val(Number(r)+Number(0.0))
+        	$( "#your-rating-value" ).trigger('keyup')
+        }, 1);
+        
         // On Every key type
         $ratingField.on('keyup',function () {
             // Reset Star Width

@@ -1,43 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../include/header.jsp" %>
+
 <style>
-	tr {
-		text-align: center;
-		border: 1px solid;
-	}
-
-	.container {
-		padding-top: 10px;
-	}
-
-	.navi_bar_area #admin2:visited {
-		color: black;
-		font-weight: bold;
-	}
-
-	.table td {
-		vertical-align: middle;
-	}
+tr {
+	text-align: center;
+	border: 1px solid;}
+.container {
+	padding-top: 10px;}
+.navi_bar_area #admin2:visited {
+	color: black;
+	font-weight: bold;}
+.table td {
+	vertical-align: middle;}
 </style>
+
 <script>
-	$(document).ready(function () {
-		/* 삭제버튼 */
-		$("button#deletebtn").each(function (idx, data) {
-			$(this).click(function (e) {
-				var confirmation = confirm("정말로 삭제하시겠습니까?");
-				if (confirmation) {
-					// 확인 버튼 클릭 시 동작
-					alert("동작을 시작합니다.");
-				} else {
-					// 취소 버튼 클릭 시 동작
-					e.preventDefault();
-					alert("동작을 취소했습니다.");
-				}
-			}) // click
-		}) // each
-	}) // ready
+$(document).ready(function () {
+	/* 삭제버튼 */
+	$("button#deletebtn").each(function (idx, data) {
+		$(this).click(function (e) {
+			var confirmation = confirm("정말로 삭제하시겠습니까?");
+			if (confirmation) {
+				// 확인 버튼 클릭 시 동작
+				alert("동작을 시작합니다.");
+			} else {
+				// 취소 버튼 클릭 시 동작
+				e.preventDefault();
+				alert("동작을 취소했습니다.");
+			}
+		}) // click
+	}) // each
+}) // ready
 </script>
 
 <body>

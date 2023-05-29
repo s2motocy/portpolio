@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!-- Style -->
 <style type="text/css">
 .col-lg-3 {
     display: table-cell;
@@ -103,4 +104,5 @@
 
 <!-- Main -->
 <script type="text/javascript" src="/resources/js/app.js"></script>
+
 </html>

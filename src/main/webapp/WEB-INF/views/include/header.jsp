@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html class="no-js" lang="ko">
 <head>
@@ -66,33 +67,33 @@
 <!-- Owl Carousel -->
 <script type="text/javascript" src="/resources/js/owl.carousel.min.js"></script>
 <script>
-    $("#gnb_logout_button").click(function () {
-        //alert("버튼 작동");
-        $.ajax({
-            type: "POST",
-            url: "/user/logout.do",
-            success: function (data) {
-                alert("로그아웃 성공");
-                document.location.reload();
-            }
-        }); // ajax 
-    });
-    function searchFunction(event) {
-        event.preventDefault();
-        const keyword = document.getElementById("search-landscape").value;
-        const category = document.getElementById("select-category").value;
-        performSearch(keyword, category);
-    }
-    function performSearch(keyword, category) {
-        console.log("Performing search with keyword:", keyword);
-        console.log("Selected category:", category);
-    }
-    $(document).ready(function () {
-        $("#btn-search").click(function (e) {
-            var search = $("#search-landscape").val()
-            console.log(search)
-        })
+$("#gnb_logout_button").click(function () {
+    //alert("버튼 작동");
+    $.ajax({
+        type: "POST",
+        url: "/user/logout.do",
+        success: function (data) {
+            alert("로그아웃 성공");
+            document.location.reload();
+        }
+    }); // ajax 
+});
+function searchFunction(event) {
+    event.preventDefault();
+    const keyword = document.getElementById("search-landscape").value;
+    const category = document.getElementById("select-category").value;
+    performSearch(keyword, category);
+}
+function performSearch(keyword, category) {
+    console.log("Performing search with keyword:", keyword);
+    console.log("Selected category:", category);
+}
+$(document).ready(function () {
+    $("#btn-search").click(function (e) {
+        var search = $("#search-landscape").val()
+        console.log(search)
     })
+})
 </script>
 <!-- app -->
 <div id="app">

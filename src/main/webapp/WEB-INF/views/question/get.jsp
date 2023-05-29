@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+
 <style>
 .container {
 	margin-top:10px;}
@@ -79,88 +77,89 @@ textarea {
 </style>
 
 <script>
-  let form = $("#infoForm");
-  let replyForm = $("#replyForm");
-  const isAdmin = true; // 여기에 관리자 여부를 판단하는 로직 추가 해야됨
-  $(document).ready(function () {
-    $("#list_btn").on("click", function (e) {
-      form.find("#qno").remove();
-      form.attr("action", "/question/list");
-      form.submit();
-    });
-    $("#modify_btn").on("click", function (e) {
-      form.attr("action", "/question/modify");
-      form.submit();
-    });
-    if (isAdmin) {
-      console.log("관리자")
-      $("#reply_btn").on("click", function (e) {
-
-        $("#action_btn_wrap").hide();
-        $("#reply_btn_wrap").show();
-        $("#reply_input_wrap").show();
-        $("#reply_output_wrap").hide();
-        $("#submit_reply_btn").click(function (e) {
-          console.log('답글 눌렸어')
-          //e.preventDefault()
-          var text = $("#reply_content").val()
-          var inputData = $("input[name='qno']").val()
-          console.log('sdfaf:', text, inputData)
-          var reply = { reply: text, qno: inputData }
-          //$('form#replyShow').append({reply:text}),submit()
-          // Ajax를 사용해서 답변 등록 요청을 하라는데 이거 어케함?
-          $.ajax({
-            type: "POST",
-            url: "/question/reply",
-            data: JSON.stringify(reply),
-            contentType: "application/json",
-            success: function (response) {
-              console.log(response);
-              alert("답변이 등록되었습니다.");
-            },
-            error: function (xhr, status, error) {
-              console.error(error);
-              alert("답변 등록에 실패했습니다.");
-            }
-          });
-          $("#reply_output_wrap").show();
-          $("#reply_input_wrap").hide();
-          $("#action_btn_wrap").show();
-          $("#reply_btn_wrap").hide();
-
-        })
-      })
-    }
-    else {
-      alert("관리자만 답글을 작성할 수 있습니다.");
-      e.preventDefault(); // 버튼 클릭 이벤트의 기본 동작을 중지합니다.
-    }
-    $("#submit_reply_btn").on("click", function (e) {
-      e.preventDefault();
-      let replyContent = $("#reply_content").val().trim();
-      if (replyContent === "") {
-        alert("답글 내용을 입력해주세요.");
-        return;
-      }
-      $("#reply_output").val(replyContent);
-      // 답변 객체 생성
-      let reply = {
-        parentQno: "${pageInfo.qno}",
-        content: replyContent,
-        pageNum: "${cri.pageNum}",
-        amount: "${cri.amount}",
-        keyword: "${cri.keyword}",
-        type: "${pageMaker.cri.type}"
-      };
-    });
-
-    // 페이지 로딩 시 관리자 여부를 체크하여 답글 작성 버튼 제어
-
-    if (!isAdmin) {
-      $("#reply_btn").hide();
-    }
+let form = $("#infoForm");
+let replyForm = $("#replyForm");
+const isAdmin = true; // 여기에 관리자 여부를 판단하는 로직 추가 해야됨
+$(document).ready(function () {
+  $("#list_btn").on("click", function (e) {
+    form.find("#qno").remove();
+    form.attr("action", "/question/list");
+    form.submit();
   });
+  $("#modify_btn").on("click", function (e) {
+    form.attr("action", "/question/modify");
+    form.submit();
+  });
+  if (isAdmin) {
+    console.log("관리자")
+    $("#reply_btn").on("click", function (e) {
+
+      $("#action_btn_wrap").hide();
+      $("#reply_btn_wrap").show();
+      $("#reply_input_wrap").show();
+      $("#reply_output_wrap").hide();
+      $("#submit_reply_btn").click(function (e) {
+        console.log('답글 눌렸어')
+        //e.preventDefault()
+        var text = $("#reply_content").val()
+        var inputData = $("input[name='qno']").val()
+        console.log('sdfaf:', text, inputData)
+        var reply = { reply: text, qno: inputData }
+        //$('form#replyShow').append({reply:text}),submit()
+        // Ajax를 사용해서 답변 등록 요청을 하라는데 이거 어케함?
+        $.ajax({
+          type: "POST",
+          url: "/question/reply",
+          data: JSON.stringify(reply),
+          contentType: "application/json",
+          success: function (response) {
+            console.log(response);
+            alert("답변이 등록되었습니다.");
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+            alert("답변 등록에 실패했습니다.");
+          }
+        });
+        $("#reply_output_wrap").show();
+        $("#reply_input_wrap").hide();
+        $("#action_btn_wrap").show();
+        $("#reply_btn_wrap").hide();
+
+      })
+    })
+  }
+  else {
+    alert("관리자만 답글을 작성할 수 있습니다.");
+    e.preventDefault(); // 버튼 클릭 이벤트의 기본 동작을 중지합니다.
+  }
+  $("#submit_reply_btn").on("click", function (e) {
+    e.preventDefault();
+    let replyContent = $("#reply_content").val().trim();
+    if (replyContent === "") {
+      alert("답글 내용을 입력해주세요.");
+      return;
+    }
+    $("#reply_output").val(replyContent);
+    // 답변 객체 생성
+    let reply = {
+      parentQno: "${pageInfo.qno}",
+      content: replyContent,
+      pageNum: "${cri.pageNum}",
+      amount: "${cri.amount}",
+      keyword: "${cri.keyword}",
+      type: "${pageMaker.cri.type}"
+    };
+  });
+
+  // 페이지 로딩 시 관리자 여부를 체크하여 답글 작성 버튼 제어
+
+  if (!isAdmin) {
+    $("#reply_btn").hide();
+  }
+});
 </script>
+
 <body>
 <div class="page-style-a">
 	<div class="container">
@@ -232,14 +231,14 @@ textarea {
              </div>
            </td>
          </tr>
-         <form action="/question/reply" method="post" id="replyShow">
+       </table>
+       <form action="/question/reply" method="post" id="replyShow">
            <div class="input_wrap" id="reply_input_wrap" style="display: none;">
              <label>답글 내용</label>
              <textarea rows="3" id="reply_content" name="reply"></textarea>
              <button id="submit_reply_btn">답글 제출</button>
            </div>
-         </form>
-       </table>
+       </form>
        <div class="btn_wrap" id="action_btn_wrap">
          <button class="btn" id="modify_btn">수정하기</button>
          <button class="btn" id="list_btn">문의 페이지</button>

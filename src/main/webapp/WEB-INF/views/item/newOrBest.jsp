@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../include/header.jsp" %>
 
 <style>
@@ -87,10 +85,10 @@ $(document).ready(function(e){
             <ul class="bread-crumb">
                 <li class="has-separator">
                     <i class="ion ion-md-home"></i>
-                    <a href="home.html">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="is-marked">
-                    <a href="single-product.html">신상품</a>
+                    <a href="/item/newOrBest">신상품</a>
                 </li>
             </ul>
         </div>
@@ -100,7 +98,7 @@ $(document).ready(function(e){
 	<div class="facet-filter-by-price">  
         <div class="price-bar">
 			<a data-toggle="collapse" href="#faq-1">가격 설정</a>
-				<div class="collapse show" id="faq-1">
+				<div class="collapse" id="faq-1">
 		            <div class="amount-result clearfix">
 		                <div class="price-from"></div>
 		                <div class="price-to"></div>
@@ -123,7 +121,7 @@ $(document).ready(function(e){
 	    <c:forEach var="newitem" items="${newItemList}">
 	        <div class="item" class="col">
 		        <div class="image-container">
-		            <a class="item-img-wrapper-link" href="single-product.html">
+		            <a class="item-img-wrapper-link" href="/item/detail?item_id=${newitem.item_id}">
 		                <img class="img-fluid" src="/display?fileName=/${newitem.attachList[0].uploadPath.replace('\\','/')}/${newitem.attachList[0].uuid}_${newitem.attachList[0].fileName}" alt="Product" width="225px" height="225px" />
 		            </a>
 		        </div>
@@ -133,7 +131,7 @@ $(document).ready(function(e){
 		                	<span><a href="/item/category?category=${newitem.category}">${newitem.category}</a></span>
 		                </div>
 		                    <h6 class="item-title">
-		                       <a href="single-product.html">${newitem.item_name}</a>
+		                       <a href="/item/detail?item_id=${newitem.item_id}">${newitem.item_name}</a>
 		                    </h6>
 		                    <div class="item-stars">
 		                        <div class='star' title="0 out of 5 - based on 0 Reviews">

@@ -2,7 +2,6 @@
 <%@ include file="../include/header.jsp" %>
 
 <body>
-
 <!-- app -->
 <div id="app">
     <!-- Page Introduction Wrapper -->
@@ -36,7 +35,7 @@
                 	<a href="/" class="thank-you-back">홈으로 가기</a>
                 </div>
                 <div>
-                	<a href="#" class="thank-you-back" id="search">결제내역 조회하기</a>
+                	<a href="/buy/buyList" class="thank-you-back" id="search">결제내역 조회하기</a>
                 </div>
             </div>
         </div>

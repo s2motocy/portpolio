@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
+
 <style>
 button.btn-primary {
 	background-color: #ff6b00;}
 .container2 {
 	width: 20%;
 	margin-left: auto;
-	margin-right: auto;
-}
+	margin-right: auto;}
 </style>
+
 <body>
 <div id="app">
     <div class="page-style-a">

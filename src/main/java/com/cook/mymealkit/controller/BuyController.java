@@ -26,6 +26,7 @@ import com.cook.mymealkit.domain.UserVO;
 import com.cook.mymealkit.mapper.FileMapper;
 import com.cook.mymealkit.service.BuyListService;
 import com.cook.mymealkit.service.BuyService;
+import com.cook.mymealkit.service.CartService;
 import com.cook.mymealkit.service.ItemService;
 import com.cook.mymealkit.service.UserService;
 
@@ -34,7 +35,7 @@ import lombok.Setter;
 @Controller
 @RequestMapping("/buy/*")
 public class BuyController {
-
+	/* Service 설정 */
 	@Setter(onMethod_ = @Autowired)
 	BuyService bservice;
 	@Setter(onMethod_ = @Autowired)
@@ -43,10 +44,13 @@ public class BuyController {
 	ItemService iservice;
 	@Setter(onMethod_ = @Autowired)
 	BuyListService blistservice;
+	@Setter(onMethod_=@Autowired)
+	CartService cservice;
+	/* Mapper 설정 */
 	@Setter(onMethod_ = @Autowired)
 	FileMapper fmapper;
 
-	/* 회원 구매 로그인 */
+	/* 회원 구매 로그인 |--------------------------------------------------- */
 	@GetMapping("/buyLogin")
 	public void registerUser(BuyUserVO bvo, BuyGuestVO gvo, HttpSession session, Model model) {
 		System.out.println("vo : " + bvo);
@@ -54,7 +58,7 @@ public class BuyController {
 		// 여기 페이지에서 login 관련만 화면에 보이게 하고 나머지는 hidden으로 감춘후 처리함
 	}
 
-	/* 로그인 세션처리 */
+	/* 로그인 세션처리 |--------------------------------------------------- */
 	@PostMapping("/buyLogin")
 	public ResponseEntity<String> UserLoginPost(@RequestBody UserVO uvo, BuyUserVO bvo, HttpSession session) {
 		System.out.println("uvo:"+uvo+" ,bvo:"+bvo);
@@ -89,7 +93,7 @@ public class BuyController {
 		}
 	}
 
-	/* 회원 구매 페이지 */
+	/* 회원 구매 페이지 |--------------------------------------------------- */
 	@GetMapping("/buyUser")
 	public void register(UserVO uvo, BuyUserVO bvo, HttpServletRequest request, HttpSession session, Model model) {
 		System.out.println("BuyUser 에서 uvo : " + uvo + " , bvo" + bvo);
@@ -136,7 +140,7 @@ public class BuyController {
 		}
 	}
 
-	/* 비회원 구매 페이지 */
+	/* 비회원 구매 페이지 |--------------------------------------------------- */
 	@GetMapping("/buyGuest")
 	public void guestRegister(BuyGuestVO gvo, Model model) {
 		System.out.println("BuyGuest 에서 gvo : " + gvo);
@@ -169,7 +173,7 @@ public class BuyController {
 		model.addAttribute("vlist", volist);
 	}
 
-	/* 구매 등록 */
+	/* 구매 등록 |--------------------------------------------------- */
 	@PostMapping("/register")
 	public String registerPost(BuyUserVO bvo, BuyGuestVO gvo, HttpSession session) {
 		if (session.getAttribute("user") != null) {
@@ -180,6 +184,11 @@ public class BuyController {
 			bservice.insertUserBuy(bvo);
 			bvo.getBuy_list().forEach(i -> {
 				blistservice.register(i);
+				ItemVO vo = iservice.itemFindById(Integer.parseInt(i.getItem_id()));
+				vo.setItem_sold(i.getAmount());
+				vo.setItem_stock(vo.getItem_stock()-i.getAmount());
+				iservice.itemUpdate(vo);
+				cservice.cartAllRemove();
 			});
 
 		} else {
@@ -190,19 +199,26 @@ public class BuyController {
 			bservice.insertGuestBuy(gvo);
 			gvo.getBuy_list().forEach(i -> {
 				blistservice.register(i);
+				ItemVO vo = iservice.itemFindById(Integer.parseInt(i.getItem_id()));
+				vo.setItem_sold(i.getAmount());
+				vo.setItem_stock(vo.getItem_stock()-i.getAmount());
+				iservice.itemUpdate(vo);
+				cservice.cartAllRemove();
 			});
-
 		}
+		// buy_no 번호를 실어보낸다
 
 		return "redirect:/buy/buyDone";
 	}
 
-	/* 구매완료 페이지 */
+	/* 구매완료 페이지 |--------------------------------------------------- */
 	@GetMapping("/buyDone")
 	public void success() {
+		// buy_no 번호를 화면에 뿌린다
+		// "결제내역 조회하기" 버튼을 누르면 조회하기 위한 입력페이지로 간다 
 	}
 
-	// 회원 구매내역 조회
+	/* 회원 구매내역 조회 |--------------------------------------------------- */
 	@GetMapping("/userBuyList")
 	public String userBuy(Model model, HttpSession session, String user_id) {
 		System.out.println("멤버아이디?" + user_id);
@@ -224,9 +240,9 @@ public class BuyController {
 	}
 	
 	@GetMapping("/buyEmpty")
-	public void buyEmpty() {};
+	public void buyEmpty() {}
 
-	// 관리자권한 전체 구매내역 조회
+	/* 관리자권한 전체 구매내역 조회 |--------------------------------------------------- */
 	@GetMapping("/buyList")
 	public void Buy(Model model) {
 		List<BuyUserVO> buyList = bservice.userBuyList(); // 전체 회원구매 목록
