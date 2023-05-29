@@ -11,4 +11,6 @@
 		select count(buy_date) as buycnt, buy_date from tbl_user_buy
 	 		where buy_date between #{startDateB} and #{endDateB} group by buy_date order by buy_date
 	</select>
+	
+	
 </mapper>

@@ -3,6 +3,7 @@ package com.cook.mymealkit.mapper;
 import java.util.List;
 
 import com.cook.mymealkit.domain.ItemVO;
+import com.cook.mymealkit.domain.SelectDTO;
 
 public interface ItemMapper {
 
@@ -17,4 +18,9 @@ public interface ItemMapper {
 	public List<ItemVO> categoryItemListByStartAndEnd(ItemVO vo);	// 가격설정	
 	public List<ItemVO> categoryItemList(String category);			// 카테고리 상품보기
 	
+
+	public List<ItemVO> itemListBySearch(String search); 			// 검색
+	public ItemVO getItemIdName(long item_id); 						// 상품 id 이름
+	public List<SelectDTO> likeSelect(); 							// 평점순 상품
+
 }

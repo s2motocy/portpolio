@@ -10,7 +10,7 @@ public class ChartVO {
 	private String endDate;
 	private int cnt;
 	private String reg_date;
-	
+
 	private String startDateB;
 	private String endDateB;
 	private int buyCnt;

@@ -17,27 +17,34 @@ import lombok.Setter;
 
 @Controller
 public class MainController {
-	
-	@Setter(onMethod_=@Autowired)
-	ItemMapper imapper;
-	
-	@Setter(onMethod_=@Autowired)
-	FileMapper fmapper;
-	
-	/* Service 설정 */
-	@Setter(onMethod_=@Autowired)
-	ItemService iservice;
-	
-	@RequestMapping({"/","/main"})
-	public String main(Model model) {
-		List<ItemVO> itemList = imapper.itemList();
-		itemList.forEach(i->{
-			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
-			i.setAttachList(attachList);
-		});
-		model.addAttribute("list",itemList);
-		return "/main";
-	}
-	
 
+	@Setter(onMethod_ = @Autowired)
+	ItemMapper imapper;
+
+	@Setter(onMethod_ = @Autowired)
+	FileMapper fmapper;
+
+	/* Service 설정 */
+	@Setter(onMethod_ = @Autowired)
+	ItemService iservice;
+
+	@RequestMapping({ "/", "/main" })
+	public String main(Model model, String search) {
+		if (search == null) {
+			List<ItemVO> itemList = imapper.itemList();
+			itemList.forEach(i -> {
+				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
+				i.setAttachList(attachList);
+			});
+			model.addAttribute("list", itemList);
+		} else {
+			List<ItemVO> itemList = imapper.itemListBySearch(search);
+			itemList.forEach(i -> {
+				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
+				i.setAttachList(attachList);
+			});
+			model.addAttribute("list", itemList);
+		}
+		return "main";
+	}
 }

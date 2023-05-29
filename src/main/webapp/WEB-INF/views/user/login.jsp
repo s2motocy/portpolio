@@ -36,7 +36,6 @@
                 <!-- Login -->
                 <div class="col-lg-12">
                     <div class="login-wrapper">
-                        <h6 class="account-h6 u-s-m-b-30">Welcome back! Sign in to your account.</h6>
                         <form action="login" method="post">
                             <div class="u-s-m-b-30">
                                 <label for="user_id">아이디:</label>
@@ -48,17 +47,19 @@
                             </div>
                             <div class="group-inline u-s-m-b-30">
                                 <div class="group-1">
-                                    <input type="checkbox" id="idSaveCheck">아이디 기억하기
+                                    <input type="checkbox" id="idSaveCheck">
+                                             아이디 기억하기
                                 </div>
                                 <div class="group-2 text-right">
                                     <div class="page-anchor">
                                         <a href="findid"> 아이디 찾기</a>
+                                            &nbsp;
                                         <a href="findpwd">비밀번호 찾기</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="m-b-45">
-                                <button type="submit" class="btn btn-primary">로그인</button>
+                                <button type="submit" class="btn btn-primary" id="loginButton">로그인</button>
                                 <button class="btn btn-link"><a href="join">회원가입</a></button>
                             </div>
                         </form>
@@ -122,6 +123,16 @@
         cookieValue = cookieData.substring(start, end);
     }
     return unescape(cookieValue);
+    }
+</script>
+<script>
+    // Flash 메시지 가져오기
+    var message = "${message}";
+
+    // 메시지가 존재하는 경우에만 처리
+    if (message) {
+        // 메시지 출력
+        alert(message);
     }
 </script>
 </body>

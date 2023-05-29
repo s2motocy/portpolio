@@ -38,8 +38,20 @@
 	<select id="categoryItemList" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="string" >
 		select * from tbl_item where category=#{category}
 	</select>
+
 	<select id="categoryItemListByStartAndEnd" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="com.cook.mymealkit.domain.ItemVO" >
-		select * from tbl_item where item_price  between #{start} and #{end}
+		select * from tbl_item where item_price between #{start} and #{end}
+	</select>
+	
+	<select id="itemListBySearch" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="string">
+		<![CDATA[
+  		select * from tbl_item where item_id >0 and item_name like '%' ||  #{search} || '%'
+  		]]>
+	</select>
+	
+	<select id="getItemIdName" resultType="com.cook.mymealkit.domain.ItemVO">
+		select item_id, item_name from tbl_item 
+		where item_id = #{item_id}	
 	</select>
 
 	<select id="categoryByNewOrBest" resultType="com.cook.mymealkit.domain.ItemVO">
@@ -63,6 +75,13 @@
 					<![CDATA[where rownum <= 10]]>	
 				</otherwise>
 			</choose>
+	</select>
+	
+	<select id="likeSelect" resultType="com.cook.mymealkit.domain.SelectDTO">
+		select * from
+			(select rownum as rn, item_id, item_name (select category from tbl_item where tbl_item.category = tbl_item.category) as category
+				from tbl_item
+					<![CDATA[where rn < 9]]>	
 	</select>
 	
 </mapper>

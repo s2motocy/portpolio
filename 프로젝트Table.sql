@@ -85,19 +85,6 @@ drop sequence seq_file_item;
 drop table tbl_file_item;
 
 
-SELECT *
-			FROM (
-			  SELECT *,
-		  	  CASE
-		     	 WHEN update_date = 'n' THEN update_date
-		     	 WHEN update_date = 'b' THEN item_sold
-		     	 ELSE null
-		   	 END AS sort_by
-		 	 FROM tbl_item
-		 	 ORDER BY sort_by DESC
-		) 
-		WHERE ROWNUM <= 6;
-
 -------------------------------------------------------------------------------- 장바구니 (cart)
 
 -- 장바구니(cart) 시퀀스 생성
@@ -169,10 +156,11 @@ create table tbl_buy_list (
     buy_price       number(10),                         -- 가격
     delivery_cost   number(10)                          -- 배송비
 );
-insert into tbl_buy_list value(seq_buy_list.nextval,);
+insert into tbl_buy_list values(seq_buy_list.nextval,'u12345',1,'김치찌개',1,10000,0);
+update tbl_buy_list set buy_no='u12345', item_id=2,item_name='asdfas',amount=1,buy_price=8000 where buy_no='u12345';
 -- 커밋
 commit;
-
+delete from tbl_buy_list where blist_no = 4;
 -- 조회
 select * from tbl_user_buy;
 select * from tbl_guest_buy;

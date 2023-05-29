@@ -13,12 +13,12 @@ import lombok.Setter;
 @Service
 public class CartServiceImpl implements CartService {
 
-	@Setter(onMethod_=@Autowired)
+	@Setter(onMethod_ = @Autowired)
 	private CartMapper cmapper;
-	
+
 	@Override
 	public void cartInsert(CartDTO dto) {
-		System.out.println("Cart 서비스에서 등록 : dto="+ dto);
+		System.out.println("Cart 서비스에서 등록 : dto=" + dto);
 		cmapper.cartInsert(dto);
 	}
 
@@ -30,19 +30,19 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public CartDTO cartFindById(long cart_id) {
-		System.out.println("Cart 서비스에서 조회 : itemid="+ cart_id);
+		System.out.println("Cart 서비스에서 조회 : itemid=" + cart_id);
 		return cmapper.cartFindById(cart_id);
 	}
 
 	@Override
 	public void cartUpdate(CartDTO dto) {
-		System.out.println("Cart 서비스에서 수정 : dto="+ dto);
+		System.out.println("Cart 서비스에서 수정 : dto=" + dto);
 		cmapper.cartUpdate(dto);
 	}
 
 	@Override
 	public void cartDelete(long cart_id) {
-		System.out.println("Cart 서비스에서 삭제 : cart_id="+ cart_id);
+		System.out.println("Cart 서비스에서 삭제 : cart_id=" + cart_id);
 		cmapper.cartDelete(cart_id);
 	}
 
@@ -54,7 +54,7 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public List<CartDTO> cartFindByUser(String user_id) {
-		System.out.println("Cart 서비스에서 user_id 로 조회 : user_id="+ user_id);
+		System.out.println("Cart 서비스에서 user_id 로 조회 : user_id=" + user_id);
 		return cmapper.cartFindByUser(user_id);
 	}
 

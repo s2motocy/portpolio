@@ -7,29 +7,32 @@ import org.springframework.stereotype.Service;
 
 import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.ItemVO;
+import com.cook.mymealkit.domain.SelectDTO;
 import com.cook.mymealkit.mapper.FileMapper;
 import com.cook.mymealkit.mapper.ItemMapper;
 
 import lombok.Setter;
 
 @Service
-public class ItemServicempl implements ItemService{
-	
+public class ItemServicempl implements ItemService {
+
 	/* Mapper 설정 */
-	@Setter(onMethod_=@Autowired)
+	@Setter(onMethod_ = @Autowired)
 	private ItemMapper imapper;
-	@Setter(onMethod_=@Autowired)
+
+	@Setter(onMethod_ = @Autowired)
 	private FileMapper fmapper;
-	
+
 	@Override
 	public void itemInsert(ItemVO vo) {
-		System.out.println("Item 서비스에서 등록 : vo="+ vo);
+		System.out.println("Item 서비스에서 등록 : vo=" + vo);
 		imapper.itemInsert(vo);
-		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) return ;
-		vo.getAttachList().forEach(i->{
-			System.out.println("변경 이전의 item_id ="+vo.getItem_id());
+		if (vo.getAttachList() == null || vo.getAttachList().size() <= 0)
+			return;
+		vo.getAttachList().forEach(i -> {
+			System.out.println("변경 이전의 item_id =" + vo.getItem_id());
 			vo.setItem_id(imapper.getMax());
-			System.out.println("변경 이후의 itemid ="+vo.getItem_id());
+			System.out.println("변경 이후의 itemid =" + vo.getItem_id());
 			i.setFid(vo.getItem_id());
 			fmapper.fileInsert(i);
 		});
@@ -43,27 +46,27 @@ public class ItemServicempl implements ItemService{
 
 	@Override
 	public ItemVO itemFindById(long item_id) {
-		System.out.println("Item 서비스에서 조회 : item_id=" +item_id);
+		System.out.println("Item 서비스에서 조회 : item_id=" + item_id);
 		return imapper.itemFindById(item_id);
 	}
 
 	@Override
 	public int itemUpdate(ItemVO vo) {
-		System.out.println("Item 서비스에서 수정 : vo=" +vo);
+		System.out.println("Item 서비스에서 수정 : vo=" + vo);
 		return imapper.itemUpdate(vo);
 	}
 
 	@Override
 	public int itemDelete(long item_id) {
-		System.out.println("Item 서비스에서 삭제 : item_id=" +item_id);
+		System.out.println("Item 서비스에서 삭제 : item_id=" + item_id);
 		return imapper.itemDelete(item_id);
 	}
 
 	@Override
 	public List<AttachFileDTO> getAttachList(long item_id) {
-		System.out.println("Item 서비스에서 파일 정보 조회 : item_id=" +item_id);
+		System.out.println("Item 서비스에서 파일 정보 조회 : item_id=" + item_id);
 		List<AttachFileDTO> attachList = fmapper.fileFindById(item_id);
-		attachList.forEach(i->System.out.println("Item 서비스에서 각 파일 정보 조회 : " + i ));
+		attachList.forEach(i -> System.out.println("Item 서비스에서 각 파일 정보 조회 : " + i));
 		return attachList;
 	}
 
@@ -83,6 +86,25 @@ public class ItemServicempl implements ItemService{
 		return imapper.categoryItemListByStartAndEnd(vo);
 	}
 
+	@Override
+	public List<ItemVO> itemListBySearch(String search) {
+		System.out.println("서비스 : " + search);
+		return imapper.itemListBySearch(search);
+	}
 
+	@Override
+	public ItemVO getItemIdName(long item_id) {
+		return imapper.getItemIdName(item_id);
+	}
 
+	@Override
+	public List<SelectDTO> likeSelect() {
+		List<SelectDTO> list = imapper.likeSelect();
+		list.forEach(dto -> {
+			int item_id = dto.getItem_id();
+			List<AttachFileDTO> imageList = fmapper.fileFindById(item_id);
+			dto.setImageList(imageList);
+		});
+		return list;
+	}
 }

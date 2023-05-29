@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../include/header.jsp" %>
 
 <style>
@@ -19,7 +19,6 @@
 	font-size:10px;
 	color:#d90429;}
 </style>
-
 <script>
 const attachClickGridAndList = function () {
     $('#list-anchor').on('click',function () {
@@ -61,11 +60,11 @@ $(document).ready(function(e){
 					console.log(data.attachList[0])
 					var imageurl = '/display?fileName=/'+ encodeURIComponent(data.attachList[0].uploadPath.replace('\\','/') +"\\"+data.attachList[0].uuid + '_'+ data.attachList[0].fileName)
 					console.log(imageurl)
-					  itemHtml += '<div class="item"><div class="image-container"><a class="item-img-wrapper-link" href="single-product.html">' +
-                                   '<img class="img-fluid" src=' +  imageurl +' /> </a> </div>'+
-                                   '<div class="item-content"><div class="what-product-is"><h6 class="item-title"><a href="single-product.html">'+ data.item_name + '</a></h6>'
-			                     +'<div class="item-stars"> <div class="star" title="0 out of 5 - based on 0 Reviews"> <span style="width:0"></span> </div> <span>(10)</span> </div> </div>'
-			                     +'<div class="price-template"> <div class="item-new-price">' +  data.item_price + ' 원 </div> </div> </div> </div>'
+					  itemHtml += '<div class="item"><div class="image-container"><a class="item-img-wrapper-link" href="single-product.html">' 
+					  				+'<img class="img-fluid" src=' +  imageurl +' /> </a> </div>'
+					  				+'<div class="item-content"><div class="what-product-is"><h6 class="item-title"><a href="single-product.html">'+ data.item_name + '</a></h6>'
+			                     	+'<div class="item-stars"> <div class="star" title="0 out of 5 - based on 0 Reviews"> <span style="width:0"></span> </div> <span>(10)</span> </div> </div>'
+			                     	+'<div class="price-template"> <div class="item-new-price">' +  data.item_price + ' 원 </div> </div> </div> </div>'
 	                        
 	                });
 				 productContainer.append(itemHtml); 
@@ -127,27 +126,27 @@ $(document).ready(function(e){
 		                <img class="img-fluid" src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\','/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}" alt="Product" width="225px" height="225px" />
 		            </a>
 		        </div>
-		            <div class="item-content">
-		                <div class="what-product-is">
-			                <div class="category">
-			                	<span><a href="/item/category?category=${list.category}">${list.category}</a></span>
-			                </div>
-			                    <h6 class="item-title">
-			                       <a href="single-product.html">${list.item_name}</a>
-			                    </h6>
-			                    <div class="item-stars">
-			                        <div class='star' title="0 out of 5 - based on 0 Reviews">
-			                            <span style='width:0'></span>
-			                        </div>
-			                        <span>(10)</span>
-			                    </div>
+	            <div class="item-content">
+	                <div class="what-product-is">
+		                <div class="category">
+		                	<span><a href="/item/category?category=${list.category}">${list.category}</a></span>
 		                </div>
-		                <div class="price-template">
+		                    <h6 class="item-title">
+		                       <a href="single-product.html">${list.item_name}</a>
+		                    </h6>
+		                    <div class="item-stars">
+		                        <div class='star' title="0 out of 5 - based on 0 Reviews">
+		                            <span style='width:0'></span>
+		                        </div>
+		                        <span>(10)</span>
+		                    </div>
+	                </div>
+	                <div class="price-template">
 	                    <div class="item-new-price">
 	                       ${list.item_price}원
 	                    </div>
-	                </div>
-	            </div>
+                	</div>
+            	</div>
           </div>
        </c:forEach>
     </div>

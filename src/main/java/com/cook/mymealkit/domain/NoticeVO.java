@@ -14,10 +14,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NoticeVO {
-	private int bno;//게시글 번호
-    private String title;//게시글 제목
-    private String content;//게시글 내용
-	private String writer;//게시글 작성자
-    private Date regdate;//게시글 업로드 날자
-    private Date updateDate;//게시글 업데이트
+    private int bno;// 게시글 번호
+    private String title;// 게시글 제목
+    private String content;// 게시글 내용
+    private String writer;// 게시글 작성자
+    private Date regdate;// 게시글 업로드 날자
+    private Date updateDate;// 게시글 업데이트
 }
