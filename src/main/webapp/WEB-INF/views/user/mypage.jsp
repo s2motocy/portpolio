@@ -65,10 +65,8 @@ button.btn-primary {
           </tbody>
         </table>
         <button type="submit" class="btn btn-primary">수정하러가기</button>
-      </form>
-      <form action="logout" method="post">
-        <button class="btn btn-danger">로그아웃</button>
-      </form>
+        </form>
+      <button class="btn-primary"><a href="buyList">구매내역 확인</a></button>
     </div>
 </body>
 <%@ include file="../include/footer.jsp" %>
