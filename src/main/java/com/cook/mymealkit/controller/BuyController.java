@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.BuyGuestVO;
@@ -214,6 +215,13 @@ public class BuyController {
 		model.addAttribute("buyList", buyList);
 		model.addAttribute("bblist", bblist);
 		
+	}
+	
+	@PostMapping("/order")
+	@ResponseBody
+	public int orderModify(BuyUserVO vo) {
+		System.out.println("확인이요"+vo);
+		return bservice.statusUpdate(vo);
 	}
 
 }

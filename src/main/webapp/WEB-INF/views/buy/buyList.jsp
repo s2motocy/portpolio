@@ -76,7 +76,18 @@ th, td {
 			<td><c:forEach var="add" items="${bblist}" varStatus="stat">
 				${add.buy_price}<br>
 			</c:forEach></td>
-			<td>${list.buy_status}</td>
+			<td>
+				<select name="buy_status" id="buy_status" value="${list.buy_status}">
+					<option value="결제 완료">결제 완료</option>
+					<option value="상품 준비 중">상품 준비중</option>
+					<option value="배송 시작">배송 시작</option>
+					<option value="배송 중">배송 중</option>
+					<option value="배송 완료">배송 완료</option>
+				</select>
+			<div class="action-wrapper">
+				<button class="button button-outline-secondary fas fa-sync"></button>
+			</div>
+			</td>
 		</tr>
 	</c:forEach>
 	</table>

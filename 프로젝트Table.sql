@@ -105,7 +105,7 @@ create sequence seq_cart;
 -- 장바구니(cart) 테이블 생성
 create table tbl_cart (
     cart_id     number(30) not null primary key,    -- 카트 번호 (시퀀스 사용)
-    cart_name   varchar2(50),                       -- 카트 이름
+    user_id   varchar2(50),                       -- 카트 이름
     item_id     number(30),                         -- 상품 번호
     item_name   varchar2(50),                       -- 상품 이름
     amount      number(10),                         -- 상품 수량
@@ -169,7 +169,7 @@ create table tbl_buy_list (
     buy_price       number(10),                         -- 가격
     delivery_cost   number(10)                          -- 배송비
 );
-
+insert into tbl_buy_list value(seq_buy_list.nextval,);
 -- 커밋
 commit;
 
@@ -231,4 +231,4 @@ select * from notice;
 commit;
 
 update tbl_item set item_sold=100 where item_id=5;
-select * from tbl_item order by item_sold desc;
+select * from tbl_item;

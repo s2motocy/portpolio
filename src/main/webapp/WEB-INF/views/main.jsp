@@ -6,6 +6,9 @@
 <style>
 .container {
 	margin-top:10px;}
+.category a {
+	font-size:10px;
+	color:#d90429;}
 </style>
 <body>
 <div id="app">
@@ -47,15 +50,18 @@
 			        </div>
 			            <div class="item-content">
 			                <div class="what-product-is">
-			                    <h6 class="item-title">
-			                       <a href="single-product.html">${list.item_name}</a>
-			                    </h6>
-			                    <div class="item-stars">
-			                        <div class='star' title="0 out of 5 - based on 0 Reviews">
-			                            <span style='width:0'></span>
-			                        </div>
-			                        <span>(10)</span>
-			                    </div>
+			                	<div class="category">
+				                	<span><a href="/item/category?category=${list.category}">${list.category}</a></span>
+				                </div>
+				                    <h6 class="item-title">
+				                       <a href="single-product.html">${list.item_name}</a>
+				                    </h6>
+				                    <div class="item-stars">
+				                        <div class='star' title="0 out of 5 - based on 0 Reviews">
+				                            <span style='width:0'></span>
+				                        </div>
+				                        <span>(10)</span>
+				                    </div>
 			                </div>
 			                <div class="price-template">
 		                    <div class="item-new-price">

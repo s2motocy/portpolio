@@ -73,9 +73,14 @@ public class ItemServicempl implements ItemService{
 	}
 
 	@Override
-	public void categoryByNewOrBest(ItemVO vo) {
-		imapper.categoryByNewOrBest(vo);
+	public List<ItemVO> categoryByNewOrBest(ItemVO vo) {
+		return imapper.categoryByNewOrBest(vo);
 		
+	}
+
+	@Override
+	public List<ItemVO> categoryItemListByStartAndEnd(ItemVO vo) {
+		return imapper.categoryItemListByStartAndEnd(vo);
 	}
 
 

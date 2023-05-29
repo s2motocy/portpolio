@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.ItemVO;
 import com.cook.mymealkit.mapper.FileMapper;
-import com.cook.mymealkit.mapper.ItemMapper;
 import com.cook.mymealkit.service.ItemService;
 
 import lombok.Setter;
@@ -24,9 +25,9 @@ import lombok.Setter;
 @RequestMapping("/item/*")
 public class ItemController {
 	
-	/* Mapper 설정 */
-	@Setter(onMethod_=@Autowired)
-	ItemMapper imapper;
+//	/* Mapper 설정 */
+//	@Setter(onMethod_=@Autowired)
+//	ItemMapper imapper;
 	
 	@Setter(onMethod_=@Autowired)
 	FileMapper fmapper;
@@ -45,9 +46,9 @@ public class ItemController {
 		System.out.println("Item 컨트롤러에서 등록 : vo="+ vo);
 		if(vo.getAttachList() != null) {
 			System.out.println(vo);
-			vo.getAttachList().forEach(i->fmapper.fileInsert(i));
+			vo.getAttachList().forEach(i->System.out.println(i));
 		}
-		imapper.itemInsert(vo);
+		iservice.itemInsert(vo);
 		return "redirect:/item/itemList";
 	}
 	
@@ -55,7 +56,7 @@ public class ItemController {
 	@GetMapping("/itemList")
 	public void itemList(Model model) {
 		System.out.println("Item 컨트롤러에서 목록 : ");
-		List<ItemVO> itemList = imapper.itemList();
+		List<ItemVO> itemList = iservice.itemList();
 		itemList.forEach(i->{
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			i.setAttachList(attachList);
@@ -79,14 +80,14 @@ public class ItemController {
 	@GetMapping("/update")
 	public void update(Model model,Long item_id) {
 		System.out.println("Item 컨트롤러에서 수정(get) : item_id="+ item_id);
-		model.addAttribute("vo", imapper.itemFindById(item_id));		
+		model.addAttribute("vo", iservice.itemFindById(item_id));		
 	}
 	
 	@PostMapping("/update")
 	public String itemUpdate(ItemVO vo, RedirectAttributes rttr) {
 		System.out.println("Item 컨트롤러에서 수정(post) : vo="+ vo);
-		imapper.itemUpdate(vo);
-		rttr.addFlashAttribute("list",imapper.itemList());
+		iservice.itemUpdate(vo);
+		rttr.addFlashAttribute("list",iservice.itemList());
 		return "redirect:/item/itemList";
 	}
 	
@@ -94,7 +95,7 @@ public class ItemController {
 	@GetMapping("/delete")
 	public String delete(int item_id) {
 		System.out.println("Item 컨트롤러에서 삭제 : item_id="+ item_id);
-		imapper.itemDelete(item_id);
+		iservice.itemDelete(item_id);
 		return "redirect:/item/itemList";
 	}
 	
@@ -116,7 +117,7 @@ public class ItemController {
 	/* 카테고리 전체|--------------------------------------------------- */
 	@GetMapping("/categoryAll")
 	public String all(Model model) {
-		List<ItemVO> itemList = imapper.itemList();
+		List<ItemVO> itemList = iservice.itemList();
 		itemList.forEach(i->{
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			i.setAttachList(attachList);
@@ -132,7 +133,7 @@ public class ItemController {
 		System.out.println("itemType:"+itemType);
 		ItemVO vo = new ItemVO();
 		vo.setItemType(itemType);
-		List<ItemVO> newItemList = imapper.categoryByNewOrBest(vo);
+		List<ItemVO> newItemList = iservice.categoryByNewOrBest(vo);
 		System.out.println("itmelist : " + newItemList);
 		newItemList.forEach(i->{
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
@@ -142,5 +143,17 @@ public class ItemController {
 		model.addAttribute("newItemList", newItemList);
 		return "/item/newOrBest";
 	}
+	
+	 @GetMapping("/between")
+	    public ResponseEntity<List<ItemVO>> ubChartgogo(ItemVO vo){
+		 System.out.println(vo);
+		 List<ItemVO> list = iservice.categoryItemListByStartAndEnd(vo);
+		 System.out.println("itmelist : " + list);
+		 list.forEach(i->{
+				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
+				i.setAttachList(attachList);
+			});
+		 return new ResponseEntity<>(list,HttpStatus.OK);
+	    }
 
 }

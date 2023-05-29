@@ -21,6 +21,8 @@ public class ItemVO {
   	private Date update_date;					// 수정일
   	
   	private String itemType;					// 신상품,인기상품 분류
+  	private String start;
+  	private String end;
 
 	
 	/* 참조 데이터 */

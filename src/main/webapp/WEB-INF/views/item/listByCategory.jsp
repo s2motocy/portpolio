@@ -7,6 +7,19 @@
 <style>
 .container{
 	margin-top:10px;}
+.facet-filter-by-price {
+	padding:2%;
+	width:30%;
+	margin-top:35px;
+	margin-left:1.3%;
+	background-color: #f8f9fa;}
+.price-bar{
+	font-weight:bold;}
+.shop-settings {
+	padding-left:1.3%;}
+.category a {
+	font-size:10px;
+	color:#d90429;}
 </style>
 
 <script>
@@ -24,6 +37,46 @@ const attachClickGridAndList = function () {
         $shopProductContainer.addClass('grid-style');
     });
 };
+$(document).ready(function(e){
+	$(".button.button-primary").click(function(e){
+		var from  = $(".price-from")
+		var to  = $(".price-to")
+		from.text(from.text())
+		to.text(to.text())
+		
+		var from_after  = from.text()
+		var to_after = to.text()
+		console.log("눌렸어요",from_after +"원", to_after)
+
+		$.ajax({
+		    url: "/item/between?start=" + from_after + "&end=" + to_after,
+		    type: "GET",
+			contentType: "application/json",
+			dataType:"json",
+			success: function(result) {
+				console.log("사랑",result)
+				$(".grid-style").empty()
+				productContainer=$(".grid-style")
+				var itemHtml =''
+				$.each(result,function(idx,data){
+					console.log(data.attachList[0])
+					var imageurl = '/display?fileName=/'+ encodeURIComponent(data.attachList[0].uploadPath.replace('\\','/') +"\\"+data.attachList[0].uuid + '_'+ data.attachList[0].fileName)
+					console.log(imageurl)
+					  itemHtml += '<div class="item"><div class="image-container"><a class="item-img-wrapper-link" href="single-product.html">' +
+                                   '<img class="img-fluid" src=' +  imageurl +' /> </a> </div>'+
+                                   '<div class="item-content"><div class="what-product-is"><h6 class="item-title"><a href="single-product.html">'+ data.item_name + '</a></h6>'
+			                     +'<div class="item-stars"> <div class="star" title="0 out of 5 - based on 0 Reviews"> <span style="width:0"></span> </div> <span>(10)</span> </div> </div>'
+			                     +'<div class="price-template"> <div class="item-new-price">' +  data.item_price + ' 원 </div> </div> </div> </div>'
+	                        
+	                });
+				 productContainer.append(itemHtml); 
+	            },
+	            error: function() {
+	            	alert("맞는 상품이 없습니다");
+	            }
+	        });
+	    });
+	});
 </script>
 
 <body>
@@ -45,6 +98,20 @@ const attachClickGridAndList = function () {
     </div>
 </div>
 <div class="container">
+	<div class="facet-filter-by-price">  
+        <div class="price-bar">
+			<a data-toggle="collapse" href="#faq-1">가격 설정</a>
+				<div class="collapse show" id="faq-1">
+		            <div class="amount-result clearfix">
+		                <div class="price-from"></div>
+		                <div class="price-to"></div>
+		            </div>
+		            <div class="price-filter"></div>
+		            <div class="price-slider-range" data-min="0" data-max="30000" data-default-low="0" data-default-high="10000" data-currency=""></div>
+			            <button type="submit" class="button button-primary">Filter</button>
+				</div>
+		</div>
+	</div>
 	<div class="shop-settings">
 	    <a id="list-anchor" class="active">
 	        <i class="fas fa-th-list"></i>
@@ -63,15 +130,18 @@ const attachClickGridAndList = function () {
 		        </div>
 		            <div class="item-content">
 		                <div class="what-product-is">
-		                    <h6 class="item-title">
-		                       <a href="single-product.html">${category.item_name}</a>
-		                    </h6>
-		                    <div class="item-stars">
-		                        <div class='star' title="0 out of 5 - based on 0 Reviews">
-		                            <span style='width:0'></span>
-		                        </div>
-		                        <span>(10)</span>
-		                    </div>
+		                	<div class="category">
+			                	<span><a href="/item/category?category=${category.category}">${category.category}</a></span>
+			                </div>
+			                    <h6 class="item-title">
+			                       <a href="single-product.html">${category.item_name}</a>
+			                    </h6>
+			                    <div class="item-stars">
+			                        <div class='star' title="0 out of 5 - based on 0 Reviews">
+			                            <span style='width:0'></span>
+			                        </div>
+			                        <span>(10)</span>
+			                    </div>
 		                </div>
 		                <div class="price-template">
 	                    <div class="item-new-price">

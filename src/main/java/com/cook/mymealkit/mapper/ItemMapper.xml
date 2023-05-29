@@ -38,6 +38,9 @@
 	<select id="categoryItemList" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="string" >
 		select * from tbl_item where category=#{category}
 	</select>
+	<select id="categoryItemListByStartAndEnd" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="com.cook.mymealkit.domain.ItemVO" >
+		select * from tbl_item where item_price  between #{start} and #{end}
+	</select>
 
 	<select id="categoryByNewOrBest" resultType="com.cook.mymealkit.domain.ItemVO">
 			<choose>
@@ -61,7 +64,5 @@
 				</otherwise>
 			</choose>
 	</select>
-	
-	<!-- <select id="listBy"></select> -->
 	
 </mapper>
