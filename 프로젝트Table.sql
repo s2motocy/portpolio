@@ -3,7 +3,7 @@
 
 
 -------------------------------------------------------------------------------- 회원 (user)
-drop table tbl_user;
+
 -- 회원(user) 시퀀스 생성
 create sequence seq_user;
 -- 회원(user) 테이블 생성
@@ -85,19 +85,6 @@ drop sequence seq_file_item;
 drop table tbl_file_item;
 
 
-SELECT *
-			FROM (
-			  SELECT *,
-		  	  CASE
-		     	 WHEN update_date = 'n' THEN update_date
-		     	 WHEN update_date = 'b' THEN item_sold
-		     	 ELSE null
-		   	 END AS sort_by
-		 	 FROM tbl_item
-		 	 ORDER BY sort_by DESC
-		) 
-		WHERE ROWNUM <= 6;
-
 -------------------------------------------------------------------------------- 장바구니 (cart)
 
 -- 장바구니(cart) 시퀀스 생성
@@ -105,7 +92,7 @@ create sequence seq_cart;
 -- 장바구니(cart) 테이블 생성
 create table tbl_cart (
     cart_id     number(30) not null primary key,    -- 카트 번호 (시퀀스 사용)
-    user_id     varchar2(50),                       -- 카트 이름
+    user_id   varchar2(50),                       -- 카트 이름
     item_id     number(30),                         -- 상품 번호
     item_name   varchar2(50),                       -- 상품 이름
     amount      number(10),                         -- 상품 수량
@@ -137,7 +124,6 @@ create table tbl_user_buy (
     post_code   varchar2(10) not null,                  -- 우편번호
     addr        varchar2(100) not null,                 -- 주소    
     addr2       varchar2(100) not null,                 -- 주소(상세)
-    buy_note    varchar2(100),                          -- 배송시 요청사항
     buy_status  varchar2(20) default '구매완료',         -- 주문상태
     buy_date    date default sysdate                    -- 주문한 날짜
 );
@@ -154,7 +140,6 @@ create table tbl_guest_buy (
     post_code   varchar2(10) not null,                  -- 우편번호
     addr        varchar2(100) not null,                 -- 주소    
     addr2       varchar2(100) not null,                 -- 주소(상세)
-    buy_note    varchar2(100),                          -- 배송시 요청사항
     buy_status  varchar2(20) default '구매완료',         -- 주문상태
     buy_date    date default sysdate                    -- 주문한 날짜
 );
@@ -171,10 +156,11 @@ create table tbl_buy_list (
     buy_price       number(10),                         -- 가격
     delivery_cost   number(10)                          -- 배송비
 );
-
+insert into tbl_buy_list values(seq_buy_list.nextval,'u12345',1,'김치찌개',1,10000,0);
+update tbl_buy_list set buy_no='u12345', item_id=2,item_name='asdfas',amount=1,buy_price=8000 where buy_no='u12345';
 -- 커밋
 commit;
-
+delete from tbl_buy_list where blist_no = 4;
 -- 조회
 select * from tbl_user_buy;
 select * from tbl_guest_buy;
@@ -233,4 +219,4 @@ select * from notice;
 commit;
 
 update tbl_item set item_sold=100 where item_id=5;
-select * from tbl_item order by item_sold desc;
+select * from tbl_item;

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -148,7 +150,7 @@ public class ItemController {
 		System.out.println("itemType:" + itemType);
 		ItemVO vo = new ItemVO();
 		vo.setItemType(itemType);
-		List<ItemVO> newItemList = imapper.categoryByNewOrBest(vo);
+		List<ItemVO> newItemList = iservice.categoryByNewOrBest(vo);
 		System.out.println("itmelist : " + newItemList);
 		newItemList.forEach(i -> {
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
@@ -158,6 +160,18 @@ public class ItemController {
 		model.addAttribute("newItemList", newItemList);
 		return "/item/newOrBest";
 	}
+	
+	 @GetMapping("/between")
+	    public ResponseEntity<List<ItemVO>> ubChartgogo(ItemVO vo){
+		 System.out.println(vo);
+		 List<ItemVO> list = iservice.categoryItemListByStartAndEnd(vo);
+		 System.out.println("itmelist : " + list);
+		 list.forEach(i->{
+				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
+				i.setAttachList(attachList);
+			});
+		 return new ResponseEntity<>(list,HttpStatus.OK);
+	    }
 
 	@GetMapping("/sample")
 	public void sample() {

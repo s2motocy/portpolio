@@ -38,6 +38,10 @@
 	<select id="categoryItemList" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="string" >
 		select * from tbl_item where category=#{category}
 	</select>
+
+	<select id="categoryItemListByStartAndEnd" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="com.cook.mymealkit.domain.ItemVO" >
+		select * from tbl_item where item_price between #{start} and #{end}
+	</select>
 	
 	<select id="itemListBySearch" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="string">
 		<![CDATA[
@@ -72,15 +76,12 @@
 				</otherwise>
 			</choose>
 	</select>
-	<!-- <select id="listBy"></select> -->
 	
 	<select id="likeSelect" resultType="com.cook.mymealkit.domain.SelectDTO">
 		select * from
-		(select rownum as rn, item_id, item_name (select category from tbl_item where tbl_item.category = tbl_item.category) as category
-		from tbl_item
-		<![CDATA[
-		where rn < 9
-		]]>	
+			(select rownum as rn, item_id, item_name (select category from tbl_item where tbl_item.category = tbl_item.category) as category
+				from tbl_item
+					<![CDATA[where rn < 9]]>	
 	</select>
 	
 </mapper>
