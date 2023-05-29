@@ -4,8 +4,8 @@
 <mapper namespace="com.cook.mymealkit.mapper.BuyMapper">
 	<!-- 회원 -->
 	<insert id="insertUserBuy" parameterType="com.cook.mymealkit.domain.BuyUserVO">
-		insert into tbl_user_buy(bno, buy_no, user_id, buyer_name, phone, post_code, addr, addr2) 
-			values(seq_user_buy.nextval,#{buy_no},#{user_id},#{buyer_name},#{phone},#{post_code},#{addr},#{addr2})
+		insert into tbl_user_buy(bno, buy_no, user_id, buyer_name, phone, post_code, addr, addr2, buy_note) 
+			values(seq_user_buy.nextval,#{buy_no},#{user_id},#{buyer_name},#{phone},#{post_code},#{addr},#{addr2},#{buy_note})
 	</insert>
 	
 	<select id="userBuyList" resultType="com.cook.mymealkit.domain.BuyUserVO">
@@ -22,8 +22,8 @@
 	
 	<!-- 비회원 -->
 	<insert id="insertGuestBuy" parameterType="com.cook.mymealkit.domain.BuyGuestVO">
-		insert into tbl_guest_buy(gno, buy_no, pwd, buyer_name, phone, post_code, addr, addr2) 
-			values(seq_guest_buy.nextval,#{buy_no},#{pwd},#{buyer_name},#{phone},#{post_code},#{addr},#{addr2})
+		insert into tbl_guest_buy(gno, buy_no, pwd, buyer_name, phone, post_code, addr, addr2, buy_note) 
+			values(seq_guest_buy.nextval,#{buy_no},#{pwd},#{buyer_name},#{phone},#{post_code},#{addr},#{addr2},#{buy_note})
 	</insert>
 	
 	<select id="guestBuyList" resultType="com.cook.mymealkit.domain.BuyGuestVO">

@@ -5,12 +5,12 @@
 <style>
   .btn-primary {
   background-color: #ff6b00;
-  border-color: #ff6b00;
+  border-color: #ffb600;
 }
 
 .btn-secondary {
   background-color: #ff6b00;
-  border-color: #ff6b00;
+  border-color: #ffb600;
 }
 
 .btn-danger {

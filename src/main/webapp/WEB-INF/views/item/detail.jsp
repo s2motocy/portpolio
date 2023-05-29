@@ -20,6 +20,7 @@
 					background-color: #FACC2E;
 				}
 
+
 				/* 리뷰 영역 */
 				.content_bottom {
 					width: 80%;

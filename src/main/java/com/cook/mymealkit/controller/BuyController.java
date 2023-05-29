@@ -56,22 +56,26 @@ public class BuyController {
 	/* 로그인 세션처리 */
 	@PostMapping("/buyLogin")
 	public ResponseEntity<String> UserLoginPost(@RequestBody UserVO uvo, BuyUserVO bvo, HttpSession session) {
-		System.out.println("uvo:" + uvo + " ,bvo:" + bvo);
-		if (uvo.getUser_id() == null || uvo.getUser_id().isEmpty() || uvo.getPwd() == null || uvo.getPwd().isEmpty()) {
+		System.out.println("uvo:"+uvo+" ,bvo:"+bvo);
+		if(uvo.getUser_id() ==null || uvo.getUser_id().isEmpty() || uvo.getPwd() == null || uvo.getPwd().isEmpty()) {
+			System.out.println("user_id 와 pwd 의 값이 없습니다 [response code = 1]");
 			// user_id 와 pwd 의 값이 없을때 1 을 반환
 			return new ResponseEntity<>("1", HttpStatus.BAD_REQUEST);
-		} else if (uservice.getUserById(uvo.getUser_id()) == null) {
+		} else if(uservice.getUserById(uvo.getUser_id()) == null) {
+			System.out.println("DB 에 user_id 와 일치하는 데이터가 없습니다 [response code = 2]");
 			// DB 에 user_id 와 일치하는 데이터가 없을때 2 를 반환
 			return new ResponseEntity<>("2", HttpStatus.BAD_REQUEST);
 		} else {
 			UserVO vo = uservice.getUserById(uvo.getUser_id());
-			if (!uvo.getPwd().equals(vo.getPwd())) {
+			if(!uvo.getPwd().equals(vo.getPwd())) {
+				System.out.println("조회한 데이터의 비밀번호와 입력한 비밀번호가 같지 않습니다 [error code = 3]");
 				// 조회한 데이터의 비밀번호와 입력한 비밀번호가 같지 않으면 3 을 반환
 				return new ResponseEntity<>("3", HttpStatus.BAD_REQUEST);
 			}
 			// 정상 데이터 일때 로그인
 			boolean success = uservice.login(vo);
-			if (!success) {
+			if(!success) {
+				System.out.println("로그인시 오류가 발생되었습니다 [response code = 4]");
 				// 중복으로 확인
 				return new ResponseEntity<>("4", HttpStatus.BAD_REQUEST);
 			}
@@ -79,6 +83,7 @@ public class BuyController {
 			session.setAttribute("user", vo);
 
 			// 정상 로그인이 가능할때 0 을 반환
+			System.out.println("정상적으로 로그인되었습니다 [response code = 0]");
 			return new ResponseEntity<>("0", HttpStatus.OK);
 		}
 	}

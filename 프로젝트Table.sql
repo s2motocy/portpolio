@@ -3,7 +3,7 @@
 
 
 -------------------------------------------------------------------------------- 회원 (user)
-
+drop table tbl_user;
 -- 회원(user) 시퀀스 생성
 create sequence seq_user;
 -- 회원(user) 테이블 생성
@@ -105,7 +105,7 @@ create sequence seq_cart;
 -- 장바구니(cart) 테이블 생성
 create table tbl_cart (
     cart_id     number(30) not null primary key,    -- 카트 번호 (시퀀스 사용)
-    cart_name   varchar2(50),                       -- 카트 이름
+    user_id     varchar2(50),                       -- 카트 이름
     item_id     number(30),                         -- 상품 번호
     item_name   varchar2(50),                       -- 상품 이름
     amount      number(10),                         -- 상품 수량
@@ -137,6 +137,7 @@ create table tbl_user_buy (
     post_code   varchar2(10) not null,                  -- 우편번호
     addr        varchar2(100) not null,                 -- 주소    
     addr2       varchar2(100) not null,                 -- 주소(상세)
+    buy_note    varchar2(100),                          -- 배송시 요청사항
     buy_status  varchar2(20) default '구매완료',         -- 주문상태
     buy_date    date default sysdate                    -- 주문한 날짜
 );
@@ -153,6 +154,7 @@ create table tbl_guest_buy (
     post_code   varchar2(10) not null,                  -- 우편번호
     addr        varchar2(100) not null,                 -- 주소    
     addr2       varchar2(100) not null,                 -- 주소(상세)
+    buy_note    varchar2(100),                          -- 배송시 요청사항
     buy_status  varchar2(20) default '구매완료',         -- 주문상태
     buy_date    date default sysdate                    -- 주문한 날짜
 );

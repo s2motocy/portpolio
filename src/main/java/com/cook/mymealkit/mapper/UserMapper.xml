@@ -5,8 +5,8 @@
 <mapper namespace="com.cook.mymealkit.mapper.UserMapper">
 	<!--회원가입 -->
     <insert id="insertUser" parameterType="com.cook.mymealkit.domain.UserVO">
-        INSERT INTO tbl_user (uno, user_name , user_id , pwd , email, phone , addr ,addr2)
-        VALUES (seq_user.nextval,#{user_name},#{user_id},#{pwd},#{email},#{phone},#{addr},#{addr2})
+        INSERT INTO tbl_user (uno, user_name , user_id , pwd , email, phone ,post_code, addr ,addr2)
+        VALUES (seq_user.nextval,#{user_name},#{user_id},#{pwd},#{email},#{phone},#{post_code},#{addr},#{addr2})
     </insert>
      <!--회원정보 수정 -->
 	<update id="updateUser" parameterType="com.cook.mymealkit.domain.UserVO">

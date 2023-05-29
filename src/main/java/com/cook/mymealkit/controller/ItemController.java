@@ -123,8 +123,9 @@ public class ItemController {
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			i.setAttachList(attachList);
 		});
-		System.out.println(categoryList);
-		model.addAttribute("categoryList", categoryList);
+        System.out.println(categoryList);
+        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("category", category);
 		return "/item/listByCategory";
 	}
 
