@@ -54,8 +54,8 @@
     </update>
     <!--아이디로 조회-->
     <select id="UserById" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
-        SELECT user_id
+        SELECT *
         FROM tbl_user
-        WHERE user_name = #{user_name} AND phone = #{phone}
+        WHERE user_id = #{user_id}
     </select>
 </mapper>

@@ -54,7 +54,7 @@
                                 id="user_name"
                                 name="user_name"
                                 placeholder="이름 입력"
-                                minlength="5"
+                                minlength="1"
                               />
                             </div>
                             <div class="u-s-m-b-30">
@@ -90,13 +90,14 @@
                                 <div class="col-sm-13">
                                     <input
                                       type="password"
-                                      class="form-control"
+                                      class="pw2"
                                       id="pwd2"
                                       name="pwd2"
                                       placeholder="확인 비밀번호 입력"
                                     />
                                 </div>
                             </div>
+                            <font id="pwCheck" size="2"></font>
                             <div class="mail_wrap">
                                 <div class="mail_name">이메일</div> 
                                 <div class="mail_input_box">
@@ -160,7 +161,7 @@
               console.log(id)
               $.ajax({
                   url:'/user/idCheck?user_id='+id, //Controller에서 요청 받을 주소
-                  type:'get', //POST 방식으로 전달
+                  type:'get', //get 방식으로 전달
                   success:function(cnt){ //컨트롤러에서 넘어온 cnt값을 받는다 
                       console.log(cnt)
                       if(cnt == 0){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
@@ -208,7 +209,7 @@ $(".mail_check_button").click(function(){
     		url:"mailCheck?email=" + email,
     		success:function(data){
     			console.log("data : " + data);
-    			// checkBox.val(data);
+    			checkBox.val(data);
     			code = data
     			setTimeout(() => {
     				console.log("눌렷어")
@@ -239,7 +240,7 @@ $(".mail_check_button").click(function(){
     	
     });
   
-  function mailFormCheck(email){
+  function mailFormCheck(email){//이메일 형식 함수
 	  console.log('form check , ' ,email)
       var form = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
       return form.test(email);
@@ -309,6 +310,23 @@ $(".mail_check_button").click(function(){
         function displayAlert() {
           alert("회원가입 되었습니다");
         }
+      </script>
+      <script>
+        $('.pw2').keyup(function(){
+            var p1 = document.getElementById('pwd').value;
+            var p2 = document.getElementById('pwd2').value;
+            
+            if( p1 != p2 ) {
+                $("#pwCheck").html("비밀번호가 일치하지 않습니다");
+                $("#pwCheck").attr('color','red');
+                return false;
+            } else {
+                $("#pwCheck").html("비밀번호가 일치합니다");
+                $("#pwCheck").attr('color','green');
+                return true;
+            }
+            
+        })
       </script>
 </body>
 <%@ include file="../include/footer.jsp" %>

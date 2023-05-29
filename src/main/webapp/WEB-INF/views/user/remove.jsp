@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
               <label for="pwd">pwd:</label>
-              <input type="text" class="form-control" name="pwd" id="pwd">
+              <input type="password" class="form-control" name="pwd" id="pwd">
             </div>
             <button type="submit" class="btn btn-primary">탈퇴하기</button>
           </form>
