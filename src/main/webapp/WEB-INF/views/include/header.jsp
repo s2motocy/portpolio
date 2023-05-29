@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html class="no-js" lang="ko">
 
@@ -176,19 +177,19 @@
                 </div>
                 <ul class="mini-cart-list">
                     <!-- forEach 시작 -->
-                    <li class="clearfix">
+                    <!-- <li class="clearfix">
                         <a href="single-product.html">
                             <img src="/resources/images/product/product@1x.jpg" alt="Product">
                             <span class="mini-item-name">Casual Hoodie Full Cotton</span>
                             <span class="mini-item-price">50,000 원</span>
                             <span class="mini-item-quantity"> x 2 </span>
                         </a>
-                    </li>
+                    </li> -->
                     <!-- forEach 종료 -->
                 </ul>
                 <div class="mini-shop-total clearfix">
                     <span class="mini-total-heading float-left">합계:</span>
-                    <span class="mini-total-price float-right">100,000 원</span>
+                    <span class="mini-total-price float-right">0 원</span>
                 </div>
                 <div class="mini-action-anchors">
                     <a href="/cart/cartList" class="cart-anchor">장바구니 보기</a>

@@ -96,7 +96,7 @@ const attachClickGridAndList = function () {
 		            <div class="item-content">
 		                <div class="what-product-is">
 		                    <h6 class="item-title">
-		                       <a href="/item/detail?item_id=${list.item_id}&user_id=${user_id}">${list.item_name}</a>
+		                       <a href="/item/detail?item_id=${list.item_id}">[<span>${list.category}</span>] <span>${list.item_name}</span></a>
 		                    </h6>
 		                    <div class="item-stars">
 		                        <div class='star' title="0 out of 5 - based on 0 Reviews">

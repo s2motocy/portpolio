@@ -16,12 +16,17 @@
                 height: 100%;
         }
 }
- 
+.modal-content {
+	margin-left:36.7%;
+	width:25%;}
 .modal-dialog {
         display: inline-block;
-        text-align: left;
+        text-align: center;
         vertical-align: middle;
+        width:100%;
 }
+input::placeholder {
+	font-size:10px;}
 </style>
 
 <script>
@@ -107,8 +112,8 @@ $(document).ready(function(){
 	
 	$("#buyLogin").click(function(e){
 		e.preventDefault()
-		var userid= $("#yourModal [name='user_id']").val()
-		var password= $("#yourModal [name='pwd']").val()
+		var userid= $("#yourModal [id='user_id']").val()
+		var password= $("#yourModal [id='pwd']").val()
 		console.log("buyLogin에서 암호" ,userid, password)
 		$.ajax({
 			url: '/buy/buyLogin',
@@ -118,17 +123,17 @@ $(document).ready(function(){
 			success: function(result){
 				console.log("result: ",result)
 				if(result == "0"){
-					alert("로그인되었습니다")
-					var userid= $("#yourModal [name='user_id']").val()
-					var password= $("#yourModal [name='pwd']").val()
+					alert("로그인되었습니다.")
+					var userid= $("#yourModal [id='user_id']").val()
+					var password= $("#yourModal [id='pwd']").val()
 					console.log("암호" ,userid, password)
 					var str="<input type='text' name='user_id' value='" + userid +"'/><input type='text' name='pwd'  value='" + password +"'/>"
 					console.log(str)
-					frm.append(str)
-					frm.submit()
+					$("#frm").append(str)
+					$("#frm").submit()
 				}
 			},
-			error: function(xhr,status,error){ alert('false') }
+			error: function(xhr,status,error){ alert('아이디 또는 비밀번호가 잘못되었습니다.') }
 		})
 	})
 	
@@ -138,7 +143,7 @@ $(document).ready(function(){
 	})
 	$(".btn-secondary").click(function(e){
 		console.log("비회원구매")
-		frm.attr("action", "/buy/buyPageGuest").submit()
+		$("#frm").attr("action", "/buy/buyGuest").submit()
 	})
 
 })
@@ -171,7 +176,7 @@ $(document).ready(function(){
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-body">
-		            <button type="button" class="btn btn-primary" data-dismiss="modal">회원구매</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal">회원구매</button>
 		            <button type="button" class="btn btn-secondary" data-dismiss="modal">비회원구매</button>
         		</div>
       		</div>
@@ -184,13 +189,15 @@ $(document).ready(function(){
 			<!-- Modal content-->
 		    <div class="modal-content">
 				<div class="modal-body">
-					<div>
-						아이디<input type="text" name="user_id"/>
-					</div>
-					<div>
-						암호<input type="password" name="pwd"/>
-					</div>
-					<input type='submit' id="buyLogin" value="전송"/>
+					<div class="u-s-m-b-10">
+                        <label for="user_id">아이디:</label>
+                        <input type="text" class="form-control" id="user_id" placeholder="아이디를 입력하세요" />
+                    </div>
+                    <div class="u-s-m-b-10">
+                        <label for="pwd">비밀번호:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력하세요" />
+                    </div>
+					<button class="button button-outline-secondary" id="buyLogin">로그인</button>
 				</div>
 			</div>
 		</div>
@@ -201,7 +208,7 @@ $(document).ready(function(){
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form id="frm">
+                    <form action="/buyUser" id="frm">
                         <!-- Products-List-Wrapper -->
                         <div class="table-wrapper u-s-m-b-60">
                             <table>
