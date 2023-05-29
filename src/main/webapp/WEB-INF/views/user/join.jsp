@@ -55,6 +55,7 @@
                                 name="user_name"
                                 placeholder="이름 입력"
                                 minlength="1"
+                                required
                               />
                             </div>
                             <div class="u-s-m-b-30">
@@ -66,7 +67,9 @@
                                 class="form-control"
                                 id="user_id"
                                 name="user_id"
+                                minlength="3"
                                 placeholder="아이디 입력"
+                                required
                                 />
                             </div>
                             <input type="button" value="중복 체크" id="check" class="btn btn-default"/>
@@ -81,6 +84,7 @@
                                 id="pwd"
                                 name="pwd"
                                 placeholder="비밀번호 입력"
+                                required
                                 />
                             </div>
                             <div class="u-s-m-b-30">
@@ -94,6 +98,7 @@
                                       id="pwd2"
                                       name="pwd2"
                                       placeholder="확인 비밀번호 입력"
+                                      required
                                     />
                                 </div>
                             </div>
@@ -101,7 +106,7 @@
                             <div class="mail_wrap">
                                 <div class="mail_name">이메일</div> 
                                 <div class="mail_input_box">
-                                    <input class="mail_input" name="email" id="email">
+                                    <input class="mail_input" name="email" id="email" required>
                                     <input type="button"  class='mail_check_button' value="인증번호전송" id="check" class="btn btn-secondary"/>
                                 </div>
                                 <div class="mail_check_wrap">
@@ -121,6 +126,7 @@
                                 id="phone"
                                 name="phone"
                                 placeholder="000-0000-0000"
+                                required
                                 />
                             </div>
                             <div class="u-s-m-b-30">
@@ -134,10 +140,10 @@
                               </div>
                             <div class="u-s-m-b-45">
                                 <button
+                                    id="signup-button"
                                     type="submit"
                                     class="btn btn-primary"
                                     value="회원가입"
-                                    onclick="displayAlert()"
                                     >
                                     회원가입
                                 </button>
@@ -209,7 +215,7 @@ $(".mail_check_button").click(function(){
     		url:"mailCheck?email=" + email,
     		success:function(data){
     			console.log("data : " + data);
-    			checkBox.val(data);
+    			//checkBox.val(data);
     			code = data
     			setTimeout(() => {
     				console.log("눌렷어")
@@ -306,11 +312,6 @@ $(".mail_check_button").click(function(){
         });  
         });
     </script>
-    <script>
-        function displayAlert() {
-          alert("회원가입 되었습니다");
-        }
-      </script>
       <script>
         $('.pw2').keyup(function(){
             var p1 = document.getElementById('pwd').value;
@@ -327,6 +328,24 @@ $(".mail_check_button").click(function(){
             }
             
         })
+        function checkPassword() {
+        var password1 = document.getElementById("pwd").value;
+        var password2 = document.getElementById("pwd2").value;
+
+        if (password1 !== password2) {
+            alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+            return false; // 회원가입이 안되도록 false를 반환합니다.
+        }
+
+        return true; // 비밀번호가 일치하면 회원가입이 가능하도록 true를 반환합니다.
+        }
+        document.getElementById("signup-button").addEventListener("click", function(event) {
+        if (!checkPassword()) {
+            event.preventDefault(); // 비밀번호 확인 실패 시 기본 동작을 중단합니다.
+        }else{
+            alert("회원가입 되었습니다");
+        }
+        });
       </script>
 </body>
 <%@ include file="../include/footer.jsp" %>

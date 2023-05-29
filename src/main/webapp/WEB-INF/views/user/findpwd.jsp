@@ -62,7 +62,7 @@
                 type="submit" value="check">
         </div>
 
-        <!-- 정보가 일치하지 않을 때-->
+        <!-- 이름과 전화번호가 일치하지 않을 때-->
         <c:if test="${check == 1}">
             <script>
             opener.document.findpwd.id.value = "";
