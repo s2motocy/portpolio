@@ -155,49 +155,8 @@ $(document).ready(function(){
                                 
                                 <h4 class="section-h4">배송 정보</h4>
                                 <div class="u-s-m-b-24">
-                                    <input type="checkbox" class="check-box" id="ship-to-different-address" data-toggle="collapse" data-target="#showdifferent">
-                                    <label class="label-text" for="ship-to-different-address">신규 배송지 입력</label>
-                                </div>
-                                <div class="collapse" id="showdifferent">
-                                    <!-- Form-Fields -->
-                                    <div class="u-s-m-b-13">
-	                                    <label for="buyer_name">구매자 이름
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="text" id="buyer_name" name="buyer_name-extra" class="text-field" placeholder="아이디를 입력해주세요" required />
-	                                </div>
-	                                <div class="u-s-m-b-13">
-	                                    <label for="pwd">비밀번호
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="password" id="pwd" name="pwd-extra" class="text-field" placeholder="비밀번호를 입력해주세요 (4자 이상)" required />
-	                                </div>
-	                                <div class="u-s-m-b-13">
-	                                    <label for="phone">연락처
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="tel" id="phone" name="phone-extra" class="text-field" placeholder="전화번호를 입력해주세요 (ex.  01012340000)" required />
-	                                </div>
-	                                <div class="u-s-m-b-13">
-	                                    <label for="post_code">우편번호
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="text" id="post_code" name="post_code-extra" class="text-field" placeholder="우편번호 찾기를 이용하세요" required />
-	                                    <input type="button" value="우편번호찾기" onclick="kakaopost()" />
-	                                </div>
-	                                <div class="u-s-m-b-13">
-	                                    <label for="addr">주소
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="text" id="addr" name="addr-extra" class="text-field" required />
-	                                </div>
-	                                <div class="u-s-m-b-13">
-	                                    <label for="addr2">상세주소
-	                                        <span class="astk">*</span>
-	                                    </label>
-	                                    <input type="text" id="addr2" name="addr2-extra" class="text-field" placeholder="상세주소를 입력해주세요" required />
-	                                </div>
-                                    <!-- Form-Fields /- -->
+                                    <input type="radio" id="ship-to-different-address" checked />
+                                    <label class="label-text" for="ship-to-different-address">입력된 구매자정보 활용</label>
                                 </div>
                                 <div>
                                     <label for="order-notes">배송시 요청사항</label>
@@ -206,7 +165,6 @@ $(document).ready(function(){
                                 <button type="submit" class="button button-outline-secondary u-s-m-t-10">주문하기</button>
                             </div>
                             <!-- Billing-&-Shipping-Details /- -->
-                            
                         </div>
                     </form>
                 </div>
@@ -214,7 +172,6 @@ $(document).ready(function(){
         </div>
     </div>
     <!-- Checkout-Page /- -->
-
 </div>
 </body>
 <%@ include file="../include/footer.jsp" %>

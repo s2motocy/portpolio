@@ -154,6 +154,12 @@ $(document).ready(function(){
                                     <input type="checkbox" class="check-box" id="ship-to-different-address" data-toggle="collapse" data-target="#showdifferent">
                                     <label class="label-text" for="ship-to-different-address">신규 배송지 입력</label>
                                 </div>
+                                <div>
+                                    <label for="order-notes">배송시 요청사항</label>
+                                    <textarea class="text-area" id="buy_note" name="buy_note" placeholder="배송시 요청사항을 입력해주세요"></textarea>
+                                </div>
+                                <button type="submit" class="button button-outline-secondary u-s-m-t-10">주문하기</button>
+                                
                                 <div class="collapse" id="showdifferent">
                                     <!-- Form-Fields -->
                                     <div class="u-s-m-b-13">
@@ -195,14 +201,8 @@ $(document).ready(function(){
 	                                </div>
                                     <!-- Form-Fields /- -->
                                 </div>
-                                <div>
-                                    <label for="order-notes">배송시 요청사항</label>
-                                    <textarea class="text-area" id="buy_note" name="buy_note" placeholder="배송시 요청사항을 입력해주세요"></textarea>
-                                </div>
-                                <button type="submit" class="button button-outline-secondary u-s-m-t-10">주문하기</button>
                             </div>
                             <!-- Billing-&-Shipping-Details /- -->
-                            
                         </div>
                     </form>
                 </div>
