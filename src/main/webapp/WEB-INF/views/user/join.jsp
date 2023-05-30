@@ -75,7 +75,8 @@ $(document).ready(function () {
     		url:"mailCheck?email=" + email,
     		success:function(data){
     			console.log("data : " + data);
-    			//checkBox.val(data);
+    			checkBox.attr("disabled",false);
+    			warnMsg.attr("id","mail_check_input_box_true");
     			code = data
     			setTimeout(() => {
     				console.log("눌렷어")
@@ -190,7 +191,21 @@ $(document).ready(function () {
         if (!checkPassword()) {
             event.preventDefault(); // 비밀번호 확인 실패 시 기본 동작을 중단합니다.
         }
+        
+        $('button').click( function(event) {
+	        if (!checkPassword()) {
+	            event.preventDefault(); // 비밀번호 확인 실패 시 기본 동작을 중단합니다.
+	        }else if($('.mail_check_input').val()==''){
+	        	alert("인증이 이루어지지 않았어요")
+                event.preventDefault();
+	        }else if(mailnumCheck==false){
+                alert("인증번호가 일치하지 않아요")
+                event.preventDefault();
+            }else{
+	            alert("회원가입 되었습니다");
+	        }
         });
+    });
 </script>
 
 <body>
@@ -291,7 +306,7 @@ $(document).ready(function () {
                                 <input type="button"  class='mail_check_button' value="인증번호전송" id="check" class="btn btn-secondary"/>
                             </div>
                             <div class="mail_check_wrap">
-                                   <input class="mail_check_input" />
+                                   <input class="mail_check_input" disabled="disabled" />
                                 <div class="mail_check_button">
 						<span id="mail_check_input_box_warn"></span>
                               </div>

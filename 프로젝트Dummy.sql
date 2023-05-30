@@ -139,7 +139,6 @@ create table reply(
     UNIQUE(item_id, user_id)
 );
 
-alter table tbl_item add ratingAvg number(2,1);
 
 commit;
 
