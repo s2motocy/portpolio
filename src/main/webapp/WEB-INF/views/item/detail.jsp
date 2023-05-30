@@ -386,7 +386,7 @@ $(document).ready(function () {
 									<a href="#">전체</a>
 								</li>
 								<li class="is-marked">
-									<a href="#">한식</a>
+									<a href="#">${item.category}</a>
 								</li>
 							</ul>
 							 <div class="star-wrapper u-s-m-b-8">

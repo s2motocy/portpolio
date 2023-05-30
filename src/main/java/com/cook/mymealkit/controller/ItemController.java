@@ -125,6 +125,8 @@ public class ItemController {
 		categoryList.forEach(i -> {
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			i.setAttachList(attachList);
+			int cnt = rservice.getReplyTotal((long)i.getItem_id());
+			i.setReplyCnt(cnt);
 		});
         System.out.println(categoryList);
         model.addAttribute("categoryList", categoryList);
@@ -139,6 +141,8 @@ public class ItemController {
 		itemList.forEach(i -> {
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			i.setAttachList(attachList);
+			int cnt = rservice.getReplyTotal((long)i.getItem_id());
+			i.setReplyCnt(cnt);
 		});
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("user_id", user_id);
@@ -156,6 +160,8 @@ public class ItemController {
 		newItemList.forEach(i -> {
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			i.setAttachList(attachList);
+			int cnt = rservice.getReplyTotal((long)i.getItem_id());
+			i.setReplyCnt(cnt);
 		});
 		System.out.println("이야ㅑ이야호" + newItemList);
 		model.addAttribute("newItemList", newItemList);

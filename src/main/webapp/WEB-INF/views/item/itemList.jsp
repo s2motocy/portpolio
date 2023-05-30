@@ -72,7 +72,7 @@ $(document).ready(function () {
 							src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}"
 							width="100px" height="100px" /></td>
 					<td>${list.category}</td>
-					<td><a href="detail?item_id=${list.item_id}">${list.item_name}</a></td>
+					<td><a href="/item/detail?item_id=${list.item_id}">${list.item_name}</a></td>
 					<td>
 						<fmt:formatNumber value="${list.item_price}" pattern="###,### 원" />
 					</td>

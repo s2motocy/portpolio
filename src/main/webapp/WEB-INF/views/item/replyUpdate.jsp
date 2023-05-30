@@ -161,8 +161,8 @@ $(".update_btn").on("click", function (e) {
 				<option value="3.0">3.0</option>
 				<option value="3.5">3.5</option>
 				<option value="4.0">4.0</option>
-				<option value="4.0">4.5</option>
-				<option value="4.0">5.0</option>
+				<option value="4.5">4.5</option>
+				<option value="5.0">5.0</option>
 			</select>
 		</div>
 		<div class="content_div">
