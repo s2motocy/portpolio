@@ -23,6 +23,8 @@ public class ItemVO {
   	private String itemType;				// 신상품,인기상품 분류
   	private String start;					// 최소 가격
   	private String end;						// 최대 가격
+  	private double ratingAvg;				// 별점 평균
+	private int  replyCnt;					// 댓글 개수
   	
 	/* 참조 데이터 */
 	private List<AttachFileDTO> attachList; // 파일(이미지) 정보

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cook.mymealkit.domain.UserVO;
-import com.cook.mymealkit.mapper.AdminMapper;
 import com.cook.mymealkit.mapper.UserMapper;
 
 @Service
@@ -17,9 +16,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper umapper;
 	
-	@Autowired
-	private AdminMapper amapper;
-
 	// 회원가입
 	@Override
 	public void join(UserVO vo) {

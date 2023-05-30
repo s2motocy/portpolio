@@ -22,5 +22,7 @@ public interface ReplyService {
 
 	/* 댓글 삭제 */
 	public int deleteReply(ReplyDTO dto);
+	
+	public int getReplyTotal(long item_id);
 
 }

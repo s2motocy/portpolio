@@ -8,4 +8,7 @@ import lombok.ToString;
 public class UpdateReplyDTO {
 
 	private long item_id;
+	
+	private double ratingAvg;
+	
 }

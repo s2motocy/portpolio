@@ -14,7 +14,6 @@
                   </li>
                   <li class="is-marked">
                       <a href="single-product.html">주문내역</a>
-                      <font size:3px></font>
                   </li>
               </ul>
           </div>
