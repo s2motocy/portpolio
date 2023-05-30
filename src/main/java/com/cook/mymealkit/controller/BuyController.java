@@ -223,15 +223,16 @@ public class BuyController {
 	public String userBuy(Model model, HttpSession session, String user_id) {
 		System.out.println("멤버아이디?" + user_id);
 		List<BuyUserVO> userBuyList = bservice.bListByUserId(user_id);
+		System.out.println("여기에 리스트 : "+userBuyList);
 		List<BuyListDTO> userBuyItemList = new ArrayList<BuyListDTO>();
+		if(userBuyList.isEmpty()) {
+			return "redirect:/buy/userBuyEmpty";
+		}
 		userBuyList.forEach(i -> {
 			List<BuyListDTO> buyList = blistservice.listOfNo(i.getBuy_no());
 			buyList.forEach(v -> userBuyItemList.add(v));
 			i.setBuy_list(buyList);
 		});
-		if(userBuyList.isEmpty()) {
-			return "redirect:/buy/buyEmpty";
-		}
 		System.out.println(userBuyList);
 		model.addAttribute("userBuyList", userBuyList);
 		model.addAttribute("userBuyItemList", userBuyItemList);
@@ -241,11 +242,17 @@ public class BuyController {
 	
 	@GetMapping("/buyEmpty")
 	public void buyEmpty() {}
+	
+	@GetMapping("/userBuyEmpty")
+	public void userBuyEmpty() {}
 
 	/* 관리자권한 전체 구매내역 조회 |--------------------------------------------------- */
 	@GetMapping("/buyList")
-	public void Buy(Model model) {
+	public String Buy(Model model) {
 		List<BuyUserVO> buyList = bservice.userBuyList(); // 전체 회원구매 목록
+		if(buyList.isEmpty()) {
+			return "redirect:/buy/buyEmpty";
+		}
 		List<BuyListDTO> bblist = new ArrayList<BuyListDTO>(); // 아이템 목록만 저장할 공간
 		buyList.forEach(i -> {
 			List<BuyListDTO> blist = blistservice.listOfNo(i.getBuy_no()); // 주문번호와 일치하는 아이템목록
@@ -255,6 +262,7 @@ public class BuyController {
 		System.out.println(buyList);
 		model.addAttribute("buyList", buyList);
 		model.addAttribute("bblist", bblist);
+		return "/buy/buyList";
 	}
 	
 	@PostMapping("/order")

@@ -3,7 +3,6 @@ package com.cook.mymealkit.mapper;
 import java.util.List;
 
 import com.cook.mymealkit.domain.ChartVO;
-import com.cook.mymealkit.domain.UserVO;
 
 public interface AdminMapper {
 

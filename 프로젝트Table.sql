@@ -49,7 +49,8 @@ create table tbl_item (
     description varchar2(1000) not null,                -- 상품 설명
     item_stock  number(10) not null,                    -- 상품 재고
     item_sold   number(10),                             -- 상품 판매량
-    update_date date default sysdate                    -- 수정일
+    update_date date default sysdate,                   -- 수정일
+    ratingAvg   number(2,1)                             -- 평점 평균
 );
 
 -- 상품 이미지(file_item) 시퀀스 생성

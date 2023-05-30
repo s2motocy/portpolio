@@ -15,7 +15,7 @@
                         <a href="/">Home</a>
                     </li>
                     <li class="is-marked">
-                        <a href="/buy/buyList">구매내역</a>
+                        <a href="#">구매내역</a>
                     </li>
                 </ul>
             </div>
