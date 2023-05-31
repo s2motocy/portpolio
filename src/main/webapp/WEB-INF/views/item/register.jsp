@@ -150,7 +150,7 @@ $(document).ready(function () {
 <div class="page-style-a">
 	<div class="container">
 		<div class="page-intro">
-			<h2>상품 등록</h2>
+			<h2>상품 관리</h2>
 			<ul class="bread-crumb">
 				<li class="has-separator">
 					<i class="ion ion-md-home"></i>
