@@ -57,7 +57,9 @@
                 </tr>
             </c:forEach>
         </table>
-        <a href="/notice/enroll" class="btn btn-write">게시판 등록</a>
+        <c:if test="${aaa == 1}">
+            <a href="/notice/enroll" class="btn btn-write">게시판 등록</a>
+        </c:if>
     </div>
 </div>
 </body>
