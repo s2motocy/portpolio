@@ -70,7 +70,8 @@ create table tbl_user_buy (
     addr        varchar2(100) not null,
     addr2       varchar2(100) not null,
     buy_status  varchar2(20) default '구매완료',
-    buy_date    date default sysdate
+    buy_date    date default sysdate,
+    buy_note    varchar2(100)
 );
 create sequence seq_guest_buy;
 create table tbl_guest_buy (
@@ -83,7 +84,8 @@ create table tbl_guest_buy (
     addr        varchar2(100) not null,
     addr2       varchar2(100) not null,
     buy_status  varchar2(20) default '구매완료',
-    buy_date    date default sysdate
+    buy_date    date default sysdate,
+    buy_note    varchar2(100)
 );
 create sequence seq_buy_list;
 create table tbl_buy_list (

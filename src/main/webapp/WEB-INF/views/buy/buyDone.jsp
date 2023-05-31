@@ -28,7 +28,7 @@
         <div class="vertical-middle">
             <div class="text-center u-s-m-t-50 u-s-m-b-50">
                 <h1>결제가 성공적으로 완료되었습니다</h1>
-                <div class="u-s-m-t-10">
+                <div class="u-s-m-t-30">
                 	<a href="/item/categoryAll" class="thank-you-back" id="continue">쇼핑 계속하기</a>
                 </div>
                 <div>
