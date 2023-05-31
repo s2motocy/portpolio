@@ -54,6 +54,7 @@ public class UserController {
 				if(user.getAuth().equals("a")) {
 					 System.out.println(user);
 					 session.setAttribute("admin", uservice.getUserById(vo.getUser_id()).getAuth());
+					 session.setAttribute("aaa",1);
 				}
 			} catch(Exception e) {
 				System.out.println("예외:"+user);
