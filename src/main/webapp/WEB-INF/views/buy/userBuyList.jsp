@@ -31,7 +31,7 @@
 			<th>가격</th>
 			<th>주문 상태</th>
 		</tr>
-		<c:forEach var="buy_status" items="${userBuyList}">
+		<c:forEach var="ublist" items="${userBuyList}">
 			<tr>
 				<td>${ublist.buy_no}</td>
 				<td><fmt:formatDate value="${ublist.buy_date}" pattern="yyyy-MM-dd" /></td>
