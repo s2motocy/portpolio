@@ -35,7 +35,7 @@
 		select item_price from tbl_item where item_id=#{item_id}
 	</select>
 	
-	<select id="categoryItemList" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="string" >
+	<select id="categoryItemList" resultType="com.cook.mymealkit.domain.ItemVO" parameterType="string">
 		select * from tbl_item where category=#{category}
 	</select>
 
@@ -80,7 +80,7 @@
 	<select id="likeSelect" resultType="com.cook.mymealkit.domain.SelectDTO">
 		select * from
 			(select rownum as rn, item_id, item_name (select category from tbl_item where tbl_item.category = tbl_item.category) as category
-				from tbl_item
+				from tbl_item)
 					<![CDATA[where rn < 9]]>
 	</select>
 	
