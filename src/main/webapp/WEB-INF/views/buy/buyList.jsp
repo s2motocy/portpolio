@@ -49,11 +49,10 @@ $(document).ready(function (e) {
             <ul class="bread-crumb">
                 <li class="has-separator">
                     <i class="ion ion-md-home"></i>
-                    <a href="home.html">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="is-marked">
-                    <a href="single-product.html">구매 관리</a>
-                    <font size:3px></font>
+                    <a href="#">구매 관리</a>
                 </li>
             </ul>
         </div>

@@ -21,6 +21,7 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public int enrollReply(ReplyDTO dto) {
 		int result = rmapper.enrollReply(dto);
+		setRating(dto.getItem_id());
 		return result;
 	}
 
@@ -45,6 +46,7 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public int updateReply(ReplyDTO dto) {
 		int result = rmapper.updateReply(dto);
+		setRating(dto.getItem_id());
 		return result;
 	}
 
@@ -56,6 +58,32 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public int deleteReply(ReplyDTO dto) {
 		int result = rmapper.deleteReply(dto.getReply_id());
+		setRating(dto.getItem_id());
 		return result;
+	}
+	
+	public void setRating(long item_id) {
+		
+		Double ratingAvg = rmapper.getRatingAverage(item_id);	
+		
+		if(ratingAvg == null) {
+			ratingAvg = 0.0;
+		}	
+		
+		ratingAvg = (double) (Math.round(ratingAvg));
+		
+		UpdateReplyDTO urd = new UpdateReplyDTO();
+		urd.setItem_id(item_id);
+		urd.setRatingAvg(ratingAvg);	
+		
+		rmapper.updateRating(urd);		
+		
+	}
+
+	@Override
+	public int getReplyTotal(long item_id) {
+		int cnt = rmapper.getReplyTotal(item_id);
+		System.out.println("서비스에서 댓글 갯수 :" +cnt);
+		return cnt ;
 	}
 }

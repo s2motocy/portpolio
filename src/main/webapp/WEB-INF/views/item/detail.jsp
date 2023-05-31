@@ -35,7 +35,7 @@
 	font-weight: bold;}
 .date_span {
 	padding: 0 15px 0;}
-	
+
 /* 리뷰 컨텐트 부분 */
 .reply_bottom {
 	padding-bottom: 10px;}
@@ -110,7 +110,65 @@
 
 <script>
 $(document).ready(function () {
-	const item_id = '${list.item_id}';
+	const ratingStarsControl = function () {
+		console.log("여기 호출이되나?")
+	          const $ratingField = $('.your-rating-value');
+		 const $starWidth = $('.your-stars');
+	        const $starComment = $('.star-comment');
+	        console.log($ratingField);
+	        setTimeout(() => {
+	          console.log('여기 호출은?');
+	          $ratingField.val(Number($ratingField.val()) + Number(0.0));
+	          $ratingField.trigger('keyup');
+	        }, 1);
+
+	        let oneStarWidth = 15; // 15 * 5 = 75
+	        let newStarWidth;
+	        let ratingthresholdNumber = 5;
+	        let comment;
+	        let currentVal;
+
+	        $ratingField.on('keyup', function () {
+	          //$starWidth.css('width', 0);
+	          $starComment.text('');
+
+	          if ($.isNumeric($ratingField.val())) {
+	            currentVal = parseFloat($ratingField.val());
+	          } else {
+	            currentVal = NaN;
+	          }
+
+	          if (!currentVal || currentVal === '' || currentVal === 'NaN' || currentVal === 0) {
+	            currentVal = 0;
+	            $starWidth.css('width', 0);
+	            $starComment.text('');
+	          } else {
+	            if (currentVal >= 1 && currentVal <= ratingthresholdNumber) {
+	              if (currentVal === 1) {
+	                comment = 'I hate it.';
+	              } else if (currentVal === 2) {
+	                comment = "I don't like it.";
+	              } else if (currentVal === 3) {
+	                comment = "It's OK.";
+	              } else if (currentVal === 4) {
+	                comment = "I like it.";
+	              } else if (currentVal === 5) {
+	                comment = "It's Perfect.";
+	              }
+
+	              currentVal = currentVal.toFixed(1);
+	              newStarWidth = oneStarWidth * currentVal;
+	              newStarWidth = Math.floor(newStarWidth);
+
+	              $starWidth.css('width', newStarWidth);
+	              $starComment.text(comment);
+	            }
+	          }
+	        });
+		    };
+	    ratingStarsControl();
+	    
+	const item_id = '${item.item_id}';
 	/* "장바구니에 담기" 버튼 클릭시 수량값 실어보내기 */
 	$(".gocart").click(function (e) {
 		var amount = parseInt($(".quantity-text-field").val())
@@ -145,7 +203,7 @@ $(document).ready(function () {
 	$(".reply_button_wrap").on("click", function (e) {
 		e.preventDefault();
 		const user_id = '${vo.user_id}';
-		const item_id = '${list.item_id}';
+		const item_id = '${item.item_id}';
 		$.ajax({
 			data: {
 				item_id: item_id,
@@ -167,7 +225,7 @@ $(document).ready(function () {
 	});
 	/* 댓글 페이지 정보 */
 	const cri = {
-		item_id: '${list.item_id}',
+		item_id: '${item.item_id}',
 		pageNum: 1,
 		amount: 10
 	}
@@ -188,7 +246,7 @@ $(document).ready(function () {
 	$(document).on('click', '.update_reply_btn', function (e) {
 		e.preventDefault();
 		let reply_id = $(this).attr("href");
-		let popUrl = "/item/replyUpdate?reply_id=" + reply_id + "&item_id=" + '${list.item_id}' + "&user_id=" + '${vo.user_id}';
+		let popUrl = "/item/replyUpdate?reply_id=" + reply_id + "&item_id=" + '${item.item_id}' + "&user_id=" + '${vo.user_id}';
 		let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes"
 		window.open(popUrl, "리뷰 수정", popOption);
 	});
@@ -199,13 +257,13 @@ $(document).ready(function () {
 		$.ajax({
 			data: {
 				reply_id: reply_id,
-				item_id: '${list.item_id}'
+				item_id: '${item.item_id}'
 			},
 			url: '/reply/delete',
 			type: 'POST',
 			success: function (result) {
 				replyListInit();
-				alert('삭제가 완료되엇습니다.');
+				alert('삭제가 완료되었습니다.');
 			}
 		});
 	});
@@ -229,7 +287,8 @@ $(document).ready(function () {
 				/* 아이디 */
 				reply_list += '<span class="id_span">' + obj.user_id + '</span>';
 				/* 평점 */
-				reply_list += '<span class="rating_span"> 평점 : <span class="rating_value_span">' + obj.rating + '</span>/5 점</span>';
+				const starRating = "★".repeat(Math.floor(obj.rating)) + "☆".repeat(5 - Math.floor(obj.rating));
+				reply_list += '<span class="rating_span"> 평점 : <span class="rating_value_span">' + starRating ;
 				/* 날짜 */
 				reply_list += '<span class="date_span">' + obj.regDate + '</span>';
 				if (obj.user_id === uid) {
@@ -273,8 +332,6 @@ $(document).ready(function () {
 			$(".pageMaker").html(reply_pageMaker);
 		}
 	}
-	
-	
 })
 </script>
 
@@ -307,7 +364,7 @@ $(document).ready(function () {
 					<!-- Product-zoom-area -->
 					<div class="zoom-area">
 						<img class="img-fluid"
-							src="/display?fileName=/${list.attachList[0].uploadPath.replace('\\', '/')}/${list.attachList[0].uuid}_${list.attachList[0].fileName}"
+							src="/display?fileName=/${item.attachList[0].uploadPath.replace('\\', '/')}/${item.attachList[0].uuid}_${item.attachList[0].fileName}"
 							alt="Zoom Image" width="1600px" height="1600px">
 					</div>
 					<!-- Product-zoom-area /- -->
@@ -318,7 +375,7 @@ $(document).ready(function () {
 						<div class="section-1-title-breadcrumb-rating">
 							<div class="product-title">
 								<h1>
-									<a href="#">${list.item_name}</a>
+									<a href="#">${item.item_name}</a>
 								</h1>
 							</div>
 							<ul class="bread-crumb">
@@ -329,127 +386,107 @@ $(document).ready(function () {
 									<a href="#">전체</a>
 								</li>
 								<li class="is-marked">
-									<a href="#">한식</a>
+									<a href="#">${item.category}</a>
 								</li>
 							</ul>
-							<div class="product-rating">
-								<div class="star">
-                                    <span id="your-stars" style='width:0'></span>
-                                </div>
-                                <span>(23)</span>
-                                <input id="your-rating-value" type="hidden" class="input-field" value="${list.item_id}">
+							 <div class="star-wrapper u-s-m-b-8">
+				                <div class="star-wrapper u-s-m-b-8">
+					                <div class="star">
+					                  <span class="your-stars" style="width: 30"></span>
+					                </div>
+					                <input class="your-rating-value" type="hidden" class="text-field" placeholder="0.0" value="${item.ratingAvg}">
+					                <span>(${item.replyCnt})</span>
+   								</div>
 							</div>
-						</div>
-						<div class="section-2-short-description u-s-p-y-14">
-							<h6 class="information-heading u-s-m-b-8">상세설명:</h6>
-							<p>${list.description}</p>
-						</div>
-						<div class="section-3-price-original-discount u-s-p-y-14">
-							<div class="price">
-								<h4>
-									<fmt:formatNumber value="${list.item_price}" pattern="###,### 원" />
-								</h4>
+							<div class="section-2-short-description u-s-p-y-14">
+								<h6 class="information-heading u-s-m-b-8">상세설명:</h6>
+								<p>${item.description}</p>
 							</div>
-							<div class="original-price">
-								<span>단가:</span>
-								<span>
-									<fmt:formatNumber value="${list.item_price}" pattern="###,### 원" />
-								</span>
+							<div class="section-3-price-original-discount u-s-p-y-14">
+								<div class="price">
+									<h4>
+										<fmt:formatNumber value="${item.item_price}" pattern="###,### 원" />
+									</h4>
+								</div>
+								<div class="original-price">
+									<span>단가:</span>
+									<span>
+										<fmt:formatNumber value="${item.item_price}" pattern="###,### 원" />
+									</span>
+								</div>
+								<div class="discount-price">
+									<span>할인:</span>
+									<span>0%</span>
+									<span><img src="https://cdn-pro-web-134-253.cdn-nhncommerce.com/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_coupon_apply.png" /></span>
+								</div>
 							</div>
-							<div class="discount-price">
-								<span>할인:</span>
-								<span>0%</span>
-								<span><img
-										src="https://cdn-pro-web-134-253.cdn-nhncommerce.com/mychef1_godomall_com/data/skin/front/udweb_pc_20200903/img/common/btn/btn_coupon_apply.png" /></span>
+							<div class="section-4-sku-information u-s-p-y-14">
+								<h6 class="information-heading u-s-m-b-8">판매 정보:</h6>
+								<div class="availability">
+									<span>상태:</span>
+									<span class="available">구매 가능</span>
+								</div>
+								<div class="left">
+									<span>재고:</span>
+									<span class="stock">${item.item_stock} 개 남음</span>
+									<input type="hidden" class="stockData" value="${item.item_stock}" />
+								</div>
 							</div>
-						</div>
-						<div class="section-4-sku-information u-s-p-y-14">
-							<h6 class="information-heading u-s-m-b-8">판매 정보:</h6>
-							<div class="availability">
-								<span>상태:</span>
-								<span class="available">구매 가능</span>
-							</div>
-							<div class="left">
-								<span>재고:</span>
-								<span class="stock">${list.item_stock} 개 남음</span>
-								<input type="hidden" class="stockData" value="${list.item_stock}" />
-							</div>
-						</div>
-						<div class="section-6-social-media-quantity-actions u-s-p-y-14">
-							<form action="/cart/register" method="post" class="post-form">
-								<div class="quantity-wrapper u-s-m-b-22">
-									<span>수량:</span>
-									<div class="quantity">
-										<input type="text" class="quantity-text-field amountData"
-											name="amount" value="1">
-										<a class="plus-a" data-max="1000">&#43;</a>
-										<a class="minus-a" data-min="1">&#45;</a>
+							<div class="section-6-social-media-quantity-actions u-s-p-y-14">
+								<form action="/cart/register" method="post" class="post-form">
+									<div class="quantity-wrapper u-s-m-b-22">
+										<span>수량:</span>
+										<div class="quantity">
+											<input type="text" class="quantity-text-field amountData"
+												name="amount" value="1">
+											<a class="plus-a" data-max="1000">&#43;</a>
+											<a class="minus-a" data-min="1">&#45;</a>
+										</div>
 									</div>
-								</div>
-								<div class="hiddenData">
-									<input type="hidden" name="item_id" value="${list.item_id}" />
-									<input type="hidden" name="item_name" value="${list.item_name}" />
-									<input type="hidden" name="item_price" value="${list.item_price}" />
-									<input type="hidden" name="user_id" value="${user_id}" />
-								</div>
-								<div>
-									<button
-										class="button button-outline-secondary far fa-heart u-s-m-l-6"></button>
-									<button class="button button-outline-secondary gocart"
-										type="submit">장바구니에 담기</button>
-								</div>
-							</form>
+									<div class="hiddenData">
+										<input type="hidden" name="item_id" value="${item.item_id}" />
+										<input type="hidden" name="item_name" value="${item.item_name}" />
+										<input type="hidden" name="item_price" value="${item.item_price}" />
+										<input type="hidden" name="user_id" value="${user_id}" />
+									</div>
+									<div>
+										<button class="button button-outline-secondary far fa-heart u-s-m-l-6"></button>
+										<button class="button button-outline-secondary gocart" type="submit">장바구니에 담기</button>
+									</div>
+								</form>
+							</div>
 						</div>
+						<!-- Product-details /- -->
 					</div>
-					<!-- Product-details /- -->
 				</div>
-			</div>
-			<!-- Product-Detail /- -->
-			<!-- Detail-Tabs -->
-			<div class="row">
-				<div class="col-lg-12 col-md-12 col-sm-12">
-					<div class="detail-tabs-wrapper u-s-p-t-80">
-						<div class="detail-nav-wrapper u-s-m-b-30">
-							<ul class="nav single-product-nav justify-content-center">
-								<li class="nav-item">
-									<a class="nav-link active" data-toggle="tab"
-										href="#description">상세설명</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" data-toggle="tab" href="#specification">기본</a>
-								</li>
-							</ul>
-							<div class="reply_subject">
-								<h2>리뷰</h2>
-							</div>
-							<c:if test="${vo != null}">
-								<div>
-									<button class="reply_button_wrap">리뷰 쓰기</button>
+				<!-- Product-Detail /- -->
+				<!-- Detail-Tabs -->
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<div class="detail-tabs-wrapper u-s-p-t-80">
+							<div class="detail-nav-wrapper u-s-m-b-30">
+								<div class="reply_subject">
+									<h2>리뷰</h2>
 								</div>
-							</c:if>
-							<div class="reply_not_div">
-							</div>
-							<ul class="reply_content_ul">
-							</ul>
-							<div class="reply_pageInfo_div">
-								<ul class="pageMaker">
+								<c:if test="${vo != null}">
+									<div>
+										<button class="reply_button_wrap">리뷰 쓰기</button>
+									</div>
+								</c:if>
+								<div class="reply_not_div">
+								</div>
+								<ul class="reply_content_ul">
 								</ul>
-							</div>
-						</div>
-						<div class="tab-content">
-							<!-- Description-Tab -->
-							<div class="tab-pane fade active show" id="description">
-								<div class="description-whole-container">
-									<p class="desc-p u-s-m-b-26">${list.description}
-									</p>
+								<div class="reply_pageInfo_div">
+									<ul class="pageMaker">
+									</ul>
 								</div>
 							</div>
-							<!-- Description-Tab /- -->
 						</div>
 					</div>
 				</div>
+				<!-- Detail-Tabs /- -->
 			</div>
-			<!-- Detail-Tabs /- -->
 		</div>
 	</div>
 </div>

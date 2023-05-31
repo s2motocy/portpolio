@@ -63,6 +63,8 @@ public class ItemController {
 			itemList.forEach(i -> {
 				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 				i.setAttachList(attachList);
+				int cnt = rservice.getReplyTotal((long)i.getItem_id());
+				i.setReplyCnt(cnt);
 			});
 			model.addAttribute("list", itemList);
 		} else {
@@ -70,6 +72,8 @@ public class ItemController {
 			itemList.forEach(i -> {
 				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 				i.setAttachList(attachList);
+				int cnt = rservice.getReplyTotal((long)i.getItem_id());
+				i.setReplyCnt(cnt);
 			});
 			model.addAttribute("list", itemList);
 		}
@@ -79,11 +83,13 @@ public class ItemController {
 	@GetMapping("/detail")
 	public void detail(@RequestParam("item_id") Long item_id, String user_id, Model model) {
 		System.out.println("Item 컨트롤러에서 조회 : item_id=" + item_id + " , user_id: " + user_id);
-		ItemVO vo = iservice.itemFindById(item_id);
+		ItemVO ivo = iservice.itemFindById(item_id);
 		List<AttachFileDTO> attachList = iservice.getAttachList(item_id);
-		vo.setAttachList(attachList);
-		System.out.println("조회한 값 저장: " + vo);
-		model.addAttribute("list", vo);
+		ivo.setAttachList(attachList);
+		int cnt = rservice.getReplyTotal(item_id);
+		ivo.setReplyCnt(cnt);
+		System.out.println("조회한 값 저장: " + ivo);
+		model.addAttribute("item", ivo);
 		model.addAttribute("user_id", user_id);
 	}
 
@@ -119,6 +125,8 @@ public class ItemController {
 		categoryList.forEach(i -> {
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			i.setAttachList(attachList);
+			int cnt = rservice.getReplyTotal((long)i.getItem_id());
+			i.setReplyCnt(cnt);
 		});
         System.out.println(categoryList);
         model.addAttribute("categoryList", categoryList);
@@ -133,6 +141,8 @@ public class ItemController {
 		itemList.forEach(i -> {
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			i.setAttachList(attachList);
+			int cnt = rservice.getReplyTotal((long)i.getItem_id());
+			i.setReplyCnt(cnt);
 		});
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("user_id", user_id);
@@ -150,6 +160,8 @@ public class ItemController {
 		newItemList.forEach(i -> {
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			i.setAttachList(attachList);
+			int cnt = rservice.getReplyTotal((long)i.getItem_id());
+			i.setReplyCnt(cnt);
 		});
 		System.out.println("이야ㅑ이야호" + newItemList);
 		model.addAttribute("newItemList", newItemList);

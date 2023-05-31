@@ -65,15 +65,77 @@ $(document).ready(function(e){
 		                     	+'<div class="item-stars"> <div class="star" title="0 out of 5 - based on 0 Reviews"> <span style="width:0"></span> </div> <span>(10)</span> </div> </div>'
 		                     	+'<div class="price-template"> <div class="item-new-price">' +  data.item_price + ' 원 </div> </div> </div> </div>'
 	                        
-	                });
-				 productContainer.append(itemHtml); 
-	            },
-	            error: function() {
-	            	alert("맞는 상품이 없습니다");
+                });
+			 productContainer.append(itemHtml); 
+            },
+            error: function() {
+            	alert("맞는 상품이 없습니다");
+            }
+        });
+    });
+	
+	const ratingStarsControl = function () {
+	      $('.item').each(function (index) {
+	        const $ratingField = $(this).find('.your-rating-value');
+	        const $starWidth = $(this).find('.your-stars');
+	        const $starComment = $(this).find('.star-comment');
+
+	        let r = $ratingField.val();
+	        console.log(r);
+	        setTimeout(() => {
+	          console.log('여기 호출은?');
+	          $ratingField.val(Number(r) + Number(0.0));
+	          $ratingField.trigger('keyup');
+	        }, 1);
+
+	        let oneStarWidth = 15; // 15 * 5 = 75
+	        let newStarWidth;
+	        let ratingthresholdNumber = 5;
+	        let comment;
+	        let currentVal;
+
+	        $ratingField.on('keyup', function () {
+	          $starWidth.css('width', 0);
+	          $starComment.text('');
+
+	          if ($.isNumeric($ratingField.val())) {
+	            currentVal = parseFloat($ratingField.val());
+	          } else {
+	            currentVal = NaN;
+	          }
+
+	          if (!currentVal || currentVal === '' || currentVal === 'NaN' || currentVal === 0) {
+	            currentVal = 0;
+	            $starWidth.css('width', 0);
+	            $starComment.text('');
+	          } else {
+	            if (currentVal >= 1 && currentVal <= ratingthresholdNumber) {
+	              if (currentVal === 1) {
+	                comment = 'I hate it.';
+	              } else if (currentVal === 2) {
+	                comment = "I don't like it.";
+	              } else if (currentVal === 3) {
+	                comment = "It's OK.";
+	              } else if (currentVal === 4) {
+	                comment = "I like it.";
+	              } else if (currentVal === 5) {
+	                comment = "It's Perfect.";
+	              }
+
+	              currentVal = currentVal.toFixed(1);
+	              newStarWidth = oneStarWidth * currentVal;
+	              newStarWidth = Math.floor(newStarWidth);
+
+	              $starWidth.css('width', newStarWidth);
+	              $starComment.text(comment);
 	            }
+	          }
 	        });
-	    });
-	});
+	      });
+	    };
+
+	    ratingStarsControl();
+});
 </script>
 
 <body>
@@ -134,10 +196,11 @@ $(document).ready(function(e){
 		                       <a href="/item/detail?item_id=${newitem.item_id}">${newitem.item_name}</a>
 		                    </h6>
 		                    <div class="item-stars">
-		                        <div class='star' title="0 out of 5 - based on 0 Reviews">
-		                            <span style='width:0'></span>
-		                        </div>
-		                        <span>(10)</span>
+		                        <div class="star">
+                                    <span class="your-stars" style='width:0'></span>
+                                </div>
+                                <span>(${newitem.replyCnt})</span>
+                                <input class="your-rating-value" type="hidden" class="text-field" value="${newitem.ratingAvg}">
 		                    </div>
 	                </div>
 	                <div class="price-template">

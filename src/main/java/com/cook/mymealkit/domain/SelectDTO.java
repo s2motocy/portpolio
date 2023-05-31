@@ -17,5 +17,7 @@ public class SelectDTO {
 
 	/* 상품 이미지 */
 	private List<AttachFileDTO> imageList;
+	
+	private double ratingAvg;
 
 }

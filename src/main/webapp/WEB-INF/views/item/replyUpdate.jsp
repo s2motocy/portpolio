@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ include file="../include/header.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
 <style type="text/css">
 /* 창 여분 없애기 */
@@ -156,8 +161,8 @@ $(".update_btn").on("click", function (e) {
 				<option value="3.0">3.0</option>
 				<option value="3.5">3.5</option>
 				<option value="4.0">4.0</option>
-				<option value="4.0">4.5</option>
-				<option value="4.0">5.0</option>
+				<option value="4.5">4.5</option>
+				<option value="5.0">5.0</option>
 			</select>
 		</div>
 		<div class="content_div">
@@ -170,4 +175,4 @@ $(".update_btn").on("click", function (e) {
 	</div>
 </div>
 </body>
-<%@ include file="../include/footer.jsp"%>
+</html>

@@ -12,6 +12,7 @@ import com.cook.mymealkit.domain.ItemVO;
 import com.cook.mymealkit.mapper.FileMapper;
 import com.cook.mymealkit.mapper.ItemMapper;
 import com.cook.mymealkit.service.ItemService;
+import com.cook.mymealkit.service.ReplyService;
 
 import lombok.Setter;
 
@@ -25,6 +26,8 @@ public class MainController {
 	/* Service 설정 */
 	@Setter(onMethod_=@Autowired)
 	ItemService iservice;
+	@Setter(onMethod_=@Autowired)
+	ReplyService rservice;
 
 	/* 메인 페이지 |--------------------------------------------------- */
 	@RequestMapping({ "/", "/main" })
@@ -34,6 +37,8 @@ public class MainController {
 			itemList.forEach(i -> {
 				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 				i.setAttachList(attachList);
+				int cnt = rservice.getReplyTotal((long)i.getItem_id());
+				i.setReplyCnt(cnt);
 			});
 			model.addAttribute("list", itemList);
 		} else {
@@ -41,6 +46,8 @@ public class MainController {
 			itemList.forEach(i -> {
 				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 				i.setAttachList(attachList);
+				int cnt = rservice.getReplyTotal((long)i.getItem_id());
+				i.setReplyCnt(cnt);
 			});
 			model.addAttribute("list", itemList);
 		}
