@@ -7,6 +7,11 @@
 .category a {
 	font-size:10px;
 	color:#d90429;}
+.slide-content a{
+	padding-left:300px;
+	color:#fff;
+	font-weight:bold;
+	text-decoration: underline;}
 </style>
 
 <body>
@@ -14,26 +19,28 @@
 	<div class="default-height ph-item">
 		<div class="slider-main owl-carousel">
 			<div class="bg-image one">
-				<img alt="banner" src="/resources/images/banners/banner4.PNG">
-				<div class="slide-content slide-animation">
-					<h1>월요일</h1>
-					<h2>싫어</h2>
+				<img alt="banner" src="/resources/images/banners/banner5.PNG">
+				<div class="slide-content slide-animation">					
+					<h1 style="color: #0e4cb3">신상 밀키트</h1>
+					<h2><a href="/item/newOrBest?itemType=1">더보기→</a></h2>
+					
 				</div>
 			</div>
 			<div class="bg-image two">
-				<img alt="banner" src="/resources/images/banners/banner5.PNG">
+				<img alt="banner" src="/resources/images/banners/banner4.PNG">
 				<div class="slide-content-2 slide-animation">
-					<h2 class="slide-2-h2-a">화요일</h2>
-					<h2 class="slide-2-h2-b">싫어</h2>
+					<h2 class="slide-2-h2-a">신선한</h2>
+					<h3 class="slide-2-h2-b">밀키트 가득</h3>
 				</div>
 			</div>
 			<div class="bg-image three">
+				
 				<img alt="banner" src="/resources/images/banners/mainlogo3.jpeg">
 				<div class="slide-content slide-animation">
-					<h1>수요일
-						<span style="color:#333">목요일</span>
+					<h1>간편한
+						<span style="color:#fff">맛집</span>
 					</h1>
-					<h2 style="color:#333">싫어</h2>
+					<h2><a href="/item/newOrBest?itemType=2">인기상품 더보기→</a></h2>
 				</div>
 			</div>
 		</div>

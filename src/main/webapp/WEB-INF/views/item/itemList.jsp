@@ -39,14 +39,14 @@ $(document).ready(function () {
 	<div class="page-style-a">
 		<div class="container">
 			<div class="page-intro">
-				<h2>상품 목록</h2>
+				<h2>상품 관리</h2>
 				<ul class="bread-crumb">
 					<li class="has-separator">
 						<i class="ion ion-md-home"></i>
 						<a href="#">Home</a>
 					</li>
 					<li class="is-marked">
-						<a href="#">상품 목록</a>
+						<a href="#">재고 관리</a>
 					</li>
 				</ul>
 			</div>
@@ -78,7 +78,7 @@ $(document).ready(function () {
 					</td>
 					<td>${list.item_stock}</td>
 					<td><a href="update?item_id=${list.item_id}"><button id="updatebtn" type="button" class="btn btn-primary">수정</button></a></td>
-					<td><a href="delete?item_id=${list.item_id}" id="delete"><button id="deletebtn" type="button" class="btn btn-danger">삭제</button></a></td>
+					<td><a href="delete?item_id=${list.item_id}" id="delete"><button id="deletebtn" class="btn btn-danger">삭제</button></a></td>
 				</tr>
 			</c:forEach>
 		</table>
