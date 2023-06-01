@@ -165,6 +165,7 @@ public class ItemController {
 		});
 		System.out.println("이야ㅑ이야호" + newItemList);
 		model.addAttribute("newItemList", newItemList);
+		model.addAttribute("itemType", itemType);
 		return "/item/newOrBest";
 	}
 	

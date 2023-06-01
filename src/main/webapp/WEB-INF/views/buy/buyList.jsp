@@ -73,25 +73,25 @@ $(document).ready(function (e) {
 		</tr>
 		<c:forEach var="list" items="${buyList}">
 			<tr>
-				<td>${list.buy_no}</td>
+				<td id="first">${list.buy_no}</td>
 				<td>${list.user_id}</td>
 				<td><fmt:formatDate value="${list.buy_date}" pattern="yyyy-MM-dd" /></td>
-				<td><c:forEach var="add" items="${bblist}" varStatus="stat">
-					${add.item_name}<br>
-				</c:forEach></td>
-				<td><c:forEach var="add" items="${bblist}" varStatus="stat">
-					${add.amount}<br>
-				</c:forEach></td>
-				<td><c:forEach var="add" items="${bblist}" varStatus="stat">
-					${add.buy_price}<br>
-				</c:forEach></td>
+				<td><c:forEach var="todo" items="${list.buy_list}">
+						${todo.item_name}<br>
+					</c:forEach></td>
+				<td><c:forEach var="todo" items="${list.buy_list}">
+						${todo.amount}<br>
+					</c:forEach></td>
+				<td><c:forEach var="todo" items="${list.buy_list}">
+						${todo.buy_price}<br>
+					</c:forEach></td>
 				<td>
-					<select name="buy_status" id="buy_status" value="${list.buy_status}">
-						<option value="결제 완료">결제 완료</option>
-						<option value="상품 준비 중">상품 준비중</option>
-						<option value="배송 시작">배송 시작</option>
-						<option value="배송 중">배송 중</option>
-						<option value="배송 완료">배송 완료</option>
+					<select name="buy_status" id="buy_status">
+						<option value="결제 완료" <c:if test="${list.buy_status == '결제 완료'}">selected</c:if>>결제 완료</option>
+						<option value="상품 준비 중" <c:if test="${list.buy_status == '상품 준비 중'}">selected</c:if>>상품 준비중</option>
+						<option value="배송 시작" <c:if test="${list.buy_status == '배송 시작'}">selected</c:if>>배송 시작</option>
+						<option value="배송 중" <c:if test="${list.buy_status == '배송 중'}">selected</c:if>>배송 중</option>
+						<option value="배송 완료" <c:if test="${list.buy_status == '배송 완료'}">selected</c:if>>배송 완료</option>
 					</select>
 				<div class="action-wrapper">
 					<button class="button button-outline-secondary fas fa-sync"></button>

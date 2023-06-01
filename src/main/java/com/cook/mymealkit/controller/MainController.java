@@ -40,6 +40,7 @@ public class MainController {
 				int cnt = rservice.getReplyTotal((long)i.getItem_id());
 				i.setReplyCnt(cnt);
 			});
+			System.out.println("여기확인: "+itemList);
 			model.addAttribute("list", itemList);
 		} else {
 			List<ItemVO> itemList = imapper.itemListBySearch(search);

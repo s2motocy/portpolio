@@ -96,7 +96,7 @@ $(document).ready(function () {
 })
 </script>
 <!-- app -->
-<div id="app">
+<div id="app" class="position-relative">
 <!-- Header -->
 <header>
     <!-- Mid-Header -->
@@ -123,50 +123,42 @@ $(document).ready(function () {
             <div class="col-lg-3 col-md-3 col-sm-6">
                 <nav>
                     <ul class="g-nav">
-                        <c:if test="${vo == null}">
-                            <li>
-                                <a href="/user/login" class="g-nav-link">
-                                    <i class="far fa-user"></i>
-                                    로그인
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/user/join" class="g-nav-link">
-                                    <i class="fas fa-user-plus"></i>
-                                    회원가입
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/cart/cartList/join" class="g-nav-link">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    장바구니
-                                </a>
-                            </li>
-                        </c:if>
-
-                        <!-- 로그인 세션 시작 -->
-                        <c:if test="${vo != null}">
-                            <li>
-                                <a href="/user/mypage" class="g-nav-link">
-                                    <i class="far fa-user"></i>
-                                    ${vo.user_name}님 환영합니다!
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/user/logout.do" class="g-nav-link">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                    로그아웃
-                                </a>
-                            </li>
-                            <!-- 로그인 세션 종료 -->
-                            <li>
-                                <a href="/cart/cartList" class="g-nav-link">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    장바구니
-                                </a>
-                            </li>
-                        </c:if>
-
+                    	<c:choose>
+                    		<c:when test="${vo == null}">
+	                            <li>
+	                                <a href="/user/login" class="g-nav-link">
+	                                    <i class="far fa-user"></i>
+	                                    로그인
+	                                </a>
+	                            </li>
+	                            <li>
+	                                <a href="/user/join" class="g-nav-link">
+	                                    <i class="fas fa-user-plus"></i>
+	                                    회원가입
+	                                </a>
+	                            </li>
+                    		</c:when>
+                    		<c:otherwise>
+	                            <li>
+	                                <a href="/user/mypage" class="g-nav-link">
+	                                    <i class="far fa-user"></i>
+	                                    ${vo.user_name}님 환영합니다!
+	                                </a>
+	                            </li>
+	                            <li>
+	                                <a href="/user/logout.do" class="g-nav-link">
+	                                    <i class="fas fa-sign-out-alt"></i>
+	                                    로그아웃
+	                                </a>
+	                            </li>
+                    		</c:otherwise>
+                    	</c:choose>
+                        <li>
+                            <a href="/cart/cartList" class="g-nav-link">
+                                <i class="fas fa-shopping-cart"></i>
+                                장바구니
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

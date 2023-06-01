@@ -70,8 +70,6 @@ public class ReplyServiceImpl implements ReplyService {
 			ratingAvg = 0.0;
 		}	
 		
-		ratingAvg = (double) (Math.round(ratingAvg));
-		
 		UpdateReplyDTO urd = new UpdateReplyDTO();
 		urd.setItem_id(item_id);
 		urd.setRatingAvg(ratingAvg);	

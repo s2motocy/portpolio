@@ -17,15 +17,13 @@
 <script>
 $(document).ready(function () {
     const ratingStarsControl = function () {
-      $('.item').each(function (index) {
-        const $ratingField = $(this).find('.your-rating-value');
-        const $starWidth = $(this).find('.your-stars');
+      $('.item').each(function (idx) {
+        const $ratingField = $(this).find('.your-rating-value'+idx);
+        const $starWidth = $(this).find('.your-stars'+idx);
         const $starComment = $(this).find('.star-comment');
 
         let r = $ratingField.val();
-        console.log(r);
         setTimeout(() => {
-          console.log('여기 호출은?');
           $ratingField.val(Number(r) + Number(0.0));
           $ratingField.trigger('keyup');
         }, 1);
@@ -130,10 +128,10 @@ $(document).ready(function () {
 									<a href="item/detail?item_id=${item.item_id}">${item.item_name}</a>
 								</h6>
 								<div class="star">
-                                    <span class="your-stars" style='width:0'></span>
+                                    <span class="your-stars${stat.index}" style='width:0'></span>
                                 </div>
                                 <span>(${item.replyCnt})</span>
-                                <input class="your-rating-value" type="hidden" class="text-field" value="${item.ratingAvg}">
+                                <input class="your-rating-value${stat.index}" type="hidden" value="${item.ratingAvg}">
                                 
 							</div>
 							<div class="price-template">
