@@ -23,7 +23,7 @@ public interface UserService {
 
 	public void logout(HttpSession session);	// 로그아웃
 
-	public String idCheck(String id);			// 아이디 중복체크
+	public int idCheck(String user_id); // ID중복체크
 
 	public UserVO findId(UserVO vo);			// 아이디 찾기
 

@@ -114,8 +114,7 @@ $(document).ready(function () {
 	      $('li div').each(function (index) {
 	        const $ratingField = $(this).find('.your-rating-value');
 	        const $starWidth = $(this).find('.your-stars');
-	        const $starComment = $(this).find('.star-comment');
-
+	        
 	        let r = $ratingField.val();
 	        setTimeout(() => {
 	          $ratingField.val(Number(r) + Number(0.0));
@@ -125,13 +124,11 @@ $(document).ready(function () {
 	        let oneStarWidth = 15; // 15 * 5 = 75
 	        let newStarWidth;
 	        let ratingthresholdNumber = 5;
-	        let comment;
 	        let currentVal;
 
 	        $ratingField.on('keyup', function () {
 	          $starWidth.css('width', 0);
-	          $starComment.text('');
-
+	        
 	          if ($.isNumeric($ratingField.val())) {
 	            currentVal = parseFloat($ratingField.val());
 	          } else {
@@ -141,27 +138,13 @@ $(document).ready(function () {
 	          if (!currentVal || currentVal === '' || currentVal === 'NaN' || currentVal === 0) {
 	            currentVal = 0;
 	            $starWidth.css('width', 0);
-	            $starComment.text('');
 	          } else {
 	            if (currentVal >= 1 && currentVal <= ratingthresholdNumber) {
-	              if (currentVal === 1) {
-	                comment = 'I hate it.';
-	              } else if (currentVal === 2) {
-	                comment = "I don't like it.";
-	              } else if (currentVal === 3) {
-	                comment = "It's OK.";
-	              } else if (currentVal === 4) {
-	                comment = "I like it.";
-	              } else if (currentVal === 5) {
-	                comment = "It's Perfect.";
-	              }
-
 	              currentVal = currentVal.toFixed(1);
 	              newStarWidth = oneStarWidth * currentVal;
 	              newStarWidth = Math.floor(newStarWidth);
 
 	              $starWidth.css('width', newStarWidth);
-	              $starComment.text(comment);
 	            }
 	          }
 	        });

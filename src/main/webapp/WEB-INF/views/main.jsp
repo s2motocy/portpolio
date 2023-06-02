@@ -12,6 +12,15 @@
 	color:#fff;
 	font-weight:bold;
 	text-decoration: underline;}
+.floating-banner {
+    position: fixed;
+    top: 50%;
+    right: 20px; /* Adjust the distance from the right side as needed */
+    transform: translate(0, 0);
+    padding:15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: top 0.3s ease-in-out;}
 </style>
 
 <script>
@@ -75,6 +84,17 @@ $(document).ready(function () {
     };
 
     ratingStarsControl();
+    
+    window.addEventListener('scroll', function() {
+        var banner = document.querySelector('.floating-banner');
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > 100) { // 스크롤을 얼마나 내려야 배너가 움직이기 시작할지 조절할 수 있습니다.
+            banner.style.top = '100px'; // 배너가 움직일 위치를 조절할 수 있습니다.
+        } else {
+            banner.style.top = '30%';
+        }
+    });
   });
 </script>
 
@@ -145,6 +165,17 @@ $(document).ready(function () {
 			</div>
 		</div>
 	</section>
+	<div class="floating-banner">
+	    <ul id="floating-banner-list">
+	    	<c:forEach var="asd" items="${rct}">
+	        <div class="u-s-m-b-20" ><a href="/item/detail?item_id=${asd.item_id}">
+	        		<img src="/display?fileName=/${asd.attachList[0].uploadPath.replace('\\', '/')}/${asd.attachList[0].uuid}_${asd.attachList[0].fileName}" width="150px" height="150px" />
+	        	</a>
+	        </div>
+	            
+	        </c:forEach>
+	    </ul>
+	</div>
 </div>
 </body>
 <%@ include file="include/footer.jsp" %>

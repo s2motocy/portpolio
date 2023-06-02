@@ -5,59 +5,53 @@
 <mapper namespace="com.cook.mymealkit.mapper.UserMapper">
 	<!--회원가입 -->
     <insert id="insertUser" parameterType="com.cook.mymealkit.domain.UserVO">
-        INSERT INTO tbl_user (uno, user_name , user_id , pwd , email, phone ,post_code, addr ,addr2)
-        VALUES (seq_user.nextval,#{user_name},#{user_id},#{pwd},#{email},#{phone},#{post_code},#{addr},#{addr2})
+        insert into tbl_user (uno, user_name , user_id , pwd , email, phone ,post_code, addr ,addr2)
+        	values (seq_user.nextval,#{user_name},#{user_id},#{pwd},#{email},#{phone},#{post_code},#{addr},#{addr2})
     </insert>
+    <!--아이디 중복체크-->
+    <select id="idCheck" resultType="int" parameterType="String">
+        select count(user_id) from tbl_user where user_id = #{user_id}
+    </select>
+    
+    <!-- 로그인 처리를 위한 회원 정보 조회 -->
+    <select id="readUser" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
+        select * from tbl_user where user_id = #{user_id} and pwd = #{pwd}
+    </select>
+    <!--아이디 찾기-->
+    <select id="findId" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
+        select user_id  from tbl_user where user_name = #{user_name} and phone = #{phone}
+    </select>
+    <!--비밀번호 찾기-->
+    <select id="findpwd" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
+        select pwd from tbl_user where user_id = #{user_id} and phone = #{phone}
+    </select>
+    <!-- 비밀번호 변경 -->
+    <update id="updatepwd" parameterType="com.cook.mymealkit.domain.UserVO">
+        update tbl_user set pwd = #{pwd} where user_id=#{user_id}
+    </update>
+    
+    <!--아이디로 조회-->
+    <select id="UserById" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
+        select * from tbl_user where user_id = #{user_id}
+    </select>   
      <!--회원정보 수정 -->
 	<update id="updateUser" parameterType="com.cook.mymealkit.domain.UserVO">
-        UPDATE tbl_user
-        SET user_name = #{user_name},email = #{email}, pwd = #{pwd},phone=#{phone},addr=#{addr},addr2=#{addr2}
-        where user_id=#{user_id}
+        update tbl_user
+        	set user_name=#{user_name}, pwd=#{pwd}, email=#{email}, phone=#{phone}, post_code=#{post_code}, addr=#{addr}, addr2=#{addr2}
+        		where user_id=#{user_id}
     </update>
     <!--회원탈퇴 -->
 	<delete id="deleteUser" parameterType="com.cook.mymealkit.domain.UserVO">
-        DELETE FROM tbl_user
-        WHERE user_id = #{user_id} AND pwd = #{pwd}
+        delete from tbl_user
+        where user_id = #{user_id} and pwd = #{pwd}
     </delete>
+    
     <!--관리자 전체 회원 정보 조회 -->
 	<select id="getAllUser" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
-        SELECT *
-        FROM tbl_user
+        select * from tbl_user
     </select>
     <!--관리자 권한 회원 정보 삭제 -->
     <delete id="userDelete">
     	delete from tbl_user where uno=#{uno}
     </delete>
-     <!--마이페이지 -->
-    <!-- 로그인 처리를 위한 회원 정보 조회 -->
-    <select id="readUser" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
-        SELECT *
-        FROM tbl_user
-        WHERE user_id = #{user_id} AND pwd = #{pwd}
-    </select>
-    <!--아이디 중복체크-->
-    <select id="idCheck" resultType="com.cook.mymealkit.domain.UserVO" parameterType="string">
-        SELECT * FROM tbl_user WHERE user_id = #{user_id}
-    </select>
-    <!--아이디 찾기-->
-    <select id="findId" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
-        SELECT user_id
-        FROM tbl_user
-        WHERE user_name = #{user_name} AND phone = #{phone}
-    </select>
-    <!--비밀번호 찾기-->
-    <select id="findpwd" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
-        SELECT pwd
-        FROM tbl_user
-        WHERE user_id = #{user_id} AND phone = #{phone}
-    </select>
-    <update id="updatepwd" parameterType="com.cook.mymealkit.domain.UserVO">
-        UPDATE tbl_user
-        SET pwd = #{pwd}
-        where user_id=#{user_id}
-    </update>
-    <!--아이디로 조회-->
-    <select id="UserById" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
-        SELECT * FROM tbl_user WHERE user_id = #{user_id}
-    </select>
 </mapper>

@@ -67,14 +67,9 @@ public class UserServiceImpl implements UserService {
 
 	// 아이디 중복체크
 	@Override
-	public String idCheck(String id) {
-		List<UserVO> vo = umapper.idCheck(id);
-		System.out.println(vo);
-		if (vo.size() == 0) {
-			return "0";
-		}
-		System.out.println("서비스에서 vo :" + vo);
-		return vo.get(0).getUser_id();
+	public int idCheck(String user_id) {
+		System.out.println("서비스에서 : " +user_id);
+		return umapper.idCheck(user_id);
 	}
 
 	// 아이디 찾기
@@ -98,8 +93,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserVO getUserById(String user_id) {
-		List<UserVO> user = umapper.idCheck(user_id);
-		System.out.println("서비스에서 user : " +user);
+		int result =umapper.idCheck(user_id);
+		System.out.println("서비스에서 result : " +result);
 		return umapper.UserById(user_id);
 	}
 
