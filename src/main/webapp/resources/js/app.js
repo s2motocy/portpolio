@@ -562,9 +562,9 @@ $(function () {
 (function ($, window, document) {
     'use strict';
     //  Variables
-    let $ratingField = $('#your-rating-value');
-    let $starWidth = $('#your-stars');
-    let $starComment = $('#star-comment');
+    let $ratingField = $('.your-rating-value');
+    let $starWidth = $('.your-stars');
+    let $starComment = $('.star-comment');
 
     /**
      * Rating Stars Control
@@ -575,11 +575,11 @@ $(function () {
         let ratingthresholdNumber = 5;
         let comment;
         let currentVal;
-        let r = $( "#your-rating-value" ).val()
+        let r = $( ".your-rating-value" ).val()
         console.log(r)
         setTimeout(()=>{
-        	$( "#your-rating-value" ).val(Number(r)+Number(0.0))
-        	$( "#your-rating-value" ).trigger('keyup')
+        	$( ".your-rating-value" ).val(Number(r)+Number(0.0))
+        	$( ".your-rating-value" ).trigger('keyup')
         }, 1);
         
         // On Every key type

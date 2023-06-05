@@ -12,20 +12,30 @@
 	color:#fff;
 	font-weight:bold;
 	text-decoration: underline;}
+.floating-banner {
+    position: fixed;
+    top: 10%;
+    right: 20px; /* Adjust the distance from the right side as needed */
+    transform: translate(0, 0);
+    padding-right: 15px;
+    padding-left: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: top 0.3s ease-in-out;}
+#floating-banner-list {
+	padding: 0;}
 </style>
 
 <script>
 $(document).ready(function () {
     const ratingStarsControl = function () {
-      $('.item').each(function (index) {
-        const $ratingField = $(this).find('.your-rating-value');
-        const $starWidth = $(this).find('.your-stars');
+      $('.item').each(function (idx) {
+        const $ratingField = $(this).find('.your-rating-value'+idx);
+        const $starWidth = $(this).find('.your-stars'+idx);
         const $starComment = $(this).find('.star-comment');
 
         let r = $ratingField.val();
-        console.log(r);
         setTimeout(() => {
-          console.log('여기 호출은?');
           $ratingField.val(Number(r) + Number(0.0));
           $ratingField.trigger('keyup');
         }, 1);
@@ -77,6 +87,17 @@ $(document).ready(function () {
     };
 
     ratingStarsControl();
+    
+    window.addEventListener('scroll', function() {
+        var banner = document.querySelector('.floating-banner');
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > 100) { // 스크롤을 얼마나 내려야 배너가 움직이기 시작할지 조절할 수 있습니다.
+            banner.style.top = '100px'; // 배너가 움직일 위치를 조절할 수 있습니다.
+        } else {
+            banner.style.top = '10%';
+        }
+    });
   });
 </script>
 
@@ -130,10 +151,10 @@ $(document).ready(function () {
 									<a href="item/detail?item_id=${item.item_id}">${item.item_name}</a>
 								</h6>
 								<div class="star">
-                                    <span class="your-stars" style='width:0'></span>
+                                    <span class="your-stars${stat.index}" style='width:0'></span>
                                 </div>
                                 <span>(${item.replyCnt})</span>
-                                <input class="your-rating-value" type="hidden" class="text-field" value="${item.ratingAvg}">
+                                <input class="your-rating-value${stat.index}" type="hidden" value="${item.ratingAvg}">
                                 
 							</div>
 							<div class="price-template">
@@ -147,6 +168,16 @@ $(document).ready(function () {
 			</div>
 		</div>
 	</section>
+	<div class="floating-banner">
+	    <ul id="floating-banner-list">
+	    	<c:forEach var="asd" items="${rct}">
+	        <div class="u-s-m-b-20" ><a href="/item/detail?item_id=${asd.item_id}">
+	        		<img src="/display?fileName=/${asd.attachList[0].uploadPath.replace('\\', '/')}/${asd.attachList[0].uuid}_${asd.attachList[0].fileName}" width="150px" height="150px" />
+	        	</a>
+	        </div>
+	        </c:forEach>
+	    </ul>
+	</div>
 </div>
 </body>
 <%@ include file="include/footer.jsp" %>

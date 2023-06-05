@@ -46,7 +46,7 @@
 	    select count(buy_status) from tbl_user_buy where user_id = #{user_id}
 	  </select>
     <!--회원탈퇴 -->
-	<delete id="deleteUser">
+	<delete id="deleteUser" parameterType="com.cook.mymealkit.domain.UserVO">
         delete from tbl_user
         	where user_id = #{user_id} and pwd = #{pwd}
     </delete>

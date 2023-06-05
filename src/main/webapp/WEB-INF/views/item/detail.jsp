@@ -111,27 +111,24 @@
 <script>
 $(document).ready(function () {
 	const ratingStarsControl = function () {
-		console.log("여기 호출이되나?")
-	          const $ratingField = $('.your-rating-value');
-		 const $starWidth = $('.your-stars');
-	        const $starComment = $('.star-comment');
-	        console.log($ratingField);
+	      $('li div').each(function (index) {
+	        const $ratingField = $(this).find('.your-rating-value');
+	        const $starWidth = $(this).find('.your-stars');
+	        
+	        let r = $ratingField.val();
 	        setTimeout(() => {
-	          console.log('여기 호출은?');
-	          $ratingField.val(Number($ratingField.val()) + Number(0.0));
+	          $ratingField.val(Number(r) + Number(0.0));
 	          $ratingField.trigger('keyup');
 	        }, 1);
 
 	        let oneStarWidth = 15; // 15 * 5 = 75
 	        let newStarWidth;
 	        let ratingthresholdNumber = 5;
-	        let comment;
 	        let currentVal;
 
 	        $ratingField.on('keyup', function () {
-	          //$starWidth.css('width', 0);
-	          $starComment.text('');
-
+	          $starWidth.css('width', 0);
+	        
 	          if ($.isNumeric($ratingField.val())) {
 	            currentVal = parseFloat($ratingField.val());
 	          } else {
@@ -141,32 +138,18 @@ $(document).ready(function () {
 	          if (!currentVal || currentVal === '' || currentVal === 'NaN' || currentVal === 0) {
 	            currentVal = 0;
 	            $starWidth.css('width', 0);
-	            $starComment.text('');
 	          } else {
 	            if (currentVal >= 1 && currentVal <= ratingthresholdNumber) {
-	              if (currentVal === 1) {
-	                comment = 'I hate it.';
-	              } else if (currentVal === 2) {
-	                comment = "I don't like it.";
-	              } else if (currentVal === 3) {
-	                comment = "It's OK.";
-	              } else if (currentVal === 4) {
-	                comment = "I like it.";
-	              } else if (currentVal === 5) {
-	                comment = "It's Perfect.";
-	              }
-
 	              currentVal = currentVal.toFixed(1);
 	              newStarWidth = oneStarWidth * currentVal;
 	              newStarWidth = Math.floor(newStarWidth);
 
 	              $starWidth.css('width', newStarWidth);
-	              $starComment.text(comment);
 	            }
 	          }
 	        });
-		    };
-	    ratingStarsControl();
+	      });
+	    };
 	    
 	const item_id = '${item.item_id}';
 	/* "장바구니에 담기" 버튼 클릭시 수량값 실어보내기 */
@@ -220,7 +203,7 @@ $(document).ready(function () {
 					let popOption = "width = 490px, height=490px, top=300px, left=300px, scrollbars=yes";
 					window.open(popUrl, "리뷰 쓰기", popOption);
 				}
-			}
+			}  
 		});
 	});
 	/* 댓글 페이지 정보 */
@@ -280,14 +263,15 @@ $(document).ready(function () {
 			const uid = '${vo.user_id}';
 			/* list */
 			let reply_list = '';
-			$(list).each(function (i, obj) {
+			$(list).each(function (idx, obj) {
 				reply_list += '<li>';
 				reply_list += '<div class="comment_wrap">';
 				reply_list += '<div class="reply_top">';
 				/* 아이디 */
 				reply_list += '<span class="id_span">' + obj.user_id + '</span>';
 				/* 평점 */
-				const starRating = "★".repeat(Math.floor(obj.rating)) + "☆".repeat(5 - Math.floor(obj.rating));
+				const starRating = '<div class="star"><span class="your-stars" style="width:0"></span></div><input class="your-rating-value" type="hidden" value="'+obj.rating+'">';
+				
 				reply_list += '<span class="rating_span"> 평점 : <span class="rating_value_span">' + starRating ;
 				/* 날짜 */
 				reply_list += '<span class="date_span">' + obj.regDate + '</span>';
@@ -331,7 +315,9 @@ $(document).ready(function () {
 			console.log(reply_pageMaker);
 			$(".pageMaker").html(reply_pageMaker);
 		}
+		ratingStarsControl();
 	}
+	
 })
 </script>
 
@@ -359,7 +345,7 @@ $(document).ready(function () {
 	<div class="page-detail u-s-p-t-80">
 		<div class="container">
 			<!-- Product-Detail -->
-			<div class="row">
+			<div class="row stars">
 				<div class="col-lg-6 col-md-6 col-sm-12">
 					<!-- Product-zoom-area -->
 					<div class="zoom-area">
@@ -394,7 +380,7 @@ $(document).ready(function () {
 					                <div class="star">
 					                  <span class="your-stars" style="width: 30"></span>
 					                </div>
-					                <input class="your-rating-value" type="hidden" class="text-field" placeholder="0.0" value="${item.ratingAvg}">
+					                <input class="your-rating-value" type="hidden" placeholder="0.0" value="${item.ratingAvg}">
 					                <span>(${item.replyCnt})</span>
    								</div>
 							</div>

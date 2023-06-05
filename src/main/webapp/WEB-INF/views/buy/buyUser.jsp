@@ -35,7 +35,7 @@ $(document).ready(function(){
 	pricing() // 함수 호출
 	
 	/* 결제 API 활용 */
-	$("#buybtn").click(function(e){ // #buybtn
+	$("#").click(function(e){ // #buybtn
 		e.preventDefault()
 		var buy_no = $("#buy_no").val()
 		var item_name = $("#item_name0").val()+" 외"

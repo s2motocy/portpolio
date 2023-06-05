@@ -109,36 +109,39 @@ $(document).ready(function () {
 			$(obj).attr("selected", "selected");
 		}
 	});
-});
-/* 취소 버튼 */
-$(".cancel_btn").on("click", function (e) {
-	window.close();
-});
-/* 등록 버튼 */
-$(".update_btn").on("click", function (e) {
-	const reply_id = '${replyInfo.reply_id}';
-	const item_id = '${replyInfo.item_id}';
-	const user_id = '${user_id}';
-	const rating = $("select").val();
-	const content = $("textarea").val();
-	const data = {
-		reply_id: reply_id,
-		item_id: item_id,
-		user_id: user_id,
-		rating: rating,
-		content: content
-	}
-	$.ajax({
-		data: data,
-		type: 'POST',
-		url: '/reply/update',
-		success: function (result) {
-			$(opener.location).attr("href", "javascript:replyListInit();");
-			alert('수정이 완료되엇습니다.');
-			window.close();
-		}
+	
+	/* 취소 버튼 */
+	$(".cancel_btn").on("click", function (e) {
+		window.close();
 	});
-});	
+	/* 등록 버튼 */
+	$(".update_btn").on("click", function (e) {
+		e.preventDefault()
+		const reply_id = '${replyInfo.reply_id}';
+		const item_id = '${replyInfo.item_id}';
+		const user_id = '${user_id}';
+		const rating = $("select").val();
+		const content = $("textarea").val();
+		const data = {
+			reply_id: reply_id,
+			item_id: item_id,
+			user_id: user_id,
+			rating: rating,
+			content: content
+		}
+		$.ajax({
+			data: data,
+			type: 'POST',
+			url: '/reply/update',
+			success: function (result) {
+				$(opener.location).attr("href", "javascript:replyListInit();");
+				alert('수정이 완료되었습니다.');
+				window.close();
+			}
+		});
+	});	
+});
+
 </script>
 
 <body>

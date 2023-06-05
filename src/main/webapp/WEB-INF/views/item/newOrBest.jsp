@@ -75,9 +75,9 @@ $(document).ready(function(e){
     });
 	
 	const ratingStarsControl = function () {
-	      $('.item').each(function (index) {
-	        const $ratingField = $(this).find('.your-rating-value');
-	        const $starWidth = $(this).find('.your-stars');
+	      $('.item').each(function (idx) {
+	        const $ratingField = $(this).find('.your-rating-value'+idx);
+	        const $starWidth = $(this).find('.your-stars'+idx);
 	        const $starComment = $(this).find('.star-comment');
 
 	        let r = $ratingField.val();
@@ -143,14 +143,28 @@ $(document).ready(function(e){
 <div class="page-style-a">
     <div class="container">
         <div class="page-intro">
-            <h2>신상품</h2>
+        	<c:choose>
+        		<c:when test="${itemType == 1}">
+            		<h2>신상품</h2>
+            	</c:when>
+            	<c:otherwise>
+            		<h2>인기상품</h2>
+            	</c:otherwise>
+            </c:choose>
             <ul class="bread-crumb">
                 <li class="has-separator">
                     <i class="ion ion-md-home"></i>
                     <a href="/">Home</a>
                 </li>
                 <li class="is-marked">
-                    <a href="/item/newOrBest">신상품</a>
+                	<c:choose>
+		        		<c:when test="${itemType == 1}">
+		            		<a href="/item/newOrBest?itemType=1">신상품</a>
+		            	</c:when>
+		            	<c:otherwise>
+		            		<a href="/item/newOrBest?itemType=2">인기상품</a>
+		            	</c:otherwise>
+		            </c:choose>
                 </li>
             </ul>
         </div>
@@ -180,7 +194,7 @@ $(document).ready(function(e){
 	    </a>
 	</div>
 	<div class="row product-container grid-style">
-	    <c:forEach var="newitem" items="${newItemList}">
+	    <c:forEach var="newitem" items="${newItemList}" varStatus="stat">
 	        <div class="item" class="col">
 		        <div class="image-container">
 		            <a class="item-img-wrapper-link" href="/item/detail?item_id=${newitem.item_id}">
@@ -197,10 +211,10 @@ $(document).ready(function(e){
 		                    </h6>
 		                    <div class="item-stars">
 		                        <div class="star">
-                                    <span class="your-stars" style='width:0'></span>
+                                    <span class="your-stars${stat.index}" style='width:0'></span>
                                 </div>
                                 <span>(${newitem.replyCnt})</span>
-                                <input class="your-rating-value" type="hidden" class="text-field" value="${newitem.ratingAvg}">
+                                <input class="your-rating-value${stat.index}" type="hidden" value="${newitem.ratingAvg}">
 		                    </div>
 	                </div>
 	                <div class="price-template">

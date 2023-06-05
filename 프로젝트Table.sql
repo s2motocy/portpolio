@@ -122,6 +122,8 @@ create table tbl_user_buy (
     buy_status  varchar2(20) default '구매완료',         -- 주문상태
     buy_date    date default sysdate                    -- 주문한 날짜
 );
+
+
 insert into tbl_user_buy values(seq_user_buy.nextval, 'u12337', 't2', '민선', '010111111','123123','12313132','12313','구매완료','2023/05/17');
 -- 비회원구매(guest_buy) 시퀀스 생성
 create sequence seq_guest_buy;
@@ -135,7 +137,7 @@ create table tbl_guest_buy (
     post_code   varchar2(10) not null,                  -- 우편번호
     addr        varchar2(100) not null,                 -- 주소    
     addr2       varchar2(100) not null,                 -- 주소(상세)
-    buy_status  varchar2(20) default '구매완료',         -- 주문상태
+    buy_status  varchar2(20) default '결제 완료',         -- 주문상태
     buy_date    date default sysdate                    -- 주문한 날짜
 );
 
@@ -151,7 +153,8 @@ create table tbl_buy_list (
     buy_price       number(10),                         -- 가격
     delivery_cost   number(10)                          -- 배송비
 );
-insert into tbl_buy_list values(seq_buy_list.nextval,'u12345',1,'김치찌개',1,10000,0);
+insert into tbl_buy_list values(seq_buy_list.nextval,'u12337',1,'김치찌개',1,8000,0);
+insert into tbl_buy_list values(seq_buy_list.nextval,'u12337',2,'닭갈비',2,15000,0);
 
 -- 커밋
 commit;
@@ -160,6 +163,7 @@ commit;
 select * from tbl_user_buy;
 select * from tbl_guest_buy;
 select * from tbl_buy_list;
+
 
 -- drop user_buy
 drop sequence seq_user_buy;

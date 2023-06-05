@@ -83,7 +83,6 @@ public class UserController {
 				if(user.getAuth().equals("a")) {
 					 System.out.println(user);
 					 session.setAttribute("admin", uservice.getUserById(vo.getUser_id()).getAuth());
-					 session.setAttribute("aaa",1);
 				}
 			} catch(Exception e) {
 				System.out.println("예외:"+user);
@@ -147,9 +146,10 @@ public class UserController {
 	
 	/* 회원 수정 처리 |--------------------------------------------------- */
     @GetMapping("/update")
-    public void update() {
-    	System.out.println("정보확인이요당근당근살려주세요");
-    }
+    public void update(UserVO vo,Model model,HttpSession session) {
+    	UserVO user= (UserVO) session.getAttribute("vo");
+		model.addAttribute("vo",user);
+	}
 
 	@PostMapping("/update")
 	public String updateUser(UserVO vo, Model model) {

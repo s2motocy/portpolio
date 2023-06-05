@@ -233,7 +233,6 @@ public class BuyController {
 			buyList.forEach(v -> userBuyItemList.add(v));
 			i.setBuy_list(buyList);
 		});
-		System.out.println(userBuyList);
 		model.addAttribute("userBuyList", userBuyList);
 		model.addAttribute("userBuyItemList", userBuyItemList);
 		
@@ -259,9 +258,8 @@ public class BuyController {
 			blist.forEach(v -> bblist.add(v)); // 아이템 목록만 따로 저장
 			i.setBuy_list(blist); // 회원구매목록에 아이템 목록 삽입
 		});
-		System.out.println(buyList);
 		model.addAttribute("buyList", buyList);
-		model.addAttribute("bblist", bblist);
+		
 		return "/buy/buyList";
 	}
 	

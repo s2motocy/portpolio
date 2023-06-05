@@ -168,10 +168,10 @@ $(document).ready(function () { ///// 전체 추가
 			<ul class="bread-crumb">
 				<li class="has-separator">
 					<i class="ion ion-md-home"></i>
-					<a href="home.html">Home</a>
+					<a href="/">Home</a>
 				</li>
 				<li class="is-marked">
-					<a href="single-product.html">수정</a>
+					<a href="#">수정</a>
 				</li>
 			</ul>
 		</div>
@@ -194,8 +194,8 @@ $(document).ready(function () { ///// 전체 추가
 
 		<label for="name"><b>상품명</b></label>
 		<br>
-		<input type="hidden" name='item_id' value='<c:out value="${vo.item_id}"></c:out>' />
-		<input type="text" id="update-input" name="item_name" value='<c:out value="${vo.item_name}"></c:out>' />
+		<input type="hidden" name='item_id' value='${ivo.item_id}' />
+		<input type="text" id="update-input" name="item_name" value='${ivo.item_name}' />
 
 		<div class="inputArea" id="img">
 			<label for="img_url"><b>상품 사진</b></label>
@@ -208,22 +208,22 @@ $(document).ready(function () { ///// 전체 추가
 
 		<label for="item_price"><b>상품 가격</b></label>
 		<br>
-		<input type="text" id="update-input" name="item_price" value='<c:out value="${vo.item_price}"></c:out>' />
+		<input type="text" id="update-input" name="item_price" value='${ivo.item_price}' />
 		<br>
 
 		<label for="item_price"><b>상품 가격</b></label>
 		<br>
-		<input type="text" id="update-input" name="item_price" value='<c:out value="${vo.item_price}"></c:out>' />
+		<input type="text" id="update-input" name="item_price" value='${ivo.item_price}' />
 		<br>
 
 		<label for="item_stock"><b>상품 재고</b></label>
 		<br>
-		<input type="text" id="update-input" name="item_stock" value='<c:out value="${vo.item_stock}"></c:out>' />
+		<input type="text" id="update-input" name="item_stock" value='${ivo.item_stock}' />
 		<br>
 
 		<label for="description"><b>상품 설명</b></label>
 		<br>
-		<textarea rows="5" cols="100" id="description" name="description" value='<c:out value="${vo.description}"></c:out>'></textarea>
+		<textarea rows="5" cols="100" id="description" name="description">${ivo.description}</textarea>
 		<br>
 
 		<button type="reset" class="resetbtn">취소</button>

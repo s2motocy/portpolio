@@ -68,7 +68,8 @@ public class BuyServicempl implements BuyService{
 
 	@Override
 	public int statusUpdate(BuyUserVO vo) {
-		return bmapper.statusUpdate(vo);	
+		System.out.println("Buy 서비스에서 상태업데이트 : vo="+vo);
+		return bmapper.statusUpdate(vo);
 	}
 
 	

@@ -76,9 +76,9 @@ $(document).ready(function(e){
     });
 	
     const ratingStarsControl = function () {
-      $('.item').each(function (index) {
-        const $ratingField = $(this).find('.your-rating-value');
-        const $starWidth = $(this).find('.your-stars');
+      $('.item').each(function (idx) {
+        const $ratingField = $(this).find('.your-rating-value'+idx);
+        const $starWidth = $(this).find('.your-stars'+idx);
         const $starComment = $(this).find('.star-comment');
 
         let r = $ratingField.val();
@@ -181,7 +181,7 @@ $(document).ready(function(e){
 	    </a>
 	</div>
 	<div class="row product-container grid-style">
-	    <c:forEach var="item" items="${itemList}">
+	    <c:forEach var="item" items="${itemList}" varStatus="stat">
 	        <div class="item">
 		        <div class="image-container">
 		            <a class="item-img-wrapper-link" href="/item/detail?item_id=${item.item_id}">
@@ -198,10 +198,10 @@ $(document).ready(function(e){
 		                    </h6>
 		                    <div class="item-stars">
 		                        <div class="star">
-                                    <span class="your-stars" style='width:0'></span>
+                                    <span class="your-stars${stat.index}" style='width:0'></span>
                                 </div>
                                 <span>(${item.replyCnt})</span>
-                                <input class="your-rating-value" type="hidden" class="text-field" value="${item.ratingAvg}">
+                                <input class="your-rating-value${stat.index}" type="hidden" value="${item.ratingAvg}">
 		                    </div>
 	                </div>
 	                <div class="price-template">
