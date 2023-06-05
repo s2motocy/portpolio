@@ -186,6 +186,6 @@ public class UploadController {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<String>("deleted", HttpStatus.OK);
+		return new ResponseEntity<String>("삭제되었습니다.", HttpStatus.OK);
 	}
 }

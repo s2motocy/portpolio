@@ -4,11 +4,26 @@
 <style>
 .container{
 	margin-top:10px;}
-.btn-modify {
-	background-color: #ff6b00;
-	color:white;}
+.id{
+	font-size:30px;}
+.userbtn{
+	text-align:right;}
+.upbtn{
+	color:#708090;}
+.rebtn{
+	color:#B22222;}
+#buy{
+	font-size:20px;}
+label{
+	font-size:20px;
+	color:black;}
+.buy_status{
+	text-align:center;
+	font-size:20px;}
 </style>
+<script>
 
+</script>
 <body>
 <div class="page-style-a">
     <div class="container">
@@ -28,41 +43,34 @@
 </div>
 <div class="container">
   <form action="update" method="get">
-    <table class="table">
-      <tbody>
-        <tr>
-          <td><div>이름</div></td>
-          <td><div><input name="user_name" class="form-control" value="${vo.user_name}" readonly="readonly" /></div></td>
-        </tr>
-        <tr>
-          <td><div>아이디</div></td>
-          <td><div><input name="user_id" class="form-control" value="${vo.user_id}" readonly="readonly" /></div></td>
-        </tr>
-        <tr>
-          <td><div>비밀번호</div></td>
-          <td><div><input name="pwd" class="form-control" value="${vo.pwd}" readonly="readonly" /></div></td>
-        </tr>
-        <tr>
-          <td><div>이메일</div></td>
-          <td><div><input name="email" class="form-control" value="${vo.email}" readonly="readonly" /></div></td>
-        </tr>
-        <tr>
-          <td><div>전화번호</div></td>
-          <td><div><input name="phone" class="form-control" value="${vo.phone}" readonly="readonly" /></div></td>
-        </tr>
-        <tr>
-          <td><div>주소</div></td>
-          <td><div><input name="addr" class="form-control" value="${vo.addr}" readonly="readonly" /></div></td>
-        </tr>
-        <tr>
-          <td><div>상세주소</div></td>
-          <td><div><input name="addr2" class="form-control" value="${vo.addr2}" readonly="readonly" /></div></td>
-        </tr>
-      </tbody>
-    </table>
-    <button type="submit" class="btn btn-modify">수정하러가기</button>
+	<div class="group">
+		<label class="id">${vo.user_id} 님:D</label>
+			<div class="userbtn">
+				<a href="update?user_id=${vo.user_id}" class="userbtn upbtn">수정하기</a>/<a href="remove" class="userbtn rebtn" >탈퇴하기</a>
+			</div>	
+	</div>
+	<hr>
+	<div class="group">
+		<label>구매/배송조회</label>
+		<div class="buy_status">
+			결제 완료  >  상품 준비중  >  배송 시작  >  배송 중  >  배송 완료
+		</div>
+		<div class="buy_status_result">
+		
+		</div>
+	</div>
+	<hr>
+	<div class="group">
+		<label>쿠폰</label>
+		<br>
+		<span>소유하고 있는 쿠폰이 없습니다.</span>
+	</div>
+    <hr>
+    <div class="group">
+    	<a href="/buy/userBuyList?user_id=${vo.user_id}" id="buy">구매 내역 > </a>
+    </div>
     </form>
-  <a href="/buy/userBuyList?user_id=${vo.user_id}">구매내역</a>
+  
 </div>
 </body>
 <%@ include file="../include/footer.jsp" %>

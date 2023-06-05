@@ -3,14 +3,10 @@ package com.cook.mymealkit.controller;
 import java.util.List;
 import java.util.Random;
 
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,22 +30,55 @@ public class UserController {
 	JavaMailSenderImpl mailSender;
 	
 	
+	/* 회원가입 처리 |--------------------------------------------------- */
+    @GetMapping("/join")
+    public void join() {}
+    
+    @PostMapping("/join")
+    public String signUP(UserVO vo,Model model){
+    	System.out.println(vo);
+    	uservice.join(vo);
+    	return "redirect:/user/login";
+    }   
+
+    /* 이메일 인증 */
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheckGET(String email){
+		
+		/* 뷰(View)로부터 넘어온 데이터 확인 */
+		System.out.println("이메일 데이터 전송 확인");
+		System.out.println("이메일 : " + email);
+				
+		/* 인증번호(난수) 생성 */
+		Random random = new Random();
+		int checkNum = random.nextInt(888888) + 111111;
+		System.out.println("인증번호 " + checkNum);
+		
+		String num = Integer.toString(checkNum);
+		
+		return num;
+		
+	}
+	
 	/* 로그인 페이지 처리 |--------------------------------------------------- */
 	@GetMapping("/login")
 	public void login() {}
 
 	@PostMapping("/login")
-	public String login(UserVO vo, Model model, HttpSession session) throws Exception {
+	public String login(UserVO vo, Model model, HttpSession session) {
 		System.out.println("UserVO 에서 vo는 뭔가?: " + vo);
 		boolean success = uservice.login(vo);
 		UserVO user = uservice.getUserById(vo.getUser_id());
 		System.out.println("관리자:"+user);
+		System.out.println(success);
 		if (!success) {
 			session.setAttribute("user", vo);
 			return "/user/login";
 		}
 		if(success) {
 			session.setAttribute("vo", uservice.mypage(vo));
+			
 			try {
 				if(user.getAuth().equals("a")) {
 					 System.out.println(user);
@@ -59,84 +88,9 @@ public class UserController {
 				System.out.println("예외:"+user);
 			}
 		}
-		return "redirect:/";
+		return "redirect:/main";
 	}
 	
-	/* 회원가입 처리 |--------------------------------------------------- */
-    @GetMapping("/join")
-    public void join() {}
-    
-    @PostMapping("/join")
-    public String signUP(UserVO vo,Model model) throws Exception {
-    	System.out.println(vo);
-    	uservice.join(vo);
-    	return "redirect:/user/login";
-    }
-    
-	/* 회원 수정 처리 |--------------------------------------------------- */
-    @GetMapping("/update")
-    public void update(UserVO vo,Model model,HttpSession session) {
-    	UserVO user= (UserVO) session.getAttribute("vo");
-		model.addAttribute("vo",user);
-	}
-
-	@PostMapping("/update")
-	public String update1(UserVO vo, Model model, HttpSession session) {
-		try {
-			uservice.updateUser(vo);
-			UserVO user = (UserVO) session.getAttribute("vo");
-			model.addAttribute("vo", user);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/user/mypage";
-	}
-
-	/* 회원탈퇴 처리 |--------------------------------------------------- */
-	@GetMapping("/remove")
-	public void remove() {}
-
-	@PostMapping("/remove")
-	public String remove(UserVO vo) {
-		try {
-			uservice.deleteUser(vo);
-			return "redirect:/";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "/user/remove";
-		}
-	}
-
-	/* 회원조회 처리 |--------------------------------------------------- */
-	@GetMapping("/userlist")
-	public void memberlist(Model model) {
-		List<UserVO> users = uservice.getAllUser();
-		model.addAttribute("list1", users);
-	}
-
-	/* 마이페이지 |--------------------------------------------------- */
-	@GetMapping("/mypage")
-	public void mypage(Model model, HttpSession session) {
-		UserVO user = (UserVO) session.getAttribute("vo");
-		model.addAttribute("vo", user);
-	}
-
-	/* 로그아웃처리 |--------------------------------------------------- */
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		uservice.logout(session);
-		return "redirect:/";
-	}
-
-	/* 아이디 중복조회 |--------------------------------------------------- */
-	@GetMapping("/idCheck")
-	public ResponseEntity<String> idCheck(String user_id) {
-		System.out.println("여기는 컨트롤렁 :" + user_id);
-		String email = uservice.idCheck(user_id);
-		System.out.println(email);
-		return new ResponseEntity<>(email, HttpStatus.OK);
-	}
-
 	/* 아이디 찾기 |--------------------------------------------------- */
 	@GetMapping("/findid")
 	public void findIdView() {}
@@ -181,41 +135,51 @@ public class UserController {
 		uservice.updatePassword(vo);
 		return "redirect:/user/login";
 	}
+	
+	/* 마이페이지 |--------------------------------------------------- */
+	@GetMapping("/mypage")
+	public void mypage(Model model, HttpSession session) {
+		UserVO user = (UserVO) session.getAttribute("vo");
+		System.out.println("마이페이지정보 :"+user);
+		model.addAttribute("vo", user);
+	}
+	
+	/* 회원 수정 처리 |--------------------------------------------------- */
+    @GetMapping("/update")
+    public void update() {
+    	System.out.println("정보확인이요당근당근살려주세요");
+    }
 
-	/* 이메일 인증 |--------------------------------------------------- */
-	@GetMapping("/mailCheck")
-	@ResponseBody
-	public String mailCheck(String email) {
-		System.out.println("이메일 인증 요청이 들어옴!");
-		System.out.println("이메일 인증 이메일 : " + email);
-		 /* 인증번호(난수) 생성 */
-        Random random = new Random();
-        int checkNum = random.nextInt(888888) + 111111;
-        System.out.println("인증번호 " + checkNum);
-        /* 이메일 보내기 */
-        String setFrom = "sjinjin6@naver.com";
-        String toMail = email;
-        String title = "회원가입 인증 이메일 입니다.";
-        String content = 
-                "홈페이지를 방문해주셔서 감사합니다." +
-                "<br><br>" + 
-                "인증 번호는 " + checkNum + "입니다." + 
-                "<br>" + 
-                "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
-		System.out.println("여기는 서비스 결과 왜 여기서 터지는가 " + content);
-		try {       
-	            MimeMessage message = mailSender.createMimeMessage();
-	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-	            helper.setFrom(setFrom);
-	            helper.setTo(toMail);
-	            helper.setSubject(title);
-	            helper.setText(content,true);
-	            mailSender.send(message);
-	        }catch(Exception e) {
-	            e.printStackTrace();
-	        }
-		String num = Integer.toString(checkNum);
-		return num;
+	@PostMapping("/update")
+	public String updateUser(UserVO vo, Model model) {
+		uservice.updateUser(vo);
+		System.out.println("업데이트vo확잉이요!!!!!!!!!!!"+vo);
+		return "/user/mypage";
+	}
+
+	/* 회원탈퇴 처리 |--------------------------------------------------- */
+	@GetMapping("/remove")
+	public void remove() {}
+
+	@PostMapping("/remove")
+	public String remove(UserVO vo, HttpSession session) {
+		uservice.deleteUser(vo);
+		session.invalidate();
+		return "redirect:/";
+	}
+
+	/* 회원조회 처리 |--------------------------------------------------- */
+	@GetMapping("/userlist")
+	public void memberlist(Model model) {
+		List<UserVO> users = uservice.getAllUser();
+		model.addAttribute("list1", users);
+	}
+
+	/* 로그아웃처리 |--------------------------------------------------- */
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		uservice.logout(session);
+		return "redirect:/";
 	}
 	
 	/* 삭제 |--------------------------------------------------- */

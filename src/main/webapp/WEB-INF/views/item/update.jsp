@@ -138,6 +138,24 @@ $(document).ready(function () { ///// 전체 추가
 			}
 		}) // ajax
 	}) // button[type='file'] click
+	$(".uploadResult").on("click","button", function(e) { ///// 변경
+		console.log("이미지 삭제")
+		var targetFile = $(this).data('file')
+		var type= $(this).data('type')
+		console.log(targetFile)
+		var targetLi = $(this).closest("li")
+		
+		$.ajax({
+			url: '/deleteFile',
+			data: {fileName: targetFile, type:type},
+			dataType: 'text',
+			type: 'POST',
+			success: (result)=>{
+				alert(result)
+				targetLi.remove()
+			}
+		})
+	})
 })
 </script>
 
@@ -146,14 +164,14 @@ $(document).ready(function () { ///// 전체 추가
 <div class="page-style-a">
 	<div class="container">
 		<div class="page-intro">
-			<h2>상품 등록</h2>
+			<h2>상품 관리</h2>
 			<ul class="bread-crumb">
 				<li class="has-separator">
 					<i class="ion ion-md-home"></i>
 					<a href="home.html">Home</a>
 				</li>
 				<li class="is-marked">
-					<a href="single-product.html">등록</a>
+					<a href="single-product.html">수정</a>
 				</li>
 			</ul>
 		</div>

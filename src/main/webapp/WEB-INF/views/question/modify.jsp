@@ -80,6 +80,40 @@ textarea {
 	margin-top: 10px;}
 </style>
 
+<script>
+$(document).ready(function(e){
+	let form = $("#infoForm");
+	let mForm = $("#modifyForm");
+	
+	/* 목록 페이지 이동 버튼 */
+	$("#list_btn").on("click", function (e) {
+		form.find("#qno").remove();
+		form.attr("action", "/question/list");
+		form.submit();
+	});
+	
+	/* 수정 하기 버튼 */
+	$("#modify_btn").on("click", function (e) {
+		e.preventDefault();
+		mForm.submit();
+	});
+	
+	/* 취소 버튼 */
+	$("#cancel_btn").on("click", function (e) {
+		form.attr("action", "/question/get");
+		form.submit();
+	});
+	
+	/* 삭제 버튼 */
+	$("#delete_btn").on("click", function (e) {
+		form.attr("action", "/question/delete");
+		form.attr("method", "post");
+		form.submit();
+	});
+});
+	
+</script>
+
 <body>
 <div class="page-style-a">
 	<div class="container">

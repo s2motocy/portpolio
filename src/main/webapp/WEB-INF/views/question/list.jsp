@@ -13,9 +13,10 @@ table {
 	text-align: center;}
 .top_btn {
 	font-size: 20px;
+	color: white;
+	text-decoration:none;
 	padding: 6px 12px;
-	background-color: #fff;
-	border: 1px solid #ddd;
+	background-color: #ff6b00;
 	font-weight: bold;
 	border-radius: 5px;}
 ul.pageInfo {
@@ -30,8 +31,10 @@ li {
 	margin-left: 18px;
 	padding: 7px;
 	font-weight: 500;}
-a:hover {
-	color: black;
+.top_btn:hover {
+	color:white;
+	background-color:#ff8300;}
+.a_move:hover {
 	text-decoration: underline;}
 .search_area {
 	display: inline-block;
@@ -39,16 +42,16 @@ a:hover {
 	margin-left: 260px;}
 .search_area input {
 	height: 30px;
-	width: 250px;}
+	width: 200px;}
 .search_area button {
-	width: 100px;
-	height: 36px;}
+	width: 70px;
+	height: 30px;
+	border-radius: 5px;
+	border: 5px solid #ff6b00;}
 .search_area select {
-	height: 35px;}
-.access_warn {
-	margin-top: 30px;
-	text-align: center;
-	color: red;}
+	height: 30px;}
+.search_area button:hover {
+	background-color:#ff6b00}
 </style>
 
 <script>
@@ -228,8 +231,8 @@ $(document).ready(function () {
 							value="${pageMaker.cri.type eq 'TCW'?'selected':'' }" />>제목 + 내용 + 작성자
 						</option>
 					</select>
-					<input type="text" name="keyword" value="${pageMaker.cri.keyword }">
-					<button id='search'>Search</button>
+						<input type="text" name="keyword" value="${pageMaker.cri.keyword }">
+						<button id="search" type="submit" class="button button-primary fas fa-search"></button>
 				</div>
 			</div>
 			<div class="pageInfo_wrap">

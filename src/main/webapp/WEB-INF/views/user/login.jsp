@@ -99,11 +99,11 @@ if (message) {
                 <div class="login-wrapper">
                     <form action="login" method="post">
                         <div class="u-s-m-b-30">
-                            <label for="user_id">아이디:</label>
+                            <label for="user_id">아이디</label>
                             <input type="text" class="form-control" name="user_id" id="user_id">
                         </div>
                         <div class="u-s-m-b-30">
-                            <label for="pwd">비밀번호:</label>
+                            <label for="pwd">비밀번호</label>
                             <input type="password" class="form-control" name="pwd" id="pwd">
                         </div>
                         <div class="group-inline u-s-m-b-30">
