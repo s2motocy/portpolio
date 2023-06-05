@@ -73,7 +73,7 @@ $(document).ready(function (e) {
 		</tr>
 		<c:forEach var="list" items="${buyList}">
 			<tr>
-				<td>${list.buy_no}</td>
+				<td id="first">${list.buy_no}</td>
 				<td>${list.user_id}</td>
 				<td><fmt:formatDate value="${list.buy_date}" pattern="yyyy-MM-dd" /></td>
 				<td><c:forEach var="add" items="${bblist}" varStatus="stat">
@@ -86,7 +86,7 @@ $(document).ready(function (e) {
 					${add.buy_price}<br>
 				</c:forEach></td>
 				<td>
-					<select name="buy_status" id="buy_status" value="${list.buy_status}">
+					<select name="buy_status" id="buy_status">
 						<option value="결제 완료">결제 완료</option>
 						<option value="상품 준비 중">상품 준비중</option>
 						<option value="배송 시작">배송 시작</option>

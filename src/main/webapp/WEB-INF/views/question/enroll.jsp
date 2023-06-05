@@ -106,14 +106,10 @@ textarea {
           <tr>
             <th><label for="writer">작성자</label></th>
             <td>
-            <c:if test="${vo == null}">
               <div class="input_wrap">
-                <input type="text" id="writer" class="text-field1" name="writer">
+                <input type="text" id="writer" class="text-field1" name="writer" value="${vo.user_name}">
               </div>
-              </c:if>
-              <c:if test="${vo != null}">
-              	${vo.user_name}
-              </c:if>
+              	
             </td>
           </tr>
           <tr>

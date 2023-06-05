@@ -68,7 +68,7 @@
                         <ul>
                             <li>
                                 <i class="fas fa-location-arrow u-s-m-r-9"></i>
-                                <span>우주 공장</span>
+                                <span><a href="https://www.google.com/maps/place/%EC%9D%B4%EC%A0%A0%EC%BB%B4%ED%93%A8%ED%84%B0%EC%95%84%ED%8A%B8%ED%95%99%EC%9B%90/data=!3m1!4b1!4m6!3m5!1s0x357b431e8d19c277:0xceb17aba7af9e33d!8m2!3d37.2680919!4d127.0003279!16s%2Fg%2F1tj5nn27?entry=ttu">우주 공장</a></span>
                             </li>
                             <li>
                                 <a href="tel:+923086561801">

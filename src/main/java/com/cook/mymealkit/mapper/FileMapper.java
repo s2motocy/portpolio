@@ -9,6 +9,8 @@ public interface FileMapper {
 	public void fileInsert(AttachFileDTO dto); // 등록
 
 	public List<AttachFileDTO> fileFindById(long item_id); // 조회
+	
+	public void deleteImageFile(AttachFileDTO dto);
 
 	public void delete(String uuid); // 삭제(하나만)
 

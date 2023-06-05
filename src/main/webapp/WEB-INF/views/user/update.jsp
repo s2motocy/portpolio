@@ -17,18 +17,47 @@
   margin-right: auto;}
 </style>
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script> 
-function kakaopost() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-           document.querySelector("#post_code").value = data.zonecode;
-           document.querySelector("#addr").value =  data.address;
-        }
-    }).open();
-}
-</script>
 
+<script> 
+$(document).ready(function(){
+	
+	$('.pw2').keyup(function(){
+		  var p1 = document.getElementById('pwd').value;
+		  var p2 = document.getElementById('pwd2').value;
+		  
+		  if( p1 != p2 ) {
+		    $("#pwCheck").html("비밀번호가 일치하지 않습니다");
+		    $("#pwCheck").attr('color','red');
+		    return false;
+		  } else {
+			 $("#pwCheck").html("비밀번호가 일치합니다");
+			 $("#pwCheck").attr('color','green');
+			 return true;
+		  }
+		
+		})
+		
+	 $(".move").click(function(e){
+    	e.preventDefault();
+    	if($("#pwd").val() != $("#pwd2").val()){
+    		alert("비밀번호를 확인해 주세요.")
+    	}else{
+    		$("#userUpdate").submit()
+    	}
+    })
+})
+</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	function kakaopost() {
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	           document.querySelector("#post_code").value = data.zonecode;
+	           document.querySelector("#addr").value =  data.address;
+	        }
+	    }).open();
+	}
+</script>
 <body>
 <div class="page-style-a">
     <div class="container">
@@ -46,38 +75,50 @@ function kakaopost() {
         </div>
     </div>
 </div>
-<div class="container2">
-  <form method="post" action="update">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" class="form-control" name="user_name" value="${vo.user_name}">
-   </div>
-   <div class="form-group">
-     <label for="id">ID:</label>
-     <input type="text" class="form-control" name="user_id" value="${vo.user_id}" readonly="readonly">
-   </div>
-   <div class="form-group">
-     <label for="pwd">Password:</label>
-     <input type="text" class="form-control" name="pwd" value="${vo.pwd}">
-   </div>
-   <div class="form-group">
-     <label for="email">Email:</label>
-     <input type="email" class="form-control" name="email" value="${vo.email}">
-   </div>
-   <div class="form-group">
-     <label for="phone">Phone Number:</label>
-     <input type="tel" class="form-control" name="phone" value="${vo.phone}">
-   </div>
-   <div class="col-sm-13">
-     <input type="button" value="우편번호찾기" onclick="kakaopost()" class="btn btn-default"><br>   
-     <input type="text" id="post_code" name="post_code" placeholder="우편번호" class="form-control" />
-     <input type="text" id="addr" name="addr" class="form-control" value="${vo.addr}"/><br>
-     <input type="text" id="addr2" name="addr2" placeholder="상세주소" class="form-control" value="${vo.addr2}"/><br>
-    </div>
-    <button type="submit" class="btn btn-primary">회원수정</button>
-    <a href="home" class="btn btn-secondary">홈으로가기</a>
-    <a href="remove" class="btn btn-danger">탈퇴하러가기</a>
-  </form>
-</div>
+<div class="container">
+	  <div class="update_content">
+	    <div>
+	    	<form action="update" method="post" id="userUpdate">
+	    		<div class="update_cul">
+					<label for="name">이름*</label><br>
+		            	<input type="text" name="user_name" value="${vo.user_name}" />
+		        </div>
+		            	<input type="hidden" name="user_id" value="${vo.user_id}" readonly />
+		        <div class="update_cul">
+				<label for="pwd">기존 비밀번호*</label> 
+		            	<input type="password" name="pwd" value="${vo.pwd}" />
+		        </div>
+		        <div class="update_cul">
+		        	<label for="pwd">새로운 비밀번호*</label>
+		            	<input type="password" name="pwd" id="pwd" value="${vo.pwd}" /><br><br>
+		            <label class="col-sm-4 control-label" for="pwd2">비밀번호 확인*</label>
+		                  <div class="pwdCheck" >
+		                    <input type="password" class="pw2" id="pwd2" name="pwd2" placeholder="확인 비밀번호 입력" required/>
+		                  </div>
+		                  <font id="pwCheck" size="2"></font>
+		        </div>
+		        <div class="update_cul">
+		        	<label for="phone">연락처*</label>
+		            	<input type="tel" name="phone" value="${vo.phone}" />
+		        </div>
+		        <div class="update_cul">
+		        	<label for="email">이메일*</label>
+		            	<input type="email" name="email" value="${vo.email}" />
+		        </div>		        
+                <div class="update_cul">
+		        	<label for="address">주소</label><br>
+			            <input type="button" value="우편번호찾기" onclick="kakaopost()"><br>
+			            <input type="text" id="post_code" name="post_code" value="${vo.post_code}" />
+			            <input type="text" id="addr" name="addr" value="${vo.addr}" /><br>
+			         	<input type="text" id="addr2" name="addr2" value="${vo.addr2}"><br>
+			    </div>		    
+			    <div class="btn">
+                	<button type="reset" id="rebtn">취소</button>
+                	<button class="move" id="upbtn">수정</button>
+                </div>
+	  		</form>
+	      </div>
+	    </div>
+	 </div>
 </body>  
 <%@ include file="../include/footer.jsp" %>

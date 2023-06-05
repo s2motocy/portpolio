@@ -77,10 +77,11 @@ textarea {
 </style>
 
 <script>
-let form = $("#infoForm");
+
 let replyForm = $("#replyForm");
 const isAdmin = true; // 여기에 관리자 여부를 판단하는 로직 추가 해야됨
 $(document).ready(function () {
+	let form = $("#infoForm");
   $("#list_btn").on("click", function (e) {
     form.find("#qno").remove();
     form.attr("action", "/question/list");
