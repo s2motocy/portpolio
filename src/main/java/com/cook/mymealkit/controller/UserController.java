@@ -140,6 +140,7 @@ public class UserController {
 	@GetMapping("/mypage")
 	public void mypage(Model model, HttpSession session) {
 		UserVO user = (UserVO) session.getAttribute("vo");
+		System.out.println("마이페이지정보 :"+user);
 		model.addAttribute("vo", user);
 	}
 	
@@ -151,7 +152,8 @@ public class UserController {
 	}
 
 	@PostMapping("/update")
-	public String update(UserVO vo, Model model) {
+	public String updateUser(UserVO vo, Model model) {
+		uservice.updateUser(vo);
 		System.out.println("업데이트vo확잉이요!!!!!!!!!!!"+vo);
 		return "/user/mypage";
 	}

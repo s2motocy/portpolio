@@ -71,13 +71,7 @@ commit;
 select * from tbl_item;
 select * from tbl_file_item;
 select * from tbl_item order by update_date desc;
-select *
-				from (
-				    select *
-				    from tbl_item
-				    order by item_sold desc
-				)
-				where rownum <= 6;
+
 -- drop item
 drop sequence seq_item;
 drop table tbl_item;
@@ -93,7 +87,7 @@ create sequence seq_cart;
 -- 장바구니(cart) 테이블 생성
 create table tbl_cart (
     cart_id     number(30) not null primary key,    -- 카트 번호 (시퀀스 사용)
-    user_id   varchar2(50),                       -- 카트 이름
+    user_id     varchar2(50),                       -- 카트 이름
     item_id     number(30),                         -- 상품 번호
     item_name   varchar2(50),                       -- 상품 이름
     amount      number(10),                         -- 상품 수량
@@ -214,17 +208,18 @@ create table notice(
     bno number(10) not null primary key,
     title varchar2(150) not null,
     content varchar2(2000) not null,
-    writer varchar2(50) not null,
     regdate date default sysdate,
     updatedate date default sysdate
 );
 insert into notice values(seq_notice.nextval, '제목', '내요오오옹', '아무개', '2023/05/16', '2023/05/16');
 select * from notice;
+
 -- 커밋
 commit;
 
-update tbl_item set item_sold=100 where item_id=5;
-select * from tbl_item;
+drop table tbl_question;
+drop SEQUENCE seq_notice;
+
 
 -------------------------------------------------------------------------------- 리뷰 (reply)
 
@@ -246,5 +241,8 @@ create table reply(
 select * from reply;
 -- 커밋
 commit;
+
+drop sequence seq_reply;
+drop table reply;
 
 alter table tbl_item add ratingAvg number(2,1);

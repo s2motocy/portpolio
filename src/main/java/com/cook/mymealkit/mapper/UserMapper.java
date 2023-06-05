@@ -24,5 +24,6 @@ public interface UserMapper {
 	public int userDelete(long uno);				// 관리자 권한 회원정보 삭제
 
 	public UserVO UserById(String user_id);
+	public void getBuyStatusCount();
 	
 }

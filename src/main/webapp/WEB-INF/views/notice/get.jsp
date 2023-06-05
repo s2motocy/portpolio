@@ -28,7 +28,6 @@ $(document).ready(function(e){
 	let form = $("#infoForm");
 	
 	$("#list_btn").on("click", function(e){
-		console.log("이씨팔");
 		form.find("#bno").remove();
 		form.attr("action", "/notice/list");
 		form.submit();
@@ -78,7 +77,9 @@ $(document).ready(function(e){
 		</div>
 		<div class="btn_wrap">
 			<a class="btn btn-list" id="list_btn">목록 페이지</a>
-			<a class="btn btn-modify" id="modify_btn">수정 하러가기</a>
+			<c:if test="${admin == 'a'}">
+			<a class="btn btn-modify" id="modify_btn">수정</a>
+			</c:if>
 		</div>
 		<form id="infoForm" action="/notice/modify" method="get">
 			<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>

@@ -33,40 +33,28 @@
   padding:12px;
   font-size: 4px;
   right: 0;}
-#post_code {
-  width: 100px;
+.address, .mail_check_button {
+  width: 30%;
   height: 3px;
   border-radius: 30px;
-  margin-top: 5px;
+  margin-top: 10px;
   padding:15px;
   border: 1px solid lightgray;
   outline: none;}
 .btn{
   width: 80%;
   margin-left:40px}
-#btn-re {
-  margin-top: 30px;
-  width: 40%;
-  height: 40px;
-  border: 0;
-  outline: none;
-  border-radius: 20px;
-  background-image: linear-gradient(to right,  rgb(255,160,20), rgb(255,0,0));
-  color: white;
-  font-size: 1.2em;
-  letter-spacing: 2px;}
-#btn-join {
-  margin-top: 30px;
-  width: 40%;
-  height: 40px;
-  border: 0;
-  outline: none;
-  border-radius: 20px;
-  background: linear-gradient(to right,  rgb(255,160,20), rgb(255,0,0));
-  color: white;
-  font-size: 1.2em;
-  letter-spacing: 2px;}
-
+.btn-re, .btn-join {
+	margin-top: 30px;
+	width: 40%;
+	height: 40px;
+	border: 0;
+	outline: none;
+	border-radius: 20px;
+	background-color:#ff6b00;
+	color: white;
+	font-size: 1.2em;
+	letter-spacing: 2px;}
 .mail_input {
 	float: left;}
 #mail_check_input_box_false{
@@ -75,7 +63,6 @@
     background-color:white;}
 </style>
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 function kakaopost() {
     new daum.Postcode({
@@ -239,7 +226,7 @@ $(document).ready(function(){
 	                  </div>
 	        </div>	
 	        <div class="update_cul">
-	        	<label for="phone">연락처*</label>
+	        	<label for="phone">*연락처</label>
 	            	<input type="tel" class="user-input" name="phone" id="phone" required/>
 	        </div>	        
 	        <div class="mail_wrap">

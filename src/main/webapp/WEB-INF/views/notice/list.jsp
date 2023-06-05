@@ -15,6 +15,7 @@
 </style>
 
 <body>
+<div class="app">
 <div class="page-style-a">
     <div class="container">
         <div class="page-intro">
@@ -61,6 +62,7 @@
             <a href="/notice/enroll" class="btn btn-write">게시판 등록</a>
         </c:if>
     </div>
+</div>
 </div>
 </body>
 <%@ include file="../include/footer.jsp" %>

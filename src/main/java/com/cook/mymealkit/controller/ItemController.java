@@ -122,7 +122,9 @@ public class ItemController {
 	/* 상품 삭제 |--------------------------------------------------- */
 	@GetMapping("/delete")
 	public String delete(int item_id) {
+		System.out.println("Item 컨트롤러에서 삭제 : item_id=" + item_id);
 		iservice.itemDelete(item_id);
+		fmapper.deleteAll(item_id);
 		return "redirect:/item/categoryAll";
 	}
 

@@ -96,6 +96,7 @@ $(document).ready(function () {
 	/* input 태그에 파일이 담기면 체크(확장자, 용량) 후 ajax 를 통해 uploadcontroller의 uploadAjaxAction 에 전달되고
 	이미지를 c:\upload 폴더에 날짜를 생성하고 uuid를 붙여 저장하고, 이미지면 thumbnail 이미지를 추가 생성하고, AttachFileDTO 에 값을 저장하여 list 로 반환하면
 	반환된 list 정보를 태그화 하여 이미지면 thumbnail 이미지를 보여주고, 이미지가 아니면 attach.png 를 보여준다 */
+	var flag=false
 	$("input[type='file']").change(function (e) {
 		var formData = new FormData()
 		var inputFile = $("input[name='uploadFile']")
@@ -142,6 +143,30 @@ $(document).ready(function () {
 			}
 		}) // ajax
 	}) // button[type='file'] change
+	$(".uploadResult").on("click","span", function(e) {
+		var targetFile = $(this).data('file')
+		var type= $(this).data('type')
+		console.log(targetFile)
+	}) // uploadResult click
+	
+	$(".uploadResult").on("click","button", function(e) { ///// 변경
+		console.log("이미지 삭제")
+		var targetFile = $(this).data('file')
+		var type= $(this).data('type')
+		console.log(targetFile)
+		var targetLi = $(this).closest("li")
+		
+		$.ajax({
+			url: '/deleteFile',
+			data: {fileName: targetFile, type:type},
+			dataType: 'text',
+			type: 'POST',
+			success: (result)=>{
+				alert(result)
+				targetLi.remove()
+			}
+		})
+	}) // uploadResult click
 }) // ready
 </script>
 
@@ -190,6 +215,7 @@ $(document).ready(function () {
 			<div class="uploadResult" id="uploadResult">
 				<ul></ul>
 			</div>
+		
 			<label for="item_price"><b>상품 가격</b></label>
 			<br>
 			<input type="text" id="register-input" name="item_price" />

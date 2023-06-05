@@ -11,7 +11,7 @@
 	<select id="fileFindById" resultType="com.cook.mymealkit.domain.AttachFileDTO">
 		select * from tbl_file_item where fid=#{item_id}
 	</select>
-	
+
 	<delete id="delete">
 		delete from tbl_file_item where uuid=#{uuid}
 	</delete>
