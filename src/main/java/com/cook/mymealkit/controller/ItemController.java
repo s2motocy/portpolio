@@ -109,7 +109,7 @@ public class ItemController {
 	/* 상품 수정 |--------------------------------------------------- */
 	@GetMapping("/update")
 	public void update(Model model, Long item_id) {
-		model.addAttribute("vo", iservice.itemFindById(item_id));
+		model.addAttribute("ivo", iservice.itemFindById(item_id));
 	}
 
 	@PostMapping("/update")

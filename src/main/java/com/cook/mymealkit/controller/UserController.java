@@ -161,14 +161,10 @@ public class UserController {
 	public void remove() {}
 
 	@PostMapping("/remove")
-	public String remove(UserVO vo) {
-		try {
-			uservice.deleteUser(vo);
-			return "redirect:/";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "/user/remove";
-		}
+	public String remove(UserVO vo, HttpSession session) {
+		uservice.deleteUser(vo);
+		session.invalidate();
+		return "redirect:/";
 	}
 
 	/* 회원조회 처리 |--------------------------------------------------- */

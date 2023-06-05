@@ -57,7 +57,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <c:if test="${aaa == 1}">
+        <c:if test="${admin == 'a'}">
             <a href="/notice/enroll" class="btn btn-write">게시판 등록</a>
         </c:if>
     </div>

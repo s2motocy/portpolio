@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.ItemVO;
 import com.cook.mymealkit.mapper.FileMapper;
-import com.cook.mymealkit.mapper.ItemMapper;
 import com.cook.mymealkit.service.ItemService;
 import com.cook.mymealkit.service.ReplyService;
 
@@ -19,8 +18,6 @@ import lombok.Setter;
 @Controller
 public class MainController {
 	/* Mapper 설정 */
-	@Setter(onMethod_=@Autowired)
-	ItemMapper imapper;
 	@Setter(onMethod_=@Autowired)
 	FileMapper fmapper;
 	/* Service 설정 */
@@ -33,7 +30,7 @@ public class MainController {
 	@RequestMapping({ "/", "/main" })
 	public String main(Model model, String search) {
 		if (search == null) {
-			List<ItemVO> itemList = imapper.itemList();
+			List<ItemVO> itemList = iservice.itemList();
 			itemList.forEach(i -> {
 				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 				i.setAttachList(attachList);
@@ -43,7 +40,7 @@ public class MainController {
 			System.out.println("여기확인: "+itemList);
 			model.addAttribute("list", itemList);
 		} else {
-			List<ItemVO> itemList = imapper.itemListBySearch(search);
+			List<ItemVO> itemList = iservice.itemListBySearch(search);
 			itemList.forEach(i -> {
 				List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 				i.setAttachList(attachList);

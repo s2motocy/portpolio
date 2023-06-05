@@ -14,13 +14,16 @@
 	text-decoration: underline;}
 .floating-banner {
     position: fixed;
-    top: 50%;
+    top: 10%;
     right: 20px; /* Adjust the distance from the right side as needed */
     transform: translate(0, 0);
-    padding:15px;
+    padding-right: 15px;
+    padding-left: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     z-index: 9999;
     transition: top 0.3s ease-in-out;}
+#floating-banner-list {
+	padding: 0;}
 </style>
 
 <script>
@@ -92,7 +95,7 @@ $(document).ready(function () {
         if (scrollTop > 100) { // 스크롤을 얼마나 내려야 배너가 움직이기 시작할지 조절할 수 있습니다.
             banner.style.top = '100px'; // 배너가 움직일 위치를 조절할 수 있습니다.
         } else {
-            banner.style.top = '30%';
+            banner.style.top = '10%';
         }
     });
   });
@@ -172,7 +175,6 @@ $(document).ready(function () {
 	        		<img src="/display?fileName=/${asd.attachList[0].uploadPath.replace('\\', '/')}/${asd.attachList[0].uuid}_${asd.attachList[0].fileName}" width="150px" height="150px" />
 	        	</a>
 	        </div>
-	            
 	        </c:forEach>
 	    </ul>
 	</div>
