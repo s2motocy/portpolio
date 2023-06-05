@@ -20,5 +20,7 @@ public interface ItemService {
 	public List<ItemVO> itemListBySearch(String search); 				// 검색
 	public ItemVO getItemIdName(long item_id); 							// 상품 id 이름
 	public List<SelectDTO> likeSelect(); 								// 평줌순 상품 정보
+	public Long getMax();											// item_id 가 0 일때 최대값(max) 찾기
+	public int get_price(long item_id);								// price 값 찾기
 
 }

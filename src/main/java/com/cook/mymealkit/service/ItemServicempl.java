@@ -107,4 +107,14 @@ public class ItemServicempl implements ItemService {
 		});
 		return list;
 	}
+
+	@Override
+	public Long getMax() {
+		return imapper.getMax();
+	}
+
+	@Override
+	public int get_price(long item_id) {
+		return imapper.get_price(item_id);
+	}
 }

@@ -29,7 +29,7 @@ import lombok.Setter;
 public class QuestionController {
 
 	@Setter(onMethod_ = @Autowired)
-	private QuestionService qservice;
+	QuestionService qservice;
 
 	@GetMapping("/list")
 	public void questionListGET(HttpSession session, Model model, Criteria cri) {

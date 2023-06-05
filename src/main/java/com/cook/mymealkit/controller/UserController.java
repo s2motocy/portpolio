@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cook.mymealkit.domain.UserVO;
@@ -59,6 +60,20 @@ public class UserController {
 		
 		return num;
 		
+	}
+	
+    // 아이디 중복 확인 
+    @RequestMapping(value = "/userIdCheck", method = RequestMethod.POST)
+    @ResponseBody
+	public String IdChkPOST(String user_id) throws Exception{
+		System.out.println("잘 넘어오는지 확인");
+		int result = uservice.idCheck(user_id);
+		System.out.println("결과값 = " + result);	
+		if(result != 0) {	
+			return "fail";
+		} else {
+			return "success";	
+		}
 	}
 	
 	/* 로그인 페이지 처리 |--------------------------------------------------- */

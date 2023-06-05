@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.ItemVO;
-import com.cook.mymealkit.mapper.FileMapper;
 import com.cook.mymealkit.service.ItemService;
 import com.cook.mymealkit.service.ReplyService;
 
@@ -17,9 +16,6 @@ import lombok.Setter;
 
 @Controller
 public class MainController {
-	/* Mapper 설정 */
-	@Setter(onMethod_=@Autowired)
-	FileMapper fmapper;
 	/* Service 설정 */
 	@Setter(onMethod_=@Autowired)
 	ItemService iservice;

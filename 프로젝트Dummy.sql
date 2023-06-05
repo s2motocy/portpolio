@@ -136,8 +136,8 @@ create table reply(
     regDate date default sysdate,
     content varchar2(3500),
     rating number(2,1) not null,
-    FOREIGN KEY (user_id)REFERENCES tbl_user(user_id),
-    FOREIGN KEY (item_id) REFERENCES tbl_item(item_id),
+    FOREIGN KEY (user_id)REFERENCES tbl_user(user_id) on delete cascade,
+    FOREIGN KEY (item_id) REFERENCES tbl_item(item_id) on delete cascade,
     UNIQUE(item_id, user_id)
 );
 

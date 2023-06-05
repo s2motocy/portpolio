@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cook.mymealkit.domain.ChartVO;
-import com.cook.mymealkit.mapper.AdminMapper;
+import com.cook.mymealkit.service.AdminService;
 
 import lombok.Setter;
 
@@ -21,7 +21,7 @@ import lombok.Setter;
 public class AdminController {
 	/* Mapper 설정 */
 	@Setter(onMethod_=@Autowired)
-	AdminMapper amapper;
+	AdminService aservice;
 	
 	/* 대시보드 |--------------------------------------------------- */
 	@GetMapping("/dashboard")
@@ -30,7 +30,7 @@ public class AdminController {
 		ChartVO vo = new ChartVO();
 		vo.setStartDate("");
 		vo.setEndDate("");
-		List<ChartVO> userData = amapper.getUserCountByRegDate(vo);
+		List<ChartVO> userData = aservice.getUserCountByRegDate(vo);
 
 		List<ChartVO> list = new ArrayList<>();
 
@@ -45,7 +45,7 @@ public class AdminController {
 		// 일일 판매량 수
 		vo.setStartDateB("");
 		vo.setEndDateB("");
-		List<ChartVO> userbuyData = amapper.getUserBuyCountByBuyDate(vo);
+		List<ChartVO> userbuyData = aservice.getUserBuyCountByBuyDate(vo);
 
 		List<ChartVO> ublist = new ArrayList<>();
 
@@ -66,7 +66,7 @@ public class AdminController {
 	@GetMapping("/userChart")
 	@ResponseBody
 	public List<ChartVO> chartgogo(ChartVO vo) {
-		List<ChartVO> userData = amapper.getUserCountByRegDate(vo);
+		List<ChartVO> userData = aservice.getUserCountByRegDate(vo);
 
 		List<ChartVO> list = new ArrayList<>();
 
@@ -83,7 +83,7 @@ public class AdminController {
 	@GetMapping("/useBuyChart")
 	@ResponseBody
 	public List<ChartVO> ubChartgogo(ChartVO vo) {
-		List<ChartVO> userData = amapper.getUserBuyCountByBuyDate(vo);
+		List<ChartVO> userData = aservice.getUserBuyCountByBuyDate(vo);
 		List<ChartVO> ublist = new ArrayList<>();
 
 		for (ChartVO data : userData) {
