@@ -35,31 +35,28 @@ $(document).ready(function(){
 	pricing() // 함수 호출
 	
 	/* 결제 API 활용 */
-	$("#").click(function(e){ // #buybtn
+	$("#buybtn").click(function(e){ // #buybtn
 		e.preventDefault()
 		var buy_no = $("#buy_no").val()
 		var item_name = $("#item_name0").val()+" 외"
-		var sum_price = 0;
-		$("input[id^=buy_price]").each(function(idx, data){ sum_price += parseInt($(this).val()) })
-				
+		var sum_price = $(".final-totals").text()
 		requestPay(buy_no,item_name,sum_price)
 	})
-	const IMP = window.IMP; // 생략 가능
+	const IMP = window.IMP;
 	IMP.init("imp86273375");
 	function requestPay(buy_no,item_name,sum_price) {
 	  IMP.request_pay({
 	    pg: "INIBillTst",
 	    pay_method: "card",
-	    merchant_uid: buy_no,   // 주문번호
-	    name: item_name, // 이름
-	    amount: sum_price // 숫자 타입
-	  }, function (rsp) { // callback
-	    //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
-	if(rsp.success){
-		$('form').submit()
-	} else {
-		alert("결제에 실패하였습니다. ${rsp.error_msg}")
-	}
+	    merchant_uid: buy_no,
+	    name: item_name,
+	    amount: sum_price
+	  }, function (rsp) {
+		if(rsp.success){
+			$('form').submit()
+		} else {
+			alert("결제에 실패하였습니다. ${rsp.error_msg}")
+		}
 	  });
 	}
 })
@@ -111,7 +108,7 @@ $(document).ready(function(){
 	                                                <td>
 	                                                	<img src="/display?fileName=/${vlist[stat.index].attachList[0].uploadPath.replace('\\', '/')}/${vlist[stat.index].attachList[0].uuid}_${vlist[stat.index].attachList[0].fileName}" width="100px" height="100px" />
 	                                                    <h6 class="order-h6">${dto.item_name}</h6>
-	                                                    <input type="hidden" name="buy_list[${stat.index}].item_name" value="${dto.item_name}" />
+	                                                    <input type="hidden" name="buy_list[${stat.index}].item_name" id="item_name${stat.index}" value="${dto.item_name}" />
 	                                                </td>
 	                                                <td>
 	                                                	<span class="order-span-quantity">x <c:out value="${dto.amount}" /></span>
@@ -182,7 +179,7 @@ $(document).ready(function(){
                                     <label for="order-notes">배송시 요청사항</label>
                                     <textarea class="text-area" id="buy_note" name="buy_note" placeholder="배송시 요청사항을 입력해주세요"></textarea>
                                 </div>
-                                <button type="submit" class="button button-outline-secondary u-s-m-t-10">주문하기</button>
+                                <button type="submit" class="button button-outline-secondary u-s-m-t-10" id="buybtn">주문하기</button>
                             </div>
                             <!-- Billing-&-Shipping-Details /- -->
                         </div>
