@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.CartDTO;
-import com.cook.mymealkit.mapper.ItemMapper;
 import com.cook.mymealkit.service.CartService;
 import com.cook.mymealkit.service.ItemService;
 
@@ -26,9 +25,6 @@ public class CartController {
 	CartService cservice;
 	@Setter(onMethod_=@Autowired)
 	ItemService iservice;
-	/* Mapper 설정 */
-	@Setter(onMethod_=@Autowired)
-	ItemMapper imapper;
 
 	/* 장바구니 등록 |--------------------------------------------------- */
 	@PostMapping("/register")
@@ -38,7 +34,7 @@ public class CartController {
 		/* user_id 값이 없을때 값 생성 */
 		if (dto.getUser_id() == null || dto.getUser_id() == "") {
 			System.out.println("값이 없으니 여기에 들어와야해");
-			var num = imapper.getMax();
+			var num = iservice.getMax();
 			var str = "cart-";
 			for (int i = 0; i < 6 - num.toString().length(); i++) {
 				str += "0";
@@ -50,7 +46,7 @@ public class CartController {
 		for (int i = 0; i < cartList.size(); i++) {
 			if (cartList.get(i).getItem_id().equals(dto.getItem_id())) {
 				int amount = cartList.get(i).getAmount() + dto.getAmount();
-				int price = amount * imapper.get_price(cartList.get(i).getItem_id());
+				int price = amount * iservice.get_price(cartList.get(i).getItem_id());
 				dto.setAmount(amount);
 				dto.setCart_price(price);
 				System.out.println("변경된 dto=" + dto);
@@ -79,7 +75,7 @@ public class CartController {
 			List<AttachFileDTO> attachList = iservice.getAttachList(i.getItem_id());
 			System.out.println("Cart 컨트롤러의 목록에서 attachList=" + attachList);
 			i.setAttachList(attachList);
-			i.setItem_price(imapper.get_price(i.getItem_id()));
+			i.setItem_price(iservice.get_price(i.getItem_id()));
 			users.add(i.getUser_id());
 		});
 		System.out.println("적용된: " + dtoList);

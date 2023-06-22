@@ -23,7 +23,6 @@ import com.cook.mymealkit.domain.BuyListDTO;
 import com.cook.mymealkit.domain.BuyUserVO;
 import com.cook.mymealkit.domain.ItemVO;
 import com.cook.mymealkit.domain.UserVO;
-import com.cook.mymealkit.mapper.FileMapper;
 import com.cook.mymealkit.service.BuyListService;
 import com.cook.mymealkit.service.BuyService;
 import com.cook.mymealkit.service.CartService;
@@ -46,9 +45,6 @@ public class BuyController {
 	BuyListService blistservice;
 	@Setter(onMethod_=@Autowired)
 	CartService cservice;
-	/* Mapper 설정 */
-	@Setter(onMethod_ = @Autowired)
-	FileMapper fmapper;
 
 	/* 회원 구매 로그인 |--------------------------------------------------- */
 	@GetMapping("/buyLogin")

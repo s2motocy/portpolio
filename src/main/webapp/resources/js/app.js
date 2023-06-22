@@ -576,7 +576,6 @@ $(function () {
         let comment;
         let currentVal;
         let r = $( ".your-rating-value" ).val()
-        console.log(r)
         setTimeout(()=>{
         	$( ".your-rating-value" ).val(Number(r)+Number(0.0))
         	$( ".your-rating-value" ).trigger('keyup')

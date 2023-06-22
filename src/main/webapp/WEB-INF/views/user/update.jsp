@@ -80,22 +80,20 @@ $(document).ready(function(){
 	    <div>
 	    	<form action="update" method="post" id="userUpdate">
 	    		<div class="update_cul">
-					<label for="name">이름*</label><br>
-		            	<input type="text" name="user_name" value="${vo.user_name}" />
+					<label for="name">이름*</label>
+	            	<input type="text" name="user_name" value="${vo.user_name}" />
 		        </div>
-		            	<input type="hidden" name="user_id" value="${vo.user_id}" readonly />
+            	<input type="hidden" name="user_id" value="${vo.user_id}" readonly />
 		        <div class="update_cul">
 				<label for="pwd">기존 비밀번호*</label> 
 		            	<input type="password" name="pwd" value="${vo.pwd}" />
 		        </div>
 		        <div class="update_cul">
 		        	<label for="pwd">새로운 비밀번호*</label>
-		            	<input type="password" name="pwd" id="pwd" value="${vo.pwd}" /><br><br>
+	            	<input type="password" name="pwd" id="pwd" value="${vo.pwd}" /><br>
 		            <label class="col-sm-4 control-label" for="pwd2">비밀번호 확인*</label>
-		                  <div class="pwdCheck" >
-		                    <input type="password" class="pw2" id="pwd2" name="pwd2" placeholder="확인 비밀번호 입력" required/>
-		                  </div>
-		                  <font id="pwCheck" size="2"></font>
+                	<input type="password" class="pw2" id="pwd2" name="pwd2" placeholder="확인 비밀번호 입력" required/><br>
+	                <font id="pwCheck" size="2"></font>
 		        </div>
 		        <div class="update_cul">
 		        	<label for="phone">연락처*</label>

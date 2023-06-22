@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cook.mymealkit.domain.AttachFileDTO;
 import com.cook.mymealkit.domain.ItemVO;
 import com.cook.mymealkit.domain.ReplyDTO;
-import com.cook.mymealkit.mapper.FileMapper;
+import com.cook.mymealkit.service.FileService;
 import com.cook.mymealkit.service.ItemService;
 import com.cook.mymealkit.service.ReplyService;
 
@@ -31,14 +31,11 @@ import lombok.Setter;
 @Controller
 @RequestMapping("/item/*")
 public class ItemController {
-	/* Mapper 설정 */
-	@Setter(onMethod_=@Autowired)
-	FileMapper fmapper;
-	
 	/* Service 설정 */
 	@Setter(onMethod_=@Autowired)
+	FileService fservice;
+	@Setter(onMethod_=@Autowired)
 	ItemService iservice;
-	
 	@Setter(onMethod_=@Autowired)
 	ReplyService rservice;
 
@@ -124,7 +121,7 @@ public class ItemController {
 	public String delete(int item_id) {
 		System.out.println("Item 컨트롤러에서 삭제 : item_id=" + item_id);
 		iservice.itemDelete(item_id);
-		fmapper.deleteAll(item_id);
+		fservice.deleteAll(item_id);
 		return "redirect:/item/categoryAll";
 	}
 
