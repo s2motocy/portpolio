@@ -105,36 +105,29 @@ public class UserController {
 	}
 	
 	/* 아이디 찾기 |--------------------------------------------------- */
-	@GetMapping("/findid")
-	public void findIdView() {}
-
 	@PostMapping("/findid")
+	@ResponseBody
 	public String findIdAction(UserVO vo, Model model) {
+		System.out.println("여기: "+vo);
 		UserVO user = uservice.findId(vo);
 		System.out.println(user);
 		if (user == null) {
-			model.addAttribute("check", 1);
+			return null;
 		} else {
-			model.addAttribute("check", 0);
-			model.addAttribute("id", user.getUser_id());
+			return user.getUser_id();
 		}
-		return "redirect:/user/findid";
 	}
 
 	/* 비밀번호 찾기 |--------------------------------------------------- */
-	@GetMapping("/findpwd")
-	public void findPasswordView() {}
-
 	@PostMapping("/findpwd")
+	@ResponseBody
 	public String findPasswordAction(UserVO vo, Model model) {
 		UserVO user = uservice.findPassword(vo);
 		if (user == null) {
-			model.addAttribute("check", 1);
+			return null;
 		} else {
-			model.addAttribute("check", 0);
-			model.addAttribute("user_id", user.getUser_id());
+			return user.getPwd();
 		}
-		return "redirect:/user/findpwd";
 	}
 
 	/* 비밀번호 바꾸기 실행 |--------------------------------------------------- */

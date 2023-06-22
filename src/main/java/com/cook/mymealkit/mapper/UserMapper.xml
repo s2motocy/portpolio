@@ -23,7 +23,7 @@
     </select>
     <!--비밀번호 찾기-->
     <select id="findpwd" parameterType="com.cook.mymealkit.domain.UserVO" resultType="com.cook.mymealkit.domain.UserVO">
-        select pwd from tbl_user where user_id = #{user_id} and phone = #{phone}
+        select pwd from tbl_user where user_id = #{user_id} and user_name = #{user_name} and phone = #{phone}
     </select>
     <!-- 비밀번호 변경 -->
     <update id="updatepwd" parameterType="com.cook.mymealkit.domain.UserVO">
